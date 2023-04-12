@@ -1,0 +1,77 @@
+{
+  "courses": [
+    {
+      "id": 5,
+      "title": "Building Applications with React and Redux",
+      "slug": "react-redux-react-router-es6",
+      "authorId": 1,
+      "category": "JavaScript"
+    },
+    {
+      "id": 6,
+      "title": "Building Applications in React and Flux",
+      "slug": "react-flux-building-applications",
+      "authorId": 1,
+      "category": "JavaScript"
+    },
+    {
+      "id": 7,
+      "title": "Clean Code: Writing Code for Humans",
+      "slug": "writing-clean-code-humans",
+      "authorId": 1,
+      "category": "Software Practices"
+    },
+    {
+      "id": 8,
+      "title": "Architecting Applications for the Real World",
+      "slug": "architecting-applications-dotnet",
+      "authorId": 1,
+      "category": "Software Architecture"
+    },
+    {
+      "id": 9,
+      "title": "Becoming an Outlier: Reprogramming the Developer Mind",
+      "slug": "career-reboot-for-developer-mind",
+      "authorId": 1,
+      "category": "Career"
+    }
+  ],
+  "authors": [
+    {
+      "id": 1,
+      "name": "Cory House",
+      "age": 35,
+      "categoryId": 2
+    },
+    {
+      "id": 2,
+      "name": "Scott Allen",
+      "age": 35,
+      "categoryId": 3
+    },
+    {
+      "id": 3,
+      "name": "Dan Wahlin",
+      "age": 35,
+      "categoryId": 4
+    }
+  ],
+  "bookStores": [
+    {
+      "id": 1,
+      "title": "San Francisco"
+    },
+    {
+      "id": 2,
+      "title": "Denver"
+    },
+    {
+      "id": 3,
+      "title": "Houston"
+    },
+    {
+      "id": 4,
+      "title": "Boston"
+    }
+  ]
+}
