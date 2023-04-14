@@ -6,8 +6,8 @@ const AuthorList = ({ authors, onDeleteClick }) => (
   <table className="table">
     <thead>
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
+        {/* <th>First Name</th> */}
+        <th>Name</th>
         <th>Age</th>
         <th>Modify</th>
         <th>Delete?</th>
@@ -17,8 +17,7 @@ const AuthorList = ({ authors, onDeleteClick }) => (
       {authors.map((author) => {
         return (
           <tr key={author.id}>
-            <td>{author.name.split(" ")[0]}</td>
-            <td>{author.name.split(" ")[1]}</td>
+            <td>{author.name}</td>
             <td>{author.age}</td>
             <td>
               <Link to={"/author/" + author.id}>

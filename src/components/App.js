@@ -22,7 +22,7 @@ function App() {
         <Route path="/authors" component={AuthorsPage} />
         <Route path="/course/:slug" component={ManageCoursePage} />
         <Route path="/course" component={ManageCoursePage} />
-        <Route path="/author/:slug" component={ManageAuthorPage} />
+        <Route path="/author/:authorId" component={ManageAuthorPage} />
         <Route path="/author" component={ManageAuthorPage} />
         <Route component={PageNotFound} />
       </Switch>

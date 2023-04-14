@@ -5,12 +5,13 @@ import PropTypes from "prop-types";
 import AuthorForm from "./AuthorForm";
 import Spinner from "../common/Spinner";
 
-export const ManageAuthorPage = ({ authors, loadAuthors, author }) => {
+export const ManageAuthorPage = ({ authors, loadAuthors, ...props }) => {
+  const [author, setAuthor] = useState({ ...props.author });
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (authors.length === 0) {
-      loadAuthors().catch((error) => alert("Loading authors failed" + error));
+      loadAuthors().catch((error) => alert("Loading authors failed " + error));
     }
   }, []);
 
@@ -27,6 +28,8 @@ export const ManageAuthorPage = ({ authors, loadAuthors, author }) => {
     const { firstName, lastName, age } = event.target;
     console.log(firstName);
   }
+
+  console.log(author);
 
   return authors.length === 0 ? (
     <Spinner />
@@ -46,15 +49,17 @@ ManageAuthorPage.propTypes = {
 };
 
 function getAuthorById(authors, authorId) {
-  return authors.find((author) => author.id === parseInt(authorId)) || null;
+  const foo = authors.find((author) => author.id === authorId) || null;
+  return foo;
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const authorId = ownProps.match.params.slug;
+  const authorId = parseInt(ownProps.match.params.authorId);
   const author =
     authorId && state.authors.length > 0
       ? getAuthorById(state.authors, authorId)
       : {
+          id: null,
           name: "",
           age: "",
           categoryId: 2,

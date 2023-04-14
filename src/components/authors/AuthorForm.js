@@ -18,20 +18,20 @@ const AuthorForm = ({
         </div>
       )}
       <TextInput
-        name="firstName"
-        label="First Name"
-        value={author.name.split(" ")[0]}
+        name="name"
+        label="Name"
+        value={author.name}
         onChange={onChange}
         error={errors.name}
       />
 
-      <TextInput
+      {/* <TextInput
         name="lastName"
         label="Last Name"
         value={author.name.split(" ")[1]}
         onChange={onChange}
         error={errors.category}
-      />
+      /> */}
 
       <TextInput
         name="age"
