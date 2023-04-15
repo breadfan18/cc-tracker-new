@@ -44,6 +44,7 @@ export function saveAuthor(author) {
           : dispatch(createAuthorSuccess(savedAuthor));
       })
       .catch((error) => {
+        dispatch(apiCallError(error));
         throw error;
       });
   };

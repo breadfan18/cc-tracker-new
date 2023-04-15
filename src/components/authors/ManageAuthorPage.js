@@ -22,6 +22,7 @@ export const ManageAuthorPage = ({
 }) => {
   const [author, setAuthor] = useState({ ...props.author });
   const [saving, setSaving] = useState(false);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (authors.length === 0) {
@@ -30,6 +31,16 @@ export const ManageAuthorPage = ({
       setAuthor({ ...props.author });
     }
   }, [props.author]);
+
+  function formIsValid() {
+    const { name, age } = author;
+    const errors = {};
+    if (!name) errors.name = "Author name is required";
+    if (!age) errors.age = "Author age is required";
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -41,8 +52,8 @@ export const ManageAuthorPage = ({
 
   function handleAuthorSave(event) {
     event.preventDefault();
+    if (!formIsValid()) return;
     setSaving(true);
-    debugger;
     saveAuthor(author)
       .then(() => {
         toast.success("Author Saved");
@@ -50,6 +61,9 @@ export const ManageAuthorPage = ({
       })
       .catch((error) => {
         setSaving(false);
+        setErrors({
+          onSave: error.message,
+        });
       });
   }
 
@@ -61,6 +75,7 @@ export const ManageAuthorPage = ({
       saving={saving}
       onSave={handleAuthorSave}
       onChange={handleChange}
+      errors={errors}
     />
   );
 };

@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom";
 
 export const AuthorsPage = ({ authors, loadAuthors, loading }) => {
   const [redirectToAddAuthorPage, setRedirect] = useState(false);
+
   useEffect(() => {
     if (authors.length === 0)
       loadAuthors().catch((error) => alert("Loading Authors failed. " + error));
