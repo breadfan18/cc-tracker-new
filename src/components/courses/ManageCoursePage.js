@@ -22,6 +22,7 @@ function ManageCoursePage({
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 
+  console.log("render count");
   useEffect(() => {
     if (courses.length === 0) {
       loadCourses().catch((error) => alert("Loading Courses Failed" + error));

@@ -51,8 +51,8 @@ const AuthorForm = ({
 AuthorForm.propTypes = {
   author: PropTypes.object.isRequired,
   // errors: PropTypes.object,
-  // onSave: PropTypes.func.isRequired,
-  // onChange: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   saving: PropTypes.bool,
 };
 
