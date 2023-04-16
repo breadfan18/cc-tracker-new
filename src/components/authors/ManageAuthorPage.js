@@ -56,7 +56,7 @@ export const ManageAuthorPage = ({
     setSaving(true);
     saveAuthor(author)
       .then(() => {
-        toast.success("Author Saved");
+        toast.success(author.id === null ? "Author Created" : "Author Saved");
         history.push("/authors");
       })
       .catch((error) => {

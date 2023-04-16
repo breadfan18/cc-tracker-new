@@ -74,8 +74,8 @@
   "authors": [
     {
       "id": 1,
-      "name": "Cory Helsing",
-      "age": 35,
+      "name": "Cory Housexsec",
+      "age": "35ffff",
       "categoryId": 2
     },
     {
@@ -92,19 +92,51 @@
     },
     {
       "id": 4,
-      "name": "Ten Hag",
-      "age": "56",
+      "name": "fds",
+      "age": "gdf",
       "categoryId": 2,
-      "createdAt": 1681513001101,
-      "slug": "ten-hag"
+      "createdAt": 1681612583473,
+      "slug": "fds"
     },
     {
       "id": 5,
-      "name": "fsdfs",
-      "age": "fds",
+      "name": "fsadg",
+      "age": "gadsg",
       "categoryId": 2,
-      "createdAt": 1681518804555,
-      "slug": "fsdfs"
+      "createdAt": 1681613111732,
+      "slug": "fsadg"
+    },
+    {
+      "id": 6,
+      "name": "foo",
+      "age": "22",
+      "categoryId": 2,
+      "createdAt": 1681613170618,
+      "slug": "foo"
+    },
+    {
+      "id": 7,
+      "name": "fsdf",
+      "age": "fff",
+      "categoryId": 2,
+      "createdAt": 1681613218511,
+      "slug": "fsdf"
+    },
+    {
+      "id": 8,
+      "name": "Foo ",
+      "age": "nar",
+      "categoryId": 2,
+      "createdAt": 1681613245546,
+      "slug": "foo"
+    },
+    {
+      "id": 9,
+      "name": "fasdf",
+      "age": "fasdf",
+      "categoryId": 2,
+      "createdAt": 1681613305641,
+      "slug": "fasdf"
     }
   ],
   "bookStores": [
