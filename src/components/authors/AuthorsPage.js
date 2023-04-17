@@ -43,7 +43,7 @@ export const AuthorsPage = ({
           >
             Add Author
           </button>
-          <AuthorList authors={authors} />
+          <AuthorList authors={authors} categories={authorCategories} />
         </>
       )}
     </>
@@ -60,7 +60,7 @@ AuthorsPage.propTypes = {
 const mapStateToProps = (state) => ({
   authors: state.authors,
   authorCategories: state.authorCategories,
-  loading: state.apiCallsInProgress > 0,
+  loading: state.apiCallsInProgress > 0 || state.authorCategories.length === 0,
 });
 
 const mapDispatchToProps = {
