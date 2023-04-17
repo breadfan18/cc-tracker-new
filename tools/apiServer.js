@@ -14,7 +14,7 @@ Relevant source code: https://github.com/typicode/json-server/blob/master/src/cl
 const jsonServer = require("json-server");
 const server = jsonServer.create();
 const path = require("path");
-const { bookStores } = require("./mockData");
+const { bookStores, categories } = require("./mockData");
 const router = jsonServer.router(path.join(__dirname, "db.json"));
 
 // Can pass a limited number of options to this to override (some) defaults. See https://github.com/typicode/json-server#api
@@ -57,6 +57,10 @@ server.post("/courses/", function (req, res, next) {
 
 server.get("/stores/", function (req, res) {
   res.status(200).send(bookStores);
+});
+
+server.get("/authors/categories", function (req, res) {
+  res.status(200).send(categories);
 });
 
 server.post("/authors/", function (req, res, next) {

@@ -1,6 +1,7 @@
 import {
   CREATE_AUTHOR_SUCCESS,
   LOAD_AUTHORS_SUCCESS,
+  LOAD_AUTHOR_CATEGORIES_SUCCESS,
   UPDATE_AUTHOR_SUCCESS,
 } from "./actionTypes";
 import * as authorApi from "../../api/authorApi";
@@ -8,6 +9,9 @@ import { apiCallError, beginApiCall } from "../actions/apiStatusActions";
 
 function loadAuthorsSuccess(authors) {
   return { type: LOAD_AUTHORS_SUCCESS, authors };
+}
+function loadAuthorCategoriesSuccess(categories) {
+  return { type: LOAD_AUTHOR_CATEGORIES_SUCCESS, categories };
 }
 
 function updateAuthorSuccess(author) {
@@ -25,6 +29,21 @@ export function loadAuthors() {
       .getAuthors()
       .then((authors) => {
         dispatch(loadAuthorsSuccess(authors));
+      })
+      .catch((error) => {
+        dispatch(apiCallError(error));
+        throw error;
+      });
+  };
+}
+
+export function loadCategories() {
+  return (dispatch) => {
+    dispatch(beginApiCall());
+    return authorApi
+      .getAuthorCategories()
+      .then((categories) => {
+        dispatch(loadAuthorCategoriesSuccess(categories));
       })
       .catch((error) => {
         dispatch(apiCallError(error));

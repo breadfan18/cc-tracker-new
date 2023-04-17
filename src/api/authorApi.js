@@ -5,6 +5,12 @@ export function getAuthors() {
   return fetch(baseUrl).then(handleResponse).catch(handleError);
 }
 
+export function getAuthorCategories() {
+  return fetch("http://localhost:3001/authors/categories")
+    .then(handleResponse)
+    .catch(handleError);
+}
+
 export function getStores() {
   return fetch(process.env.API_URL + "/stores/")
     .then(handleResponse)
