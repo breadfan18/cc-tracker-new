@@ -11,7 +11,6 @@ import { toast } from "react-toastify";
 function ManageCoursePage({
   authors,
   courses,
-  stores,
   loadCourses,
   loadAuthors,
   saveCourse,
@@ -79,7 +78,6 @@ function ManageCoursePage({
       course={course}
       errors={errors}
       authors={authors}
-      stores={stores}
       saving={saving}
       onSave={handleSave}
       onChange={handleChange}
@@ -90,7 +88,6 @@ function ManageCoursePage({
 ManageCoursePage.propTypes = {
   course: PropTypes.object.isRequired,
   courses: PropTypes.array.isRequired,
-  stores: PropTypes.array.isRequired,
   authors: PropTypes.array.isRequired,
   loadCourses: PropTypes.func.isRequired,
   loadAuthors: PropTypes.func.isRequired,
@@ -112,7 +109,6 @@ function mapStateToProps(state, ownProps) {
     course,
     courses: state.courses,
     authors: state.authors,
-    stores: state.stores,
   };
 }
 

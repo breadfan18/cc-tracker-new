@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
 import * as authorActions from "../../redux/actions/authorActions";
-import * as storeActions from "../../redux/actions/storeActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import CourseList from "../courses/CourseList";
@@ -16,8 +15,8 @@ class CoursesPage extends React.Component {
   };
 
   componentDidMount() {
-    const { authors, courses, stores } = this.props;
-    const { loadCourses, loadAuthors, loadStores } = this.props.actions;
+    const { authors, courses } = this.props;
+    const { loadCourses, loadAuthors } = this.props.actions;
     if (courses.length === 0) {
       loadCourses().catch((error) => alert("Loading Courses Failed" + error));
     }
@@ -25,9 +24,6 @@ class CoursesPage extends React.Component {
     if (authors.length === 0) {
       loadAuthors().catch((error) => alert("Loading Authors failed" + error));
     }
-
-    // if (stores.length === 0) {
-    loadStores().catch((error) => alert("Loading Stores failed" + error));
   }
 
   handleDeleteCourse = async (course) => {
@@ -69,7 +65,6 @@ class CoursesPage extends React.Component {
 CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
   authors: PropTypes.array.isRequired,
-  stores: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
 };
@@ -77,20 +72,16 @@ CoursesPage.propTypes = {
 function mapStateToProps(state) {
   return {
     courses:
-      state.authors.length === 0 || state.stores.length === 0
+      state.authors.length === 0
         ? []
         : state.courses.map((course) => {
             return {
               ...course,
               authorName: state.authors.find((a) => a.id === course.authorId)
                 .name,
-              city: state.stores[
-                Math.floor(Math.random() * state.stores.length)
-              ].title,
             };
           }),
     authors: state.authors,
-    stores: state.bookStores,
     loading: state.apiCallsInProgress > 0,
   };
 }
@@ -100,7 +91,6 @@ function mapDispatchToProps(dispatch) {
     actions: {
       loadCourses: bindActionCreators(courseActions.loadCourses, dispatch),
       loadAuthors: bindActionCreators(authorActions.loadAuthors, dispatch),
-      loadStores: bindActionCreators(storeActions.loadStores, dispatch),
       deleteCourse: bindActionCreators(courseActions.deleteCourse, dispatch),
     },
   };

@@ -6,7 +6,6 @@ import SelectInput from "../common/SelectInput";
 const CourseForm = ({
   course,
   authors,
-  stores,
   onSave,
   onChange,
   saving = false,
@@ -41,19 +40,6 @@ const CourseForm = ({
         error={errors.author}
       />
 
-      <SelectInput
-        name="bookStore"
-        label="Store City"
-        value={course.city || ""}
-        defaultOption="Select city"
-        options={stores.map((store) => ({
-          value: store.id,
-          text: store.title,
-        }))}
-        onChange={onChange}
-        error={errors.author}
-      />
-
       <TextInput
         name="category"
         label="Category"
@@ -71,7 +57,6 @@ const CourseForm = ({
 
 CourseForm.propTypes = {
   authors: PropTypes.array.isRequired,
-  stores: PropTypes.array.isRequired,
   course: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,

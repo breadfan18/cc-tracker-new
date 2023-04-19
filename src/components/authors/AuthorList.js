@@ -12,7 +12,7 @@ const AuthorList = ({
   <>
     {deleteError && (
       <div className="alert alert-danger" role="alert">
-        Cannot delete author with active course(s)
+        Cannot delete an author with active course(s)
       </div>
     )}
     <table className="table">
@@ -72,6 +72,7 @@ AuthorList.propTypes = {
   categories: PropTypes.array.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
   authorBeingDeleted: PropTypes.object.isRequired,
+  deleteError: PropTypes.bool.isRequired,
 };
 
 export default AuthorList;
