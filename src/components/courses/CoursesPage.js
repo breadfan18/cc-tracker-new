@@ -28,7 +28,6 @@ class CoursesPage extends React.Component {
 
     // if (stores.length === 0) {
     loadStores().catch((error) => alert("Loading Stores failed" + error));
-    console.log({ stores });
   }
 
   handleDeleteCourse = async (course) => {

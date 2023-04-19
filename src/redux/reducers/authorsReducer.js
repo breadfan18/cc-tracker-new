@@ -1,5 +1,6 @@
 import {
   CREATE_AUTHOR_SUCCESS,
+  DELETE_AUTHOR_SUCCESS,
   LOAD_AUTHORS_SUCCESS,
   UPDATE_AUTHOR_SUCCESS,
 } from "../actions/actionTypes";
@@ -15,6 +16,8 @@ export default function authorsReducer(state = initialState.authors, action) {
       );
     case CREATE_AUTHOR_SUCCESS:
       return [...state, { ...action.author }];
+    case DELETE_AUTHOR_SUCCESS:
+      return state.filter((author) => author.id !== action.author.id);
     default:
       return state;
   }

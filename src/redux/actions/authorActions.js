@@ -1,5 +1,6 @@
 import {
   CREATE_AUTHOR_SUCCESS,
+  DELETE_AUTHOR_SUCCESS,
   LOAD_AUTHORS_SUCCESS,
   LOAD_AUTHOR_CATEGORIES_SUCCESS,
   UPDATE_AUTHOR_SUCCESS,
@@ -22,6 +23,10 @@ function createAuthorSuccess(author) {
   return { type: CREATE_AUTHOR_SUCCESS, author };
 }
 
+function deleteAuthorSuccess(author) {
+  return { type: DELETE_AUTHOR_SUCCESS, author };
+}
+
 export function loadAuthors() {
   return (dispatch) => {
     dispatch(beginApiCall());
@@ -29,6 +34,23 @@ export function loadAuthors() {
       .getAuthors()
       .then((authors) => {
         dispatch(loadAuthorsSuccess(authors));
+      })
+      .catch((error) => {
+        dispatch(apiCallError(error));
+        throw error;
+      });
+  };
+}
+
+export function saveAuthor(author) {
+  return (dispatch) => {
+    dispatch(beginApiCall());
+    return authorApi
+      .saveAuthor(author)
+      .then((savedAuthor) => {
+        author.id
+          ? dispatch(updateAuthorSuccess(savedAuthor))
+          : dispatch(createAuthorSuccess(savedAuthor));
       })
       .catch((error) => {
         dispatch(apiCallError(error));
@@ -52,15 +74,13 @@ export function loadCategories() {
   };
 }
 
-export function saveAuthor(author) {
+export function deleteAuthor(author) {
   return (dispatch) => {
     dispatch(beginApiCall());
     return authorApi
-      .saveAuthor(author)
-      .then((savedAuthor) => {
-        author.id
-          ? dispatch(updateAuthorSuccess(savedAuthor))
-          : dispatch(createAuthorSuccess(savedAuthor));
+      .deleteAuthor(author)
+      .then((author) => {
+        dispatch(deleteAuthorSuccess(author));
       })
       .catch((error) => {
         dispatch(apiCallError(error));
