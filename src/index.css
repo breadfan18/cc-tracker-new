@@ -10,3 +10,17 @@ nav {
 .form-group {
   padding: 10px 0;
 }
+
+div.alert-danger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeIcon {
+  transition: all .2s ease-in-out;
+}
+
+.closeIcon:hover {
+  transform: scale(1.5);
+}

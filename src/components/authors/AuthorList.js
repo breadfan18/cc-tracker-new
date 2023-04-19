@@ -1,18 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 const AuthorList = ({
   authors,
   onDeleteClick,
   categories,
   authorBeingDeleted,
-  deleteError,
+  errorOnDelete,
+  setDeleteError,
 }) => (
   <>
-    {deleteError && (
+    {errorOnDelete.deleteError && (
       <div className="alert alert-danger" role="alert">
-        Cannot delete an author with active course(s)
+        <p style={{ marginBottom: "0" }}>
+          Cannot delete {errorOnDelete.author.name}. Author has active course(s)
+        </p>
+        <AiFillCloseCircle
+          className="closeIcon"
+          onClick={() =>
+            setDeleteError({ ...errorOnDelete, deleteError: false })
+          }
+          style={{ cursor: "pointer" }}
+        />
       </div>
     )}
     <table className="table">
@@ -72,7 +83,8 @@ AuthorList.propTypes = {
   categories: PropTypes.array.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
   authorBeingDeleted: PropTypes.object.isRequired,
-  deleteError: PropTypes.bool.isRequired,
+  errorOnDelete: PropTypes.bool.isRequired,
+  setDeleteError: PropTypes.func.isRequired,
 };
 
 export default AuthorList;

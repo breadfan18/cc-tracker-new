@@ -24,7 +24,10 @@ export const AuthorsPage = ({
 }) => {
   const [redirectToAddAuthorPage, setRedirect] = useState(false);
   const [authorDeleted, setAuthorDeleted] = useState({});
-  const [deleteError, setDeleteError] = useState(false);
+  const [errorOnDelete, setErrorOnDelete] = useState({
+    author: {},
+    deleteError: false,
+  });
 
   useEffect(() => {
     if (authors.length === 0) {
@@ -46,10 +49,13 @@ export const AuthorsPage = ({
 
   function handleAuthorDelete(author) {
     if (authorHasCourse(author, courses)) {
-      setDeleteError(true);
+      setErrorOnDelete({
+        author,
+        deleteError: true,
+      });
       return;
     }
-    setDeleteError(false);
+    if (errorOnDelete) setErrorOnDelete(false);
     setAuthorDeleted({ ...author });
     deleteAuthor(author)
       .then(() => {
@@ -78,7 +84,8 @@ export const AuthorsPage = ({
             categories={authorCategories}
             onDeleteClick={handleAuthorDelete}
             authorBeingDeleted={authorDeleted}
-            deleteError={deleteError}
+            errorOnDelete={errorOnDelete}
+            setDeleteError={setErrorOnDelete}
           />
         </>
       )}
