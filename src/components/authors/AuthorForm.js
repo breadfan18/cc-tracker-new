@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
+import SelectInput from "../common/SelectInput";
+import { categories } from "../../../tools/mockData";
 
 const AuthorForm = ({
   author,
@@ -25,14 +27,18 @@ const AuthorForm = ({
         error={errors.name}
       />
 
-      {/* <TextInput
-        name="lastName"
-        label="Last Name"
-        value={author.name.split(" ")[1]}
+      <SelectInput
+        name="categoryId"
+        label="Category"
+        value={author.categoryId || ""}
+        defaultOption="Select Category"
+        options={categories.map((category) => ({
+          value: category.id,
+          text: category.title,
+        }))}
         onChange={onChange}
-        error={errors.category}
-      /> */}
-
+        error={errors.author}
+      />
       <TextInput
         name="age"
         label="Age"

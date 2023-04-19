@@ -46,7 +46,7 @@ export const ManageAuthorPage = ({
     const { name, value } = event.target;
     setAuthor((prevAuthor) => ({
       ...prevAuthor,
-      [name]: value,
+      [name]: name === "categoryId" ? parseInt(value, 10) : value,
     }));
   }
 
@@ -56,7 +56,7 @@ export const ManageAuthorPage = ({
     setSaving(true);
     saveAuthor(author)
       .then(() => {
-        toast.success(author.id === null ? "Author Created" : "Author Saved");
+        toast.success(author.id === null ? "Author Created" : "Author Updated");
         history.push("/authors");
       })
       .catch((error) => {

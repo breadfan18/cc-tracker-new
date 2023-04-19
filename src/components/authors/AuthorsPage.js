@@ -16,15 +16,14 @@ export const AuthorsPage = ({
   const [redirectToAddAuthorPage, setRedirect] = useState(false);
 
   useEffect(() => {
-    if (authors.length === 0)
+    if (authors.length === 0) {
       loadAuthors().catch((error) => alert("Loading Authors failed. " + error));
+    }
 
     if (authorCategories.length === 0) {
       loadCategories().catch((error) =>
         alert("Loading Author Categories failed. " + error)
       );
-
-      console.log({ authorCategories });
     }
   }, []);
 
