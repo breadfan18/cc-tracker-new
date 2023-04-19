@@ -5,6 +5,7 @@ import {
   loadCategories,
   deleteAuthor,
 } from "../../redux/actions/authorActions";
+import { loadCourses } from "../../redux/actions/courseActions";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 import AuthorList from "./AuthorList";
@@ -18,31 +19,43 @@ export const AuthorsPage = ({
   authorCategories,
   loadCategories,
   deleteAuthor,
+  courses,
+  loadCourses,
 }) => {
   const [redirectToAddAuthorPage, setRedirect] = useState(false);
-  const [authorDeleted, setAuthorDeleted] = useState(false);
+  const [authorDeleted, setAuthorDeleted] = useState({});
+  const [deleteError, setDeleteError] = useState(false);
 
   useEffect(() => {
-    if (authors.length === 0 || authorDeleted) {
+    if (authors.length === 0) {
       loadAuthors().catch((error) => alert("Loading Authors failed. " + error));
-      setAuthorDeleted(false);
     }
-
+    if (courses.length === 0) {
+      loadCourses().catch((error) => alert("Loading Authors failed. " + error));
+    }
     if (authorCategories.length === 0) {
       loadCategories().catch((error) =>
         alert("Loading Author Categories failed. " + error)
       );
     }
-  }, [authors]);
+  }, []);
+
+  function authorHasCourse(author, courses) {
+    return courses.find((course) => course.authorId === author.id);
+  }
 
   function handleAuthorDelete(author) {
-    deleteAuthor(author).catch((error) =>
-      alert("Error deleteing author " + error)
-    );
-    setAuthorDeleted(true);
-    setTimeout(() => {
-      toast.success("Author deleted");
-    }, 4000);
+    if (authorHasCourse(author, courses)) {
+      setDeleteError(true);
+      return;
+    }
+    setDeleteError(false);
+    setAuthorDeleted({ ...author });
+    deleteAuthor(author)
+      .then(() => {
+        toast.success("Author deleted");
+      })
+      .catch((error) => alert("Error deleteing author " + error));
   }
 
   return (
@@ -64,6 +77,8 @@ export const AuthorsPage = ({
             authors={authors}
             categories={authorCategories}
             onDeleteClick={handleAuthorDelete}
+            authorBeingDeleted={authorDeleted}
+            deleteError={deleteError}
           />
         </>
       )}
@@ -73,8 +88,10 @@ export const AuthorsPage = ({
 
 AuthorsPage.propTypes = {
   authors: PropTypes.array.isRequired,
+  courses: PropTypes.array.isRequired,
   authorCategories: PropTypes.array.isRequired,
   loadAuthors: PropTypes.func.isRequired,
+  loadCourses: PropTypes.func.isRequired,
   deleteAuthor: PropTypes.func.isRequired,
   loadCategories: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
@@ -82,14 +99,15 @@ AuthorsPage.propTypes = {
 const mapStateToProps = (state) => ({
   authors: state.authors,
   authorCategories: state.authorCategories,
+  courses: state.courses,
   loading: state.apiCallsInProgress > 0 || state.authorCategories.length === 0,
-  // deleteAuthorBoolean,
 });
 
 const mapDispatchToProps = {
   loadAuthors,
   loadCategories,
   deleteAuthor,
+  loadCourses,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthorsPage);

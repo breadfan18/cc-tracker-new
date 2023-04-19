@@ -76,10 +76,9 @@ export function loadCategories() {
 
 export function deleteAuthor(author) {
   return (dispatch) => {
-    dispatch(beginApiCall());
     return authorApi
       .deleteAuthor(author)
-      .then((author) => {
+      .then(() => {
         dispatch(deleteAuthorSuccess(author));
       })
       .catch((error) => {

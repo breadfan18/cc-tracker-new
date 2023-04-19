@@ -4,7 +4,7 @@
       "id": 1,
       "title": "Securing React Apps with Auth0",
       "slug": "react-auth0-authentication-security",
-      "authorId": 2,
+      "authorId": 1,
       "category": "JavaScript"
     },
     {
@@ -77,14 +77,6 @@
       "name": "Cory House",
       "age": 35,
       "categoryId": 2
-    },
-    {
-      "id": 2,
-      "name": "Swaroop Uprety",
-      "age": "38",
-      "categoryId": 3,
-      "createdAt": 1681928265001,
-      "slug": "swaroop-uprety"
     }
   ],
   "bookStores": [
