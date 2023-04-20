@@ -1,8 +1,14 @@
 import React from "react";
 import "./Spinner.css";
 
-function Spinner() {
+export function Spinner() {
   return <div className="loader">Loading..</div>;
 }
 
-export default Spinner;
+export function HeaderSpinner() {
+  return (
+    <div className="spinner-border spinner-grow-sm" role="status">
+      <span className="sr-only"></span>
+    </div>
+  );
+}

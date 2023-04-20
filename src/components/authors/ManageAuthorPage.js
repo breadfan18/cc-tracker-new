@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { loadAuthors, saveAuthor } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import AuthorForm from "./AuthorForm";
-import Spinner from "../common/Spinner";
+import { Spinner } from "../common/Spinner";
 import { toast } from "react-toastify";
 
 const newAuthor = {

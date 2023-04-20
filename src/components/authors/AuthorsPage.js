@@ -7,7 +7,7 @@ import {
 } from "../../redux/actions/authorActions";
 import { loadCourses } from "../../redux/actions/courseActions";
 import PropTypes from "prop-types";
-import Spinner from "../common/Spinner";
+import { Spinner } from "../common/Spinner";
 import AuthorList from "./AuthorList";
 import { Redirect } from "react-router-dom";
 import { toast } from "react-toastify";

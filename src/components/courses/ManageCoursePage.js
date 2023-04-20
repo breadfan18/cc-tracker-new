@@ -5,7 +5,7 @@ import { loadAuthors } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import CourseForm from "./CourseForm";
 import { newCourse } from "../../../tools/mockData";
-import Spinner from "../common/Spinner";
+import { Spinner } from "../common/Spinner";
 import { toast } from "react-toastify";
 
 function ManageCoursePage({
