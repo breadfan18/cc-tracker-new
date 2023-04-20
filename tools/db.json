@@ -39,7 +39,7 @@
       "id": 6,
       "title": "Building Applications in React and Flux",
       "slug": "react-flux-building-applications",
-      "authorId": 4,
+      "authorId": 1,
       "category": "JavaScript"
     },
     {
@@ -77,14 +77,6 @@
       "name": "Cory House",
       "age": 35,
       "categoryId": 2
-    },
-    {
-      "id": 4,
-      "name": "Ten Hag",
-      "age": "56",
-      "categoryId": 3,
-      "createdAt": 1681941830885,
-      "slug": "ten-hag"
     }
   ],
   "bookStores": [

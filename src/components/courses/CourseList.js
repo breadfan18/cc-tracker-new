@@ -10,7 +10,6 @@ const CourseList = ({ courses, onDeleteClick }) => (
         <th>Title</th>
         <th>Author</th>
         <th>Category</th>
-        <th>Book Store</th>
         <th>Delete?</th>
       </tr>
     </thead>
@@ -31,7 +30,6 @@ const CourseList = ({ courses, onDeleteClick }) => (
             </td>
             <td>{course.authorName}</td>
             <td>{course.category}</td>
-            <td>{course.city}</td>
             <td>
               <button
                 className="btn btn-outline-danger"
