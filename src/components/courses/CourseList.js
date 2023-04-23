@@ -1,25 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { AiOutlineUserAdd } from "react-icons/ai";
 import { connect } from "react-redux";
+import EmptyList from "../common/EmptyList";
 
 const CourseList = ({ courses, onDeleteClick }) => {
   return courses.length === 0 ? (
-    <div className="alert alert-danger" role="alert">
-      <p style={{ marginBottom: "0" }}>
-        No Courses to display. Click{" "}
-        <Link to="/course/" style={{ textDecoration: "none" }}>
-          here
-        </Link>{" "}
-        to add a course
-      </p>
-      <AiOutlineUserAdd
-        className="closeIcon"
-        onClick={() => console.log("foo")}
-        style={{ cursor: "pointer" }}
-      />
-    </div>
+    <EmptyList />
   ) : (
     <table className="table">
       <thead>
