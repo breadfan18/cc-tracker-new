@@ -6,7 +6,7 @@ import EmptyList from "../common/EmptyList";
 
 const CourseList = ({ courses, onDeleteClick }) => {
   return courses.length === 0 ? (
-    <EmptyList />
+    <EmptyList dataType={"course"} />
   ) : (
     <table className="table">
       <thead>
