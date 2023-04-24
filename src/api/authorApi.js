@@ -6,7 +6,7 @@ export function getAuthors() {
 }
 
 export function getAuthorCategories() {
-  return fetch("http://localhost:3001/authors/categories")
+  return fetch("http://localhost:3001/categories")
     .then(handleResponse)
     .catch(handleError);
 }

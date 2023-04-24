@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { HeaderSpinner, Spinner } from "./Spinner";
+import { HeaderSpinner } from "./Spinner";
 import PropTypes from "prop-types";
 
 const Header = ({ authors, courses, loading }) => {

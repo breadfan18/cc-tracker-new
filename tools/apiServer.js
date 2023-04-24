@@ -59,10 +59,6 @@ server.get("/stores/", function (req, res) {
   res.status(200).send(bookStores);
 });
 
-server.get("/authors/categories", function (req, res) {
-  res.status(200).send(categories);
-});
-
 server.post("/authors/", function (req, res, next) {
   const error = validateAuthor(req.body);
   if (error) {
@@ -101,10 +97,5 @@ function validateCourse(course) {
 
 function validateAuthor(author) {
   if (!author.name) return "Author name is required.";
-  return "";
-}
-
-function validateStore(store) {
-  if (!store.title) return "Store name is required.";
   return "";
 }

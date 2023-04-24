@@ -91,18 +91,15 @@ const categories = [
   { id: 4, title: "Biography" },
 ];
 
-const bookStores = [
-  { id: 1, title: "San Francisco" },
-  { id: 2, title: "Denver" },
-  { id: 3, title: "Houston" },
-  { id: 4, title: "Boston" },
-];
-
+const emptyLists = {
+  courses: false,
+  authors: false,
+};
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
 module.exports = {
   newCourse,
   courses,
   authors,
   categories,
-  bookStores,
+  emptyLists,
 };
