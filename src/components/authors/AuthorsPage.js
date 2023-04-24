@@ -103,6 +103,7 @@ AuthorsPage.propTypes = {
   loadCategories: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
+
 const mapStateToProps = (state) => ({
   authors: state.authors,
   authorCategories: state.authorCategories,

@@ -15,13 +15,13 @@ function ManageCoursePage({
   loadAuthors,
   saveCourse,
   history,
+  loading,
   ...props
 }) {
   const [course, setCourse] = useState({ ...props.course });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 
-  console.log("render count");
   useEffect(() => {
     if (courses.length === 0) {
       loadCourses().catch((error) => alert("Loading Courses Failed" + error));
@@ -71,7 +71,7 @@ function ManageCoursePage({
       });
   }
 
-  return authors.length === 0 || courses.length === 0 ? (
+  return loading ? (
     <Spinner />
   ) : (
     <CourseForm
@@ -93,6 +93,7 @@ ManageCoursePage.propTypes = {
   loadAuthors: PropTypes.func.isRequired,
   saveCourse: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export function getCourseBySlug(courses, slug) {
@@ -109,6 +110,7 @@ function mapStateToProps(state, ownProps) {
     course,
     courses: state.courses,
     authors: state.authors,
+    loading: state.apiCallsInProgress > 0,
   };
 }
 

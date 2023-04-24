@@ -18,6 +18,7 @@ export const ManageAuthorPage = ({
   loadAuthors,
   saveAuthor,
   history,
+  loading,
   ...props
 }) => {
   const [author, setAuthor] = useState({ ...props.author });
@@ -67,7 +68,7 @@ export const ManageAuthorPage = ({
       });
   }
 
-  return authors.length === 0 ? (
+  return loading ? (
     <Spinner />
   ) : (
     <AuthorForm
@@ -86,6 +87,7 @@ ManageAuthorPage.propTypes = {
   loadAuthors: PropTypes.func.isRequired,
   saveAuthor: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 function getAuthorById(authors, authorId) {
@@ -101,6 +103,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     author,
     authors: state.authors,
+    loading: state.apiCallsInProgress > 0,
   };
 };
 
