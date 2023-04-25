@@ -28,8 +28,10 @@ export const AuthorsPage = ({
     author: {},
     deleteError: false,
   });
+  const [foo, setFoo] = useState(false);
 
   useEffect(() => {
+    // Working on this foo thing!!
     if (authors.length === 0) {
       loadAuthors().catch((error) => alert("Loading Authors failed. " + error));
     }
@@ -48,6 +50,8 @@ export const AuthorsPage = ({
   }
 
   function handleAuthorDelete(author) {
+    let authorCount = authors.length;
+    console.log(authorCount);
     if (authorHasCourse(author, courses)) {
       setErrorOnDelete({
         author,
@@ -59,6 +63,8 @@ export const AuthorsPage = ({
     setAuthorDeleted({ ...author });
     deleteAuthor(author)
       .then(() => {
+        authorCount--;
+        if (authorCount === 0) setFoo(true);
         toast.success("Author deleted");
       })
       .catch((error) => alert("Error deleteing author " + error));
@@ -108,7 +114,7 @@ const mapStateToProps = (state) => ({
   authors: state.authors,
   authorCategories: state.authorCategories,
   courses: state.courses,
-  loading: state.apiCallsInProgress > 0 || state.authorCategories.length === 0,
+  loading: state.apiCallsInProgress > 0,
 });
 
 const mapDispatchToProps = {

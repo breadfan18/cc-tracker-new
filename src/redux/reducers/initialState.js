@@ -3,4 +3,5 @@ export default {
   authors: [],
   authorCategories: [],
   apiCallsInProgress: 0,
+  emptyList: {},
 };

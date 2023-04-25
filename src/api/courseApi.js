@@ -20,3 +20,9 @@ export function deleteCourse(courseId) {
     .then(handleResponse)
     .catch(handleError);
 }
+
+export function getEmptyListStatus() {
+  return fetch("http://localhost:3001/emptyLists/")
+    .then(handleResponse)
+    .catch(handleError);
+}
