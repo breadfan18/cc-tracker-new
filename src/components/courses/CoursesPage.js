@@ -16,10 +16,11 @@ class CoursesPage extends React.Component {
   };
 
   componentDidMount() {
-    const { authors, courses } = this.props;
-    const { loadCourses, loadAuthors, loadEmptyLists } = this.props.actions;
+    const { authors, courses, authorCategories } = this.props;
+    const { loadCourses, loadAuthors, loadEmptyLists, loadCategories } =
+      this.props.actions;
 
-    loadEmptyLists();
+    // loadEmptyLists();p
 
     if (courses.length === 0) {
       loadCourses().catch((error) => alert("Loading Courses Failed" + error));
@@ -27,6 +28,12 @@ class CoursesPage extends React.Component {
 
     if (authors.length === 0) {
       loadAuthors().catch((error) => alert("Loading Authors failed" + error));
+    }
+
+    if (authorCategories.length === 0) {
+      loadCategories().catch((error) =>
+        alert("Loading Author Categories failed. " + error)
+      );
     }
   }
 
@@ -71,6 +78,7 @@ CoursesPage.propTypes = {
   authors: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
+  authorCategories: PropTypes.array.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -86,8 +94,9 @@ function mapStateToProps(state) {
             };
           }),
     authors: state.authors,
-    loading: state.apiCallsInProgress > 0,
     empty: state.list,
+    authorCategories: state.authorCategories,
+    loading: state.apiCallsInProgress > 0,
   };
 }
 
@@ -98,6 +107,10 @@ function mapDispatchToProps(dispatch) {
       loadAuthors: bindActionCreators(authorActions.loadAuthors, dispatch),
       deleteCourse: bindActionCreators(courseActions.deleteCourse, dispatch),
       loadEmptyLists: bindActionCreators(listsActions.loadEmptyLists, dispatch),
+      loadCategories: bindActionCreators(
+        authorActions.loadCategories,
+        dispatch
+      ),
     },
   };
 }
