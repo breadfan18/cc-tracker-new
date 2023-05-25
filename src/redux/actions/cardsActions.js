@@ -2,8 +2,8 @@ import { LOAD_CARDS_SUCCESS } from "./actionTypes";
 import * as cardsApi from "../../api/cardsApi";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
 
-function loadCoursesSuccess(courses) {
-  return { type: LOAD_CARDS_SUCCESS, courses };
+function loadCardsSuccess(cards) {
+  return { type: LOAD_CARDS_SUCCESS, cards };
 }
 
 export function loadCards() {
@@ -12,7 +12,7 @@ export function loadCards() {
     return cardsApi
       .getCards()
       .then((cards) => {
-        dispatch(loadCoursesSuccess(cards));
+        dispatch(loadCardsSuccess(cards));
       })
       .catch((error) => {
         dispatch(apiCallError(error));
