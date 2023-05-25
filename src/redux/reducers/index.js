@@ -1,16 +1,10 @@
 import { combineReducers } from "redux";
-import courses from "./courseReducer";
-import authors from "./authorsReducer";
-import authorCategories from "./authorCategoriesReducer";
+import cards from "./cardsReducer";
 import apiCallsInProgress from "./apiStatusReducer";
-import emptyLists from "./emptyListReducer";
 
 const rootReducer = combineReducers({
-  courses,
-  authors,
-  authorCategories,
+  cards,
   apiCallsInProgress,
-  emptyLists,
 });
 
 export default rootReducer;

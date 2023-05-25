@@ -1,7 +1,4 @@
 export default {
-  courses: [],
-  authors: [],
-  authorCategories: [],
+  cards: [],
   apiCallsInProgress: 0,
-  emptyList: {},
 };

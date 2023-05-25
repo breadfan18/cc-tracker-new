@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { HeaderSpinner } from "./Spinner";
 import PropTypes from "prop-types";
 
-const Header = ({ authors, courses, loading }) => {
+const Header = ({ cards, loading }) => {
   const activeStyle = { color: "#F15B2A" };
   return (
     <nav>
@@ -17,25 +17,18 @@ const Header = ({ authors, courses, loading }) => {
       </NavLink>
       {" | "}
       <NavLink to="/courses" activeStyle={activeStyle}>
-        Courses {loading ? <HeaderSpinner /> : courses.length}
-      </NavLink>
-      {" | "}
-      <NavLink to="/authors" activeStyle={activeStyle}>
-        Authors {loading ? <HeaderSpinner /> : authors.length}
+        Courses {loading ? <HeaderSpinner /> : cards.length}
       </NavLink>
     </nav>
   );
 };
 
 Header.propTypes = {
-  authors: PropTypes.array.isRequired,
-  courses: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
+  cards: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  authors: state.authors,
-  courses: state.courses,
+  cards: state.cards,
   loading: state.apiCallsInProgress > 0,
 });
 

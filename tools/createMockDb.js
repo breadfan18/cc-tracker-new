@@ -3,12 +3,9 @@ const fs = require("fs");
 const path = require("path");
 const mockData = require("./mockData");
 
-const { courses, authors, emptyLists, categories } = mockData;
+const { cards } = mockData;
 const data = JSON.stringify({
-  courses,
-  authors,
-  emptyLists,
-  categories,
+  cards,
 });
 const filepath = path.join(__dirname, "db.json");
 

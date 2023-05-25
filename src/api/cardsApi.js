@@ -1,7 +1,7 @@
 import { handleResponse, handleError } from "./apiUtils";
-const baseUrl = process.env.API_URL + "/courses/";
+const baseUrl = process.env.API_URL + "/cards/";
 
-export function getCourses() {
+export function getCards() {
   return fetch(baseUrl).then(handleResponse).catch(handleError);
 }
 
