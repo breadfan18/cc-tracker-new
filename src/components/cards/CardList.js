@@ -11,7 +11,6 @@ const CardList = ({ cards, onDeleteClick }) => {
     <table className="table">
       <thead>
         <tr>
-          <th>Visit</th>
           <th>Issuer</th>
           <th>Card</th>
           <th>User</th>
@@ -23,9 +22,6 @@ const CardList = ({ cards, onDeleteClick }) => {
           return (
             <tr key={card.id}>
               <td>{card.issuer}</td>
-              <td>
-                <Link to={"/card/" + card.id}>{`${card.issuer}`}</Link>
-              </td>
               <td>{card.card}</td>
               <td>{card.user}</td>
               <td>
