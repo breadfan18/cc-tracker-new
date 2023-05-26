@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadCards } from "../../redux/actions/cardsActions";
 import PropTypes from "prop-types";
+import CardList from "./CardList";
 
 const CardsPage = ({ cards, loadCards }) => {
   useEffect(() => {
@@ -9,26 +10,9 @@ const CardsPage = ({ cards, loadCards }) => {
   }, []);
 
   return (
-    <table className="table">
-      <thead>
-        <tr>
-          <th>Issuer</th>
-          <th>Card</th>
-          <th>User</th>
-        </tr>
-      </thead>
-      <tbody>
-        {cards.map((card) => {
-          return (
-            <tr key={card.id}>
-              <td>{card.issuer}</td>
-              <td>{card.card}</td>
-              <td>{card.user}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <>
+      <CardList cards={cards} onDeleteClick={() => console.log("foo")} />
+    </>
   );
 };
 

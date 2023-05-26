@@ -16,8 +16,8 @@ const Header = ({ cards, loading }) => {
         About
       </NavLink>
       {" | "}
-      <NavLink to="/courses" activeStyle={activeStyle}>
-        Courses {loading ? <HeaderSpinner /> : cards.length}
+      <NavLink to="/cards" activeStyle={activeStyle}>
+        Cards {loading ? <HeaderSpinner /> : cards.length}
       </NavLink>
     </nav>
   );
