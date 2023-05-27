@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { loadCards } from "../../redux/actions/cardsActions";
+import { loadCards, saveCard } from "../../redux/actions/cardsActions";
 import PropTypes from "prop-types";
 import CardForm from "./CardForm";
 import { Spinner } from "../common/Spinner";
 import { toast } from "react-toastify";
 
-function ManageCoursePage({ cards, loadCards, history, loading, ...props }) {
+function ManageCardPage({
+  cards,
+  loadCards,
+  saveCard,
+  history,
+  loading,
+  ...props
+}) {
   const [card, setCard] = useState({ ...props.card });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
@@ -21,7 +28,7 @@ function ManageCoursePage({ cards, loadCards, history, loading, ...props }) {
     const { name, value } = event.target;
     setCard((prevCard) => ({
       ...prevCard,
-      [name]: name === "authorId" ? parseInt(value, 10) : value,
+      [name]: name === "id" ? parseInt(value, 10) : value,
     }));
   }
 
@@ -39,20 +46,20 @@ function ManageCoursePage({ cards, loadCards, history, loading, ...props }) {
   }
 
   function handleSave(event) {
-    // event.preventDefault();
+    event.preventDefault();
     // if (!formIsValid()) return;
-    // setSaving(true);
-    // saveCourse(course)
-    //   .then(() => {
-    //     toast.success("Course Saved!");
-    //     history.push("/courses");
-    //   })
-    //   .catch((error) => {
-    //     setSaving(false);
-    //     setErrors({
-    //       onSave: error.message,
-    //     });
-    //   });
+    setSaving(true);
+    saveCard(card)
+      .then(() => {
+        toast.success(card.id === null ? "Card Created" : "Card Updated");
+        history.push("/cards");
+      })
+      .catch((error) => {
+        setSaving(false);
+        setErrors({
+          onSave: error.message,
+        });
+      });
   }
 
   return loading ? (
@@ -68,10 +75,11 @@ function ManageCoursePage({ cards, loadCards, history, loading, ...props }) {
   );
 }
 
-ManageCoursePage.propTypes = {
+ManageCardPage.propTypes = {
   card: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
   loadCards: PropTypes.func.isRequired,
+  saveCard: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
 };
@@ -85,7 +93,7 @@ function mapStateToProps(state, ownProps) {
   const card =
     id && state.cards.length > 0
       ? getCardById(state.cards, id)
-      : { id: 1, issuer: "", card: "", uesr: "" };
+      : { issuer: "", card: "", user: "" };
   return {
     card,
     cards: state.cards,
@@ -95,6 +103,7 @@ function mapStateToProps(state, ownProps) {
 
 const mapDispatchToProps = {
   loadCards,
+  saveCard,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageCardPage);

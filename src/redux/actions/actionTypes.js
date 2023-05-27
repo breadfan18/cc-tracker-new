@@ -1,5 +1,10 @@
 //Cards Actions
 export const LOAD_CARDS_SUCCESS = "LOAD_CARDS_SUCCESS";
+export const CREATE_CARDS_SUCCESS = "CREATE_CARDS_SUCCESS";
+export const UPDATE_CARDS_SUCCESS = "UPDATE_CARDS_SUCCESS";
+
+//Users Actions
+export const LOAD_USERS_SUCCESS = "LOAD_USERS_SUCCESS";
 
 //API Status Actions
 export const BEGIN_API_CALL = "BEGIN_API_CALL";

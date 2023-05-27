@@ -1,9 +1,21 @@
-import { LOAD_CARDS_SUCCESS } from "./actionTypes";
+import {
+  CREATE_CARDS_SUCCESS,
+  LOAD_CARDS_SUCCESS,
+  UPDATE_CARDS_SUCCESS,
+} from "./actionTypes";
 import * as cardsApi from "../../api/cardsApi";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
 
 function loadCardsSuccess(cards) {
   return { type: LOAD_CARDS_SUCCESS, cards };
+}
+
+function createCardSuccess(card) {
+  return { type: CREATE_CARDS_SUCCESS, card };
+}
+
+function updateCardSuccess(card) {
+  return { type: UPDATE_CARDS_SUCCESS, card };
 }
 
 export function loadCards() {
@@ -21,22 +33,22 @@ export function loadCards() {
   };
 }
 
-// export function saveCourse(course) {
-//   return (dispatch) => {
-//     dispatch(beginApiCall());
-//     return cardsApi
-//       .saveCourse(course)
-//       .then((savedCourse) => {
-//         course.id
-//           ? dispatch(updateCourseSuccess(savedCourse))
-//           : dispatch(createCourseSuccess(savedCourse));
-//       })
-//       .catch((error) => {
-//         dispatch(apiCallError(error));
-//         throw error;
-//       });
-//   };
-// }
+export function saveCard(card) {
+  return (dispatch) => {
+    dispatch(beginApiCall());
+    return cardsApi
+      .saveCard(card)
+      .then((savedCard) => {
+        card.id
+          ? dispatch(updateCardSuccess(savedCard))
+          : dispatch(createCardSuccess(savedCard));
+      })
+      .catch((error) => {
+        dispatch(apiCallError(error));
+        throw error;
+      });
+  };
+}
 
 // export function deleteCourse(course) {
 //   return (dispatch) => {

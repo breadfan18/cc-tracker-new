@@ -25,7 +25,23 @@ const cards = [
   },
 ];
 
+const users = [
+  {
+    userId: 1,
+    name: "Swaroop Uprety",
+  },
+  {
+    userId: 2,
+    name: "Anshu Thapa",
+  },
+  {
+    userId: 3,
+    name: "Astha Thapa",
+  },
+];
+
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
 module.exports = {
   cards,
+  users,
 };

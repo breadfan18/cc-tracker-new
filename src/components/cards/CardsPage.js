@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { loadCards } from "../../redux/actions/cardsActions";
+import { loadUsers } from "../../redux/actions/userActions";
 import { Spinner } from "../common/Spinner";
 import PropTypes from "prop-types";
 import CardList from "./CardList";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
-const CardsPage = ({ cards, loadCards, loading }) => {
+const CardsPage = ({ cards, users, loadCards, loadUsers, loading }) => {
   const [redirectToAddCardPage, setRedirect] = useState(false);
 
   useEffect(() => {
-    if (cards.length === 0) loadCards();
+    if (cards.length === 0) {
+      loadCards();
+    }
+    if (users.length === 0) {
+      loadUsers();
+    }
   }, []);
-
-  /*
-  WORK ON ADDING A CARD NEXT
-  */
 
   return (
     <>
@@ -39,19 +41,23 @@ const CardsPage = ({ cards, loadCards, loading }) => {
 
 CardsPage.propTypes = {
   cards: PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired,
   loadCards: PropTypes.func.isRequired,
+  loadUsers: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     cards: state.cards,
+    users: state.users,
     loading: state.apiCallsInProgress > 0,
   };
 }
 
 const mapDispatchToProps = {
   loadCards,
+  loadUsers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardsPage);
