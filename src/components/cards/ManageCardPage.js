@@ -7,6 +7,13 @@ import CardForm from "./CardForm";
 import { Spinner } from "../common/Spinner";
 import { toast } from "react-toastify";
 
+const newCard = {
+  id: null,
+  issuer: "",
+  card: "",
+  userId: 1,
+};
+
 function ManageCardPage({
   cards,
   users,
@@ -24,11 +31,14 @@ function ManageCardPage({
   useEffect(() => {
     if (cards.length === 0) {
       loadCards().catch((error) => alert("Loading Cards Failed" + error));
+    } else {
+      // Need to understand this logic..
+      setCard({ ...props.card });
     }
     if (users.length === 0) {
       loadUsers().catch((error) => alert("Loading Users Failed" + error));
     }
-  }, []);
+  }, [props.card]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -100,9 +110,7 @@ export function getCardById(cards, id) {
 function mapStateToProps(state, ownProps) {
   const id = parseInt(ownProps.match.params.id);
   const card =
-    id && state.cards.length > 0
-      ? getCardById(state.cards, id)
-      : { issuer: "", card: "", user: "" };
+    id && state.cards.length > 0 ? getCardById(state.cards, id) : newCard;
   return {
     card,
     cards: state.cards,
