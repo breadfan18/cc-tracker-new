@@ -15,6 +15,7 @@ const CardList = ({ cards, onDeleteClick }) => {
           <th>Card</th>
           <th>User</th>
           <th>Delete?</th>
+          <th>Modify?</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +32,16 @@ const CardList = ({ cards, onDeleteClick }) => {
                 >
                   Delete
                 </button>
+              </td>
+              <td>
+                <Link to={"/card/" + card.id}>
+                  <button
+                    className="btn btn-outline-info"
+                    style={{ minWidth: "130px" }}
+                  >
+                    Modify
+                  </button>
+                </Link>
               </td>
             </tr>
           );

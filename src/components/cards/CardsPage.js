@@ -1,17 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { loadCards } from "../../redux/actions/cardsActions";
 import { Spinner } from "../common/Spinner";
 import PropTypes from "prop-types";
 import CardList from "./CardList";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 const CardsPage = ({ cards, loadCards, loading }) => {
+  const [redirectToAddCardPage, setRedirect] = useState(false);
+
   useEffect(() => {
     if (cards.length === 0) loadCards();
   }, []);
 
+  /*
+  WORK ON ADDING A CARD NEXT
+  */
+
   return (
     <>
+      {redirectToAddCardPage && <Redirect to="/card" />}
       <h2>Wallet</h2>
       {loading ? (
         <Spinner />
@@ -21,7 +29,7 @@ const CardsPage = ({ cards, loadCards, loading }) => {
       <button
         style={{ marginBottom: 20 }}
         className="btn btn-primary add-course"
-        onClick={() => console.log("Add an Author")}
+        onClick={() => setRedirect(true)}
       >
         Add Card
       </button>

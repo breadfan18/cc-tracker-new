@@ -3,51 +3,44 @@ import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 
-const CourseForm = ({
-  course,
-  authors,
-  onSave,
-  onChange,
-  saving = false,
-  errors = {},
-}) => {
+const CardForm = ({ card, onSave, onChange, saving = false, errors = {} }) => {
   return (
     <form onSubmit={onSave}>
-      <h2>{course.id ? "Edit" : "Add"} Course</h2>
+      <h2>{card.id ? "Edit" : "Add"} Card</h2>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
           {errors.onSave}
         </div>
       )}
       <TextInput
-        name="title"
-        label="Title"
-        value={course.title}
+        name="issuer"
+        label="Issuer"
+        value={card.issuer}
+        onChange={onChange}
+        error={errors.title}
+      />
+
+      <TextInput
+        name="card"
+        label="Card"
+        value={card.card}
         onChange={onChange}
         error={errors.title}
       />
 
       <SelectInput
-        name="authorId"
-        label="Author"
-        value={course.authorId || ""}
-        defaultOption="Select Author"
-        options={authors.map((author) => ({
-          value: author.id,
-          text: author.name,
-        }))}
+        name="user"
+        label="User"
+        value={card.user || ""}
+        defaultOption="Select User"
+        options={[
+          { value: 1, text: "Swaroop Uprety" },
+          { value: 2, text: "Anshu Thapa" },
+          { value: 3, text: "Astha Thapa" },
+        ]}
         onChange={onChange}
         error={errors.author}
       />
-
-      <TextInput
-        name="category"
-        label="Category"
-        value={course.category}
-        onChange={onChange}
-        error={errors.category}
-      />
-
       <button type="submit" disabled={saving} className="btn btn-primary">
         {saving ? "Saving..." : "Save"}
       </button>
@@ -55,13 +48,12 @@ const CourseForm = ({
   );
 };
 
-CourseForm.propTypes = {
-  authors: PropTypes.array.isRequired,
-  course: PropTypes.object.isRequired,
+CardForm.propTypes = {
+  card: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   saving: PropTypes.bool,
 };
 
-export default CourseForm;
+export default CardForm;
