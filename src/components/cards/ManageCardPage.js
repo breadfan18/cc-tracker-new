@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { loadCards, saveCard } from "../../redux/actions/cardsActions";
+import { loadUsers } from "../../redux/actions/userActions";
 import PropTypes from "prop-types";
 import CardForm from "./CardForm";
 import { Spinner } from "../common/Spinner";
@@ -8,8 +9,10 @@ import { toast } from "react-toastify";
 
 function ManageCardPage({
   cards,
+  users,
   loadCards,
   saveCard,
+  loadUsers,
   history,
   loading,
   ...props
@@ -21,6 +24,9 @@ function ManageCardPage({
   useEffect(() => {
     if (cards.length === 0) {
       loadCards().catch((error) => alert("Loading Cards Failed" + error));
+    }
+    if (users.length === 0) {
+      loadUsers().catch((error) => alert("Loading Users Failed" + error));
     }
   }, []);
 
@@ -67,6 +73,7 @@ function ManageCardPage({
   ) : (
     <CardForm
       card={card}
+      users={users}
       errors={errors}
       saving={saving}
       onSave={handleSave}
@@ -78,7 +85,9 @@ function ManageCardPage({
 ManageCardPage.propTypes = {
   card: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired,
   loadCards: PropTypes.func.isRequired,
+  loadUsers: PropTypes.func.isRequired,
   saveCard: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
@@ -97,6 +106,7 @@ function mapStateToProps(state, ownProps) {
   return {
     card,
     cards: state.cards,
+    users: state.users,
     loading: state.apiCallsInProgress > 0,
   };
 }
@@ -104,6 +114,7 @@ function mapStateToProps(state, ownProps) {
 const mapDispatchToProps = {
   loadCards,
   saveCard,
+  loadUsers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCardPage);

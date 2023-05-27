@@ -3,7 +3,14 @@ import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 
-const CardForm = ({ card, onSave, onChange, saving = false, errors = {} }) => {
+const CardForm = ({
+  card,
+  onSave,
+  onChange,
+  users,
+  saving = false,
+  errors = {},
+}) => {
   return (
     <form onSubmit={onSave}>
       <h2>{card.id ? "Edit" : "Add"} Card</h2>
@@ -31,13 +38,12 @@ const CardForm = ({ card, onSave, onChange, saving = false, errors = {} }) => {
       <SelectInput
         name="user"
         label="User"
-        value={card.user || ""}
+        value={card.userId || ""}
         defaultOption="Select User"
-        options={[
-          { value: 1, text: "Swaroop Uprety" },
-          { value: 2, text: "Anshu Thapa" },
-          { value: 3, text: "Astha Thapa" },
-        ]}
+        options={users.map((user) => ({
+          value: user.userId,
+          text: user.name,
+        }))}
         onChange={onChange}
         error={errors.author}
       />
@@ -50,6 +56,7 @@ const CardForm = ({ card, onSave, onChange, saving = false, errors = {} }) => {
 
 CardForm.propTypes = {
   card: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
