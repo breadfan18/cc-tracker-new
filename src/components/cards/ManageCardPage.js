@@ -44,7 +44,7 @@ function ManageCardPage({
     const { name, value } = event.target;
     setCard((prevCard) => ({
       ...prevCard,
-      [name]: name === "id" ? parseInt(value, 10) : value,
+      [name]: name === "userId" ? parseInt(value, 10) : value,
     }));
   }
 

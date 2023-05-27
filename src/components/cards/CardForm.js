@@ -36,7 +36,7 @@ const CardForm = ({
       />
 
       <SelectInput
-        name="user"
+        name="userId"
         label="User"
         value={card.userId || ""}
         defaultOption="Select User"
