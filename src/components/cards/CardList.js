@@ -24,7 +24,7 @@ const CardList = ({ cards, onDeleteClick }) => {
             <tr key={card.id}>
               <td>{card.issuer}</td>
               <td>{card.card}</td>
-              <td>{card.user}</td>
+              <td>{card.userName}</td>
               <td>
                 <button
                   className="btn btn-outline-danger"

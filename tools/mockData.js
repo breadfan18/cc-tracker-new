@@ -3,25 +3,25 @@ const cards = [
     id: 1,
     issuer: "Chase",
     card: "Sapphire Preferred",
-    user: "Swaroop Uprety",
+    userId: 1,
   },
   {
     id: 2,
     issuer: "Chase",
     card: "Sapphire Reserve",
-    user: "Swaroop Uprety",
+    userId: 1,
   },
   {
     id: 3,
     issuer: "Amex",
     card: "Hilton Honors",
-    user: "Swaroop Uprety",
+    userId: 2,
   },
   {
     id: 4,
     issuer: "Capital One",
     card: "Venture X",
-    user: "Anshu Thapa",
+    userId: 3,
   },
 ];
 

@@ -48,8 +48,18 @@ CardsPage.propTypes = {
 };
 
 function mapStateToProps(state) {
+  const cards =
+    state.users.length > 0
+      ? state.cards.map((card) => {
+          return {
+            ...card,
+            userName: state.users.find((user) => user.userId === card.userId)
+              .name,
+          };
+        })
+      : state.cards;
   return {
-    cards: state.cards,
+    cards,
     users: state.users,
     loading: state.apiCallsInProgress > 0,
   };
