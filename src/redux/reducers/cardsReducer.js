@@ -11,8 +11,10 @@ export default function cardsReducer(state = initialState.cards, action) {
       return action.cards;
     case CREATE_CARDS_SUCCESS:
       return [...state, { ...action.card }];
-    // case UPDATE_CARDS_SUCCESS:
-    //   return action.cards;
+    case UPDATE_CARDS_SUCCESS:
+      return state.map((card) =>
+        card.id === action.card.id ? action.card : card
+      );
     default:
       return state;
   }
