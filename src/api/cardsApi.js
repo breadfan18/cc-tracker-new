@@ -15,11 +15,11 @@ export function saveCard(card) {
     .catch(handleError);
 }
 
-// export function deleteCourse(courseId) {
-//   return fetch(baseUrl + courseId, { method: "DELETE" })
-//     .then(handleResponse)
-//     .catch(handleError);
-// }
+export function deleteCard(cardId) {
+  return fetch(baseUrl + cardId, { method: "DELETE" })
+    .then(handleResponse)
+    .catch(handleError);
+}
 
 // export function getEmptyListStatus() {
 //   return fetch("http://localhost:3001/emptyLists/")

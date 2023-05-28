@@ -1,5 +1,6 @@
 import {
   CREATE_CARDS_SUCCESS,
+  DELETE_CARD_OPTIMISTIC,
   LOAD_CARDS_SUCCESS,
   UPDATE_CARDS_SUCCESS,
 } from "../actions/actionTypes";
@@ -15,6 +16,8 @@ export default function cardsReducer(state = initialState.cards, action) {
       return state.map((card) =>
         card.id === action.card.id ? action.card : card
       );
+    case DELETE_CARD_OPTIMISTIC:
+      return state.filter((card) => card.id !== action.card.id);
     default:
       return state;
   }

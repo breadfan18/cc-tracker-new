@@ -1,5 +1,6 @@
 import {
   CREATE_CARDS_SUCCESS,
+  DELETE_CARD_OPTIMISTIC,
   LOAD_CARDS_SUCCESS,
   UPDATE_CARDS_SUCCESS,
 } from "./actionTypes";
@@ -16,6 +17,10 @@ function createCardSuccess(card) {
 
 function updateCardSuccess(card) {
   return { type: UPDATE_CARDS_SUCCESS, card };
+}
+
+function deleteCardOptimistic(card) {
+  return { type: DELETE_CARD_OPTIMISTIC, card };
 }
 
 export function loadCards() {
@@ -50,10 +55,11 @@ export function saveCard(card) {
   };
 }
 
-// export function deleteCourse(course) {
-//   return (dispatch) => {
-//     // This is optimistic delete because we are dispatching the action to delete course before actually calling deleteCourse on the API
-//     dispatch(deleteCourseOptimistic(course));
-//     return cardsApi.deleteCourse(course.id);
-//   };
-// }
+export function deleteCard(card) {
+  debugger;
+  return (dispatch) => {
+    // This is optimistic delete because we are dispatching the action to delete card before actually calling deleteCard on the API
+    dispatch(deleteCardOptimistic(card));
+    return cardsApi.deleteCard(card.id);
+  };
+}

@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { loadCards } from "../../redux/actions/cardsActions";
+import { loadCards, deleteCard } from "../../redux/actions/cardsActions";
 import { loadUsers } from "../../redux/actions/userActions";
 import { Spinner } from "../common/Spinner";
 import PropTypes from "prop-types";
 import CardList from "./CardList";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { toast } from "react-toastify";
 
-const CardsPage = ({ cards, users, loadCards, loadUsers, loading }) => {
+const CardsPage = ({
+  cards,
+  users,
+  loadCards,
+  deleteCard,
+  loadUsers,
+  loading,
+}) => {
   const [redirectToAddCardPage, setRedirect] = useState(false);
 
   useEffect(() => {
@@ -19,6 +27,14 @@ const CardsPage = ({ cards, users, loadCards, loadUsers, loading }) => {
     }
   }, []);
 
+  /* 
+  DELETE CARD IS DELETING ALL CARDS FROM API..WHY??
+  */
+  function handleDeleteCard(card) {
+    deleteCard(card);
+    toast.success("Card Deleted");
+  }
+
   return (
     <>
       {redirectToAddCardPage && <Redirect to="/card" />}
@@ -26,7 +42,7 @@ const CardsPage = ({ cards, users, loadCards, loadUsers, loading }) => {
       {loading ? (
         <Spinner />
       ) : (
-        <CardList cards={cards} onDeleteClick={() => console.log("foo")} />
+        <CardList cards={cards} onDeleteClick={handleDeleteCard} />
       )}
       <button
         style={{ marginBottom: 20 }}
@@ -44,6 +60,7 @@ CardsPage.propTypes = {
   users: PropTypes.array.isRequired,
   loadCards: PropTypes.func.isRequired,
   loadUsers: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
@@ -68,6 +85,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   loadCards,
   loadUsers,
+  deleteCard,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardsPage);

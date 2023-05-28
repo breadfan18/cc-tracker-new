@@ -27,15 +27,15 @@ const cards = [
 
 const users = [
   {
-    userId: 1,
+    id: 1,
     name: "Swaroop Uprety",
   },
   {
-    userId: 2,
+    id: 2,
     name: "Anshu Thapa",
   },
   {
-    userId: 3,
+    id: 3,
     name: "Astha Thapa",
   },
 ];
