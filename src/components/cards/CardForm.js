@@ -41,7 +41,7 @@ const CardForm = ({
         value={card.userId || ""}
         defaultOption="Select User"
         options={users.map((user) => ({
-          value: user.userId,
+          value: user.id,
           text: user.name,
         }))}
         onChange={onChange}

@@ -70,8 +70,7 @@ function mapStateToProps(state) {
       ? state.cards.map((card) => {
           return {
             ...card,
-            userName: state.users.find((user) => user.userId === card.userId)
-              .name,
+            userName: state.users.find((user) => user.id === card.userId).name,
           };
         })
       : state.cards;
