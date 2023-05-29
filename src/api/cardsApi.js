@@ -15,8 +15,8 @@ export function saveCard(card) {
     .catch(handleError);
 }
 
-export function deleteCard(cardId) {
-  return fetch(baseUrl + cardId, { method: "DELETE" })
+export function deleteCard(card) {
+  return fetch(baseUrl + card.id, { method: "DELETE" })
     .then(handleResponse)
     .catch(handleError);
 }

@@ -27,12 +27,12 @@ const CardsPage = ({
     }
   }, []);
 
-  /* 
-  DELETE CARD IS DELETING ALL CARDS FROM API..WHY??
-  */
   function handleDeleteCard(card) {
-    deleteCard(card);
-    toast.success("Card Deleted");
+    deleteCard(card)
+      .then(() => {
+        toast.success("Card deleted");
+      })
+      .catch((error) => alert("Error deleteing card " + error));
   }
 
   return (
