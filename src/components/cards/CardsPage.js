@@ -17,6 +17,7 @@ const CardsPage = ({
   loading,
 }) => {
   const [redirectToAddCardPage, setRedirect] = useState(false);
+  const [deletedCard, setDeletedCard] = useState({});
 
   useEffect(() => {
     if (cards.length === 0) {
@@ -28,6 +29,7 @@ const CardsPage = ({
   }, []);
 
   function handleDeleteCard(card) {
+    setDeletedCard({ ...card });
     deleteCard(card)
       .then(() => {
         toast.success("Card deleted");
@@ -42,7 +44,11 @@ const CardsPage = ({
       {loading ? (
         <Spinner />
       ) : (
-        <CardList cards={cards} onDeleteClick={handleDeleteCard} />
+        <CardList
+          cards={cards}
+          onDeleteClick={handleDeleteCard}
+          deletedCard={deletedCard}
+        />
       )}
       <button
         style={{ marginBottom: 20 }}

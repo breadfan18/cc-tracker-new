@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import EmptyList from "../common/EmptyList";
 
-const CardList = ({ cards, onDeleteClick }) => {
+const CardList = ({ cards, onDeleteClick, deletedCard }) => {
   return cards.length === 0 ? (
     <EmptyList dataType={"card"} />
   ) : (
@@ -20,6 +20,7 @@ const CardList = ({ cards, onDeleteClick }) => {
       </thead>
       <tbody>
         {cards.map((card) => {
+          const isCardDeleted = card.id === deletedCard.id;
           return (
             <tr key={card.id}>
               <td>{card.issuer}</td>
@@ -28,16 +29,18 @@ const CardList = ({ cards, onDeleteClick }) => {
               <td>
                 <button
                   className="btn btn-outline-danger"
+                  style={{ minWidth: "110px" }}
                   onClick={() => onDeleteClick(card)}
+                  disabled={isCardDeleted}
                 >
-                  Delete
+                  {isCardDeleted ? "Deleting.." : "Delete"}
                 </button>
               </td>
               <td>
                 <Link to={"/card/" + card.id}>
                   <button
                     className="btn btn-outline-info"
-                    style={{ minWidth: "130px" }}
+                    style={{ minWidth: "110px" }}
                   >
                     Modify
                   </button>
