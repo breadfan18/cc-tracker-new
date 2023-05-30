@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
+import { ISSUERS } from "../../constants";
 
 const CardForm = ({
   card,
@@ -19,13 +20,31 @@ const CardForm = ({
           {errors.onSave}
         </div>
       )}
-      <TextInput
+
+      {/* 
+        CONFIRM THIS APPROACH OF ISSUER DROPDOWN..
+        Maybe implement the same for users (using constants) instead of a network call
+      */}
+
+      <SelectInput
+        name="issuer"
+        label="Issuer"
+        value={card.issuer}
+        defaultOption="Select Issuer"
+        options={ISSUERS.map((issuer) => ({
+          value: issuer,
+          text: issuer,
+        }))}
+        onChange={onChange}
+        error={errors.author}
+      />
+      {/* <TextInput
         name="issuer"
         label="Issuer"
         value={card.issuer}
         onChange={onChange}
         error={errors.title}
-      />
+      /> */}
 
       <TextInput
         name="card"
@@ -34,7 +53,6 @@ const CardForm = ({
         onChange={onChange}
         error={errors.title}
       />
-
       <SelectInput
         name="userId"
         label="User"
