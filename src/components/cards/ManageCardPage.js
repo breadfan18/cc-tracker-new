@@ -90,7 +90,6 @@ function ManageCardPage({
 ManageCardPage.propTypes = {
   card: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
-  users: PropTypes.array.isRequired,
   loadCards: PropTypes.func.isRequired,
   loadUsers: PropTypes.func.isRequired,
   saveCard: PropTypes.func.isRequired,

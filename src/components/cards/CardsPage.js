@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { loadCards, deleteCard } from "../../redux/actions/cardsActions";
+import { loadCards } from "../../redux/actions/cardsActions";
 import { Spinner } from "../common/Spinner";
 import PropTypes from "prop-types";
-import CardList from "./CardList";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import { toast } from "react-toastify";
 import { USERS } from "../../constants";
+import CardTabs from "./CardTabs";
 
-const CardsPage = ({ cards, loadCards, deleteCard, loading }) => {
+const CardsPage = ({ cards, loadCards, loading }) => {
   const [redirectToAddCardPage, setRedirect] = useState(false);
-  const [deletedCard, setDeletedCard] = useState({});
 
   useEffect(() => {
     if (cards.length === 0) {
@@ -18,28 +16,11 @@ const CardsPage = ({ cards, loadCards, deleteCard, loading }) => {
     }
   }, []);
 
-  function handleDeleteCard(card) {
-    setDeletedCard({ ...card });
-    deleteCard(card)
-      .then(() => {
-        toast.success("Card deleted");
-      })
-      .catch((error) => alert("Error deleteing card " + error));
-  }
-
   return (
     <>
       {redirectToAddCardPage && <Redirect to="/card" />}
       <h2>Wallet</h2>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <CardList
-          cards={cards}
-          onDeleteClick={handleDeleteCard}
-          deletedCard={deletedCard}
-        />
-      )}
+      {loading ? <Spinner /> : <CardTabs cards={cards} />}
       <button
         style={{ marginBottom: 20 }}
         className="btn btn-primary add-course"
@@ -73,7 +54,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   loadCards,
-  deleteCard,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardsPage);
