@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { ISSUERS } from "../../constants";
+import { ISSUERS, USERS } from "../../constants";
 
 const CardForm = ({
   card,
@@ -58,7 +58,7 @@ const CardForm = ({
         label="User"
         value={card.userId || ""}
         defaultOption="Select User"
-        options={users.map((user) => ({
+        options={USERS.map((user) => ({
           value: user.id,
           text: user.name,
         }))}

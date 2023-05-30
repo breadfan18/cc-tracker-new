@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { loadCards, saveCard } from "../../redux/actions/cardsActions";
-import { loadUsers } from "../../redux/actions/userActions";
 import PropTypes from "prop-types";
 import CardForm from "./CardForm";
 import { Spinner } from "../common/Spinner";
 import { toast } from "react-toastify";
+import { USERS } from "../../constants";
 
 const newCard = {
   id: null,
@@ -16,10 +16,8 @@ const newCard = {
 
 function ManageCardPage({
   cards,
-  users,
   loadCards,
   saveCard,
-  loadUsers,
   history,
   loading,
   ...props
@@ -34,9 +32,6 @@ function ManageCardPage({
     } else {
       // Need to understand this logic..
       setCard({ ...props.card });
-    }
-    if (users.length === 0) {
-      loadUsers().catch((error) => alert("Loading Users Failed" + error));
     }
   }, [props.card]);
 
@@ -83,7 +78,7 @@ function ManageCardPage({
   ) : (
     <CardForm
       card={card}
-      users={users}
+      users={USERS}
       errors={errors}
       saving={saving}
       onSave={handleSave}
@@ -114,7 +109,6 @@ function mapStateToProps(state, ownProps) {
   return {
     card,
     cards: state.cards,
-    users: state.users,
     loading: state.apiCallsInProgress > 0,
   };
 }
@@ -122,7 +116,6 @@ function mapStateToProps(state, ownProps) {
 const mapDispatchToProps = {
   loadCards,
   saveCard,
-  loadUsers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageCardPage);
