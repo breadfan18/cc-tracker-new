@@ -65,6 +65,7 @@ CardList.propTypes = {
   cards: PropTypes.array.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  deletedCard: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps)(CardList);
