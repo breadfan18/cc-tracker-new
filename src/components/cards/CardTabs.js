@@ -23,7 +23,7 @@ function CardTabs({ cards, deleteCard }) {
   const userTabs = USERS.map((user) => {
     const cardsForThisUser = cards.filter((card) => card.userId === user.id);
     return (
-      <Tab eventKey={user.name} title={user.name.split(" ")[0]} key={user.id}>
+      <Tab eventKey={user.id} title={user.name.split(" ")[0]} key={user.id}>
         <CardList
           cards={cardsForThisUser}
           onDeleteClick={handleDeleteCard}
