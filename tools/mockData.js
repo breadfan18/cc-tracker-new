@@ -1,24 +1,28 @@
 const cards = [
   {
     id: 1,
+    appDate: "2023-05-01",
     issuer: "Chase",
     card: "Sapphire Preferred",
     userId: 1,
   },
   {
     id: 2,
+    appDate: "2023-05-01",
     issuer: "Chase",
     card: "Sapphire Reserve",
     userId: 1,
   },
   {
     id: 3,
+    appDate: "2023-05-01",
     issuer: "Amex",
     card: "Hilton Honors",
     userId: 2,
   },
   {
     id: 4,
+    appDate: "2023-05-01",
     issuer: "Capital One",
     card: "Venture X",
     userId: 3,

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 import { ISSUERS, USERS } from "../../constants";
+import DateInput from "../common/DateInput";
 
 const CardForm = ({ card, onSave, onChange, saving = false, errors = {} }) => {
   return (
@@ -13,6 +14,12 @@ const CardForm = ({ card, onSave, onChange, saving = false, errors = {} }) => {
           {errors.onSave}
         </div>
       )}
+      <DateInput
+        name="appDate"
+        label="Application Date"
+        onChange={onChange}
+        value={card.appDate}
+      />
       <SelectInput
         name="issuer"
         label="Issuer"

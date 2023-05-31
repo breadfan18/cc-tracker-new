@@ -44,3 +44,7 @@ div.alert-danger {
 .tab-content {
   padding: 15px;
 }
+
+label {
+  font-weight: bold;
+}

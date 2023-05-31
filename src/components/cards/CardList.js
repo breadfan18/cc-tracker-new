@@ -11,6 +11,7 @@ const CardList = ({ cards, onDeleteClick, deletedCard }) => {
     <table className="table">
       <thead>
         <tr>
+          <th>App Date</th>
           <th>Issuer</th>
           <th>Card</th>
           <th>User</th>
@@ -23,6 +24,7 @@ const CardList = ({ cards, onDeleteClick, deletedCard }) => {
           const isCardDeleted = card.id === deletedCard.id;
           return (
             <tr key={card.id}>
+              <td>{card.appDate}</td>
               <td>{card.issuer}</td>
               <td>{card.card}</td>
               <td>{card.userName}</td>
