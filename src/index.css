@@ -24,3 +24,23 @@ div.alert-danger {
 .closeIcon:hover {
   transform: scale(1.5);
 }
+
+.nav-tabs {
+  border-bottom: 2px solid #0080FF;
+}
+
+.nav-tabs .nav-item .nav-link {
+  color: #0080FF;
+  background-color: #d9d7d7;
+  border-bottom: 2px solid #0080FF;
+}
+
+.nav-tabs .nav-item .nav-link.active {
+  color: #FFF;
+  background-color: #0080FF;
+  font-weight: bold;
+}
+
+.tab-content {
+  padding: 15px;
+}
