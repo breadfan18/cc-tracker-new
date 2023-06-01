@@ -1,4 +1,4 @@
-export const ISSUERS = ["Chase", "American Express", "Capital One", "Barclays"];
+export const ISSUERS = ["Chase", "Amex", "CapOne", "Barclays"];
 export const USERS = [
   {
     id: 1,

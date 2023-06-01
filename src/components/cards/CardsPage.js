@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { USERS } from "../../constants";
 import CardTabs from "./CardTabs";
+import { addUserNameToCard } from "../../helpers";
 
 const CardsPage = ({ cards, loadCards, loading }) => {
   const [redirectToAddCardPage, setRedirect] = useState(false);
@@ -40,12 +41,7 @@ CardsPage.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const cards = state.cards.map((card) => {
-    return {
-      ...card,
-      userName: USERS.find((user) => user.id === card.userId).name,
-    };
-  });
+  const cards = state.cards.map((card) => addUserNameToCard(card));
   return {
     cards,
     loading: state.apiCallsInProgress > 0,

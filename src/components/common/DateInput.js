@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 
-const DateInput = ({ name, label, onChange, placeholder, value, error }) => {
+const DateInput = ({ name, label, onChange, value, error }) => {
   let wrapperClass = "form-group";
   if (error && error.length > 0) {
     wrapperClass += " " + "has-error";
@@ -15,7 +15,6 @@ const DateInput = ({ name, label, onChange, placeholder, value, error }) => {
         <Form.Control
           type="date"
           name={name}
-          placeholder="App Date"
           value={value}
           onChange={onChange}
         />

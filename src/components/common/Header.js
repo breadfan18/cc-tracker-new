@@ -19,6 +19,10 @@ const Header = ({ cards, loading }) => {
       <NavLink to="/cards" activeStyle={activeStyle}>
         Cards {loading ? <HeaderSpinner /> : cards.length}
       </NavLink>
+      {" | "}
+      <NavLink to="/524" activeStyle={activeStyle}>
+        5/24
+      </NavLink>
     </nav>
   );
 };

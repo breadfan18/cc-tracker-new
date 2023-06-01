@@ -21,7 +21,7 @@ const CardList = ({ cards, onDeleteClick, deletedCard }) => {
       </thead>
       <tbody>
         {cards.map((card) => {
-          const isCardDeleted = card.id === deletedCard.id;
+          const isCardDeleted = card.id === deletedCard?.id;
           return (
             <tr key={card.id}>
               <td>{card.appDate}</td>
@@ -67,7 +67,7 @@ CardList.propTypes = {
   cards: PropTypes.array.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
-  deletedCard: PropTypes.object.isRequired,
+  deletedCard: PropTypes.object,
 };
 
 export default connect(mapStateToProps)(CardList);

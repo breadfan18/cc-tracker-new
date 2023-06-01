@@ -8,6 +8,7 @@ import CardsPage from "./cards/CardsPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ManageCardPage from "./cards/ManageCardPage";
+import FiveTwentyFourPage from "./524/FiveTwentyFourPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/cards" component={CardsPage} />
         <Route path="/card/:id" component={ManageCardPage} />
         <Route path="/card" component={ManageCardPage} />
+        <Route path="/524" component={FiveTwentyFourPage} />
         <Route component={PageNotFound} />
       </Switch>
       <ToastContainer autoClose={3000} hideProgressBar />
