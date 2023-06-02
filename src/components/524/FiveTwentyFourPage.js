@@ -31,23 +31,35 @@ export const FiveTwentyFourPage = ({
 
     return (
       <>
-        <Card className="text-center">
-          <Card.Header style={{ fontWeight: "bold" }}>{userName}</Card.Header>
+        <Card
+          className="text-center"
+          style={{ border: "2px solid rgba(0,0,0,1)" }}
+        >
+          <Card.Header
+            style={{
+              fontWeight: "bold",
+              backgroundColor: "rgba(0,0,0, 0.3)",
+            }}
+          >
+            {userName}
+          </Card.Header>
           <Card.Body>
-            {/* <Card.Title>5/24 Status</Card.Title> */}
-            <FiveTwentyFourStatus
-              percent={(cards524.length / 5) * 100}
-              label={`${cards524.length}/5`}
-              key={user.id}
-            />
-            <br />
-            <CustomAccordion cardList={cards524} />
-            {/* <Card.Text>
-              With supporting text below as a natural lead-in to additional
-              content.
-            </Card.Text> */}
+            {cards524.length === 0 ? (
+              <Card.Text>
+                This user has opened 0 cards in the last 24 months
+              </Card.Text>
+            ) : (
+              <>
+                <FiveTwentyFourStatus
+                  percent={(cards524.length / 5) * 100}
+                  label={`${cards524.length}/5`}
+                  key={user.id}
+                />
+                <br />
+                <CustomAccordion cardList={cards524} />
+              </>
+            )}
           </Card.Body>
-          {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
         </Card>
         <br />
       </>
@@ -79,10 +91,14 @@ function mapStateToProps(state) {
   });
   return {
     cards,
-    cardsByUser: state.cards.reduce((obj, card) => {
-      obj[card.userId]
-        ? obj[card.userId].push(card)
-        : (obj[card.userId] = [card]);
+    // cardsByUser: state.cards.reduce((obj, card) => {
+    //   obj[card.userId]
+    //     ? obj[card.userId].push(card)
+    //     : (obj[card.userId] = [card]);
+    //   return obj;
+    // }, {}),
+    cardsByUser: USERS.reduce((obj, user) => {
+      obj[user.id] = state.cards.filter((card) => card.userId === user.id);
       return obj;
     }, {}),
     loading: state.apiCallsInProgress > 0,
@@ -94,10 +110,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FiveTwentyFourPage);
-
-/* 
-What i want to do?
-- User's Name
-- 5/24 status progress bar
-- Collapsible 'View Cards' bar that shows the cards that are in 5/24 range
-*/
