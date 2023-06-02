@@ -83,20 +83,8 @@ FiveTwentyFourPage.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const cards = state.cards.map((card) => {
-    return {
-      ...card,
-      userName: USERS.find((user) => user.id === card.userId).name,
-    };
-  });
   return {
-    cards,
-    // cardsByUser: state.cards.reduce((obj, card) => {
-    //   obj[card.userId]
-    //     ? obj[card.userId].push(card)
-    //     : (obj[card.userId] = [card]);
-    //   return obj;
-    // }, {}),
+    cards: state.cards,
     cardsByUser: USERS.reduce((obj, user) => {
       obj[user.id] = state.cards.filter((card) => card.userId === user.id);
       return obj;
