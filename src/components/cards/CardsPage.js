@@ -4,7 +4,6 @@ import { loadCards } from "../../redux/actions/cardsActions";
 import { Spinner } from "../common/Spinner";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import { USERS } from "../../constants";
 import CardTabs from "./CardTabs";
 import { addUserNameToCard } from "../../helpers";
 

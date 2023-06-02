@@ -1,18 +1,8 @@
 import React from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import PropTypes from "prop-types";
 
 export function FiveTwentyFourStatus({ percent, label }) {
-  console.log(percent);
-
-  function foo() {
-    if (percent >= 60) {
-      return "danger";
-    } else if (percent < 20 && percent > 80) {
-      return "warning";
-    }
-  }
-
-  const color = foo();
   return (
     <ProgressBar
       variant={
@@ -24,9 +14,13 @@ export function FiveTwentyFourStatus({ percent, label }) {
       }
       now={percent}
       label={label}
-      style={{ minHeight: "2.5rem" }}
+      style={{ minHeight: "2.5rem", fontSize: "1rem", fontWeight: "bold" }}
       // striped
-      // animated
     />
   );
 }
+
+FiveTwentyFourStatus.propTypes = {
+  percent: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
+};

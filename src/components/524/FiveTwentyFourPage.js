@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { USERS } from "../../constants";
 import { loadCards } from "../../redux/actions/cardsActions";
 import { Spinner } from "../common/Spinner";
 import PropTypes from "prop-types";
 import { FiveTwentyFourStatus } from "./FiveTwentyFourStatus";
-import CardList from "../cards/CardList";
-import { Accordion } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { wasCardOpenedWithinLast24Months } from "../../helpers";
+import CustomAccordion from "../common/CustomAccordion";
 
 export const FiveTwentyFourPage = ({
   cards,
@@ -16,8 +15,6 @@ export const FiveTwentyFourPage = ({
   loading,
   cardsByUser,
 }) => {
-  const [cardsShowing, setCardShowing] = useState(false);
-
   useEffect(() => {
     if (cards.length === 0) {
       loadCards();
@@ -44,20 +41,7 @@ export const FiveTwentyFourPage = ({
               key={user.id}
             />
             <br />
-            <Accordion onClick={() => setCardShowing(!cardsShowing)}>
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>
-                  {cardsShowing ? "Hide Cards" : "Show Cards"}
-                </Accordion.Header>
-                <Accordion.Body>
-                  <CardList
-                    cards={cards524}
-                    onDeleteClick={() => {}}
-                    deleteCard={{}}
-                  />
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
+            <CustomAccordion cardList={cards524} />
             {/* <Card.Text>
               With supporting text below as a natural lead-in to additional
               content.
