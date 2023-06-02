@@ -7,9 +7,9 @@ export default function CustomAccordion({ cardList }) {
   const [cardsShowing, setCardShowing] = useState(false);
 
   return (
-    <Accordion onClick={() => setCardShowing(!cardsShowing)}>
+    <Accordion>
       <Accordion.Item eventKey="0">
-        <Accordion.Header>
+        <Accordion.Header onClick={() => setCardShowing(!cardsShowing)}>
           {cardsShowing ? "Hide Cards" : "Show Cards"}
         </Accordion.Header>
         <Accordion.Body>
