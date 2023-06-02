@@ -4,6 +4,7 @@ const cards = [
     appDate: "2023-05-01",
     issuer: "Chase",
     card: "Sapphire Preferred",
+    cardType: "Personal",
     userId: 1,
   },
   {
@@ -11,6 +12,7 @@ const cards = [
     appDate: "2023-05-01",
     issuer: "Chase",
     card: "Sapphire Reserve",
+    cardType: "Personal",
     userId: 1,
   },
   {
@@ -18,13 +20,15 @@ const cards = [
     appDate: "2023-05-01",
     issuer: "Amex",
     card: "Hilton Honors",
+    cardType: "Personal",
     userId: 2,
   },
   {
     id: 4,
     appDate: "2023-05-01",
-    issuer: "Capital One",
+    issuer: "CapOne",
     card: "Venture X",
+    cardType: "Personal",
     userId: 3,
   },
 ];

@@ -12,9 +12,10 @@ const CardList = ({ cards, onDeleteClick, deletedCard }) => {
       <thead>
         <tr>
           <th>App Date</th>
+          <th>User</th>
           <th>Issuer</th>
           <th>Card</th>
-          <th>User</th>
+          <th>Type</th>
           <th>Delete?</th>
           <th>Modify?</th>
         </tr>
@@ -25,9 +26,10 @@ const CardList = ({ cards, onDeleteClick, deletedCard }) => {
           return (
             <tr key={card.id}>
               <td>{card.appDate}</td>
+              <td>{card.userName}</td>
               <td>{card.issuer}</td>
               <td>{card.card}</td>
-              <td>{card.userName}</td>
+              <td>{card.cardType}</td>
               <td>
                 <button
                   className="btn btn-outline-danger"

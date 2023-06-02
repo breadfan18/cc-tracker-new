@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { ISSUERS, USERS } from "../../constants";
+import { CARD_TYPE, ISSUERS, USERS } from "../../constants";
 import DateInput from "../common/DateInput";
 
 const CardForm = ({ card, onSave, onChange, saving = false, errors = {} }) => {
@@ -19,6 +19,18 @@ const CardForm = ({ card, onSave, onChange, saving = false, errors = {} }) => {
         label="Application Date"
         onChange={onChange}
         value={card.appDate}
+      />
+      <SelectInput
+        name="userId"
+        label="User"
+        value={card.userId || ""}
+        defaultOption="Select User"
+        options={USERS.map((user) => ({
+          value: user.id,
+          text: user.name,
+        }))}
+        onChange={onChange}
+        error={errors.author}
       />
       <SelectInput
         name="issuer"
@@ -40,13 +52,13 @@ const CardForm = ({ card, onSave, onChange, saving = false, errors = {} }) => {
         error={errors.title}
       />
       <SelectInput
-        name="userId"
-        label="User"
-        value={card.userId || ""}
-        defaultOption="Select User"
-        options={USERS.map((user) => ({
-          value: user.id,
-          text: user.name,
+        name="cardType"
+        label="Card Type"
+        value={card.cardType}
+        defaultOption="Select Card Type"
+        options={CARD_TYPE.map((type) => ({
+          value: type,
+          text: type,
         }))}
         onChange={onChange}
         error={errors.author}
