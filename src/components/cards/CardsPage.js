@@ -5,7 +5,7 @@ import { Spinner } from "../common/Spinner";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import CardTabs from "./CardTabs";
-import { addUserNameToCard } from "../../helpers";
+import { addUserNameToCard, sortCardsByDate } from "../../helpers";
 
 const CardsPage = ({ cards, loadCards, loading }) => {
   const [redirectToAddCardPage, setRedirect] = useState(false);
@@ -40,7 +40,9 @@ CardsPage.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const cards = state.cards.map((card) => addUserNameToCard(card));
+  const cards = sortCardsByDate(state.cards).map((card) =>
+    addUserNameToCard(card)
+  );
   return {
     cards,
     loading: state.apiCallsInProgress > 0,
