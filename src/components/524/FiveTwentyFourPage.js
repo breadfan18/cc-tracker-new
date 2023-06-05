@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { USERS } from "../../constants";
 import { loadCards } from "../../redux/actions/cardsActions";
@@ -8,6 +8,7 @@ import { FiveTwentyFourStatus } from "./FiveTwentyFourStatus";
 import Card from "react-bootstrap/Card";
 import { wasCardOpenedWithinLast24Months } from "../../helpers";
 import CustomAccordion from "../common/CustomAccordion";
+import SelectInput from "../common/SelectInput";
 
 export const FiveTwentyFourPage = ({
   cards,
@@ -15,13 +16,24 @@ export const FiveTwentyFourPage = ({
   loading,
   cardsByUser,
 }) => {
+  const [selectedUser, setSelectedUser] = useState();
+
   useEffect(() => {
     if (cards.length === 0) {
       loadCards();
     }
   }, []);
 
-  const userCards = Object.keys(cardsByUser).map((user) => {
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setSelectedUser(name === "id" ? parseInt(value, 10) : value);
+  }
+
+  const usersToDisplay = isNaN(selectedUser)
+    ? USERS.map((user) => user.id)
+    : [selectedUser];
+
+  const users524Status = usersToDisplay.map((user) => {
     const userName = USERS.find((u) => u.id === parseInt(user)).name;
     const cards524 = cardsByUser[user]
       .filter((card) => wasCardOpenedWithinLast24Months(card.appDate))
@@ -69,7 +81,26 @@ export const FiveTwentyFourPage = ({
   return (
     <>
       <h2>5/24 Status</h2>
-      {loading ? <Spinner /> : <>{userCards}</>}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <SelectInput
+            name="id"
+            label="Select User to View"
+            value={selectedUser}
+            defaultOption="All Users"
+            options={USERS.map((user) => ({
+              value: user.id,
+              text: user.name,
+            }))}
+            onChange={handleChange}
+            // error={errors.author}
+          />
+          <hr />
+          {users524Status}
+        </>
+      )}
     </>
   );
 };

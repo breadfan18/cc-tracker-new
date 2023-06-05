@@ -17,4 +17,8 @@ export const USERS = [
     id: 4,
     name: "Astha Thapa",
   },
+  {
+    id: 5,
+    name: "Mithila Aryal",
+  },
 ];
