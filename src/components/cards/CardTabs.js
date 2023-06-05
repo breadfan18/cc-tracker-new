@@ -54,8 +54,8 @@ function CardTabs({ cards, deleteCard }) {
 
 CardTabs.propTypes = {
   cards: PropTypes.array.isRequired,
-  onDeleteClick: PropTypes.func.isRequired,
-  deletedCard: PropTypes.object.isRequired,
+  onDeleteClick: PropTypes.func,
+  deletedCard: PropTypes.object,
   deleteCard: PropTypes.func.isRequired,
 };
 

@@ -76,7 +76,7 @@ const mapStateToProps = (state, ownProps) => {
 CardList.propTypes = {
   cards: PropTypes.array.isRequired,
   onDeleteClick: PropTypes.func,
-  history: PropTypes.object.isRequired,
+  history: PropTypes.object,
   deletedCard: PropTypes.object,
   showEditDelete: PropTypes.bool.isRequired,
 };
