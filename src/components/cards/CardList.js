@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import EmptyList from "../common/EmptyList";
 
-const CardList = ({ cards, onDeleteClick, deletedCard }) => {
+const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
   return cards.length === 0 ? (
     <EmptyList dataType={"card"} />
   ) : (
@@ -16,8 +16,12 @@ const CardList = ({ cards, onDeleteClick, deletedCard }) => {
           <th>Issuer</th>
           <th>Card</th>
           <th>Type</th>
-          <th>Delete?</th>
-          <th>Modify?</th>
+          {showEditDelete && (
+            <>
+              <th>Delete?</th>
+              <th>Modify?</th>
+            </>
+          )}
         </tr>
       </thead>
       <tbody>
@@ -30,26 +34,30 @@ const CardList = ({ cards, onDeleteClick, deletedCard }) => {
               <td>{card.issuer}</td>
               <td>{card.card}</td>
               <td>{card.cardType}</td>
-              <td>
-                <button
-                  className="btn btn-outline-danger"
-                  style={{ minWidth: "110px" }}
-                  onClick={() => onDeleteClick(card)}
-                  disabled={isCardDeleted}
-                >
-                  {isCardDeleted ? "Deleting.." : "Delete"}
-                </button>
-              </td>
-              <td>
-                <Link to={"/card/" + card.id}>
-                  <button
-                    className="btn btn-outline-info"
-                    style={{ minWidth: "110px" }}
-                  >
-                    Modify
-                  </button>
-                </Link>
-              </td>
+              {showEditDelete && (
+                <>
+                  <td>
+                    <button
+                      className="btn btn-outline-danger"
+                      style={{ minWidth: "110px" }}
+                      onClick={() => onDeleteClick(card)}
+                      disabled={isCardDeleted}
+                    >
+                      {isCardDeleted ? "Deleting.." : "Delete"}
+                    </button>
+                  </td>
+                  <td>
+                    <Link to={"/card/" + card.id}>
+                      <button
+                        className="btn btn-outline-info"
+                        style={{ minWidth: "110px" }}
+                      >
+                        Modify
+                      </button>
+                    </Link>
+                  </td>
+                </>
+              )}
             </tr>
           );
         })}
@@ -67,9 +75,10 @@ const mapStateToProps = (state, ownProps) => {
 
 CardList.propTypes = {
   cards: PropTypes.array.isRequired,
-  onDeleteClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func,
   history: PropTypes.object.isRequired,
   deletedCard: PropTypes.object,
+  showEditDelete: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps)(CardList);

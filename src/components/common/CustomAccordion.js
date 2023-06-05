@@ -3,23 +3,22 @@ import CardList from "../cards/CardList";
 import { Accordion } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-export default function CustomAccordion({ cardList }) {
-  const [cardsShowing, setCardShowing] = useState(false);
+export default function CustomAccordion({ accordionBody, dataType }) {
+  const [headerShowing, setHeaderShowing] = useState(false);
 
   return (
     <Accordion>
       <Accordion.Item eventKey="0">
-        <Accordion.Header onClick={() => setCardShowing(!cardsShowing)}>
-          {cardsShowing ? "Hide Cards" : "Show Cards"}
+        <Accordion.Header onClick={() => setHeaderShowing(!headerShowing)}>
+          {headerShowing ? `Hide ${dataType}` : `Show ${dataType}`}
         </Accordion.Header>
-        <Accordion.Body>
-          <CardList cards={cardList} onDeleteClick={() => {}} deleteCard={{}} />
-        </Accordion.Body>
+        <Accordion.Body>{accordionBody}</Accordion.Body>
       </Accordion.Item>
     </Accordion>
   );
 }
 
 CustomAccordion.propTypes = {
-  cardList: PropTypes.array.isRequired,
+  accordionBody: PropTypes.element.isRequired,
+  dataType: PropTypes.string.isRequired,
 };

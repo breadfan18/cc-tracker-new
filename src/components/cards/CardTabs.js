@@ -28,6 +28,7 @@ function CardTabs({ cards, deleteCard }) {
           cards={cardsForThisUser}
           onDeleteClick={handleDeleteCard}
           deletedCard={deletedCard}
+          showEditDelete={true}
         />
       </Tab>
     );
@@ -43,6 +44,7 @@ function CardTabs({ cards, deleteCard }) {
           cards={cards}
           onDeleteClick={handleDeleteCard}
           deletedCard={deletedCard}
+          showEditDelete={true}
         />
       </Tab>
       {userTabs}

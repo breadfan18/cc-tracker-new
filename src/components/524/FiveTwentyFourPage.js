@@ -9,6 +9,7 @@ import Card from "react-bootstrap/Card";
 import { wasCardOpenedWithinLast24Months } from "../../helpers";
 import CustomAccordion from "../common/CustomAccordion";
 import SelectInput from "../common/SelectInput";
+import CardList from "../cards/CardList";
 
 export const FiveTwentyFourPage = ({
   cards,
@@ -41,6 +42,10 @@ export const FiveTwentyFourPage = ({
         return { ...card, userName };
       });
 
+    const cardsListComponent = (
+      <CardList cards={cards524} showEditDelete={false} />
+    );
+
     return (
       <>
         <Card
@@ -68,7 +73,10 @@ export const FiveTwentyFourPage = ({
                   key={user.id}
                 />
                 <br />
-                <CustomAccordion cardList={cards524} />
+                <CustomAccordion
+                  accordionBody={cardsListComponent}
+                  dataType="Cards"
+                />
               </>
             )}
           </Card.Body>
