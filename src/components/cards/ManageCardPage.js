@@ -11,7 +11,7 @@ const newCard = {
   id: null,
   issuer: "",
   card: "",
-  userId: 1,
+  userId: null,
 };
 
 function ManageCardPage({

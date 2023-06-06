@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Form from "react-bootstrap/Form";
 
 const SelectInput = ({
   name,
@@ -8,28 +9,30 @@ const SelectInput = ({
   defaultOption,
   value,
   error,
-  options
+  options,
+  bkgrdColor,
 }) => {
   return (
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
+      <Form.Select
+        aria-label={defaultOption}
+        name={name}
+        value={value}
+        onChange={onChange}
+        className="form-control"
+        style={{ backgroundColor: `${bkgrdColor}` }}
+      >
+        <option value="">{defaultOption}</option>
+        {options.map((option) => {
+          return (
+            <option key={option.value} value={option.value}>
+              {option.text}
+            </option>
+          );
+        })}
+      </Form.Select>
       <div className="field">
-        {/* Note, value is set here rather than on the option - docs: https://facebook.github.io/react/docs/forms.html */}
-        <select
-          name={name}
-          value={value}
-          onChange={onChange}
-          className="form-control"
-        >
-          <option value="">{defaultOption}</option>
-          {options.map(option => {
-            return (
-              <option key={option.value} value={option.value}>
-                {option.text}
-              </option>
-            );
-          })}
-        </select>
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>
@@ -43,7 +46,7 @@ SelectInput.propTypes = {
   defaultOption: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   error: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.object)
+  options: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default SelectInput;

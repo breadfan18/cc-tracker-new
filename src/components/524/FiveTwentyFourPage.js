@@ -103,6 +103,7 @@ export const FiveTwentyFourPage = ({
               text: user.name,
             }))}
             onChange={handleChange}
+            bkgrdColor="rgba(0,0,0,0.3)"
             // error={errors.author}
           />
           <hr />
