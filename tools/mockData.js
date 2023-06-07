@@ -9,7 +9,7 @@ const cards = [
   },
   {
     id: 2,
-    appDate: "2023-05-01",
+    appDate: "2021-01-01",
     issuer: "Chase",
     card: "Sapphire Reserve",
     cardType: "Business",
@@ -17,7 +17,7 @@ const cards = [
   },
   {
     id: 3,
-    appDate: "2023-05-01",
+    appDate: "2019-05-01",
     issuer: "Amex",
     card: "Hilton Honors",
     cardType: "Personal",
@@ -25,7 +25,7 @@ const cards = [
   },
   {
     id: 4,
-    appDate: "2023-05-01",
+    appDate: "2021-06-28",
     issuer: "CapOne",
     card: "Venture X",
     cardType: "Personal",
