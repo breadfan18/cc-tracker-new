@@ -12,7 +12,7 @@ const cards = [
     appDate: "2023-05-01",
     issuer: "Chase",
     card: "Sapphire Reserve",
-    cardType: "Personal",
+    cardType: "Business",
     userId: 1,
   },
   {

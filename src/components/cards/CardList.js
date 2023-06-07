@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import EmptyList from "../common/EmptyList";
+import Table from "react-bootstrap/Table";
 
 const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
   return cards.length === 0 ? (
     <EmptyList dataType={"card"} />
   ) : (
-    <table className="table">
+    <Table size="sm">
       <thead>
         <tr>
           <th>App Date</th>
@@ -62,7 +63,7 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
           );
         })}
       </tbody>
-    </table>
+    </Table>
   );
 };
 

@@ -37,7 +37,11 @@ export const FiveTwentyFourPage = ({
   const users524Status = usersToDisplay.map((user) => {
     const userName = USERS.find((u) => u.id === parseInt(user)).name;
     const cards524 = cardsByUser[user]
-      .filter((card) => wasCardOpenedWithinLast24Months(card.appDate))
+      .filter(
+        (card) =>
+          wasCardOpenedWithinLast24Months(card.appDate) &&
+          card.cardType !== "Business"
+      )
       .map((card) => {
         return { ...card, userName };
       });
