@@ -49,6 +49,10 @@ label {
   font-weight: bold;
 }
 
-.foo {
-  color: red;
+svg {
+  cursor: pointer;
+  border: 1px solid gray;
+  margin: 1px;
+  padding: 1px;
+  border-radius: 10px;
 }
