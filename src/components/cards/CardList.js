@@ -5,6 +5,9 @@ import { connect } from "react-redux";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { TiArrowUnsorted } from "react-icons/ti";
+import { BsTrash3 } from "react-icons/bs";
+import { MdModeEditOutline } from "react-icons/md";
+import { Button } from "react-bootstrap";
 
 const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
   let sortedCards = [...cards];
@@ -76,24 +79,22 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
               <td>{card.cardType}</td>
               {showEditDelete && (
                 <>
-                  <td>
-                    <button
-                      className="btn btn-outline-danger"
-                      style={{ minWidth: "110px" }}
+                  <td className="editDeleteCells">
+                    <Button
+                      variant="outline-danger"
                       onClick={() => onDeleteClick(card)}
                       disabled={isCardDeleted}
+                      className="rounded-circle"
                     >
-                      {isCardDeleted ? "Deleting.." : "Delete"}
-                    </button>
-                  </td>
-                  <td>
+                      <BsTrash3 />
+                    </Button>
                     <Link to={"/card/" + card.id}>
-                      <button
-                        className="btn btn-outline-info"
-                        style={{ minWidth: "110px" }}
+                      <Button
+                        variant="outline-success"
+                        className="rounded-circle"
                       >
-                        Modify
-                      </button>
+                        <MdModeEditOutline />
+                      </Button>
                     </Link>
                   </td>
                 </>
