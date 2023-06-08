@@ -67,7 +67,7 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
           )}
         </tr>
       </thead>
-      <tbody>
+      <tbody className="align-middle">
         {sortedCards.map((card) => {
           const isCardDeleted = card.id === deletedCard?.id;
           return (
@@ -79,7 +79,7 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
               <td>{card.cardType}</td>
               {showEditDelete && (
                 <>
-                  <td className="editDeleteCells">
+                  <td className="editDeleteCard">
                     <Button
                       variant="outline-danger"
                       onClick={() => onDeleteClick(card)}

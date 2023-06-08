@@ -51,16 +51,16 @@ label {
 
 .tableHeader>svg {
   cursor: pointer;
-  border: 1px solid gray;
+  /* border: 1px solid gray;
   margin: 1px;
   padding: 1px;
-  border-radius: 20%;
+  border-radius: 20%; */
 }
 
 .editDeleteCells {
   max-width: 5rem;
 }
 
-.editDeleteCells>button:first-child {
+.editDeleteCard>button:first-child {
   margin-right: 5px;
 }
