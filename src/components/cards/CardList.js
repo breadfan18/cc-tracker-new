@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -8,38 +8,15 @@ import { TiArrowUnsorted } from "react-icons/ti";
 import { BsTrash3 } from "react-icons/bs";
 import { MdModeEditOutline } from "react-icons/md";
 import { Button } from "react-bootstrap";
+import { useSortableData } from "../../hooks/sortData";
 
 const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
-  let sortedCards = [...cards];
-  const [sortConfig, setSortConfig] = useState({
-    key: null,
-    direction: null,
-  });
-
-  if (sortConfig.key !== null) {
-    sortedCards.sort((a, b) => {
-      if (a[sortConfig.key] < b[sortConfig.key]) {
-        return sortConfig.direction === "ascending" ? -1 : 1;
-      }
-      if (a[sortConfig.key] > b[sortConfig.key]) {
-        return sortConfig.direction === "ascending" ? 1 : -1;
-      }
-      return 0;
-    });
-  }
-
-  const requestSort = (key) => {
-    let direction = "ascending";
-    if (sortConfig.key === key && sortConfig.direction === "ascending") {
-      direction = "descending";
-    }
-    setSortConfig({ key, direction });
-  };
+  const { data, requestSort } = useSortableData(cards);
 
   return cards.length === 0 ? (
     <EmptyList dataType={"card"} />
   ) : (
-    <Table size="sm">
+    <Table>
       <thead>
         <tr>
           <th className="tableHeader">
@@ -68,7 +45,7 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
         </tr>
       </thead>
       <tbody className="align-middle">
-        {sortedCards.map((card) => {
+        {data.map((card) => {
           const isCardDeleted = card.id === deletedCard?.id;
           return (
             <tr key={card.id}>
@@ -80,14 +57,6 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
               {showEditDelete && (
                 <>
                   <td className="editDeleteCard">
-                    <Button
-                      variant="outline-danger"
-                      onClick={() => onDeleteClick(card)}
-                      disabled={isCardDeleted}
-                      className="rounded-circle"
-                    >
-                      <BsTrash3 />
-                    </Button>
                     <Link to={"/card/" + card.id}>
                       <Button
                         variant="outline-success"
@@ -96,6 +65,14 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
                         <MdModeEditOutline />
                       </Button>
                     </Link>
+                    <Button
+                      variant="outline-danger"
+                      onClick={() => onDeleteClick(card)}
+                      disabled={isCardDeleted}
+                      className="rounded-circle"
+                    >
+                      <BsTrash3 />
+                    </Button>
                   </td>
                 </>
               )}

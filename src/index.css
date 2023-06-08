@@ -61,6 +61,6 @@ label {
   max-width: 5rem;
 }
 
-.editDeleteCard>button:first-child {
+.editDeleteCard>a {
   margin-right: 5px;
 }
