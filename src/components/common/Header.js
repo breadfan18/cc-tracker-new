@@ -23,6 +23,10 @@ const Header = ({ cards, loading }) => {
       <NavLink to="/524" activeStyle={activeStyle}>
         5/24
       </NavLink>
+      {" | "}
+      <NavLink to="/ff" activeStyle={activeStyle}>
+        Loyalty
+      </NavLink>
     </nav>
   );
 };

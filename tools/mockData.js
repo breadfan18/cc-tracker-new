@@ -33,6 +33,41 @@ const cards = [
   },
 ];
 
+const loyaltyData = [
+  {
+    id: 1,
+    airline: "American",
+    memberId: "9UJ7LK0",
+    userName: "foobar",
+    password: "*******",
+    userId: 1,
+  },
+  {
+    id: 2,
+    airline: "American",
+    memberId: "9UJ7LK0",
+    userName: "foobar",
+    password: "*******",
+    userId: 2,
+  },
+  {
+    id: 3,
+    airline: "American",
+    memberId: "9UJ7LK0",
+    userName: "foobar",
+    password: "*******",
+    userId: 3,
+  },
+  {
+    id: 3,
+    airline: "American",
+    memberId: "9UJ7LK0",
+    userName: "foobar",
+    password: "*******",
+    userId: 4,
+  },
+];
+
 const users = [
   {
     id: 1,
@@ -52,4 +87,5 @@ const users = [
 module.exports = {
   cards,
   users,
+  loyaltyData,
 };

@@ -11,12 +11,7 @@ import CustomAccordion from "../common/CustomAccordion";
 import SelectInput from "../common/SelectInput";
 import CardList from "../cards/CardList";
 
-export const FiveTwentyFourPage = ({
-  cards,
-  loadCards,
-  loading,
-  cardsByUser,
-}) => {
+const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
   const [selectedUser, setSelectedUser] = useState();
 
   useEffect(() => {
