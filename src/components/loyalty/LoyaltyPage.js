@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { loadloyaltyData } from "../../redux/actions/loyaltyActions";
 import { Spinner } from "../common/Spinner";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import CardList from "../cards/CardList";
+import LoyaltyList from "./LoyaltyList";
+import { addUserNameToCard } from "../../helpers";
 
 const LoyaltyPage = ({ loyaltyData, loadloyaltyData, loading }) => {
   const [redirectToAddLoyaltyPage, setRedirect] = useState(false);
@@ -21,7 +22,7 @@ const LoyaltyPage = ({ loyaltyData, loadloyaltyData, loading }) => {
       {loading ? (
         <Spinner />
       ) : (
-        <CardList cards={loyaltyData} showEditDelete={true} />
+        <LoyaltyList loyaltyData={loyaltyData} showEditDelete={true} />
       )}
       <button
         style={{ marginBottom: 20 }}
@@ -40,7 +41,7 @@ LoyaltyPage.propTypes = {
   loading: PropTypes.bool.isRequired,
 };
 const mapStateToProps = (state) => ({
-  loyaltyData: state.loyaltyData,
+  loyaltyData: state.loyaltyData.map((l) => addUserNameToCard(l)),
   loading: state.apiCallsInProgress > 0,
 });
 
