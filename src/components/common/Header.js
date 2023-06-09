@@ -24,7 +24,7 @@ const Header = ({ cards, loading }) => {
         5/24
       </NavLink>
       {" | "}
-      <NavLink to="/ff" activeStyle={activeStyle}>
+      <NavLink to="/loyalty-accounts" activeStyle={activeStyle}>
         Loyalty
       </NavLink>
     </nav>

@@ -10,3 +10,6 @@ export const LOAD_USERS_SUCCESS = "LOAD_USERS_SUCCESS";
 //API Status Actions
 export const BEGIN_API_CALL = "BEGIN_API_CALL";
 export const API_CALL_ERROR = "API_CALL_ERROR";
+
+// Loyalty Actions
+export const LOAD_LOYALTY_DATA_SUCCESS = "LOAD_LOYALTY_DATA_SUCCESS";

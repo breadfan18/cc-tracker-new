@@ -9,6 +9,8 @@ import { BsTrash3 } from "react-icons/bs";
 import { MdModeEditOutline } from "react-icons/md";
 import { Button } from "react-bootstrap";
 import { useSortableData } from "../../hooks/sortData";
+import { titleCase } from "../../helpers";
+import _ from "lodash";
 
 const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
   const { data, requestSort } = useSortableData(cards);
