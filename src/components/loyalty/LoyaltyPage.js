@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { loadloyaltyData } from "../../redux/actions/loyaltyActions";
 import { Spinner } from "../common/Spinner";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import LoyaltyList from "./LoyaltyList";
+import LoyaltyTabs from "./LoyaltyTabs";
 import { addUserNameToCard } from "../../helpers";
 
 const LoyaltyPage = ({ loyaltyData, loadloyaltyData, loading }) => {
@@ -22,7 +22,7 @@ const LoyaltyPage = ({ loyaltyData, loadloyaltyData, loading }) => {
       {loading ? (
         <Spinner />
       ) : (
-        <LoyaltyList loyaltyData={loyaltyData} showEditDelete={true} />
+        <LoyaltyTabs loyaltyData={loyaltyData} showEditDelete={true} />
       )}
       <button
         style={{ marginBottom: 20 }}

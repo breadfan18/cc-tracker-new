@@ -19,7 +19,7 @@ const CardList = ({
   const { data, requestSort } = useSortableData(loyaltyData);
 
   return loyaltyData.length === 0 ? (
-    <EmptyList dataType={"card"} />
+    <EmptyList dataType={"loyalty account"} />
   ) : (
     <Table>
       <thead>
