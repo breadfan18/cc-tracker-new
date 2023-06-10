@@ -8,24 +8,13 @@ import { USERS } from "../../constants";
 import { titleCase } from "../../helpers";
 import CustomAccordion from "../common/CustomAccordion";
 import { Card } from "react-bootstrap";
+import _ from "lodash";
 
 function LoyaltyTabs({ loyaltyData }) {
-  const loyaltyByType = loyaltyData.reduce((obj, l) => {
-    obj[l.loyaltyType]
-      ? obj[l.loyaltyType].push(l)
-      : (obj[l.loyaltyType] = [l]);
-    return obj;
-  }, {});
-
+  const loyaltyByType = _.groupBy(loyaltyData, (o) => o.loyaltyType);
   const loyaltyTabs = Object.keys(loyaltyByType).map((loyaltyType) => {
     const loyaltyTypeData = loyaltyByType[loyaltyType];
-    const loyaltyTypePerUser = loyaltyTypeData.reduce((obj, loyalty) => {
-      obj[loyalty.userId]
-        ? obj[loyalty.userId].push(loyalty)
-        : (obj[loyalty.userId] = [loyalty]);
-      return obj;
-    }, {});
-
+    const loyaltyTypePerUser = _.groupBy(loyaltyTypeData, (o) => o.userId);
     const userCards = Object.keys(loyaltyTypePerUser).map((user) => {
       const loyaltyAccsForThisUser = loyaltyTypePerUser[user];
       const loyaltyList = (
