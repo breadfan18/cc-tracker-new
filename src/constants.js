@@ -19,6 +19,6 @@ export const USERS = [
   },
   {
     id: 5,
-    name: "Mithila Aryal",
+    name: "Birendra Thapa",
   },
 ];

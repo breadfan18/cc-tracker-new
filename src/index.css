@@ -64,3 +64,7 @@ label {
 .editDeleteCard>a {
   margin-right: 5px;
 }
+
+.accordion {
+  text-align: left
+}

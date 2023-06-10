@@ -41,7 +41,6 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
           {showEditDelete && (
             <>
               <th></th>
-              <th></th>
             </>
           )}
         </tr>

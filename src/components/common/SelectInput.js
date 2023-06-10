@@ -14,14 +14,27 @@ const SelectInput = ({
 }) => {
   return (
     <div className="form-group">
-      <label htmlFor={name}>{label}</label>
+      <label
+        htmlFor={name}
+        // style={{
+        //   backgroundColor: "rgb(0,128,255)",
+        //   color: "white",
+        //   borderRadius: "10px 10px 0 0",
+        //   padding: "8px 14px",
+        // }}
+      >
+        {label}
+      </label>
       <Form.Select
         aria-label={defaultOption}
         name={name}
         value={value}
         onChange={onChange}
         className="form-control"
-        style={{ backgroundColor: `${bkgrdColor}` }}
+        style={{
+          backgroundColor: `${bkgrdColor}`,
+          // borderRadius: "0 10px 10px 10px",
+        }}
       >
         <option value="">{defaultOption}</option>
         {options.map((option) => {
