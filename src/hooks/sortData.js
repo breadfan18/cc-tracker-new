@@ -7,9 +7,9 @@ export const useSortableData = (data) => {
   });
 
   const sortedData = useMemo(() => {
-    let cardsCopy = [...data];
+    let dataCopy = [...data];
     if (sortConfig.key !== null) {
-      cardsCopy.sort((a, b) => {
+      dataCopy.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
           return sortConfig.direction === "ascending" ? -1 : 1;
         }
@@ -19,7 +19,7 @@ export const useSortableData = (data) => {
         return 0;
       });
     }
-    return cardsCopy;
+    return dataCopy;
   }, [data, sortConfig]);
 
   const requestSort = (key) => {

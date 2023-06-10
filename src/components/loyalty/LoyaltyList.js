@@ -10,7 +10,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import { Button } from "react-bootstrap";
 import { useSortableData } from "../../hooks/sortData";
 
-const CardList = ({
+const LoyaltyList = ({
   loyaltyData,
   onDeleteClick,
   deletedCard,
@@ -30,22 +30,20 @@ const CardList = ({
           </th>
           <th className="tableHeader">
             Airline
-            <TiArrowUnsorted onClick={() => requestSort("airline")} />
+            <TiArrowUnsorted onClick={() => requestSort("company")} />
           </th>
           <th className="tableHeader">
             Member ID{" "}
             <TiArrowUnsorted onClick={() => requestSort("memberId")} />
           </th>
           <th className="tableHeader">
-            User Name{" "}
-            <TiArrowUnsorted onClick={() => requestSort("userName")} />
+            User Name <TiArrowUnsorted onClick={() => requestSort("loginId")} />
           </th>
           <th className="tableHeader">
             Password <TiArrowUnsorted onClick={() => requestSort("password")} />
           </th>
           {showEditDelete && (
             <>
-              <th></th>
               <th></th>
             </>
           )}
@@ -57,7 +55,7 @@ const CardList = ({
           return (
             <tr key={loyalty.id}>
               <td>{loyalty.userName}</td>
-              <td>{loyalty.airline}</td>
+              <td>{loyalty.company}</td>
               <td>{loyalty.memberId}</td>
               <td>{loyalty.loginId}</td>
               <td>{loyalty.password}</td>
@@ -98,7 +96,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-CardList.propTypes = {
+LoyaltyList.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
   onDeleteClick: PropTypes.func,
   history: PropTypes.object,
@@ -106,4 +104,4 @@ CardList.propTypes = {
   showEditDelete: PropTypes.bool.isRequired,
 };
 
-export default connect(mapStateToProps)(CardList);
+export default connect(mapStateToProps)(LoyaltyList);

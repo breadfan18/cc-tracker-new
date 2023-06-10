@@ -1,64 +1,92 @@
-import React, { useState } from "react";
+import React from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PropTypes from "prop-types";
 import LoyaltyList from "./LoyaltyList";
 import { connect } from "react-redux";
-import { toast } from "react-toastify";
 import { USERS } from "../../constants";
-import { deleteCard } from "../../redux/actions/cardsActions";
+import { titleCase } from "../../helpers";
+import CustomAccordion from "../common/CustomAccordion";
+import { Card } from "react-bootstrap";
 
 function LoyaltyTabs({ loyaltyData }) {
-  // const [deletedCard, setDeletedCard] = useState({});
+  const loyaltyByType = loyaltyData.reduce((obj, l) => {
+    obj[l.loyaltyType]
+      ? obj[l.loyaltyType].push(l)
+      : (obj[l.loyaltyType] = [l]);
+    return obj;
+  }, {});
 
-  // function handleDeleteCard(card) {
-  //   setDeletedCard({ ...card });
-  //   deleteCard(card)
-  //     .then(() => {
-  //       toast.success("Card deleted");
-  //     })
-  //     .catch((error) => alert("Error deleteing card " + error));
-  // }
+  const loyaltyTabs = Object.keys(loyaltyByType).map((loyaltyType) => {
+    const loyaltyTypeData = loyaltyByType[loyaltyType];
+    const loyaltyTypePerUser = loyaltyTypeData.reduce((obj, loyalty) => {
+      obj[loyalty.userId]
+        ? obj[loyalty.userId].push(loyalty)
+        : (obj[loyalty.userId] = [loyalty]);
+      return obj;
+    }, {});
 
-  const userTabs = USERS.map((user) => {
-    const loyaltyDataForThisUser = loyaltyData.filter(
-      (l) => l.userId === user.id
-    );
-    return (
-      <Tab eventKey={user.id} title={user.name.split(" ")[0]} key={user.id}>
+    const userAccordions = Object.keys(loyaltyTypePerUser).map((user) => {
+      const loyaltyAccsForThisUser = loyaltyTypePerUser[user];
+      const loyaltyList = (
         <LoyaltyList
-          loyaltyData={loyaltyDataForThisUser}
+          loyaltyData={loyaltyAccsForThisUser}
           // onDeleteClick={handleDeleteCard}
           // deletedCard={deletedCard}
           showEditDelete={true}
         />
+      );
+      const thisUserName = USERS.find((u) => u.id === parseInt(user)).name;
+      return (
+        <>
+          <Card
+            className="text-center"
+            style={{ border: "2px solid rgba(0,0,0,1)" }}
+          >
+            <Card.Header
+              style={{
+                fontWeight: "bold",
+                backgroundColor: "rgba(0,0,0, 0.3)",
+              }}
+            >
+              {thisUserName}
+            </Card.Header>
+            <Card.Body>
+              <CustomAccordion
+                accordionBody={loyaltyList}
+                dataType={"Accounts"}
+              />
+            </Card.Body>
+          </Card>
+          <br />
+        </>
+      );
+    });
+
+    return (
+      <Tab
+        eventKey={loyaltyType}
+        title={titleCase(loyaltyType)}
+        key={loyaltyType}
+      >
+        {userAccordions}
       </Tab>
     );
   });
+
   return (
     <Tabs
-      defaultActiveKey="home"
+      defaultActiveKey="airlines"
       id="uncontrolled-tab-example"
       className="mb-3"
     >
-      <Tab eventKey="home" title="All Users">
-        <LoyaltyList
-          loyaltyData={loyaltyData}
-          // onDeleteClick={handleDeleteCard}
-          // deletedCard={deletedCard}
-          showEditDelete={true}
-        />
-      </Tab>
-      {userTabs}
+      {loyaltyTabs}
     </Tabs>
   );
 }
 
 LoyaltyTabs.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
-  onDeleteClick: PropTypes.func,
-  deletedCard: PropTypes.object,
-  deleteCard: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
