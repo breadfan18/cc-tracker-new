@@ -26,7 +26,7 @@ function LoyaltyTabs({ loyaltyData }) {
       return obj;
     }, {});
 
-    const userAccordions = Object.keys(loyaltyTypePerUser).map((user) => {
+    const userCards = Object.keys(loyaltyTypePerUser).map((user) => {
       const loyaltyAccsForThisUser = loyaltyTypePerUser[user];
       const loyaltyList = (
         <LoyaltyList
@@ -55,6 +55,7 @@ function LoyaltyTabs({ loyaltyData }) {
               <CustomAccordion
                 accordionBody={loyaltyList}
                 dataType={"Accounts"}
+                defaultKey="1"
               />
             </Card.Body>
           </Card>
@@ -69,7 +70,7 @@ function LoyaltyTabs({ loyaltyData }) {
         title={titleCase(loyaltyType)}
         key={loyaltyType}
       >
-        {userAccordions}
+        {userCards}
       </Tab>
     );
   });

@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { Accordion } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-export default function CustomAccordion({ accordionBody, dataType }) {
-  const [headerShowing, setHeaderShowing] = useState(true);
+export default function CustomAccordion({
+  accordionBody,
+  dataType,
+  defaultKey,
+}) {
+  const [headerShowing, setHeaderShowing] = useState(
+    defaultKey === "1" ? true : false
+  );
 
   return (
-    <Accordion defaultActiveKey="1">
+    <Accordion defaultActiveKey={defaultKey}>
       <Accordion.Item eventKey="1">
         <Accordion.Header onClick={() => setHeaderShowing(!headerShowing)}>
           {headerShowing ? `Hide ${dataType}` : `Show ${dataType}`}
@@ -20,4 +26,5 @@ export default function CustomAccordion({ accordionBody, dataType }) {
 CustomAccordion.propTypes = {
   accordionBody: PropTypes.element.isRequired,
   dataType: PropTypes.string.isRequired,
+  defaultKey: PropTypes.string.isRequired,
 };

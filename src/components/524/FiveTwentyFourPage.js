@@ -75,6 +75,7 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
                 <CustomAccordion
                   accordionBody={cardsListComponent}
                   dataType="Cards"
+                  defaultKey="0"
                 />
               </>
             )}
