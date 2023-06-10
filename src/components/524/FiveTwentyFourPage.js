@@ -54,7 +54,7 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
           <Card.Header
             style={{
               fontWeight: "bold",
-              backgroundColor: "rgba(0,0,0, 0.3)",
+              backgroundColor: "rgba(217,215,215)",
             }}
           >
             {userName}
@@ -102,7 +102,7 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
               text: user.name,
             }))}
             onChange={handleChange}
-            bkgrdColor="rgba(0,0,0,0.3)"
+            bkgrdColor="rgba(217,215,215)"
             // error={errors.author}
           />
           <hr />

@@ -25,11 +25,7 @@ const LoyaltyList = ({
       <thead>
         <tr>
           <th className="tableHeader">
-            User
-            <TiArrowUnsorted onClick={() => requestSort("userName")} />
-          </th>
-          <th className="tableHeader">
-            Airline
+            Program
             <TiArrowUnsorted onClick={() => requestSort("company")} />
           </th>
           <th className="tableHeader">
@@ -54,7 +50,6 @@ const LoyaltyList = ({
           const isCardDeleted = loyalty.id === deletedCard?.id;
           return (
             <tr key={loyalty.id}>
-              <td>{loyalty.userName}</td>
               <td>{loyalty.company}</td>
               <td>{loyalty.memberId}</td>
               <td>{loyalty.loginId}</td>

@@ -50,7 +50,7 @@ const loyaltyData = [
     memberId: "9UJ7LK0",
     loginId: "foobar",
     password: "*******",
-    userId: 4,
+    userId: 2,
   },
   {
     id: 2,

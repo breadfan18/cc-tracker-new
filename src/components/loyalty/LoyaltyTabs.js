@@ -46,7 +46,7 @@ function LoyaltyTabs({ loyaltyData }) {
             <Card.Header
               style={{
                 fontWeight: "bold",
-                backgroundColor: "rgba(0,0,0, 0.3)",
+                backgroundColor: "rgba(217,215,215)",
               }}
             >
               {thisUserName}
