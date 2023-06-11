@@ -5,7 +5,7 @@ import SelectInput from "../common/SelectInput";
 import { CARD_TYPE, ISSUERS, USERS } from "../../constants";
 import DateInput from "../common/DateInput";
 
-const CardForm = ({ card, onSave, onChange, saving = false, errors = {} }) => {
+const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
   return (
     <form onSubmit={onSave}>
       <h2>{card.id ? "Edit" : "Add"} Card</h2>

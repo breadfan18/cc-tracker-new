@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { ACCOUNT_TYPE, USERS } from "../../constants";
+import { ACCOUNT_TYPE, PROGRAM as PROGRAMS, USERS } from "../../constants";
+import { titleCase } from "../../helpers";
 
 const LoyaltyForm = ({
-  card,
+  loyaltyAcc,
   onSave,
   onChange,
   saving = false,
@@ -13,7 +14,7 @@ const LoyaltyForm = ({
 }) => {
   return (
     <form onSubmit={onSave}>
-      <h2>{card.id ? "Edit" : "Add"} Loyalty Account</h2>
+      <h2>{loyaltyAcc.id ? "Edit" : "Add"} Loyalty Account</h2>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
           {errors.onSave}
@@ -22,7 +23,7 @@ const LoyaltyForm = ({
       <SelectInput
         name="userId"
         label="User"
-        value={card.userId || ""}
+        value={loyaltyAcc.userId || ""}
         defaultOption="Select User"
         options={USERS.map((user) => ({
           value: user.id,
@@ -32,13 +33,25 @@ const LoyaltyForm = ({
         // error={errors.author}
       />
       <SelectInput
-        name="loyalty type"
+        name="loyaltyType"
         label="Account Type"
-        value={""}
+        value={loyaltyAcc.loyaltyType || ""}
         defaultOption="Select Account Type"
         options={ACCOUNT_TYPE.map((type) => ({
           value: type,
-          text: type,
+          text: titleCase(type),
+        }))}
+        onChange={onChange}
+        // error={errors.author}
+      />
+      <SelectInput
+        name="company"
+        label="Loyalty Program"
+        value={loyaltyAcc.company || ""}
+        defaultOption="Select Program"
+        options={PROGRAMS.map((program) => ({
+          value: program,
+          text: program,
         }))}
         onChange={onChange}
         // error={errors.author}
@@ -46,21 +59,21 @@ const LoyaltyForm = ({
       <TextInput
         name="memberId"
         label="Member ID"
-        value={""}
+        value={loyaltyAcc.memberId}
         onChange={onChange}
         // error={errors.title}
       />
       <TextInput
         name="loginId"
         label="User Name"
-        value={""}
+        value={loyaltyAcc.loginId}
         onChange={onChange}
         // error={errors.title}
       />
       <TextInput
         name="password"
         label="Password"
-        value={""}
+        value={loyaltyAcc.password}
         onChange={onChange}
         // error={errors.title}
       />
@@ -72,7 +85,7 @@ const LoyaltyForm = ({
 };
 
 LoyaltyForm.propTypes = {
-  card: PropTypes.object.isRequired,
+  loyaltyAcc: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
