@@ -1,5 +1,6 @@
 export const ISSUERS = ["Chase", "Amex", "CapOne", "Barclays"];
 export const CARD_TYPE = ["Personal", "Business"];
+export const ACCOUNT_TYPE = ["Airlines", "Hotels", "Misc"];
 export const USERS = [
   {
     id: 1,
