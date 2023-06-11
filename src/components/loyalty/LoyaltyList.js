@@ -57,7 +57,7 @@ const LoyaltyList = ({
               {showEditDelete && (
                 <>
                   <td className="editDeleteCard">
-                    <Link to={"/card/" + loyalty.id}>
+                    <Link to={"/loyalty/" + loyalty.id}>
                       <Button
                         variant="outline-success"
                         className="rounded-circle"

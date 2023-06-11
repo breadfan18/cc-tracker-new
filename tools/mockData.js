@@ -44,7 +44,7 @@ const loyaltyData = [
     userId: 1,
   },
   {
-    id: 1,
+    id: 2,
     loyaltyType: "airlines",
     company: "American",
     memberId: "9UJ7LK0",
@@ -53,7 +53,7 @@ const loyaltyData = [
     userId: 2,
   },
   {
-    id: 2,
+    id: 3,
     loyaltyType: "airlines",
     company: "United",
     memberId: "9UJ7LK0",
@@ -62,22 +62,13 @@ const loyaltyData = [
     userId: 1,
   },
   {
-    id: 3,
+    id: 4,
     loyaltyType: "hotels",
     company: "Hyatt",
     memberId: "9UJ7LK0",
     loginId: "hakaka",
     password: "T********D*5",
     userId: 1,
-  },
-  {
-    id: 4,
-    loyaltyType: "hotels",
-    company: "Hilton",
-    memberId: "9UJ7LK0",
-    loginId: "lololol",
-    password: "T********D*5",
-    userId: 2,
   },
   {
     id: 5,
@@ -90,6 +81,15 @@ const loyaltyData = [
   },
   {
     id: 6,
+    loyaltyType: "hotels",
+    company: "Hilton",
+    memberId: "9UJ7LK0",
+    loginId: "lololol",
+    password: "T********D*5",
+    userId: 2,
+  },
+  {
+    id: 7,
     loyaltyType: "hotels",
     company: "Hilton",
     memberId: "9UJ7LK0",

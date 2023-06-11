@@ -32,14 +32,6 @@ export function loadloyaltyData() {
 }
 
 export function saveLoyaltyData(loyalty) {
-  return async (dispatch) => {
-    dispatch(beginApiCall);
-    const loyaltyData = await loyaltyApi.createLoyaltyData(loyalty);
-    dispatch(createLoyaltyAccSuccess(loyaltyData));
-  };
-}
-
-export function saveCard(loyalty) {
   return (dispatch) => {
     dispatch(beginApiCall());
     return loyaltyApi

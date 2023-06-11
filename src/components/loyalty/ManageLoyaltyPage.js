@@ -27,7 +27,7 @@ const ManageLoyaltyPage = ({
   history,
   ...props
 }) => {
-  const [loyaltyAcc, setLoyaltyAcc] = useState(newLoyaltyAcc);
+  const [loyaltyAcc, setLoyaltyAcc] = useState({ ...props.loyaltyAcc });
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -35,8 +35,10 @@ const ManageLoyaltyPage = ({
       loadloyaltyData().catch((error) =>
         alert("Loading loyalty data failed" + error)
       );
+    } else {
+      setLoyaltyAcc({ ...props.loyaltyAcc });
     }
-  });
+  }, [props.loyaltyAcc]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -78,6 +80,7 @@ const ManageLoyaltyPage = ({
 };
 
 ManageLoyaltyPage.propTypes = {
+  loyaltyAcc: PropTypes.object.isRequired,
   loyaltyData: PropTypes.array.isRequired,
   loadloyaltyData: PropTypes.func.isRequired,
   saveLoyaltyData: PropTypes.func.isRequired,
@@ -85,10 +88,22 @@ ManageLoyaltyPage.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  loyaltyData: state.loyaltyData,
-  loading: state.apiCallsInProgress > 0,
-});
+const getLoyaltyAccByID = (loyaltyData, id) => {
+  return loyaltyData.find((loyalty) => loyalty.id === id) || null;
+};
+
+const mapStateToProps = (state, ownProps) => {
+  const id = parseInt(ownProps.match.params.id);
+  const loyaltyAcc =
+    id && state.loyaltyData.length > 0
+      ? getLoyaltyAccByID(state.loyaltyData, id)
+      : newLoyaltyAcc;
+  return {
+    loyaltyAcc,
+    loyaltyData: state.loyaltyData,
+    loading: state.apiCallsInProgress > 0,
+  };
+};
 
 const mapDispatchToProps = {
   loadloyaltyData,
