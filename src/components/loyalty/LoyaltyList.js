@@ -13,7 +13,7 @@ import { useSortableData } from "../../hooks/sortData";
 const LoyaltyList = ({
   loyaltyData,
   onDeleteClick,
-  deletedCard,
+  deletedAcc,
   showEditDelete,
 }) => {
   const { data, requestSort } = useSortableData(loyaltyData);
@@ -47,7 +47,7 @@ const LoyaltyList = ({
       </thead>
       <tbody className="align-middle">
         {data.map((loyalty) => {
-          const isCardDeleted = loyalty.id === deletedCard?.id;
+          const isAccDeleted = loyalty.id === deletedAcc?.id;
           return (
             <tr key={loyalty.id}>
               <td>{loyalty.company}</td>
@@ -61,6 +61,7 @@ const LoyaltyList = ({
                       <Button
                         variant="outline-success"
                         className="rounded-circle"
+                        disabled={isAccDeleted}
                       >
                         <MdModeEditOutline />
                       </Button>
@@ -68,7 +69,7 @@ const LoyaltyList = ({
                     <Button
                       variant="outline-danger"
                       onClick={() => onDeleteClick(loyalty)}
-                      disabled={isCardDeleted}
+                      disabled={isAccDeleted}
                       className="rounded-circle"
                     >
                       <BsTrash3 />
@@ -95,7 +96,7 @@ LoyaltyList.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
   onDeleteClick: PropTypes.func,
   history: PropTypes.object,
-  deletedCard: PropTypes.object,
+  deletedAcc: PropTypes.object,
   showEditDelete: PropTypes.bool.isRequired,
 };
 
