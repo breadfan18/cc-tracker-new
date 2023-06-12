@@ -1,10 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { HeaderSpinner } from "./Spinner";
-import PropTypes from "prop-types";
 
-const Header = ({ cards, loading }) => {
+const Header = () => {
   const activeStyle = { color: "#F15B2A" };
   return (
     <nav>
@@ -17,7 +14,7 @@ const Header = ({ cards, loading }) => {
       </NavLink>
       {" | "}
       <NavLink to="/cards" activeStyle={activeStyle}>
-        Cards {loading ? <HeaderSpinner /> : cards.length}
+        Cards
       </NavLink>
       {" | "}
       <NavLink to="/524" activeStyle={activeStyle}>
@@ -31,15 +28,4 @@ const Header = ({ cards, loading }) => {
   );
 };
 
-Header.propTypes = {
-  cards: PropTypes.array.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  cards: state.cards,
-  loading: state.apiCallsInProgress > 0,
-});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;
