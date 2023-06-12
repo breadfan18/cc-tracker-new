@@ -14,3 +14,9 @@ export function createLoyaltyData(loyalty) {
     .then(handleResponse)
     .catch(handleError);
 }
+
+export function deleteLoyaltyAcc(loyaltyAcc) {
+  return fetch(baseUrl + loyaltyAcc.id, { method: "DELETE" })
+    .then(handleResponse)
+    .catch(handleError);
+}

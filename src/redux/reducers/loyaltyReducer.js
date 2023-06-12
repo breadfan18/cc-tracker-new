@@ -1,6 +1,7 @@
 import initialState from "./initialState";
 import {
   CREATE_LOYALTY_DATA_SUCCESS,
+  DELETE_LOYALTY_ACC_SUCCESS,
   LOAD_LOYALTY_DATA_SUCCESS,
   UPDATE_LOYALTY_DATA_SUCCESS,
 } from "../actions/actionTypes";
@@ -18,6 +19,8 @@ export default function loyaltyReducer(
       return state.map((loyaltyAcc) =>
         loyaltyAcc.id === action.loyalty.id ? action.loyalty : loyaltyAcc
       );
+    case DELETE_LOYALTY_ACC_SUCCESS:
+      return state.filter((loyaltyAcc) => loyaltyAcc.id !== action.loyalty.id);
     default:
       return state;
   }

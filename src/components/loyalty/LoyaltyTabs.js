@@ -8,9 +8,17 @@ import { USERS } from "../../constants";
 import { titleCase } from "../../helpers";
 import CustomAccordion from "../common/CustomAccordion";
 import { Card } from "react-bootstrap";
+import { deleteLoyaltyData } from "../../redux/actions/loyaltyActions";
+import { toast } from "react-toastify";
 import _ from "lodash";
 
-function LoyaltyTabs({ loyaltyData }) {
+function LoyaltyTabs({ loyaltyData, deleteLoyaltyData }) {
+  function handleDelete(loyalty) {
+    deleteLoyaltyData(loyalty).then(() => {
+      toast.success("Loyalty Account Deleted");
+    });
+  }
+
   const loyaltyByType = _.groupBy(loyaltyData, (o) => o.loyaltyType);
   const loyaltyTabs = Object.keys(loyaltyByType).map((loyaltyType) => {
     const loyaltyTypeData = loyaltyByType[loyaltyType];
@@ -20,7 +28,7 @@ function LoyaltyTabs({ loyaltyData }) {
       const loyaltyList = (
         <LoyaltyList
           loyaltyData={loyaltyAccsForThisUser}
-          // onDeleteClick={handleDeleteCard}
+          onDeleteClick={handleDelete}
           // deletedCard={deletedCard}
           showEditDelete={true}
         />
@@ -77,6 +85,7 @@ function LoyaltyTabs({ loyaltyData }) {
 
 LoyaltyTabs.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
+  deleteLoyaltyData: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -85,6 +94,8 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  deleteLoyaltyData,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoyaltyTabs);

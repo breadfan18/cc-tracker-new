@@ -97,6 +97,15 @@ const loyaltyData = [
     password: "T********D*5",
     userId: 3,
   },
+  {
+    id: 8,
+    loyaltyType: "misc",
+    company: "Hilton",
+    memberId: "9UJ7LK0",
+    loginId: "lololol",
+    password: "T********D*5",
+    userId: 3,
+  },
 ];
 
 const users = [

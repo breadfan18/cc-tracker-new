@@ -56,7 +56,6 @@ export function saveCard(card) {
 }
 
 export function deleteCard(card) {
-  // This is optimistic delete because we are dispatching the action to delete card before actually calling deleteCard on the API
   return (dispatch) => {
     return cardsApi
       .deleteCard(card)
