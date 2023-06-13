@@ -33,7 +33,7 @@ const ManageLoyaltyPage = ({
 
   useEffect(() => {
     if (loyaltyData.length === 0) {
-      loadloyaltyData().catch((error) =>
+      loadloyaltyData()?.catch((error) =>
         alert("Loading loyalty data failed" + error)
       );
     } else {
