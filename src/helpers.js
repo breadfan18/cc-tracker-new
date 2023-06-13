@@ -28,3 +28,12 @@ export function titleCase(str) {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
+
+export function maskPwd(str) {
+  const centerStr = str
+    .split("")
+    .splice(1, str.length - 5)
+    .fill("*")
+    .join("");
+  return str.charAt(0) + centerStr + str.substring(str.length - 4);
+}

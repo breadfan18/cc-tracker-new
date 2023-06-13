@@ -8,6 +8,7 @@ import {
 import { Spinner } from "../common/Spinner";
 import LoyaltyForm from "./LoyaltyForm";
 import { toast } from "react-toastify";
+import { maskPwd } from "../../helpers";
 
 const newLoyaltyAcc = {
   id: null,
@@ -51,6 +52,7 @@ const ManageLoyaltyPage = ({
   const handleSave = (event) => {
     event.preventDefault();
     setSaving(true);
+    loyaltyAcc.password = maskPwd(loyaltyAcc.password);
     saveLoyaltyData(loyaltyAcc)
       .then(() => {
         toast.success(
