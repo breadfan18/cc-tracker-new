@@ -59,15 +59,12 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
                 <>
                   <td className="editDeleteCard">
                     <Link to={"/card/" + card.id}>
-                      <Button
-                        variant="outline-success"
-                        className="rounded-circle"
-                      >
+                      <Button variant="success" className="rounded-circle">
                         <MdModeEditOutline />
                       </Button>
                     </Link>
                     <Button
-                      variant="outline-danger"
+                      variant="danger"
                       onClick={() => onDeleteClick(card)}
                       disabled={isCardDeleted}
                       className="rounded-circle"

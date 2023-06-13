@@ -59,7 +59,7 @@ const LoyaltyList = ({
                   <td className="editDeleteCard">
                     <Link to={"/loyalty/" + loyalty.id}>
                       <Button
-                        variant="outline-success"
+                        variant="success"
                         className="rounded-circle"
                         disabled={isAccDeleted}
                       >
@@ -67,7 +67,7 @@ const LoyaltyList = ({
                       </Button>
                     </Link>
                     <Button
-                      variant="outline-danger"
+                      variant="danger"
                       onClick={() => onDeleteClick(loyalty)}
                       disabled={isAccDeleted}
                       className="rounded-circle"
