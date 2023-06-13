@@ -14,6 +14,7 @@ import _ from "lodash";
 
 function LoyaltyTabs({ loyaltyData, deleteLoyaltyData }) {
   const [deletedAcc, setDeletedAcc] = useState({});
+
   function handleDelete(loyalty) {
     setDeletedAcc(loyalty);
     deleteLoyaltyData(loyalty).then(() => {

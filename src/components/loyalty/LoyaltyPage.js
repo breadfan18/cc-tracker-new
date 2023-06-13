@@ -40,6 +40,7 @@ LoyaltyPage.propTypes = {
   loadloyaltyData: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
+
 const mapStateToProps = (state) => ({
   loyaltyData: state.loyaltyData.map((l) => addUserNameToCard(l)),
   loading: state.apiCallsInProgress > 0,
