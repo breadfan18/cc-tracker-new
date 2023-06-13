@@ -20,14 +20,14 @@ const CardsPage = ({ cards, loadCards, loading }) => {
     <>
       {redirectToAddCardPage && <Redirect to="/card" />}
       <h2>Wallet</h2>
-      {loading ? <Spinner /> : <CardTabs cards={cards} />}
       <button
         style={{ marginBottom: 20 }}
-        className="btn btn-primary add-course"
+        className="btn btn-primary add-card"
         onClick={() => setRedirect(true)}
       >
         Add Card
       </button>
+      {loading ? <Spinner /> : <CardTabs cards={cards} />}
     </>
   );
 };

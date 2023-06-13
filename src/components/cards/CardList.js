@@ -15,6 +15,15 @@ import _ from "lodash";
 const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
   const { data, requestSort } = useSortableData(cards);
 
+  function handleInquiriesList(inq) {
+    return Object.keys(inq)
+      .reduce((output, i) => {
+        if (inq[i]) output.push(i);
+        return output;
+      }, [])
+      .map((i) => <p key={i}>{titleCase(i)}</p>);
+  }
+
   return cards.length === 0 ? (
     <EmptyList dataType={"card"} />
   ) : (
@@ -38,6 +47,7 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
           <th className="tableHeader">
             Type <TiArrowUnsorted onClick={() => requestSort("cardType")} />
           </th>
+          <th>Credit Pull</th>
           {showEditDelete && (
             <>
               <th></th>
@@ -55,6 +65,9 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
               <td>{card.issuer}</td>
               <td>{card.card}</td>
               <td>{card.cardType}</td>
+              <td className="creditPullColumn">
+                {handleInquiriesList(card.inquiries)}
+              </td>
               {showEditDelete && (
                 <>
                   <td className="editDeleteCard">

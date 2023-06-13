@@ -5,6 +5,11 @@ const cards = [
     issuer: "Chase",
     card: "Sapphire Preferred",
     cardType: "Personal",
+    inquiries: {
+      experian: true,
+      equifax: false,
+      transunion: false,
+    },
     userId: 1,
   },
   {
@@ -13,6 +18,11 @@ const cards = [
     issuer: "Chase",
     card: "Sapphire Reserve",
     cardType: "Business",
+    inquiries: {
+      experian: true,
+      equifax: true,
+      transunion: false,
+    },
     userId: 1,
   },
   {
@@ -21,6 +31,11 @@ const cards = [
     issuer: "Amex",
     card: "Hilton Honors",
     cardType: "Personal",
+    inquiries: {
+      experian: true,
+      equifax: true,
+      transunion: false,
+    },
     userId: 2,
   },
   {
@@ -29,6 +44,11 @@ const cards = [
     issuer: "CapOne",
     card: "Venture X",
     cardType: "Personal",
+    inquiries: {
+      experian: true,
+      equifax: true,
+      transunion: true,
+    },
     userId: 3,
   },
 ];

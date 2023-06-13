@@ -4,6 +4,7 @@ import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 import { CARD_TYPE, ISSUERS, USERS } from "../../constants";
 import DateInput from "../common/DateInput";
+import RadioInput from "../common/RadioInput";
 
 const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
   return (
@@ -62,6 +63,11 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         }))}
         onChange={onChange}
         error={errors.author}
+      />
+      <RadioInput
+        name="inquiries"
+        label="Inquiries"
+        inquiriesStatus={card.inquiries}
       />
       <button type="submit" disabled={saving} className="btn btn-primary">
         {saving ? "Saving..." : "Save"}

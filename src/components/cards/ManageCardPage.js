@@ -12,6 +12,11 @@ const newCard = {
   issuer: "",
   card: "",
   userId: null,
+  inquiries: {
+    experian: false,
+    equifax: false,
+    transunion: false,
+  },
 };
 
 function ManageCardPage({
@@ -37,6 +42,8 @@ function ManageCardPage({
 
   function handleChange(event) {
     const { name, value } = event.target;
+
+    console.log(name, value);
     setCard((prevCard) => ({
       ...prevCard,
       [name]: name === "userId" ? parseInt(value, 10) : value,
