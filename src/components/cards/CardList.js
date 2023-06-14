@@ -5,11 +5,10 @@ import { connect } from "react-redux";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { TiArrowUnsorted } from "react-icons/ti";
-import { BsTrash3 } from "react-icons/bs";
-import { MdModeEditOutline } from "react-icons/md";
-import { Button } from "react-bootstrap";
 import { useSortableData } from "../../hooks/sortData";
 import { titleCase } from "../../helpers";
+import { DeleteButton } from "../common/DeleteButton";
+import { EditButton } from "../common/EditButton";
 import _ from "lodash";
 
 const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
@@ -72,18 +71,13 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
                 <>
                   <td className="editDeleteCard">
                     <Link to={"/card/" + card.id}>
-                      <Button variant="success" className="rounded-circle">
-                        <MdModeEditOutline />
-                      </Button>
+                      <EditButton />
                     </Link>
-                    <Button
-                      variant="danger"
-                      onClick={() => onDeleteClick(card)}
+                    <DeleteButton
                       disabled={isCardDeleted}
-                      className="rounded-circle"
-                    >
-                      <BsTrash3 />
-                    </Button>
+                      onDelete={onDeleteClick}
+                      data={card}
+                    />
                   </td>
                 </>
               )}
