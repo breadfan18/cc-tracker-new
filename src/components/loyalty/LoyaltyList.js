@@ -1,14 +1,13 @@
-import React, { useState, useMemo } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { TiArrowUnsorted } from "react-icons/ti";
-import { BsTrash3 } from "react-icons/bs";
-import { MdModeEditOutline } from "react-icons/md";
-import { Button } from "react-bootstrap";
 import { useSortableData } from "../../hooks/sortData";
+import { DeleteButton } from "../common/DeleteButton";
+import { EditButton } from "../common/EditButton";
 
 const LoyaltyList = ({
   loyaltyData,
@@ -58,22 +57,13 @@ const LoyaltyList = ({
                 <>
                   <td className="editDeleteCard">
                     <Link to={"/loyalty/" + loyalty.id}>
-                      <Button
-                        variant="success"
-                        className="rounded-circle"
-                        disabled={isAccDeleted}
-                      >
-                        <MdModeEditOutline />
-                      </Button>
+                      <EditButton disabled={isAccDeleted} />
                     </Link>
-                    <Button
-                      variant="danger"
-                      onClick={() => onDeleteClick(loyalty)}
+                    <DeleteButton
+                      data={loyalty}
+                      onDelete={onDeleteClick}
                       disabled={isAccDeleted}
-                      className="rounded-circle"
-                    >
-                      <BsTrash3 />
-                    </Button>
+                    />
                   </td>
                 </>
               )}

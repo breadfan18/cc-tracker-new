@@ -71,7 +71,7 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
                 <>
                   <td className="editDeleteCard">
                     <Link to={"/card/" + card.id}>
-                      <EditButton />
+                      <EditButton disabled={isCardDeleted} />
                     </Link>
                     <DeleteButton
                       disabled={isCardDeleted}
