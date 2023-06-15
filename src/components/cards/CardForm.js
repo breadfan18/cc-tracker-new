@@ -68,6 +68,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         name="inquiries"
         label="Inquiries"
         inquiriesStatus={card.inquiries}
+        onChange={onChange}
       />
       <button type="submit" disabled={saving} className="btn btn-primary">
         {saving ? "Saving..." : "Save"}

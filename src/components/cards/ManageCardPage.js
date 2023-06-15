@@ -13,9 +13,9 @@ const newCard = {
   card: "",
   userId: null,
   inquiries: {
-    experian: false,
-    equifax: false,
-    transunion: false,
+    experian: null,
+    equifax: null,
+    transunion: null,
   },
 };
 
@@ -30,6 +30,7 @@ function ManageCardPage({
   const [card, setCard] = useState({ ...props.card });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
+  const [inquiries, setInquiries] = useState({ ...props.card.inquiries });
 
   useEffect(() => {
     if (cards.length === 0) {
@@ -43,31 +44,41 @@ function ManageCardPage({
   function handleChange(event) {
     const { name, value } = event.target;
 
-    console.log(name, value);
-    setCard((prevCard) => ({
-      ...prevCard,
-      [name]: name === "userId" ? parseInt(value, 10) : value,
-    }));
+    name === "experian"
+      ? setInquiries((prev) => ({ ...prev, [name]: !prev.experian }))
+      : name === "equifax"
+      ? setInquiries((prev) => ({ ...prev, [name]: !prev.equifax }))
+      : name === "transunion"
+      ? setInquiries((prev) => ({ ...prev, [name]: !prev.transunion }))
+      : setCard((prevCard) => ({
+          ...prevCard,
+          [name]: name === "userId" ? parseInt(value, 10) : value,
+        }));
   }
 
-  function formIsValid() {
-    const { issuer, card, user } = card;
-    const errors = {};
+  // function formIsValid() {
+  //   const { issuer, card, user } = card;
+  //   const errors = {};
 
-    if (!issuer) errors.issuer = "Issuer is required";
-    if (!card) errors.card = "Card is required";
-    if (!user) errors.User = "User is required";
+  //   if (!issuer) errors.issuer = "Issuer is required";
+  //   if (!card) errors.card = "Card is required";
+  //   if (!user) errors.User = "User is required";
 
-    setErrors(errors);
-    // Form is valid if the errors objects has no properties
-    return Object.keys(errors).length === 0;
-  }
+  //   setErrors(errors);
+  //   // Form is valid if the errors objects has no properties
+  //   return Object.keys(errors).length === 0;
+  // }
 
   function handleSave(event) {
     event.preventDefault();
+
+    for (let i in inquiries) {
+      if (inquiries[i] === null) inquiries[i] = false;
+    }
+    const finalCard = { ...card, inquiries: inquiries };
     // if (!formIsValid()) return;
     setSaving(true);
-    saveCard(card)
+    saveCard(finalCard)
       .then(() => {
         toast.success(card.id === null ? "Card Created" : "Card Updated");
         history.push("/cards");
@@ -98,7 +109,6 @@ ManageCardPage.propTypes = {
   card: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
   loadCards: PropTypes.func.isRequired,
-  loadUsers: PropTypes.func.isRequired,
   saveCard: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
