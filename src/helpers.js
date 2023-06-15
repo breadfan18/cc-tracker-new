@@ -37,3 +37,8 @@ export function maskPwd(str) {
     .join("");
   return str.charAt(0) + centerStr + str.substring(str.length - 4);
 }
+
+export function formatDate(dateStr) {
+  const dateSplit = dateStr.split("-");
+  return `${dateSplit[1]}-${dateSplit[2]}-${dateSplit[0]}`;
+}

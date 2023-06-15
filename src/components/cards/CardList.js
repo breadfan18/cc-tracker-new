@@ -6,7 +6,7 @@ import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { TiArrowUnsorted } from "react-icons/ti";
 import { useSortableData } from "../../hooks/sortData";
-import { titleCase } from "../../helpers";
+import { formatDate, titleCase } from "../../helpers";
 import { DeleteButton } from "../common/DeleteButton";
 import { EditButton } from "../common/EditButton";
 import _ from "lodash";
@@ -59,7 +59,7 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
           const isCardDeleted = card.id === deletedCard?.id;
           return (
             <tr key={card.id}>
-              <td>{card.appDate}</td>
+              <td>{formatDate(card.appDate)}</td>
               <td>{card.userName}</td>
               <td>{card.issuer}</td>
               <td>{card.card}</td>
