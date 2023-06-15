@@ -11,6 +11,7 @@ import ManageCardPage from "./cards/ManageCardPage";
 import FiveTwentyFourPage from "./524/FiveTwentyFourPage";
 import LoyaltyPage from "./loyalty/LoyaltyPage";
 import ManageLoyaltyPage from "./loyalty/ManageLoyaltyPage";
+import Test from "./Test";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/loyalty-accounts" component={LoyaltyPage} />
         <Route path="/loyalty/:id" component={ManageLoyaltyPage} />
         <Route path="/loyalty" component={ManageLoyaltyPage} />
+        <Route path="/test" component={Test} />
         <Route component={PageNotFound} />
       </Switch>
       <ToastContainer autoClose={3000} hideProgressBar />
