@@ -3,15 +3,12 @@ import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
 
 const RadioInput = ({ name, label, error, inquiriesStatus, onChange }) => {
-  const [selected, setSelected] = useState({
-    experian: false,
-    equifax: false,
-    transunion: false,
-  });
   let wrapperClass = "form-group";
   if (error && error.length > 0) {
     wrapperClass += " " + "has-error";
   }
+
+  const bureauNames = Object.keys(inquiriesStatus);
 
   return (
     <div className={wrapperClass}>
@@ -22,14 +19,8 @@ const RadioInput = ({ name, label, error, inquiriesStatus, onChange }) => {
           name="experian"
           id="custom-switch"
           label="Experian"
-          // value={selected.experian}
+          value={bureauNames[0]}
           checked={inquiriesStatus.experian}
-          // onChange={() =>
-          //   setSelected((prevValue) => ({
-          //     ...prevValue,
-          //     experian: !prevValue.experian,
-          //   }))
-          // }
           onChange={onChange}
         />
         <Form.Check
@@ -37,14 +28,8 @@ const RadioInput = ({ name, label, error, inquiriesStatus, onChange }) => {
           name="equifax"
           id="custom-switch"
           label="Equifax"
-          // value={selected.equifax}
+          value={bureauNames[1]}
           checked={inquiriesStatus.equifax}
-          // onChange={() =>
-          //   setSelected((prevValue) => ({
-          //     ...prevValue,
-          //     equifax: !prevValue.equifax,
-          //   }))
-          // }
           onChange={onChange}
         />
         <Form.Check
@@ -52,14 +37,8 @@ const RadioInput = ({ name, label, error, inquiriesStatus, onChange }) => {
           name="transunion"
           id="custom-switch"
           label="Transunion"
-          // value={selected.transunion}
+          value={bureauNames[2]}
           checked={inquiriesStatus.transunion}
-          // onChange={() =>
-          //   setSelected((prevValue) => ({
-          //     ...prevValue,
-          //     transunion: !prevValue.transunion,
-          //   }))
-          // }
           onChange={onChange}
         />
         {error && <div className="alert alert-danger">{error}</div>}

@@ -28,9 +28,9 @@ function ManageCardPage({
   ...props
 }) {
   const [card, setCard] = useState({ ...props.card });
-  const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
   const [inquiries, setInquiries] = useState({ ...props.card.inquiries });
+  // const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (cards.length === 0) {
@@ -85,9 +85,9 @@ function ManageCardPage({
       })
       .catch((error) => {
         setSaving(false);
-        setErrors({
-          onSave: error.message,
-        });
+        // setErrors({
+        //   onSave: error.message,
+        // });
       });
   }
 
@@ -97,10 +97,10 @@ function ManageCardPage({
     <CardForm
       card={card}
       users={USERS}
-      errors={errors}
       saving={saving}
       onSave={handleSave}
       onChange={handleChange}
+      // errors={errors}
     />
   );
 }
