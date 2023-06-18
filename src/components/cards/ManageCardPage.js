@@ -42,18 +42,22 @@ function ManageCardPage({
   }, [props.card]);
 
   function handleChange(event) {
-    const { name, value } = event.target;
+    const { name, value, checked } = event.target;
 
-    name === "experian"
-      ? setInquiries((prev) => ({ ...prev, [name]: !prev.experian }))
-      : name === "equifax"
-      ? setInquiries((prev) => ({ ...prev, [name]: !prev.equifax }))
-      : name === "transunion"
-      ? setInquiries((prev) => ({ ...prev, [name]: !prev.transunion }))
-      : setCard((prevCard) => ({
-          ...prevCard,
-          [name]: name === "userId" ? parseInt(value, 10) : value,
-        }));
+    if (name === "inquiries") {
+      value === "experian"
+        ? setInquiries((prev) => ({ ...prev, [value]: checked }))
+        : value === "equifax"
+        ? setInquiries((prev) => ({ ...prev, [value]: checked }))
+        : value === "transunion"
+        ? setInquiries((prev) => ({ ...prev, [value]: checked }))
+        : null;
+    } else {
+      setCard((prevCard) => ({
+        ...prevCard,
+        [name]: name === "userId" ? parseInt(value, 10) : value,
+      }));
+    }
   }
 
   // function formIsValid() {

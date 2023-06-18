@@ -8,36 +8,34 @@ const RadioInput = ({ name, label, error, inquiriesStatus, onChange }) => {
     wrapperClass += " " + "has-error";
   }
 
-  const bureauNames = Object.keys(inquiriesStatus);
-
   return (
     <div className={wrapperClass}>
       <label htmlFor={name}>{label}</label>
       <div className="field">
         <Form.Check
           type="switch"
-          name="experian"
+          name="inquiries"
           id="custom-switch"
           label="Experian"
-          value={bureauNames[0]}
+          value="experian"
           checked={inquiriesStatus.experian}
           onChange={onChange}
         />
         <Form.Check
           type="switch"
-          name="equifax"
+          name="inquiries"
           id="custom-switch"
           label="Equifax"
-          value={bureauNames[1]}
+          value="equifax"
           checked={inquiriesStatus.equifax}
           onChange={onChange}
         />
         <Form.Check
           type="switch"
-          name="transunion"
+          name="inquiries"
           id="custom-switch"
           label="Transunion"
-          value={bureauNames[2]}
+          value="transunion"
           checked={inquiriesStatus.transunion}
           onChange={onChange}
         />
