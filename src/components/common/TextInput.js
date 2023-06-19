@@ -30,8 +30,8 @@ TextInput.propTypes = {
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
-  error: PropTypes.string
+  value: PropTypes.string || PropTypes.number,
+  error: PropTypes.string,
 };
 
 export default TextInput;

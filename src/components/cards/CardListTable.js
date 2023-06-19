@@ -49,6 +49,14 @@ export default function CardListTable({
           <th className="tableHeader">
             Type <TiArrowUnsorted onClick={() => requestSort("cardType")} />
           </th>
+          <th className="tableHeader">
+            Annual Fee{" "}
+            <TiArrowUnsorted onClick={() => requestSort("annualFee")} />
+          </th>
+          <th className="tableHeader">
+            Next Fee Date{" "}
+            <TiArrowUnsorted onClick={() => requestSort("nextFeeDate")} />
+          </th>
           <th>Credit Pull</th>
           {showEditDelete && (
             <>
@@ -67,6 +75,8 @@ export default function CardListTable({
               <td>{card.issuer}</td>
               <td>{card.card}</td>
               <td>{card.cardType}</td>
+              <td>${card.annualFee}</td>
+              <td>{formatDate(card.nextFeeDate)}</td>
               <td className="creditPullColumn">
                 {handleInquiriesList(card.inquiries)}
               </td>

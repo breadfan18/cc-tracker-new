@@ -11,7 +11,7 @@ const cards = [
       transunion: false,
     },
     annualFee: 95,
-    nextFeeDate: "2024-09-22",
+    nextFeeDate: "2024-01-22",
     userId: 1,
   },
   {

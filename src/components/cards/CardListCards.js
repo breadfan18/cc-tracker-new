@@ -19,27 +19,35 @@ export default function CardListCards({
   const allCards = cards.map((card) => {
     const isCardDeleted = card.id === deletedCard?.id;
     return (
-      <Card
-        style={{ width: cardWidth, display: "flex", flexWrap: "wrap" }}
-        key={card.id}
-        className="cardCard"
-      >
-        <Card.Body>
-          {showUserName && (
-            <Card.Title>
-              {USERS.find((user) => user.id === card.userId).name}
-            </Card.Title>
-          )}
-          <Card.Subtitle className="mb-2 text-muted">
-            {`${card.issuer} ${card.card}`}
-          </Card.Subtitle>
-          <hr />
-          <Card.Text>
-            <p style={{ margin: 0, color: "gray" }}>
+      <Card style={{ width: cardWidth }} key={card.id} className="cardCard">
+        <Card.Body style={{ padding: "0" }}>
+          <div
+            style={{
+              backgroundColor: "rgba(0,0,0,0.06)",
+            }}
+          >
+            {showUserName && (
+              <Card.Title style={{ padding: "10px 0 0 10px" }}>
+                {USERS.find((user) => user.id === card.userId).name}
+              </Card.Title>
+            )}
+            <Card.Subtitle
+              className="mb-1 text-muted"
+              style={{
+                padding: "10px 0 10px 10px",
+                borderRadius: "10px",
+                margin: "0",
+              }}
+            >
+              {`${card.issuer} ${card.card}`}
+            </Card.Subtitle>
+          </div>
+          <Card.Text style={{ padding: "0 0 0 10px" }}>
+            <p className="mb-0 text-muted">
               <small>{card.appDate}</small>
             </p>
 
-            <p style={{ margin: 0, color: "gray" }}>
+            <p className="text-muted">
               <small>{card.cardType}</small>
             </p>
           </Card.Text>

@@ -1,5 +1,5 @@
 #app {
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: 0 auto;
 }
 
@@ -92,9 +92,14 @@ label {
 }
 
 #cardCardContainer>* {
-  margin: 2px;
+  margin: 5px;
 }
 
 .editDeleteOnCards {
   float: right;
+  padding: 0 5px 10px 0;
+}
+
+form {
+  max-width: 35rem;
 }

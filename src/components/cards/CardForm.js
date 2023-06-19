@@ -64,6 +64,19 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         onChange={onChange}
         error={errors.author}
       />
+      <TextInput
+        name="annualFee"
+        label="Annual Fee"
+        value={card.annualFee}
+        onChange={onChange}
+        error={errors.title}
+      />
+      <DateInput
+        name="nextFeeDate"
+        label="Next Annual Fee Due"
+        onChange={onChange}
+        value={card.nextFeeDate}
+      />
       <RadioInput
         name="inquiries"
         label="Inquiries"

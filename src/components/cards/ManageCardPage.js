@@ -17,6 +17,8 @@ const newCard = {
     equifax: null,
     transunion: null,
   },
+  annualFee: 0,
+  nextFeeDate: null,
 };
 
 function ManageCardPage({

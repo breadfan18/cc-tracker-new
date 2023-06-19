@@ -68,7 +68,7 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
           <Card.Header
             style={{
               fontWeight: "bold",
-              backgroundColor: "rgba(217,215,215)",
+              backgroundColor: "rgba(0,0,0,0.06)",
             }}
           >
             {userName}
