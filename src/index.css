@@ -81,3 +81,20 @@ label {
 .creditPullColumn * {
   margin-bottom: 0;
 }
+
+.cardBodyLabels {
+  font-weight: bold;
+}
+
+#cardCardContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#cardCardContainer>* {
+  margin: 2px;
+}
+
+.editDeleteOnCards {
+  float: right;
+}

@@ -1,7 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { TiArrowUnsorted } from "react-icons/ti";
@@ -9,9 +8,13 @@ import { useSortableData } from "../../hooks/sortData";
 import { formatDate, titleCase } from "../../helpers";
 import { DeleteButton } from "../common/DeleteButton";
 import { EditButton } from "../common/EditButton";
-import _ from "lodash";
 
-const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
+export default function CardList({
+  cards,
+  onDeleteClick,
+  deletedCard,
+  showEditDelete,
+}) {
   const { data, requestSort } = useSortableData(cards);
 
   function handleInquiriesList(inq) {
@@ -87,14 +90,7 @@ const CardList = ({ cards, onDeleteClick, deletedCard, showEditDelete }) => {
       </tbody>
     </Table>
   );
-};
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    state,
-    ownProps,
-  };
-};
+}
 
 CardList.propTypes = {
   cards: PropTypes.array.isRequired,
@@ -103,5 +99,3 @@ CardList.propTypes = {
   deletedCard: PropTypes.object,
   showEditDelete: PropTypes.bool.isRequired,
 };
-
-export default connect(mapStateToProps)(CardList);

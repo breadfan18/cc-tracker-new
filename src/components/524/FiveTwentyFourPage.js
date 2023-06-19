@@ -9,7 +9,8 @@ import Card from "react-bootstrap/Card";
 import { wasCardOpenedWithinLast24Months } from "../../helpers";
 import CustomAccordion from "../common/CustomAccordion";
 import SelectInput from "../common/SelectInput";
-import CardList from "../cards/CardList";
+import CardList from "../cards/CardListTable";
+import FiveTwentyFourCards from "./FiveTwentyFourCards";
 
 const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
   const [selectedUser, setSelectedUser] = useState();
@@ -18,6 +19,16 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
     if (cards.length === 0) {
       loadCards();
     }
+  }, []);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
+
+    return () =>
+      window.removeEventListener("resize", () =>
+        setWindowWidth(window.innerWidth)
+      );
   }, []);
 
   function handleChange(event) {
@@ -41,9 +52,12 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
         return { ...card, userName };
       });
 
-    const cardsListComponent = (
-      <CardList cards={cards524} showEditDelete={false} />
-    );
+    const cardsListComponent =
+      windowWidth > 1000 ? (
+        <CardList cards={cards524} showEditDelete={false} />
+      ) : (
+        <FiveTwentyFourCards cards={cards524} showEditDelete={false} />
+      );
 
     return (
       <>
