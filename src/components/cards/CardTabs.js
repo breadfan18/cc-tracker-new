@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PropTypes from "prop-types";
-import CardList from "./CardListTable";
+import CardListTable from "./CardListTable";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import { USERS } from "../../constants";
@@ -35,7 +35,7 @@ function CardTabs({ cards, deleteCard }) {
     return (
       <Tab eventKey={user.id} title={user.name.split(" ")[0]} key={user.id}>
         {windowWidth > 1000 ? (
-          <CardList
+          <CardListTable
             cards={cardsForThisUser}
             onDeleteClick={handleDeleteCard}
             deletedCard={deletedCard}
@@ -62,7 +62,7 @@ function CardTabs({ cards, deleteCard }) {
       >
         <Tab eventKey="home" title="All Cards">
           {windowWidth > 1000 ? (
-            <CardList
+            <CardListTable
               cards={cards}
               onDeleteClick={handleDeleteCard}
               deletedCard={deletedCard}

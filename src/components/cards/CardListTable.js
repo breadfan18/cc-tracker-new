@@ -9,7 +9,7 @@ import { formatDate, titleCase } from "../../helpers";
 import { DeleteButton } from "../common/DeleteButton";
 import { EditButton } from "../common/EditButton";
 
-export default function CardList({
+export default function CardListTable({
   cards,
   onDeleteClick,
   deletedCard,
@@ -92,7 +92,7 @@ export default function CardList({
   );
 }
 
-CardList.propTypes = {
+CardListTable.propTypes = {
   cards: PropTypes.array.isRequired,
   onDeleteClick: PropTypes.func,
   history: PropTypes.object,
