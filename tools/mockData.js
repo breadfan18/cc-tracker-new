@@ -10,6 +10,8 @@ const cards = [
       equifax: false,
       transunion: false,
     },
+    annualFee: 95,
+    nextFeeDate: "2024-09-22",
     userId: 1,
   },
   {
@@ -23,6 +25,8 @@ const cards = [
       equifax: true,
       transunion: false,
     },
+    annualFee: 95,
+    nextFeeDate: "2024-09-22",
     userId: 1,
   },
   {
@@ -36,6 +40,8 @@ const cards = [
       equifax: true,
       transunion: false,
     },
+    annualFee: 95,
+    nextFeeDate: "2024-09-22",
     userId: 2,
   },
   {
@@ -49,6 +55,8 @@ const cards = [
       equifax: true,
       transunion: true,
     },
+    annualFee: 95,
+    nextFeeDate: "2024-09-22",
     userId: 3,
   },
 ];
