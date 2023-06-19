@@ -73,4 +73,5 @@ CardListCards.propTypes = {
   isCardDeleted: PropTypes.bool.isRequired,
   windowWidth: PropTypes.number.isRequired,
   showEditDelete: PropTypes.bool,
+  showUserName: PropTypes.bool,
 };
