@@ -38,10 +38,12 @@ export default function CardsByUserDropDown({
         // error={errors.author}
       />
       <hr />
-      <label style={{ margin: "7px", fontWeight: "bold" }}>
+      <label style={{ margin: "7px" }}>
         {showAllUsers
           ? "All Cards"
-          : `${USERS.find((user) => user.id === selectedUser).name}'s cards`}
+          : `${
+              USERS.find((user) => user.id === selectedUser).name.split(" ")[0]
+            }'s cards`}
       </label>
       <CardListCards
         cards={cardsForSelectedUser}
