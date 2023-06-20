@@ -103,3 +103,11 @@ label {
 form {
   max-width: 35rem;
 }
+
+hr {
+  border: none;
+  height: 3px;
+  background-color: rgba(13, 110, 253, 1);
+  color: rgba(13, 110, 253, 1);
+  /* margin: 2px; */
+}

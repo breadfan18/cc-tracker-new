@@ -1,26 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PropTypes from "prop-types";
 import CardListTable from "./CardListTable";
 import { connect } from "react-redux";
-import { toast } from "react-toastify";
 import { USERS } from "../../constants";
-import { deleteCard } from "../../redux/actions/cardsActions";
 import CardListCards from "./CardListCards";
 
-function CardTabs({ cards, deleteCard, windowWidth }) {
-  const [deletedCard, setDeletedCard] = useState({});
-
-  function handleDeleteCard(card) {
-    setDeletedCard({ ...card });
-    deleteCard(card)
-      .then(() => {
-        toast.success("Card deleted");
-      })
-      .catch((error) => alert("Error deleteing card " + error));
-  }
-
+function CardTabs({ cards, windowWidth, onDelete, deletedCard }) {
   const userTabs = USERS.map((user) => {
     const cardsForThisUser = cards.filter((card) => card.userId === user.id);
     return (
@@ -28,7 +15,7 @@ function CardTabs({ cards, deleteCard, windowWidth }) {
         {windowWidth > 1000 ? (
           <CardListTable
             cards={cardsForThisUser}
-            onDeleteClick={handleDeleteCard}
+            onDeleteClick={onDelete}
             deletedCard={deletedCard}
             showEditDelete={true}
             showUser={false}
@@ -36,7 +23,7 @@ function CardTabs({ cards, deleteCard, windowWidth }) {
         ) : (
           <CardListCards
             cards={cardsForThisUser}
-            onDeleteClick={handleDeleteCard}
+            onDeleteClick={onDelete}
             isCardDeleted={deletedCard}
             windowWidth={windowWidth}
             showUserName={false}
@@ -56,7 +43,7 @@ function CardTabs({ cards, deleteCard, windowWidth }) {
           {windowWidth > 1000 ? (
             <CardListTable
               cards={cards}
-              onDeleteClick={handleDeleteCard}
+              onDeleteClick={onDelete}
               deletedCard={deletedCard}
               showEditDelete={true}
               showUser={true}
@@ -64,7 +51,7 @@ function CardTabs({ cards, deleteCard, windowWidth }) {
           ) : (
             <CardListCards
               cards={cards}
-              onDeleteClick={handleDeleteCard}
+              onDeleteClick={onDelete}
               isCardDeleted={deletedCard}
               windowWidth={windowWidth}
               showUserName={true}
@@ -80,7 +67,7 @@ function CardTabs({ cards, deleteCard, windowWidth }) {
 CardTabs.propTypes = {
   cards: PropTypes.array.isRequired,
   deletedCard: PropTypes.object,
-  deleteCard: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
   windowWidth: PropTypes.number.isRequired,
 };
 
@@ -90,8 +77,6 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-  deleteCard,
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardTabs);

@@ -6,6 +6,7 @@ import { DeleteButton } from "../common/DeleteButton";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
+import { formatDate } from "../../helpers";
 
 export default function CardListCards({
   cards,
@@ -44,7 +45,7 @@ export default function CardListCards({
           </div>
           <Card.Text style={{ padding: "0 0 0 10px" }}>
             <p className="mb-0 text-muted">
-              <small>{card.appDate}</small>
+              <small>{formatDate(card.appDate)}</small>
             </p>
 
             <p className="text-muted">
@@ -77,8 +78,7 @@ export default function CardListCards({
 CardListCards.propTypes = {
   cards: PropTypes.array.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
-  deletedCard: PropTypes.object.isRequired,
-  isCardDeleted: PropTypes.bool.isRequired,
+  deletedCard: PropTypes.object,
   windowWidth: PropTypes.number.isRequired,
   showEditDelete: PropTypes.bool,
   showUserName: PropTypes.bool,
