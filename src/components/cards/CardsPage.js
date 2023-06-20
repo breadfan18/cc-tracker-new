@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import CardTabs from "./CardTabs";
 import { addUserNameToCard, sortCardsByDate } from "../../helpers";
+import CardsByUserDropDown from "./CardsByUserDropDown";
 
 const CardsPage = ({ cards, loadCards, loading, windowWidth }) => {
   const [redirectToAddCardPage, setRedirect] = useState(false);
@@ -29,6 +30,8 @@ const CardsPage = ({ cards, loadCards, loading, windowWidth }) => {
       </button>
       {loading ? (
         <Spinner />
+      ) : windowWidth < 600 ? (
+        <CardsByUserDropDown cards={cards} windowWidth={windowWidth} />
       ) : (
         <CardTabs cards={cards} windowWidth={windowWidth} />
       )}
