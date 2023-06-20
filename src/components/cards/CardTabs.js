@@ -9,17 +9,8 @@ import { USERS } from "../../constants";
 import { deleteCard } from "../../redux/actions/cardsActions";
 import CardListCards from "./CardListCards";
 
-function CardTabs({ cards, deleteCard }) {
+function CardTabs({ cards, deleteCard, windowWidth }) {
   const [deletedCard, setDeletedCard] = useState({});
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
-
-    return () =>
-      window.removeEventListener("resize", () =>
-        setWindowWidth(window.innerWidth)
-      );
-  }, []);
 
   function handleDeleteCard(card) {
     setDeletedCard({ ...card });
@@ -40,6 +31,7 @@ function CardTabs({ cards, deleteCard }) {
             onDeleteClick={handleDeleteCard}
             deletedCard={deletedCard}
             showEditDelete={true}
+            showUser={false}
           />
         ) : (
           <CardListCards
@@ -67,6 +59,7 @@ function CardTabs({ cards, deleteCard }) {
               onDeleteClick={handleDeleteCard}
               deletedCard={deletedCard}
               showEditDelete={true}
+              showUser={true}
             />
           ) : (
             <CardListCards
@@ -88,6 +81,7 @@ CardTabs.propTypes = {
   cards: PropTypes.array.isRequired,
   deletedCard: PropTypes.object,
   deleteCard: PropTypes.func.isRequired,
+  windowWidth: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {

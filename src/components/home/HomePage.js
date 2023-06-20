@@ -1,11 +1,7 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
-const HomePage = () => {
-  useEffect(() => {}, []);
-
+export default function HomePage() {
   return (
     <div className="jumbotron">
       <h1>Credit Cards Administration</h1>
@@ -15,12 +11,4 @@ const HomePage = () => {
       </Link>
     </div>
   );
-};
-
-HomePage.propTypes = {};
-
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+}

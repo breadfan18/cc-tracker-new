@@ -14,6 +14,7 @@ export default function CardListTable({
   onDeleteClick,
   deletedCard,
   showEditDelete,
+  showUser,
 }) {
   const { data, requestSort } = useSortableData(cards);
 
@@ -36,10 +37,12 @@ export default function CardListTable({
             App Date
             <TiArrowUnsorted onClick={() => requestSort("appDate")} />
           </th>
-          <th className="tableHeader">
-            User
-            <TiArrowUnsorted onClick={() => requestSort("userName")} />
-          </th>
+          {showUser && (
+            <th className="tableHeader">
+              User
+              <TiArrowUnsorted onClick={() => requestSort("userName")} />
+            </th>
+          )}
           <th className="tableHeader">
             Issuer <TiArrowUnsorted onClick={() => requestSort("issuer")} />
           </th>
@@ -71,12 +74,16 @@ export default function CardListTable({
           return (
             <tr key={card.id}>
               <td>{formatDate(card.appDate)}</td>
-              <td>{card.userName}</td>
+              {showUser && <td>{card.userName}</td>}
               <td>{card.issuer}</td>
               <td>{card.card}</td>
               <td>{card.cardType}</td>
               <td>${card.annualFee}</td>
-              <td>{formatDate(card.nextFeeDate)}</td>
+              <td>
+                {card.nextFeeDate === "N/A"
+                  ? "N/A"
+                  : formatDate(card.nextFeeDate)}
+              </td>
               <td className="creditPullColumn">
                 {handleInquiriesList(card.inquiries)}
               </td>
@@ -108,4 +115,5 @@ CardListTable.propTypes = {
   history: PropTypes.object,
   deletedCard: PropTypes.object,
   showEditDelete: PropTypes.bool.isRequired,
+  showUser: PropTypes.bool.isRequired,
 };

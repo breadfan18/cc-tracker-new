@@ -7,7 +7,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import CardTabs from "./CardTabs";
 import { addUserNameToCard, sortCardsByDate } from "../../helpers";
 
-const CardsPage = ({ cards, loadCards, loading }) => {
+const CardsPage = ({ cards, loadCards, loading, windowWidth }) => {
   const [redirectToAddCardPage, setRedirect] = useState(false);
 
   useEffect(() => {
@@ -27,7 +27,11 @@ const CardsPage = ({ cards, loadCards, loading }) => {
       >
         Add Card
       </button>
-      {loading ? <Spinner /> : <CardTabs cards={cards} />}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <CardTabs cards={cards} windowWidth={windowWidth} />
+      )}
     </>
   );
 };
@@ -37,6 +41,7 @@ CardsPage.propTypes = {
   loadCards: PropTypes.func.isRequired,
   deleteCard: PropTypes.func,
   loading: PropTypes.bool.isRequired,
+  windowWidth: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {

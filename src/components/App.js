@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./home/HomePage";
 import AboutPage from "./about/AboutPage";
@@ -15,16 +15,32 @@ import Test from "./testing/UseEffectTest";
 import Checkbox from "./testing/Checkbox";
 
 function App() {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
+
+    return () =>
+      window.removeEventListener("resize", () =>
+        setWindowWidth(window.innerWidth)
+      );
+  }, []);
+
   return (
     <div className="container-fluid">
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/about" component={AboutPage} />
-        <Route path="/cards" component={CardsPage} />
+        <Route
+          path="/cards"
+          render={() => <CardsPage windowWidth={windowWidth} />}
+        />
         <Route path="/card/:id" component={ManageCardPage} />
         <Route path="/card" component={ManageCardPage} />
-        <Route path="/524" component={FiveTwentyFourPage} />
+        <Route
+          path="/524"
+          render={() => <FiveTwentyFourPage windowWidth={windowWidth} />}
+        />
         <Route path="/loyalty-accounts" component={LoyaltyPage} />
         <Route path="/loyalty/:id" component={ManageLoyaltyPage} />
         <Route path="/loyalty" component={ManageLoyaltyPage} />

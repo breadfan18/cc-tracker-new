@@ -12,23 +12,19 @@ import SelectInput from "../common/SelectInput";
 import CardList from "../cards/CardListTable";
 import FiveTwentyFourCards from "./FiveTwentyFourCards";
 
-const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
+const FiveTwentyFourPage = ({
+  cards,
+  loadCards,
+  loading,
+  cardsByUser,
+  windowWidth,
+}) => {
   const [selectedUser, setSelectedUser] = useState();
 
   useEffect(() => {
     if (cards.length === 0) {
       loadCards();
     }
-  }, []);
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
-
-    return () =>
-      window.removeEventListener("resize", () =>
-        setWindowWidth(window.innerWidth)
-      );
   }, []);
 
   function handleChange(event) {
@@ -56,7 +52,11 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
       windowWidth > 1000 ? (
         <CardList cards={cards524} showEditDelete={false} />
       ) : (
-        <FiveTwentyFourCards cards={cards524} showEditDelete={false} />
+        <FiveTwentyFourCards
+          cards={cards524}
+          showEditDelete={false}
+          windowWidth={windowWidth}
+        />
       );
 
     return (
@@ -134,6 +134,7 @@ FiveTwentyFourPage.propTypes = {
   loadCards: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  windowWidth: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {
