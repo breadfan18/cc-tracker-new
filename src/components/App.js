@@ -41,7 +41,10 @@ function App() {
           path="/524"
           render={() => <FiveTwentyFourPage windowWidth={windowWidth} />}
         />
-        <Route path="/loyalty-accounts" component={LoyaltyPage} />
+        <Route
+          path="/loyalty-accounts"
+          render={() => <LoyaltyPage windowWidth={windowWidth} />}
+        />
         <Route path="/loyalty/:id" component={ManageLoyaltyPage} />
         <Route path="/loyalty" component={ManageLoyaltyPage} />
         <Route path="/use-effect" component={Test} />

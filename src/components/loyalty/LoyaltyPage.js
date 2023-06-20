@@ -7,7 +7,12 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import LoyaltyTabs from "./LoyaltyTabs";
 import { addUserNameToCard } from "../../helpers";
 
-const LoyaltyPage = ({ loyaltyData, loadloyaltyData, loading }) => {
+const LoyaltyPage = ({
+  loyaltyData,
+  loadloyaltyData,
+  loading,
+  windowWidth,
+}) => {
   const [redirectToAddLoyaltyPage, setRedirect] = useState(false);
 
   useEffect(() => {
@@ -16,13 +21,17 @@ const LoyaltyPage = ({ loyaltyData, loadloyaltyData, loading }) => {
     }
   }, []);
   return (
-    <>
+    <div className="loyaltyContainer">
       {redirectToAddLoyaltyPage && <Redirect to="/loyalty" />}
       <h2>Loyalty Information</h2>
       {loading ? (
         <Spinner />
       ) : (
-        <LoyaltyTabs loyaltyData={loyaltyData} showEditDelete={true} />
+        <LoyaltyTabs
+          loyaltyData={loyaltyData}
+          showEditDelete={true}
+          windowWidth={windowWidth}
+        />
       )}
       <button
         style={{ marginBottom: 20 }}
@@ -31,7 +40,7 @@ const LoyaltyPage = ({ loyaltyData, loadloyaltyData, loading }) => {
       >
         Add Loyalty
       </button>
-    </>
+    </div>
   );
 };
 
@@ -39,6 +48,7 @@ LoyaltyPage.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
   loadloyaltyData: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  windowWidth: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({

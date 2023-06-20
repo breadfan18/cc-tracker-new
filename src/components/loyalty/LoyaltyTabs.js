@@ -11,8 +11,9 @@ import { Card } from "react-bootstrap";
 import { deleteLoyaltyData } from "../../redux/actions/loyaltyActions";
 import { toast } from "react-toastify";
 import _ from "lodash";
+import LoyaltyCards from "./LoyaltyCards";
 
-function LoyaltyTabs({ loyaltyData, deleteLoyaltyData }) {
+function LoyaltyTabs({ loyaltyData, deleteLoyaltyData, windowWidth }) {
   const [deletedAcc, setDeletedAcc] = useState({});
 
   function handleDelete(loyalty) {
@@ -28,14 +29,21 @@ function LoyaltyTabs({ loyaltyData, deleteLoyaltyData }) {
     const loyaltyTypePerUser = _.groupBy(loyaltyTypeData, (o) => o.userId);
     const userCards = Object.keys(loyaltyTypePerUser).map((user) => {
       const loyaltyAccsForThisUser = loyaltyTypePerUser[user];
-      const loyaltyList = (
-        <LoyaltyList
-          loyaltyData={loyaltyAccsForThisUser}
-          onDeleteClick={handleDelete}
-          deletedAcc={deletedAcc}
-          showEditDelete={true}
-        />
-      );
+      const loyaltyList =
+        windowWidth > 800 ? (
+          <LoyaltyList
+            loyaltyData={loyaltyAccsForThisUser}
+            onDeleteClick={handleDelete}
+            deletedAcc={deletedAcc}
+            showEditDelete={true}
+          />
+        ) : (
+          <LoyaltyCards
+            loyaltyData={loyaltyAccsForThisUser}
+            onDeleteClick={handleDelete}
+            windowWidth={windowWidth}
+          />
+        );
       const thisUserName = USERS.find((u) => u.id === parseInt(user)).name;
       return (
         <>
@@ -89,6 +97,7 @@ function LoyaltyTabs({ loyaltyData, deleteLoyaltyData }) {
 LoyaltyTabs.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
   deleteLoyaltyData: PropTypes.func.isRequired,
+  windowWidth: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {

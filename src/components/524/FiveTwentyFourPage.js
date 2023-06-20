@@ -101,7 +101,7 @@ const FiveTwentyFourPage = ({
   });
 
   return (
-    <>
+    <div className="fiveTwentyFourContainer">
       <h2>5/24 Status</h2>
       {loading ? (
         <Spinner />
@@ -124,7 +124,7 @@ const FiveTwentyFourPage = ({
           {users524Status}
         </>
       )}
-    </>
+    </div>
   );
 };
 
