@@ -31,7 +31,7 @@ export default function LoyaltyCards({
                 margin: "0",
               }}
             >
-              {acc.company}
+              {acc.program}
             </Card.Subtitle>
           </div>
           <Card.Text style={{ padding: "0 0 0 10px" }}>

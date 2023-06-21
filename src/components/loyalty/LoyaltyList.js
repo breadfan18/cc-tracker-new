@@ -23,9 +23,10 @@ const LoyaltyList = ({
     <Table>
       <thead>
         <tr>
+          <th></th>
           <th className="tableHeader">
             Program
-            <TiArrowUnsorted onClick={() => requestSort("company")} />
+            <TiArrowUnsorted onClick={() => requestSort("program")} />
           </th>
           <th className="tableHeader">
             Member ID{" "}
@@ -49,7 +50,14 @@ const LoyaltyList = ({
           const isAccDeleted = loyalty.id === deletedAcc?.id;
           return (
             <tr key={loyalty.id}>
-              <td>{loyalty.company}</td>
+              <td>
+                <img
+                  src={loyalty.program.img}
+                  alt="AA"
+                  style={{ height: "2.5rem", width: "3.5rem" }}
+                />
+              </td>
+              <td>{loyalty.program.name}</td>
               <td>{loyalty.memberId}</td>
               <td>{loyalty.loginId}</td>
               <td>{loyalty.password}</td>

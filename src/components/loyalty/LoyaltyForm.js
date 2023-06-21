@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 import RadioInput from "../common/RadioInput";
-import { ACCOUNT_TYPE, PROGRAM as PROGRAMS, USERS } from "../../constants";
+import { ACCOUNT_TYPE, PROGRAM, USERS } from "../../constants";
 import { titleCase } from "../../helpers";
 
 const LoyaltyForm = ({
@@ -46,13 +46,13 @@ const LoyaltyForm = ({
         // error={errors.author}
       />
       <SelectInput
-        name="company"
+        name="program"
         label="Loyalty Program"
-        value={loyaltyAcc.company || ""}
+        value={loyaltyAcc.program || ""}
         defaultOption="Select Program"
-        options={PROGRAMS.map((program) => ({
-          value: program,
-          text: program,
+        options={PROGRAM.map((program) => ({
+          value: program.id,
+          text: program.name,
         }))}
         onChange={onChange}
         // error={errors.author}

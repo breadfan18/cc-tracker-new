@@ -65,7 +65,11 @@ const loyaltyData = [
   {
     id: 1,
     loyaltyType: "airlines",
-    company: "American",
+    program: {
+      id: 1,
+      name: "American AAdvantage",
+      img: "https://i.imgur.com/Pc1I7uX.png",
+    },
     memberId: "9UJ7LK0",
     loginId: "foobar",
     password: "T********D*5",
@@ -74,7 +78,11 @@ const loyaltyData = [
   {
     id: 2,
     loyaltyType: "airlines",
-    company: "American",
+    program: {
+      id: 1,
+      name: "American AAdvantage",
+      img: "https://i.imgur.com/Pc1I7uX.png",
+    },
     memberId: "9UJ7LK0",
     loginId: "foobar",
     password: "T********D*5",
@@ -83,7 +91,11 @@ const loyaltyData = [
   {
     id: 3,
     loyaltyType: "airlines",
-    company: "United",
+    program: {
+      id: 2,
+      name: "United MileaguePlus",
+      img: "https://i.imgur.com/znFTwQ1.png",
+    },
     memberId: "9UJ7LK0",
     loginId: "noooooo",
     password: "T********D*5",
@@ -92,7 +104,11 @@ const loyaltyData = [
   {
     id: 4,
     loyaltyType: "hotels",
-    company: "Hyatt",
+    program: {
+      id: 3,
+      name: "World of Hyatt",
+      img: "https://i.imgur.com/UnaXElg.png",
+    },
     memberId: "9UJ7LK0",
     loginId: "hakaka",
     password: "T********D*5",
@@ -101,7 +117,11 @@ const loyaltyData = [
   {
     id: 5,
     loyaltyType: "hotels",
-    company: "Hilton",
+    program: {
+      id: 4,
+      name: "Hilton Honors",
+      img: "https://i.imgur.com/3A83gV6.png",
+    },
     memberId: "9UJ7LK0",
     loginId: "lololol",
     password: "T********D*5",
@@ -110,7 +130,11 @@ const loyaltyData = [
   {
     id: 6,
     loyaltyType: "hotels",
-    company: "Hilton",
+    program: {
+      id: 4,
+      name: "Hilton Honors",
+      img: "https://i.imgur.com/3A83gV6.png",
+    },
     memberId: "9UJ7LK0",
     loginId: "lololol",
     password: "T********D*5",
@@ -119,7 +143,11 @@ const loyaltyData = [
   {
     id: 7,
     loyaltyType: "hotels",
-    company: "Hilton",
+    program: {
+      id: 3,
+      name: "World of Hyatt",
+      img: "https://i.imgur.com/UnaXElg.png",
+    },
     memberId: "9UJ7LK0",
     loginId: "lololol",
     password: "T********D*5",
@@ -128,7 +156,11 @@ const loyaltyData = [
   {
     id: 8,
     loyaltyType: "misc",
-    company: "Hilton",
+    program: {
+      id: 5,
+      name: "Global Entry",
+      img: "",
+    },
     memberId: "9UJ7LK0",
     loginId: "lololol",
     password: "T********D*5",
