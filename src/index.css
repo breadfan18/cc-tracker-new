@@ -1,5 +1,9 @@
-#app {
-  /* max-width: 1200px; */
+:root {
+  --color-blue: #0080FF;
+}
+
+body {
+  background-image: url("https://i.imgur.com/zF8fZ5k.jpg");
   margin: 0 auto;
 }
 
@@ -7,11 +11,38 @@
 .loyaltyContainer {
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: flex-end;
+  background-color: var(--color-blue);
+  padding: 0;
+  margin-bottom: 15px;
 
 }
 
 nav {
-  padding: 20px 0 20px 0;
+  padding: 10px 0;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+a:hover {
+  background-color: white;
+  color: var(--color-blue);
 }
 
 .form-group {
@@ -32,19 +63,15 @@ div.alert-danger {
   transform: scale(1.5);
 }
 
-.nav-tabs {
-  border-bottom: 2px solid #0080FF;
-}
-
 .nav-tabs .nav-item .nav-link {
-  color: #0080FF;
+  color: var(--color-blue);
   background-color: #d9d7d7;
-  border-bottom: 2px solid #0080FF;
+  border-bottom: 2px solid var(--color-blue);
 }
 
 .nav-tabs .nav-item .nav-link.active {
   color: #FFF;
-  background-color: #0080FF;
+  background-color: var(--color-blue);
   font-weight: bold;
 }
 
@@ -114,7 +141,12 @@ form {
 hr {
   border: none;
   height: 3px;
-  background-color: rgba(13, 110, 253, 1);
-  color: rgba(13, 110, 253, 1);
+  background-color: var(--color-blue);
+  color: var(--color-blue);
   /* margin: 2px; */
+}
+
+.addButton {
+  background-color: var(--color-blue);
+  border-color: var(--color-blue);
 }

@@ -24,6 +24,13 @@ const LoyaltyPage = ({
     <div className="loyaltyContainer">
       {redirectToAddLoyaltyPage && <Redirect to="/loyalty" />}
       <h2>Loyalty Information</h2>
+      <button
+        style={{ marginBottom: 20 }}
+        className="btn btn-primary addButton"
+        onClick={() => setRedirect(true)}
+      >
+        Add Loyalty Account
+      </button>
       {loading ? (
         <Spinner />
       ) : (
@@ -33,13 +40,6 @@ const LoyaltyPage = ({
           windowWidth={windowWidth}
         />
       )}
-      <button
-        style={{ marginBottom: 20 }}
-        className="btn btn-primary add-course"
-        onClick={() => setRedirect(true)}
-      >
-        Add Loyalty
-      </button>
     </div>
   );
 };

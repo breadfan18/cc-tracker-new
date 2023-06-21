@@ -29,12 +29,12 @@ const CardsPage = ({ cards, loadCards, loading, windowWidth, deleteCard }) => {
   }
 
   return (
-    <>
+    <div className="cardsContainer">
       {redirectToAddCardPage && <Redirect to="/card" />}
       <h2>Wallet</h2>
       <button
         style={{ marginBottom: 20 }}
-        className="btn btn-primary add-card"
+        className="btn btn-primary addButton"
         onClick={() => setRedirect(true)}
       >
         Add Card
@@ -56,7 +56,7 @@ const CardsPage = ({ cards, loadCards, loading, windowWidth, deleteCard }) => {
           deletedCard={deletedCard}
         />
       )}
-    </>
+    </div>
   );
 };
 

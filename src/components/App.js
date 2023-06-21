@@ -26,33 +26,37 @@ function App() {
   }, []);
 
   return (
-    <div className="container-fluid">
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/about" component={AboutPage} />
-        <Route
-          path="/cards"
-          render={() => <CardsPage windowWidth={windowWidth} />}
-        />
-        <Route path="/card/:id" component={ManageCardPage} />
-        <Route path="/card" component={ManageCardPage} />
-        <Route
-          path="/524"
-          render={() => <FiveTwentyFourPage windowWidth={windowWidth} />}
-        />
-        <Route
-          path="/loyalty-accounts"
-          render={() => <LoyaltyPage windowWidth={windowWidth} />}
-        />
-        <Route path="/loyalty/:id" component={ManageLoyaltyPage} />
-        <Route path="/loyalty" component={ManageLoyaltyPage} />
-        <Route path="/use-effect" component={Test} />
-        <Route path="/test" component={Checkbox} />
-        <Route component={PageNotFound} />
-      </Switch>
-      <ToastContainer autoClose={3000} hideProgressBar />
-    </div>
+    <>
+      <div className="navContainer">
+        <Header />
+      </div>
+      <div className="container-fluid">
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/about" component={AboutPage} />
+          <Route
+            path="/cards"
+            render={() => <CardsPage windowWidth={windowWidth} />}
+          />
+          <Route path="/card/:id" component={ManageCardPage} />
+          <Route path="/card" component={ManageCardPage} />
+          <Route
+            path="/524"
+            render={() => <FiveTwentyFourPage windowWidth={windowWidth} />}
+          />
+          <Route
+            path="/loyalty-accounts"
+            render={() => <LoyaltyPage windowWidth={windowWidth} />}
+          />
+          <Route path="/loyalty/:id" component={ManageLoyaltyPage} />
+          <Route path="/loyalty" component={ManageLoyaltyPage} />
+          <Route path="/use-effect" component={Test} />
+          <Route path="/test" component={Checkbox} />
+          <Route component={PageNotFound} />
+        </Switch>
+        <ToastContainer autoClose={3000} hideProgressBar />
+      </div>
+    </>
   );
 }
 
