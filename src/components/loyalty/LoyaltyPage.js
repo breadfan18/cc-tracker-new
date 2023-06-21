@@ -23,14 +23,16 @@ const LoyaltyPage = ({
   return (
     <div className="loyaltyContainer">
       {redirectToAddLoyaltyPage && <Redirect to="/loyalty" />}
-      <h2>Loyalty Information</h2>
-      <button
-        style={{ marginBottom: 20 }}
-        className="btn btn-primary addButton"
-        onClick={() => setRedirect(true)}
-      >
-        Add Loyalty Account
-      </button>
+      <section className="sectionHeaders">
+        <h2 style={{ marginBottom: 0 }}>Loyalty Accounts</h2>
+        <button
+          // style={{ marginBottom: 20 }}
+          className="btn btn-primary addButton"
+          onClick={() => setRedirect(true)}
+        >
+          Add Loyalty Account
+        </button>
+      </section>
       {loading ? (
         <Spinner />
       ) : (

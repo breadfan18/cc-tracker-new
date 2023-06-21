@@ -1,5 +1,6 @@
 :root {
   --color-blue: #0080FF;
+  --light-gray: #D9D7D7
 }
 
 body {
@@ -25,7 +26,7 @@ body {
 nav {
   padding: 10px 0;
   text-decoration: none;
-  color: white;
+  color: var(--light-gray);
   display: flex;
   justify-content: center;
   width: 100%;
@@ -41,8 +42,18 @@ nav a {
 }
 
 a:hover {
-  background-color: white;
+  background-color: var(--light-gray);
   color: var(--color-blue);
+}
+
+.sectionHeaders {
+  display: flex;
+  justify-content: space-between;background-color: var(--light-gray);
+  padding: 10px;
+  border-radius: 10px;
+  color: var(--color-blue);
+  margin-bottom: 1rem;
+
 }
 
 .form-group {
@@ -65,7 +76,7 @@ div.alert-danger {
 
 .nav-tabs .nav-item .nav-link {
   color: var(--color-blue);
-  background-color: #d9d7d7;
+  background-color: var(--light-gray);
   border-bottom: 2px solid var(--color-blue);
 }
 

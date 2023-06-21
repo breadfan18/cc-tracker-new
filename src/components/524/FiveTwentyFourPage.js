@@ -102,7 +102,7 @@ const FiveTwentyFourPage = ({
 
   return (
     <div className="fiveTwentyFourContainer">
-      <h2>5/24 Status</h2>
+      <h2 className="sectionHeaders">5/24 Status</h2>
       {loading ? (
         <Spinner />
       ) : (

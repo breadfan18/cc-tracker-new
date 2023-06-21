@@ -8,6 +8,7 @@ import CardTabs from "./CardTabs";
 import { addUserNameToCard, sortCardsByDate } from "../../helpers";
 import CardsByUserDropDown from "./CardsByUserDropDown";
 import { toast } from "react-toastify";
+import { Button } from "react-bootstrap";
 
 const CardsPage = ({ cards, loadCards, loading, windowWidth, deleteCard }) => {
   const [redirectToAddCardPage, setRedirect] = useState(false);
@@ -31,14 +32,15 @@ const CardsPage = ({ cards, loadCards, loading, windowWidth, deleteCard }) => {
   return (
     <div className="cardsContainer">
       {redirectToAddCardPage && <Redirect to="/card" />}
-      <h2>Wallet</h2>
-      <button
-        style={{ marginBottom: 20 }}
-        className="btn btn-primary addButton"
-        onClick={() => setRedirect(true)}
-      >
-        Add Card
-      </button>
+      <section className="sectionHeaders">
+        <h2 style={{ marginBottom: 0 }}>Wallet</h2>
+        <button
+          className="btn btn-primary addButton"
+          onClick={() => setRedirect(true)}
+        >
+          Add Card
+        </button>
+      </section>
       {loading ? (
         <Spinner />
       ) : windowWidth < 600 ? (
