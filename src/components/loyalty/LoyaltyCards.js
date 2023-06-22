@@ -14,7 +14,6 @@ export default function LoyaltyCards({
 }) {
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const allCards = loyaltyData.map((acc) => {
-    // const isCardDeleted = acc.id === deletedAcc?.id;
     return (
       <Card style={{ width: cardWidth }} key={acc.id} className="cardCard">
         <Card.Body style={{ padding: "0" }}>
@@ -31,7 +30,7 @@ export default function LoyaltyCards({
                 margin: "0",
               }}
             >
-              {acc.program}
+              {acc.program.name}
             </Card.Subtitle>
           </div>
           <Card.Text style={{ padding: "0 0 0 10px" }}>
@@ -58,11 +57,7 @@ export default function LoyaltyCards({
             <Link to={"/card/" + acc.id}>
               <EditButton />
             </Link>
-            <DeleteButton
-              // disabled={isCardDeleted}
-              onDelete={onDeleteClick}
-              data={acc}
-            />
+            <DeleteButton onDelete={onDeleteClick} data={acc} />
           </div>
         </Card.Body>
       </Card>

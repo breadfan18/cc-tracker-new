@@ -64,6 +64,7 @@ function LoyaltyTabs({ loyaltyData, deleteLoyaltyData, windowWidth }) {
                 accordionBody={loyaltyList}
                 dataType={"Accounts"}
                 defaultKey="1"
+                windowWidth={windowWidth}
               />
             </Card.Body>
           </Card>
