@@ -90,6 +90,7 @@ const FiveTwentyFourPage = ({
                   accordionBody={cardsListComponent}
                   dataType="Cards"
                   defaultKey="0"
+                  windowWidth={windowWidth}
                 />
               </>
             )}
@@ -117,7 +118,6 @@ const FiveTwentyFourPage = ({
               text: user.name,
             }))}
             onChange={handleChange}
-            bkgrdColor="rgba(217,215,215)"
             // error={errors.author}
           />
           <hr />

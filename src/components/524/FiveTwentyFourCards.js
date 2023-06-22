@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
+import { formatDate } from "../../helpers";
 
 export default function FiveTwentyFourCards({ cards, windowWidth }) {
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
@@ -12,15 +13,21 @@ export default function FiveTwentyFourCards({ cards, windowWidth }) {
         key={card.id}
         className="cardCard"
       >
-        <Card.Body>
-          <Card.Subtitle className="mb-2 text-muted">
+        <Card.Body style={{ padding: "0" }}>
+          <Card.Subtitle
+            className="mb-1 text-muted"
+            style={{
+              padding: "10px 0 10px 10px",
+              margin: "0",
+              backgroundColor: "rgba(0,0,0,0.06)",
+            }}
+          >
             {`${card.issuer} ${card.card}`}
           </Card.Subtitle>
-          <Card.Text>
+          <Card.Text style={{ padding: "0 0 0 10px" }}>
             <p style={{ margin: 0, color: "gray" }}>
-              <small>{card.appDate}</small>
+              <small>{formatDate(card.appDate)}</small>
             </p>
-
             <p style={{ margin: 0, color: "gray" }}>
               <small>{card.cardType}</small>
             </p>
