@@ -14,7 +14,9 @@ const SelectInput = ({
 }) => {
   return (
     <div className="form-group">
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name} className="labels">
+        {label}
+      </label>
       <Form.Select
         aria-label={defaultOption}
         name={name}

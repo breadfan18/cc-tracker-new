@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import RadioInput from "../common/RadioInput";
 import { ACCOUNT_TYPE, PROGRAM, USERS } from "../../constants";
 import { titleCase } from "../../helpers";
 
@@ -15,7 +14,18 @@ const LoyaltyForm = ({
 }) => {
   return (
     <form onSubmit={onSave}>
-      <h2>{loyaltyAcc.id ? "Edit" : "Add"} Loyalty Account</h2>
+      <section className="sectionHeaders">
+        <h2 style={{ marginBottom: 0 }}>
+          {loyaltyAcc.id ? "Edit" : "Add"} Account
+        </h2>
+        <button
+          type="submit"
+          disabled={saving}
+          className="btn btn-primary addButton"
+        >
+          {saving ? "Saving..." : "Save"}
+        </button>
+      </section>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
           {errors.onSave}
@@ -78,9 +88,6 @@ const LoyaltyForm = ({
         onChange={onChange}
         // error={errors.title}
       />
-      <button type="submit" disabled={saving} className="btn btn-primary">
-        {saving ? "Saving..." : "Save"}
-      </button>
     </form>
   );
 };

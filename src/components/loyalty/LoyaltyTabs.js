@@ -49,7 +49,7 @@ function LoyaltyTabs({ loyaltyData, deleteLoyaltyData, windowWidth }) {
         <>
           <Card
             className="text-center"
-            style={{ border: "2px solid rgba(0,0,0,1)" }}
+            style={{ border: "2px solid rgba(0,0,0,0.2)" }}
           >
             <Card.Header
               style={{

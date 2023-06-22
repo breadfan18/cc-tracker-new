@@ -10,8 +10,10 @@ const RadioInput = ({ name, label, error, inquiriesStatus, onChange }) => {
 
   return (
     <div className={wrapperClass}>
-      <label htmlFor={name}>{label}</label>
-      <div className="field">
+      <label htmlFor={name} className="labels">
+        {label}
+      </label>
+      <div className="field radioField">
         <Form.Check
           type="switch"
           name="inquiries"

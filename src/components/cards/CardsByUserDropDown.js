@@ -34,7 +34,6 @@ export default function CardsByUserDropDown({
           text: user.name,
         }))}
         onChange={handleChange}
-        bkgrdColor="rgba(217,215,215)"
         // error={errors.author}
       />
       <hr />

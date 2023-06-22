@@ -1,11 +1,12 @@
 :root {
   --color-blue: #0080FF;
-  --light-gray: #D9D7D7
+  --light-gray: #D9D7D7;
+  --url-white-bkgrd: url("https://i.imgur.com/zF8fZ5k.jpg");
+  --url-black-bkgrd: url("https://i.imgur.com/nK3V6T8.jpg");
 }
 
 body {
-  background-image: url("https://i.imgur.com/zF8fZ5k.jpg");
-  margin: 0 auto;
+  background-image: var(--url-white-bkgrd);
 }
 
 .fiveTwentyFourContainer,
@@ -15,12 +16,9 @@ body {
 }
 
 .navContainer {
-  display: flex;
-  justify-content: flex-end;
   background-color: var(--color-blue);
   padding: 0;
-  margin-bottom: 15px;
-
+  margin-bottom: 10px;
 }
 
 nav {
@@ -46,19 +44,51 @@ a:hover {
   color: var(--color-blue);
 }
 
-.sectionHeaders {
+.sectionHeaders{
   display: flex;
-  justify-content: space-between;background-color: var(--light-gray);
+  justify-content: space-between;
+  background-color: rgba(0,0,0,0.09);
   padding: 10px;
   border-radius: 10px;
   color: var(--color-blue);
   margin-bottom: 1rem;
+}
 
+/* WORKING ON BELOW THIS */
+
+.labels{
+  background-color: rgba(0,0,0,0.09);
+  padding: 5px 5px 5px 10px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  color: black;
+}
+
+.field input {
+  /* border: 2px solid black; */
+  border-radius: 0 0 10px 10px;
+}
+
+.form-group select {
+  /* border: 2px solid black; */
+  border-radius: 0 0 10px 10px;
 }
 
 .form-group {
   padding: 10px 0;
 }
+
+.form-control {
+  border-radius: 0;
+}
+
+.radioField {
+  background-color: white;
+  padding-left: 10px;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid rgb(222, 226, 230);
+}
+
 
 div.alert-danger {
   display: flex;
@@ -147,6 +177,7 @@ label {
 
 form {
   max-width: 35rem;
+  margin: 0 auto;
 }
 
 hr {
@@ -161,3 +192,4 @@ hr {
   background-color: var(--color-blue);
   border-color: var(--color-blue);
 }
+

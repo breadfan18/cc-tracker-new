@@ -8,7 +8,6 @@ import CardTabs from "./CardTabs";
 import { addUserNameToCard, sortCardsByDate } from "../../helpers";
 import CardsByUserDropDown from "./CardsByUserDropDown";
 import { toast } from "react-toastify";
-import { Button } from "react-bootstrap";
 
 const CardsPage = ({ cards, loadCards, loading, windowWidth, deleteCard }) => {
   const [redirectToAddCardPage, setRedirect] = useState(false);
