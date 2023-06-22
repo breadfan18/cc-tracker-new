@@ -10,8 +10,21 @@ const LoyaltyForm = ({
   onSave,
   onChange,
   saving = false,
+  filteredPrograms,
   errors = {},
 }) => {
+  const programsToDisplay =
+    filteredPrograms.length === 0
+      ? PROGRAMS.filter(
+          (program) => program.type === loyaltyAcc.loyaltyType
+        ).map((program) => ({
+          value: program.id,
+          text: program.name,
+        }))
+      : filteredPrograms.map((program) => ({
+          value: program.id,
+          text: program.name,
+        }));
   return (
     <form onSubmit={onSave}>
       <section className="sectionHeaders">
@@ -60,10 +73,7 @@ const LoyaltyForm = ({
         label="Loyalty Program"
         value={loyaltyAcc.program?.id || ""}
         defaultOption="Select Program"
-        options={PROGRAMS.map((program) => ({
-          value: program.id,
-          text: program.name,
-        }))}
+        options={programsToDisplay}
         onChange={onChange}
         // error={errors.author}
       />
@@ -98,6 +108,7 @@ LoyaltyForm.propTypes = {
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   saving: PropTypes.bool,
+  filteredPrograms: PropTypes.array.isRequired,
 };
 
 export default LoyaltyForm;

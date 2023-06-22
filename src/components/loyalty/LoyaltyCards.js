@@ -1,6 +1,5 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { USERS } from "../../constants";
 import { EditButton } from "../common/EditButton";
 import { DeleteButton } from "../common/DeleteButton";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
@@ -54,7 +53,7 @@ export default function LoyaltyCards({
             </p>
           </Card.Text>
           <div className="editDeleteCard editDeleteOnCards">
-            <Link to={"/card/" + acc.id}>
+            <Link to={"/loyalty/" + acc.id}>
               <EditButton />
             </Link>
             <DeleteButton onDelete={onDeleteClick} data={acc} />

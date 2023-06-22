@@ -54,6 +54,7 @@ RadioInput.propTypes = {
   inquiriesStatus: PropTypes.object.isRequired,
   value: PropTypes.string,
   error: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default RadioInput;

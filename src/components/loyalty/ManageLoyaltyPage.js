@@ -31,6 +31,7 @@ const ManageLoyaltyPage = ({
 }) => {
   const [loyaltyAcc, setLoyaltyAcc] = useState({ ...props.loyaltyAcc });
   const [saving, setSaving] = useState(false);
+  const [programsFilteredByType, setFilteredPrograms] = useState([]);
 
   useEffect(() => {
     if (loyaltyData.length === 0) {
@@ -44,6 +45,13 @@ const ManageLoyaltyPage = ({
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
+    if (name === "loyaltyType") {
+      const filteredPrograms = PROGRAMS.filter(
+        (program) => program.type === value
+      );
+      setFilteredPrograms(filteredPrograms);
+    }
 
     setLoyaltyAcc((prevValue) => ({
       ...prevValue,
@@ -85,6 +93,7 @@ const ManageLoyaltyPage = ({
       saving={saving}
       onSave={handleSave}
       onChange={handleChange}
+      filteredPrograms={programsFilteredByType}
     />
   );
 };

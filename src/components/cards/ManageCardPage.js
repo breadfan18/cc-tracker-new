@@ -89,7 +89,7 @@ function ManageCardPage({
         toast.success(card.id === null ? "Card Created" : "Card Updated");
         history.push("/cards");
       })
-      .catch((error) => {
+      .catch(() => {
         setSaving(false);
         // setErrors({
         //   onSave: error.message,

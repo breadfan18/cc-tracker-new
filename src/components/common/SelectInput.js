@@ -49,6 +49,7 @@ SelectInput.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   error: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),
+  bkgrdColor: PropTypes.string,
 };
 
 export default SelectInput;
