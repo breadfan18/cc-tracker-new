@@ -1,7 +1,7 @@
 export const ISSUERS = ["Chase", "Amex", "CapOne", "Barclays"];
 export const CARD_TYPE = ["Personal", "Business"];
 export const ACCOUNT_TYPE = ["airlines", "hotels", "misc"];
-export const PROGRAM = [
+export const PROGRAMS = [
   {
     id: 1,
     name: "American AAdvantage",

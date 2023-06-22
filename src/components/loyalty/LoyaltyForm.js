@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { ACCOUNT_TYPE, PROGRAM, USERS } from "../../constants";
+import { ACCOUNT_TYPE, PROGRAMS, USERS } from "../../constants";
 import { titleCase } from "../../helpers";
 
 const LoyaltyForm = ({
@@ -58,9 +58,9 @@ const LoyaltyForm = ({
       <SelectInput
         name="program"
         label="Loyalty Program"
-        value={loyaltyAcc.program || ""}
+        value={loyaltyAcc.program?.id || ""}
         defaultOption="Select Program"
-        options={PROGRAM.map((program) => ({
+        options={PROGRAMS.map((program) => ({
           value: program.id,
           text: program.name,
         }))}

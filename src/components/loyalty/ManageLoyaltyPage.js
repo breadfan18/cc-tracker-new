@@ -9,7 +9,7 @@ import { Spinner } from "../common/Spinner";
 import LoyaltyForm from "./LoyaltyForm";
 import { toast } from "react-toastify";
 import { maskPwd } from "../../helpers";
-import { PROGRAM } from "../../constants";
+import { PROGRAMS } from "../../constants";
 
 const newLoyaltyAcc = {
   id: null,
@@ -45,14 +45,13 @@ const ManageLoyaltyPage = ({
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    console.log(name, value);
     setLoyaltyAcc((prevValue) => ({
       ...prevValue,
       [name]:
         name === "id" || name === "userId"
           ? parseInt(value, 10)
           : name === "program"
-          ? PROGRAM.find((program) => program.id === parseInt(value))
+          ? PROGRAMS.find((program) => program.id === parseInt(value))
           : value,
     }));
   };
@@ -61,15 +60,6 @@ const ManageLoyaltyPage = ({
     event.preventDefault();
     setSaving(true);
     loyaltyAcc.password = maskPwd(loyaltyAcc.password);
-    const programImg = PROGRAM.find(
-      (program) => program.id === parseInt(loyaltyAcc.program)
-    ).img;
-
-    console.log(programImg);
-    setLoyaltyAcc((prev) => ({
-      ...prev,
-      programImg: programImg,
-    }));
 
     saveLoyaltyData(loyaltyAcc)
       .then(() => {
