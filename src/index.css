@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap');
+
 :root {
   --color-blue: #0080FF;
   --light-gray: #D9D7D7;
@@ -7,6 +9,8 @@
 
 body {
   background-image: var(--url-white-bkgrd);
+  font-family: 'Roboto Condensed', sans-serif;
+
 }
 
 .fiveTwentyFourContainer,
@@ -54,23 +58,16 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-/* WORKING ON BELOW THIS */
-
 .labels{
   background-color: rgba(0,0,0,0.09);
   padding: 5px 5px 5px 10px;
   width: 100%;
   border-radius: 10px 10px 0 0;
   color: black;
+  font-weight: bold;
 }
 
-.field input {
-  /* border: 2px solid black; */
-  border-radius: 0 0 10px 10px;
-}
-
-.form-group select {
-  /* border: 2px solid black; */
+.field input, .form-group select {
   border-radius: 0 0 10px 10px;
 }
 
@@ -120,16 +117,8 @@ div.alert-danger {
   padding: 15px;
 }
 
-label {
-  font-weight: bold;
-}
-
 .tableHeader>svg {
   cursor: pointer;
-  /* border: 1px solid gray;
-  margin: 1px;
-  padding: 1px;
-  border-radius: 20%; */
 }
 
 .editDeleteCells {

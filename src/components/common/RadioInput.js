@@ -22,6 +22,7 @@ const RadioInput = ({ name, label, error, inquiriesStatus, onChange }) => {
           value="experian"
           checked={inquiriesStatus.experian}
           onChange={onChange}
+          className="testing"
         />
         <Form.Check
           type="switch"
