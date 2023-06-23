@@ -41,18 +41,18 @@ export const USERS = [
   },
   {
     id: 2,
-    name: "Anshu Thapa",
+    name: "Kory Smith",
   },
   {
     id: 3,
-    name: "Samay Bir",
+    name: "Nathan Jonas",
   },
   {
     id: 4,
-    name: "Astha Thapa",
+    name: "Jess Elle",
   },
   {
     id: 5,
-    name: "Birendra Thapa",
+    name: "Danyale Marshall",
   },
 ];
