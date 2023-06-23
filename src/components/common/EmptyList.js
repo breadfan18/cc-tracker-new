@@ -14,7 +14,7 @@ const EmptyList = ({ dataType }) => (
     </p>
     <AiOutlineUserAdd
       className="closeIcon"
-      onClick={() => console.log("foo")}
+      onClick={() => console.log("modalHeader")}
       style={{ cursor: "pointer" }}
     />
   </div>
