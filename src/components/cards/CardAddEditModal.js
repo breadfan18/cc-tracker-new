@@ -5,7 +5,6 @@ import Modal from "react-bootstrap/Modal";
 import { saveCard } from "../../redux/actions/cardsActions";
 import CardForm from "./CardForm";
 import { toast } from "react-toastify";
-import { USERS } from "../../constants";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
 
@@ -23,7 +22,7 @@ const newCard = {
   nextFeeDate: null,
 };
 
-function AddEditCardModal({ card, saveCard }) {
+function CardAddEditModal({ card, saveCard }) {
   const [cardForModal, setCardForModal] = useState(
     card ? { ...card } : newCard
   );
@@ -113,7 +112,7 @@ function AddEditCardModal({ card, saveCard }) {
   );
 }
 
-AddEditCardModal.propTypes = {
+CardAddEditModal.propTypes = {
   card: PropTypes.object.isRequired,
   saveCard: PropTypes.func.isRequired,
 };
@@ -124,4 +123,4 @@ const mapDispatchToProps = {
   saveCard,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddEditCardModal);
+export default connect(mapStateToProps, mapDispatchToProps)(CardAddEditModal);
