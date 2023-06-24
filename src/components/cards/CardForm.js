@@ -9,16 +9,6 @@ import RadioInput from "../common/RadioInput";
 const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
   return (
     <form onSubmit={onSave}>
-      <section className="sectionHeaders">
-        <h2 style={{ marginBottom: 0 }}>{card.id ? "Edit" : "Add"} Card</h2>
-        <button
-          type="submit"
-          disabled={saving}
-          className="btn btn-primary addButton"
-        >
-          {saving ? "Saving..." : "Save"}
-        </button>
-      </section>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
           {errors.onSave}
@@ -92,6 +82,14 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         inquiriesStatus={card.inquiries}
         onChange={onChange}
       />
+      <hr />
+      <button
+        type="submit"
+        disabled={saving}
+        className="btn btn-primary addButton"
+      >
+        {saving ? "Saving..." : "Save Changes"}
+      </button>
     </form>
   );
 };

@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { TiArrowUnsorted } from "react-icons/ti";
 import { useSortableData } from "../../hooks/sortData";
 import { formatDate, titleCase } from "../../helpers";
 import { DeleteButton } from "../common/DeleteButton";
-import { EditButton } from "../common/EditButton";
+import AddEditCardModal from "./AddEditCardModal";
 
 export default function CardListTable({
   cards,
@@ -60,7 +59,7 @@ export default function CardListTable({
             Next Fee Date{" "}
             <TiArrowUnsorted onClick={() => requestSort("nextFeeDate")} />
           </th>
-          <th>Credit Pull</th>
+          <th className="tableHeader">Credit Pull</th>
           {showEditDelete && (
             <>
               <th></th>
@@ -90,9 +89,7 @@ export default function CardListTable({
               {showEditDelete && (
                 <>
                   <td className="editDeleteCard">
-                    <Link to={"/card/" + card.id}>
-                      <EditButton disabled={isCardDeleted} />
-                    </Link>
+                    <AddEditCardModal card={card} />
                     <DeleteButton
                       disabled={isCardDeleted}
                       onDelete={onDeleteClick}

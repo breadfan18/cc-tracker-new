@@ -1,12 +1,11 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { USERS } from "../../constants";
-import { EditButton } from "../common/EditButton";
 import { DeleteButton } from "../common/DeleteButton";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import { formatDate } from "../../helpers";
+import AddEditCardModal from "./AddEditCardModal";
 
 export default function CardListCards({
   cards,
@@ -54,9 +53,7 @@ export default function CardListCards({
           </Card.Text>
           {showEditDelete ?? (
             <div className="editDeleteCard editDeleteOnCards">
-              <Link to={"/card/" + card.id}>
-                <EditButton disabled={isCardDeleted} />
-              </Link>
+              <AddEditCardModal card={card} />
               <DeleteButton
                 disabled={isCardDeleted}
                 onDelete={onDeleteClick}
