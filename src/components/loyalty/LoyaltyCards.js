@@ -1,10 +1,9 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { EditButton } from "../common/EditButton";
 import { DeleteButton } from "../common/DeleteButton";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
+import LoyaltyAddEditModal from "./LoyaltyAddEditModal";
 
 export default function LoyaltyCards({
   loyaltyData,
@@ -53,9 +52,7 @@ export default function LoyaltyCards({
             </p>
           </Card.Text>
           <div className="editDeleteCard editDeleteOnCards">
-            <Link to={"/loyalty/" + acc.id}>
-              <EditButton />
-            </Link>
+            <LoyaltyAddEditModal loyaltyAcc={acc} />
             <DeleteButton onDelete={onDeleteClick} data={acc} />
           </div>
         </Card.Body>

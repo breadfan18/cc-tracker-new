@@ -16,7 +16,7 @@ const LoyaltyForm = ({
   const programsToDisplay =
     filteredPrograms.length === 0
       ? PROGRAMS.filter(
-          (program) => program.type === loyaltyAcc.loyaltyType
+          (program) => program.type === loyaltyAcc?.loyaltyType
         ).map((program) => ({
           value: program.id,
           text: program.name,
@@ -27,18 +27,6 @@ const LoyaltyForm = ({
         }));
   return (
     <form onSubmit={onSave}>
-      <section className="sectionHeaders">
-        <h2 style={{ marginBottom: 0 }}>
-          {loyaltyAcc.id ? "Edit" : "Add"} Account
-        </h2>
-        <button
-          type="submit"
-          disabled={saving}
-          className="btn btn-primary addButton"
-        >
-          {saving ? "Saving..." : "Save"}
-        </button>
-      </section>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
           {errors.onSave}
@@ -98,6 +86,14 @@ const LoyaltyForm = ({
         onChange={onChange}
         // error={errors.title}
       />
+      <hr />
+      <button
+        type="submit"
+        // disabled={saving}
+        className="btn btn-primary addButton"
+      >
+        {loyaltyAcc.id === null ? "Add Account" : "Save Changes"}
+      </button>
     </form>
   );
 };

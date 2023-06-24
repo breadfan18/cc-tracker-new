@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loadloyaltyData } from "../../redux/actions/loyaltyActions";
 import { Spinner } from "../common/Spinner";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import LoyaltyTabs from "./LoyaltyTabs";
 import { addUserNameToCard } from "../../helpers";
+import LoyaltyAddEditModal from "./LoyaltyAddEditModal";
 
 const LoyaltyPage = ({
   loyaltyData,
@@ -13,8 +13,6 @@ const LoyaltyPage = ({
   loading,
   windowWidth,
 }) => {
-  const [redirectToAddLoyaltyPage, setRedirect] = useState(false);
-
   useEffect(() => {
     if (loyaltyData.length === 0) {
       loadloyaltyData();
@@ -22,16 +20,9 @@ const LoyaltyPage = ({
   }, []);
   return (
     <div className="loyaltyContainer">
-      {redirectToAddLoyaltyPage && <Redirect to="/loyalty" />}
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Loyalty Accounts</h2>
-        <button
-          // style={{ marginBottom: 20 }}
-          className="btn btn-primary addButton"
-          onClick={() => setRedirect(true)}
-        >
-          Add Loyalty Account
-        </button>
+        <LoyaltyAddEditModal />
       </section>
       {loading ? (
         <Spinner />

@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { TiArrowUnsorted } from "react-icons/ti";
 import { useSortableData } from "../../hooks/sortData";
 import { DeleteButton } from "../common/DeleteButton";
-import { EditButton } from "../common/EditButton";
+import LoyaltyAddEditModal from "./LoyaltyAddEditModal";
 
 const LoyaltyList = ({
   loyaltyData,
@@ -64,9 +63,7 @@ const LoyaltyList = ({
               {showEditDelete && (
                 <>
                   <td className="editDeleteCard">
-                    <Link to={"/loyalty/" + loyalty.id}>
-                      <EditButton disabled={isAccDeleted} />
-                    </Link>
+                    <LoyaltyAddEditModal loyaltyAcc={loyalty} />
                     <DeleteButton
                       data={loyalty}
                       onDelete={onDeleteClick}
