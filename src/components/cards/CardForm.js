@@ -22,9 +22,9 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
       />
       <SelectInput
         name="userId"
-        label="User"
+        label="Card Holder"
         value={card.userId || ""}
-        defaultOption="Select User"
+        defaultOption="Select Card Holder"
         options={USERS.map((user) => ({
           value: user.id,
           text: user.name,

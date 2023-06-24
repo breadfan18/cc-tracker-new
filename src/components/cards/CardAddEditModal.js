@@ -34,8 +34,6 @@ function CardAddEditModal({ card, saveCard }) {
   function handleChange(event) {
     const { name, value, checked } = event.target;
 
-    console.log(name, value);
-
     if (name === "inquiries") {
       value === "experian"
         ? setInquiries((prev) => ({ ...prev, [value]: checked }))
@@ -76,10 +74,11 @@ function CardAddEditModal({ card, saveCard }) {
       });
 
     toggleShow();
+    setCardForModal(newCard);
   }
   return (
     <>
-      {cardForModal.id ? (
+      {cardForModal.id !== null ? (
         <Button
           variant="success"
           onClick={toggleShow}
@@ -88,7 +87,7 @@ function CardAddEditModal({ card, saveCard }) {
           <MdModeEditOutline />
         </Button>
       ) : (
-        <Button variant="primary" onClick={toggleShow}>
+        <Button variant="primary" onClick={toggleShow} className="addButton">
           Add Card
         </Button>
       )}

@@ -21,7 +21,6 @@ const newLoyaltyAcc = {
 };
 
 function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyData }) {
-  console.log("Re-Render");
   const [loyaltyAccForModal, setLoyaltyAccForModal] = useState(
     loyaltyAcc ? { ...loyaltyAcc } : newLoyaltyAcc
   );
@@ -72,10 +71,11 @@ function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyData }) {
       });
 
     toggleShow();
+    setLoyaltyAccForModal(newLoyaltyAcc);
   };
   return (
     <>
-      {loyaltyAccForModal.id ? (
+      {loyaltyAccForModal.id !== null ? (
         <Button
           variant="success"
           onClick={toggleShow}
@@ -84,7 +84,7 @@ function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyData }) {
           <MdModeEditOutline />
         </Button>
       ) : (
-        <Button variant="primary" onClick={toggleShow}>
+        <Button variant="primary" onClick={toggleShow} className="addButton">
           Add Account
         </Button>
       )}
