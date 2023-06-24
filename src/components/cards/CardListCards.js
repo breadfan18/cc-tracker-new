@@ -5,7 +5,7 @@ import { DeleteButton } from "../common/DeleteButton";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import { formatDate } from "../../helpers";
-import AddEditCardModal from "./AddEditCardModal";
+import CardAddEditModal from "./CardAddEditModal";
 
 export default function CardListCards({
   cards,
@@ -53,7 +53,7 @@ export default function CardListCards({
           </Card.Text>
           {showEditDelete ?? (
             <div className="editDeleteCard editDeleteOnCards">
-              <AddEditCardModal card={card} />
+              <CardAddEditModal card={card} />
               <DeleteButton
                 disabled={isCardDeleted}
                 onDelete={onDeleteClick}

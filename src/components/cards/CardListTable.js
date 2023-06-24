@@ -6,7 +6,7 @@ import { TiArrowUnsorted } from "react-icons/ti";
 import { useSortableData } from "../../hooks/sortData";
 import { formatDate, titleCase } from "../../helpers";
 import { DeleteButton } from "../common/DeleteButton";
-import AddEditCardModal from "./AddEditCardModal";
+import CardAddEditModal from "./CardAddEditModal";
 
 export default function CardListTable({
   cards,
@@ -89,7 +89,7 @@ export default function CardListTable({
               {showEditDelete && (
                 <>
                   <td className="editDeleteCard">
-                    <AddEditCardModal card={card} />
+                    <CardAddEditModal card={card} />
                     <DeleteButton
                       disabled={isCardDeleted}
                       onDelete={onDeleteClick}

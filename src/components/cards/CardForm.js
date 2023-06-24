@@ -88,7 +88,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         disabled={saving}
         className="btn btn-primary addButton"
       >
-        {saving ? "Saving..." : "Save Changes"}
+        {card.id === null ? "Add Card" : "Save Changes"}
       </button>
     </form>
   );

@@ -7,7 +7,7 @@ import CardTabs from "./CardTabs";
 import { addUserNameToCard, sortCardsByDate } from "../../helpers";
 import CardsByUserDropDown from "./CardsByUserDropDown";
 import { toast } from "react-toastify";
-import AddEditCardModal from "./AddEditCardModal";
+import CardAddEditModal from "./CardAddEditModal";
 
 const CardsPage = ({ cards, loadCards, loading, windowWidth, deleteCard }) => {
   const [deletedCard, setDeletedCard] = useState({});
@@ -31,7 +31,7 @@ const CardsPage = ({ cards, loadCards, loading, windowWidth, deleteCard }) => {
     <div className="cardsContainer">
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Wallet</h2>
-        <AddEditCardModal />
+        <CardAddEditModal />
       </section>
       {loading ? (
         <Spinner />
