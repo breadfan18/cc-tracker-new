@@ -89,7 +89,7 @@ function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyData }) {
         </Button>
       )}
 
-      <Modal show={show} onHide={toggleShow}>
+      <Modal show={show} onHide={toggleShow} centered>
         <Modal.Header className="modalHeader" closeButton>
           <Modal.Title>
             {loyaltyAccForModal.id ? "Edit" : "Add"} Account

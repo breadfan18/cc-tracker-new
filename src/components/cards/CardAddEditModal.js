@@ -92,7 +92,13 @@ function CardAddEditModal({ card, saveCard }) {
         </Button>
       )}
 
-      <Modal show={show} onHide={toggleShow}>
+      <Modal
+        show={show}
+        onHide={toggleShow}
+        centered
+        size="lg"
+        backdrop="static"
+      >
         <Modal.Header className="modalHeader" closeButton>
           <Modal.Title>{cardForModal.id ? "Edit" : "Add"} Card</Modal.Title>
         </Modal.Header>
