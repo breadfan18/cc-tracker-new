@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       <div className="navContainer">
-        <Header />
+        <Header windowWidth={windowWidth} />
       </div>
       <div className="container-fluid">
         <Switch>

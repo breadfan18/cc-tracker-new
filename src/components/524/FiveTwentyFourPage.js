@@ -76,7 +76,7 @@ const FiveTwentyFourPage = ({
           <Card.Body>
             {cards524.length === 0 ? (
               <Card.Text>
-                This user has opened 0 cards in the last 24 months
+                This user has opened 0 personal cards in the last 24 months
               </Card.Text>
             ) : (
               <>
@@ -132,7 +132,6 @@ FiveTwentyFourPage.propTypes = {
   cards: PropTypes.array.isRequired,
   cardsByUser: PropTypes.object.isRequired,
   loadCards: PropTypes.func.isRequired,
-  deleteCard: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   windowWidth: PropTypes.number.isRequired,
 };
