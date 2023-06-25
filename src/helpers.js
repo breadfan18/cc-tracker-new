@@ -42,3 +42,11 @@ export function formatDate(dateStr) {
   const dateSplit = dateStr.split("-");
   return `${dateSplit[1]}-${dateSplit[2]}-${dateSplit[0]}`;
 }
+
+export function formatCurrency(currencyStr) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+  }).format(currencyStr);
+}

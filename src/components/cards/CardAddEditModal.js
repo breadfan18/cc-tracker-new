@@ -20,6 +20,11 @@ const newCard = {
   },
   annualFee: 0,
   nextFeeDate: null,
+  creditLine: null,
+  spendReq: null,
+  spendBy: null,
+  signupBonus: null,
+  bonusEarnDate: null,
 };
 
 function CardAddEditModal({ card, saveCard }) {

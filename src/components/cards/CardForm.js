@@ -18,7 +18,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
             {errors.onSave}
           </div>
         )}
-        <Row className="mb-3">
+        <Row>
           <Col>
             <DateInput
               name="appDate"
@@ -66,19 +66,32 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
               error={errors.title}
             />
           </Col>
-        </Row>{" "}
-        <SelectInput
-          name="cardType"
-          label="Card Type"
-          value={card.cardType}
-          defaultOption="Select Card Type"
-          options={CARD_TYPE.map((type) => ({
-            value: type,
-            text: type,
-          }))}
-          onChange={onChange}
-          error={errors.author}
-        />
+        </Row>
+        <Row>
+          <Col>
+            <SelectInput
+              name="cardType"
+              label="Card Type"
+              value={card.cardType}
+              defaultOption="Select Card Type"
+              options={CARD_TYPE.map((type) => ({
+                value: type,
+                text: type,
+              }))}
+              onChange={onChange}
+              error={errors.author}
+            />
+          </Col>
+          <Col>
+            <TextInput
+              name="creditLine"
+              label="Credit Line"
+              value={card.creditLine || ""}
+              onChange={onChange}
+              error={errors.title}
+            />
+          </Col>
+        </Row>
         <Row>
           <Col>
             <TextInput
@@ -95,6 +108,44 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
               label="Next Annual Fee Due"
               onChange={onChange}
               value={card.nextFeeDate}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <TextInput
+              name="spendReq"
+              label="Spending Requirement"
+              value={card.spendReq || ""}
+              onChange={onChange}
+              error={errors.title}
+            />
+          </Col>
+          <Col>
+            <DateInput
+              name="spendBy"
+              label="Spend By"
+              onChange={onChange}
+              value={card.spendBy}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <TextInput
+              name="signupBonus"
+              label="Signup Bonus"
+              value={card.signupBonus}
+              onChange={onChange}
+              error={errors.title}
+            />
+          </Col>
+          <Col>
+            <DateInput
+              name="bonusEarnDate"
+              label="Bonus Earn Date"
+              onChange={onChange}
+              value={card.bonusEarnDate}
             />
           </Col>
         </Row>
