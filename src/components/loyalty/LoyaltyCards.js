@@ -1,15 +1,11 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { DeleteButton } from "../common/DeleteButton";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import LoyaltyAddEditModal from "./LoyaltyAddEditModal";
+import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 
-export default function LoyaltyCards({
-  loyaltyData,
-  onDeleteClick,
-  windowWidth,
-}) {
+export default function LoyaltyCards({ loyaltyData, windowWidth }) {
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const allCards = loyaltyData.map((acc) => {
     return (
@@ -53,7 +49,7 @@ export default function LoyaltyCards({
           </Card.Text>
           <div className="editDeleteCard editDeleteOnCards">
             <LoyaltyAddEditModal loyaltyAcc={acc} />
-            <DeleteButton onDelete={onDeleteClick} data={acc} />
+            <ConfirmDeleteModal data={acc} dataType="loyaltyAcc" />
           </div>
         </Card.Body>
       </Card>
@@ -68,6 +64,5 @@ export default function LoyaltyCards({
 
 LoyaltyCards.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
-  onDeleteClick: PropTypes.func.isRequired,
   windowWidth: PropTypes.number.isRequired,
 };

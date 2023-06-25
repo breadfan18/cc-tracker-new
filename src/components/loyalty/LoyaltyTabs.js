@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PropTypes from "prop-types";
@@ -8,21 +8,10 @@ import { USERS } from "../../constants";
 import { titleCase } from "../../helpers";
 import CustomAccordion from "../common/CustomAccordion";
 import { Card } from "react-bootstrap";
-import { deleteLoyaltyData } from "../../redux/actions/loyaltyActions";
-import { toast } from "react-toastify";
 import _ from "lodash";
 import LoyaltyCards from "./LoyaltyCards";
 
-function LoyaltyTabs({ loyaltyData, deleteLoyaltyData, windowWidth }) {
-  const [deletedAcc, setDeletedAcc] = useState({});
-
-  function handleDelete(loyalty) {
-    setDeletedAcc(loyalty);
-    deleteLoyaltyData(loyalty).then(() => {
-      toast.success("Loyalty Account Deleted");
-    });
-  }
-
+function LoyaltyTabs({ loyaltyData, windowWidth }) {
   const loyaltyByType = _.groupBy(loyaltyData, (o) => o.loyaltyType);
   const loyaltyTabs = Object.keys(loyaltyByType).map((loyaltyType) => {
     const loyaltyTypeData = loyaltyByType[loyaltyType];
@@ -33,14 +22,11 @@ function LoyaltyTabs({ loyaltyData, deleteLoyaltyData, windowWidth }) {
         windowWidth > 800 ? (
           <LoyaltyList
             loyaltyData={loyaltyAccsForThisUser}
-            onDeleteClick={handleDelete}
-            deletedAcc={deletedAcc}
             showEditDelete={true}
           />
         ) : (
           <LoyaltyCards
             loyaltyData={loyaltyAccsForThisUser}
-            onDeleteClick={handleDelete}
             windowWidth={windowWidth}
           />
         );
@@ -97,7 +83,6 @@ function LoyaltyTabs({ loyaltyData, deleteLoyaltyData, windowWidth }) {
 
 LoyaltyTabs.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
-  deleteLoyaltyData: PropTypes.func.isRequired,
   windowWidth: PropTypes.number.isRequired,
 };
 
@@ -107,8 +92,6 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-  deleteLoyaltyData,
-};
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoyaltyTabs);

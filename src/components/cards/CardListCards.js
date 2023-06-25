@@ -51,7 +51,7 @@ export default function CardListCards({
           {showEditDelete ?? (
             <div className="editDeleteCard editDeleteOnCards">
               <CardAddEditModal card={card} />
-              <ConfirmDeleteModal card={card} />
+              <ConfirmDeleteModal data={card} dataType="card" />
             </div>
           )}
         </Card.Body>

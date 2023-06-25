@@ -5,15 +5,10 @@ import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { TiArrowUnsorted } from "react-icons/ti";
 import { useSortableData } from "../../hooks/sortData";
-import { DeleteButton } from "../common/DeleteButton";
 import LoyaltyAddEditModal from "./LoyaltyAddEditModal";
+import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 
-const LoyaltyList = ({
-  loyaltyData,
-  onDeleteClick,
-  deletedAcc,
-  showEditDelete,
-}) => {
+const LoyaltyList = ({ loyaltyData, showEditDelete }) => {
   const { data, requestSort } = useSortableData(loyaltyData);
 
   return loyaltyData.length === 0 ? (
@@ -45,30 +40,25 @@ const LoyaltyList = ({
         </tr>
       </thead>
       <tbody className="align-middle">
-        {data.map((loyalty) => {
-          const isAccDeleted = loyalty.id === deletedAcc?.id;
+        {data.map((acc) => {
           return (
-            <tr key={loyalty.id}>
+            <tr key={acc.id}>
               <td>
                 <img
-                  src={loyalty.program.img}
+                  src={acc.program.img}
                   alt="AA"
                   style={{ height: "2.5rem", width: "3.5rem" }}
                 />
               </td>
-              <td>{loyalty.program.name}</td>
-              <td>{loyalty.memberId}</td>
-              <td>{loyalty.loginId}</td>
-              <td>{loyalty.password}</td>
+              <td>{acc.program.name}</td>
+              <td>{acc.memberId}</td>
+              <td>{acc.loginId}</td>
+              <td>{acc.password}</td>
               {showEditDelete && (
                 <>
                   <td className="editDeleteCard">
-                    <LoyaltyAddEditModal loyaltyAcc={loyalty} />
-                    <DeleteButton
-                      data={loyalty}
-                      onDelete={onDeleteClick}
-                      disabled={isAccDeleted}
-                    />
+                    <LoyaltyAddEditModal loyaltyAcc={acc} />
+                    <ConfirmDeleteModal data={acc} dataType="loyaltyAcc" />
                   </td>
                 </>
               )}
@@ -89,9 +79,7 @@ const mapStateToProps = (state, ownProps) => {
 
 LoyaltyList.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
-  onDeleteClick: PropTypes.func,
   history: PropTypes.object,
-  deletedAcc: PropTypes.object,
   showEditDelete: PropTypes.bool.isRequired,
 };
 

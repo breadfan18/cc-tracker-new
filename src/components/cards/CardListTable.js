@@ -83,7 +83,7 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
                 <>
                   <td className="editDeleteCard">
                     <CardAddEditModal card={card} />
-                    <ConfirmDeleteModal card={card} />
+                    <ConfirmDeleteModal data={card} dataType="card" />
                   </td>
                 </>
               )}
