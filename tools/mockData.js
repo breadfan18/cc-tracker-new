@@ -17,6 +17,7 @@ const cards = [
     spendBy: "2023-09-15",
     signupBonus: "50,000 UR",
     bonusEarnDate: "2021-09-02",
+    status: "open",
     userId: 1,
   },
   {
@@ -37,6 +38,7 @@ const cards = [
     spendBy: "2023-09-15",
     signupBonus: "50,000 UR",
     bonusEarnDate: null,
+    status: "closed",
     userId: 1,
   },
   {
@@ -57,6 +59,7 @@ const cards = [
     spendBy: "2023-09-15",
     signupBonus: "50,000 UR",
     bonusEarnDate: "2023-12-02",
+    status: "downgraded",
     userId: 2,
   },
   {
@@ -77,6 +80,7 @@ const cards = [
     spendBy: "2023-09-15",
     signupBonus: "50,000 UR",
     bonusEarnDate: "2023-12-02",
+    status: "open",
     userId: 3,
   },
 ];

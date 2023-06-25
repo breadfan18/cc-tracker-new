@@ -56,6 +56,9 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
           <th className="tableHeader">Spend By</th>
           <th className="tableHeader">Bonus</th>
           <th className="tableHeader">Bonus Earn Date</th>
+          <th className="tableHeader">
+            Status <TiArrowUnsorted onClick={() => requestSort("status")} />
+          </th>
           {showEditDelete && (
             <>
               <th></th>
@@ -66,7 +69,16 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
       <tbody className="align-middle">
         {data.map((card) => {
           return (
-            <tr key={card.id}>
+            <tr
+              key={card.id}
+              className={
+                card.status === "closed"
+                  ? "table-danger"
+                  : card.status === "downgraded"
+                  ? "table-warning"
+                  : null
+              }
+            >
               <td>{formatDate(card.appDate)}</td>
               {showUser && <td>{card.userName}</td>}
               <td>{`${card.issuer} ${card.card}`}</td>
@@ -87,6 +99,7 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
               <td>
                 {card.bonusEarnDate ? formatDate(card.bonusEarnDate) : "WIP"}
               </td>
+              <td>{titleCase(card.status)}</td>
 
               {showEditDelete && (
                 <>

@@ -1,6 +1,7 @@
 export const ISSUERS = ["Chase", "Amex", "CapOne", "Barclays"];
 export const CARD_TYPE = ["Personal", "Business"];
 export const ACCOUNT_TYPE = ["airlines", "hotels", "misc"];
+export const ACC_STATUS = ["open", "closed", "downgraded"];
 export const PROGRAMS = [
   {
     id: 1,

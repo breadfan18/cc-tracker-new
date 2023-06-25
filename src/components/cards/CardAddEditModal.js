@@ -25,6 +25,7 @@ const newCard = {
   spendBy: null,
   signupBonus: null,
   bonusEarnDate: null,
+  status: null,
 };
 
 function CardAddEditModal({ card, saveCard }) {

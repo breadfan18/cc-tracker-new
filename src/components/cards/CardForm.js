@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { CARD_TYPE, ISSUERS, USERS } from "../../constants";
+import { ACC_STATUS, CARD_TYPE, ISSUERS, USERS } from "../../constants";
 import DateInput from "../common/DateInput";
 import RadioInput from "../common/RadioInput";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import { titleCase } from "../../helpers";
 
 const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
   return (
@@ -18,6 +19,18 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
             {errors.onSave}
           </div>
         )}
+        <SelectInput
+          name="status"
+          label="Account Status"
+          value={card.status || ""}
+          defaultOption="Select Status"
+          options={ACC_STATUS.map((status) => ({
+            value: status,
+            text: titleCase(status),
+          }))}
+          onChange={onChange}
+          error={errors.author}
+        />
         <Row>
           <Col>
             <DateInput
