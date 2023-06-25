@@ -1,23 +1,20 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { USERS } from "../../constants";
-import { DeleteButton } from "../common/DeleteButton";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import { formatDate } from "../../helpers";
 import CardAddEditModal from "./CardAddEditModal";
+import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 
 export default function CardListCards({
   cards,
-  onDeleteClick,
-  deletedCard,
   windowWidth,
   showEditDelete,
   showUserName,
 }) {
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const allCards = cards.map((card) => {
-    const isCardDeleted = card.id === deletedCard?.id;
     return (
       <Card style={{ width: cardWidth }} key={card.id} className="cardCard">
         <Card.Body style={{ padding: "0" }}>
@@ -54,11 +51,7 @@ export default function CardListCards({
           {showEditDelete ?? (
             <div className="editDeleteCard editDeleteOnCards">
               <CardAddEditModal card={card} />
-              <DeleteButton
-                disabled={isCardDeleted}
-                onDelete={onDeleteClick}
-                data={card}
-              />
+              <ConfirmDeleteModal card={card} />
             </div>
           )}
         </Card.Body>
@@ -74,8 +67,6 @@ export default function CardListCards({
 
 CardListCards.propTypes = {
   cards: PropTypes.array.isRequired,
-  onDeleteClick: PropTypes.func.isRequired,
-  deletedCard: PropTypes.object,
   windowWidth: PropTypes.number.isRequired,
   showEditDelete: PropTypes.bool,
   showUserName: PropTypes.bool,

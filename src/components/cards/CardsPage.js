@@ -35,7 +35,6 @@ const CardsPage = ({ cards, loadCards, loading, windowWidth }) => {
 CardsPage.propTypes = {
   cards: PropTypes.array.isRequired,
   loadCards: PropTypes.func.isRequired,
-  deleteCard: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   windowWidth: PropTypes.number.isRequired,
 };

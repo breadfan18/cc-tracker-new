@@ -118,7 +118,7 @@ function CardAddEditModal({ card, saveCard }) {
 }
 
 CardAddEditModal.propTypes = {
-  card: PropTypes.object.isRequired,
+  card: PropTypes.object,
   saveCard: PropTypes.func.isRequired,
 };
 

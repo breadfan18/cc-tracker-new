@@ -4,12 +4,7 @@ import CardListCards from "./CardListCards";
 import { USERS } from "../../constants";
 import PropTypes from "prop-types";
 
-export default function CardsByUserDropDown({
-  cards,
-  windowWidth,
-  onDelete,
-  deletedCard,
-}) {
+export default function CardsByUserDropDown({ cards, windowWidth }) {
   const [selectedUser, setSelectedUser] = useState();
   const showAllUsers = isNaN(selectedUser) || selectedUser === undefined;
 
@@ -46,8 +41,6 @@ export default function CardsByUserDropDown({
       </label>
       <CardListCards
         cards={cardsForSelectedUser}
-        onDeleteClick={onDelete}
-        isCardDeleted={deletedCard}
         windowWidth={windowWidth}
         showUserName={showAllUsers}
       />
@@ -58,6 +51,4 @@ export default function CardsByUserDropDown({
 CardsByUserDropDown.propTypes = {
   cards: PropTypes.array.isRequired,
   windowWidth: PropTypes.number.isRequired,
-  deletedCard: PropTypes.object.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
