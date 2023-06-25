@@ -37,10 +37,7 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
             </th>
           )}
           <th className="tableHeader">
-            Issuer <TiArrowUnsorted onClick={() => requestSort("issuer")} />
-          </th>
-          <th className="tableHeader">
-            Card <TiArrowUnsorted onClick={() => requestSort("card")} />
+            Card <TiArrowUnsorted onClick={() => requestSort("issuer")} />
           </th>
           <th className="tableHeader">
             Type <TiArrowUnsorted onClick={() => requestSort("cardType")} />
@@ -67,8 +64,8 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
             <tr key={card.id}>
               <td>{formatDate(card.appDate)}</td>
               {showUser && <td>{card.userName}</td>}
-              <td>{card.issuer}</td>
-              <td>{card.card}</td>
+              {/* <td>{card.issuer}</td> */}
+              <td>{`${card.issuer} ${card.card}`}</td>
               <td>{card.cardType}</td>
               <td>${card.annualFee}</td>
               <td>
