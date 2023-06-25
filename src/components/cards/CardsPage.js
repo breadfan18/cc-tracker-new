@@ -1,31 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { loadCards, deleteCard } from "../../redux/actions/cardsActions";
+import { loadCards } from "../../redux/actions/cardsActions";
 import { Spinner } from "../common/Spinner";
 import PropTypes from "prop-types";
 import CardTabs from "./CardTabs";
 import { addUserNameToCard, sortCardsByDate } from "../../helpers";
 import CardsByUserDropDown from "./CardsByUserDropDown";
-import { toast } from "react-toastify";
 import CardAddEditModal from "./CardAddEditModal";
 
-const CardsPage = ({ cards, loadCards, loading, windowWidth, deleteCard }) => {
-  const [deletedCard, setDeletedCard] = useState({});
-
+const CardsPage = ({ cards, loadCards, loading, windowWidth }) => {
   useEffect(() => {
     if (cards.length === 0) {
       loadCards();
     }
   }, []);
-
-  function handleDeleteCard(card) {
-    setDeletedCard({ ...card });
-    deleteCard(card)
-      .then(() => {
-        toast.success("Card deleted");
-      })
-      .catch((error) => alert("Error deleteing card " + error));
-  }
 
   return (
     <div className="cardsContainer">
@@ -36,19 +24,9 @@ const CardsPage = ({ cards, loadCards, loading, windowWidth, deleteCard }) => {
       {loading ? (
         <Spinner />
       ) : windowWidth < 600 ? (
-        <CardsByUserDropDown
-          cards={cards}
-          windowWidth={windowWidth}
-          deletedCard={deletedCard}
-          onDelete={handleDeleteCard}
-        />
+        <CardsByUserDropDown cards={cards} windowWidth={windowWidth} />
       ) : (
-        <CardTabs
-          cards={cards}
-          windowWidth={windowWidth}
-          onDelete={handleDeleteCard}
-          deletedCard={deletedCard}
-        />
+        <CardTabs cards={cards} windowWidth={windowWidth} />
       )}
     </div>
   );
@@ -74,7 +52,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   loadCards,
-  deleteCard,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardsPage);

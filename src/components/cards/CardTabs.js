@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { USERS } from "../../constants";
 import CardListCards from "./CardListCards";
 
-function CardTabs({ cards, windowWidth, onDelete, deletedCard }) {
+function CardTabs({ cards, windowWidth }) {
   const userTabs = USERS.map((user) => {
     const cardsForThisUser = cards.filter((card) => card.userId === user.id);
     return (
@@ -15,16 +15,12 @@ function CardTabs({ cards, windowWidth, onDelete, deletedCard }) {
         {windowWidth > 1000 ? (
           <CardListTable
             cards={cardsForThisUser}
-            onDeleteClick={onDelete}
-            deletedCard={deletedCard}
             showEditDelete={true}
             showUser={false}
           />
         ) : (
           <CardListCards
             cards={cardsForThisUser}
-            onDeleteClick={onDelete}
-            isCardDeleted={deletedCard}
             windowWidth={windowWidth}
             showUserName={false}
           />
@@ -43,16 +39,12 @@ function CardTabs({ cards, windowWidth, onDelete, deletedCard }) {
           {windowWidth > 1000 ? (
             <CardListTable
               cards={cards}
-              onDeleteClick={onDelete}
-              deletedCard={deletedCard}
               showEditDelete={true}
               showUser={true}
             />
           ) : (
             <CardListCards
               cards={cards}
-              onDeleteClick={onDelete}
-              isCardDeleted={deletedCard}
               windowWidth={windowWidth}
               showUserName={true}
             />
@@ -66,8 +58,6 @@ function CardTabs({ cards, windowWidth, onDelete, deletedCard }) {
 
 CardTabs.propTypes = {
   cards: PropTypes.array.isRequired,
-  deletedCard: PropTypes.object,
-  onDelete: PropTypes.func.isRequired,
   windowWidth: PropTypes.number.isRequired,
 };
 

@@ -5,16 +5,10 @@ import Table from "react-bootstrap/Table";
 import { TiArrowUnsorted } from "react-icons/ti";
 import { useSortableData } from "../../hooks/sortData";
 import { formatDate, titleCase } from "../../helpers";
-import { DeleteButton } from "../common/DeleteButton";
 import CardAddEditModal from "./CardAddEditModal";
+import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 
-export default function CardListTable({
-  cards,
-  onDeleteClick,
-  deletedCard,
-  showEditDelete,
-  showUser,
-}) {
+export default function CardListTable({ cards, showEditDelete, showUser }) {
   const { data, requestSort } = useSortableData(cards);
 
   function handleInquiriesList(inq) {
@@ -69,7 +63,6 @@ export default function CardListTable({
       </thead>
       <tbody className="align-middle">
         {data.map((card) => {
-          const isCardDeleted = card.id === deletedCard?.id;
           return (
             <tr key={card.id}>
               <td>{formatDate(card.appDate)}</td>
@@ -90,11 +83,7 @@ export default function CardListTable({
                 <>
                   <td className="editDeleteCard">
                     <CardAddEditModal card={card} />
-                    <DeleteButton
-                      disabled={isCardDeleted}
-                      onDelete={onDeleteClick}
-                      data={card}
-                    />
+                    <ConfirmDeleteModal card={card} />
                   </td>
                 </>
               )}
@@ -108,9 +97,7 @@ export default function CardListTable({
 
 CardListTable.propTypes = {
   cards: PropTypes.array.isRequired,
-  onDeleteClick: PropTypes.func,
   history: PropTypes.object,
-  deletedCard: PropTypes.object,
   showEditDelete: PropTypes.bool.isRequired,
   showUser: PropTypes.bool.isRequired,
 };

@@ -3,21 +3,14 @@ import { Button } from "react-bootstrap";
 import { BsTrash3 } from "react-icons/bs";
 import PropTypes from "prop-types";
 
-export function DeleteButton({ data, onDelete, disabled }) {
+export function DeleteButton({ onClick }) {
   return (
-    <Button
-      variant="danger"
-      onClick={() => onDelete(data)}
-      disabled={disabled}
-      className="rounded-circle"
-    >
+    <Button variant="danger" onClick={onClick} className="rounded-circle">
       <BsTrash3 />
     </Button>
   );
 }
 
 DeleteButton.propTypes = {
-  data: PropTypes.object.isRequired,
-  onDelete: PropTypes.func,
-  disabled: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

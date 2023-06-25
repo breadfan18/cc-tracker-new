@@ -122,7 +122,11 @@ CardAddEditModal.propTypes = {
   saveCard: PropTypes.func.isRequired,
 };
 
-function mapStateToProps() {}
+function mapStateToProps(state) {
+  return {
+    state: state,
+  };
+}
 
 const mapDispatchToProps = {
   saveCard,
