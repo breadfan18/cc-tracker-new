@@ -10,8 +10,7 @@ import PropTypes from "prop-types";
 
 function ConfirmDeleteModal({ data, dataType, deleteCard, deleteLoyaltyData }) {
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const toggleShow = () => setShow(!show);
 
   function handleDelete(data) {
     if (dataType === "card") {
@@ -29,8 +28,8 @@ function ConfirmDeleteModal({ data, dataType, deleteCard, deleteLoyaltyData }) {
 
   return (
     <>
-      <DeleteButton onClick={handleShow} />
-      <Modal show={show} onHide={handleClose} centered>
+      <DeleteButton onClick={toggleShow} />
+      <Modal show={show} onHide={toggleShow} centered>
         <Modal.Header className="modalHeader" closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
@@ -39,7 +38,7 @@ function ConfirmDeleteModal({ data, dataType, deleteCard, deleteLoyaltyData }) {
           {dataType === "card" ? "card" : "loyalty account"}?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={toggleShow}>
             Cancel
           </Button>
           <Button variant="danger" onClick={() => handleDelete(data)}>
