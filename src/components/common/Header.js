@@ -87,7 +87,7 @@ const Header = ({ windowWidth }) => {
 };
 
 Header.propTypes = {
-  windowWidth: PropTypes.string.isRequired,
+  windowWidth: PropTypes.number.isRequired,
 };
 
 export default Header;

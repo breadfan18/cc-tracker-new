@@ -45,9 +45,5 @@ export default function FiveTwentyFourCards({ cards, windowWidth }) {
 
 FiveTwentyFourCards.propTypes = {
   cards: PropTypes.array.isRequired,
-  onDeleteClick: PropTypes.func.isRequired,
-  deletedCard: PropTypes.object.isRequired,
-  isCardDeleted: PropTypes.bool.isRequired,
   windowWidth: PropTypes.number.isRequired,
-  showEditDelete: PropTypes.bool.isRequired,
 };

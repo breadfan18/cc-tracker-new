@@ -111,7 +111,7 @@ function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyData }) {
 }
 
 LoyaltyAddEditModal.propTypes = {
-  loyaltyAcc: PropTypes.object.isRequired,
+  loyaltyAcc: PropTypes.object,
   saveLoyaltyData: PropTypes.func.isRequired,
 };
 
