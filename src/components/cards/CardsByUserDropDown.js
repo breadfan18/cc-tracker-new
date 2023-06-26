@@ -4,7 +4,7 @@ import CardListCards from "./CardListCards";
 import { USERS } from "../../constants";
 import PropTypes from "prop-types";
 
-export default function CardsByUserDropDown({ cards, windowWidth }) {
+export default function CardsByUserDropDown({ cards }) {
   const [selectedUser, setSelectedUser] = useState();
   const showAllUsers = isNaN(selectedUser) || selectedUser === undefined;
 
@@ -39,16 +39,11 @@ export default function CardsByUserDropDown({ cards, windowWidth }) {
               USERS.find((user) => user.id === selectedUser).name.split(" ")[0]
             }'s cards`}
       </label>
-      <CardListCards
-        cards={cardsForSelectedUser}
-        windowWidth={windowWidth}
-        showUserName={showAllUsers}
-      />
+      <CardListCards cards={cardsForSelectedUser} showUserName={showAllUsers} />
     </>
   );
 }
 
 CardsByUserDropDown.propTypes = {
   cards: PropTypes.array.isRequired,
-  windowWidth: PropTypes.number.isRequired,
 };

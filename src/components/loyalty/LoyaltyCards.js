@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import LoyaltyAddEditModal from "./LoyaltyAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
+import { WindowWidthContext } from "../App";
 
-export default function LoyaltyCards({ loyaltyData, windowWidth }) {
+export default function LoyaltyCards({ loyaltyData }) {
+  const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const allCards = loyaltyData.map((acc) => {
     return (
@@ -64,5 +66,4 @@ export default function LoyaltyCards({ loyaltyData, windowWidth }) {
 
 LoyaltyCards.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
-  windowWidth: PropTypes.number.isRequired,
 };

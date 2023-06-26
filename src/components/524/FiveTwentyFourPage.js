@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { USERS } from "../../constants";
 import { loadCards } from "../../redux/actions/cardsActions";
@@ -11,14 +11,10 @@ import CustomAccordion from "../common/CustomAccordion";
 import SelectInput from "../common/SelectInput";
 import CardList from "../cards/CardListTable";
 import FiveTwentyFourCards from "./FiveTwentyFourCards";
+import { WindowWidthContext } from "../App";
 
-const FiveTwentyFourPage = ({
-  cards,
-  loadCards,
-  loading,
-  cardsByUser,
-  windowWidth,
-}) => {
+const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
+  const windowWidth = useContext(WindowWidthContext);
   const [selectedUser, setSelectedUser] = useState();
 
   useEffect(() => {
@@ -52,11 +48,7 @@ const FiveTwentyFourPage = ({
       windowWidth > 1000 ? (
         <CardList cards={cards524} showEditDelete={false} />
       ) : (
-        <FiveTwentyFourCards
-          cards={cards524}
-          showEditDelete={false}
-          windowWidth={windowWidth}
-        />
+        <FiveTwentyFourCards cards={cards524} showEditDelete={false} />
       );
 
     return (
@@ -133,7 +125,6 @@ FiveTwentyFourPage.propTypes = {
   cardsByUser: PropTypes.object.isRequired,
   loadCards: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  windowWidth: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {

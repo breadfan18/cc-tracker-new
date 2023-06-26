@@ -7,12 +7,7 @@ import LoyaltyTabs from "./LoyaltyTabs";
 import { addUserNameToCard } from "../../helpers";
 import LoyaltyAddEditModal from "./LoyaltyAddEditModal";
 
-const LoyaltyPage = ({
-  loyaltyData,
-  loadloyaltyData,
-  loading,
-  windowWidth,
-}) => {
+const LoyaltyPage = ({ loyaltyData, loadloyaltyData, loading }) => {
   useEffect(() => {
     if (loyaltyData.length === 0) {
       loadloyaltyData();
@@ -27,11 +22,7 @@ const LoyaltyPage = ({
       {loading ? (
         <Spinner />
       ) : (
-        <LoyaltyTabs
-          loyaltyData={loyaltyData}
-          showEditDelete={true}
-          windowWidth={windowWidth}
-        />
+        <LoyaltyTabs loyaltyData={loyaltyData} showEditDelete={true} />
       )}
     </div>
   );
@@ -41,7 +32,6 @@ LoyaltyPage.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
   loadloyaltyData: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  windowWidth: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({

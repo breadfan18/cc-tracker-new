@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card } from "react-bootstrap";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import { formatDate } from "../../helpers";
+import { WindowWidthContext } from "../App";
 
-export default function FiveTwentyFourCards({ cards, windowWidth }) {
+export default function FiveTwentyFourCards({ cards }) {
+  const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const allCards = cards.map((card) => {
     return (
@@ -45,5 +47,4 @@ export default function FiveTwentyFourCards({ cards, windowWidth }) {
 
 FiveTwentyFourCards.propTypes = {
   cards: PropTypes.array.isRequired,
-  windowWidth: PropTypes.number.isRequired,
 };

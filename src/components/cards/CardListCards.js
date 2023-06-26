@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card } from "react-bootstrap";
 import { USERS } from "../../constants";
 import PropTypes from "prop-types";
@@ -6,13 +6,10 @@ import EmptyList from "../common/EmptyList";
 import { formatDate } from "../../helpers";
 import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
+import { WindowWidthContext } from "../App";
 
-export default function CardListCards({
-  cards,
-  windowWidth,
-  showEditDelete,
-  showUserName,
-}) {
+export default function CardListCards({ cards, showEditDelete, showUserName }) {
+  const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const allCards = cards.map((card) => {
     return (
@@ -67,7 +64,6 @@ export default function CardListCards({
 
 CardListCards.propTypes = {
   cards: PropTypes.array.isRequired,
-  windowWidth: PropTypes.number.isRequired,
   showEditDelete: PropTypes.bool,
   showUserName: PropTypes.bool,
 };

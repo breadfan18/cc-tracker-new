@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PropTypes from "prop-types";
@@ -11,8 +11,10 @@ import { Card } from "react-bootstrap";
 import _ from "lodash";
 import LoyaltyCards from "./LoyaltyCards";
 import EmptyList from "../common/EmptyList";
+import { WindowWidthContext } from "../App";
 
-function LoyaltyTabs({ loyaltyData, windowWidth }) {
+function LoyaltyTabs({ loyaltyData }) {
+  const windowWidth = useContext(WindowWidthContext);
   const loyaltyByType = _.groupBy(loyaltyData, (o) => o.loyaltyType);
   const loyaltyTabs = ACCOUNT_TYPE.map((loyaltyType) => {
     const loyaltyTypeData = loyaltyByType[loyaltyType];
@@ -26,10 +28,7 @@ function LoyaltyTabs({ loyaltyData, windowWidth }) {
             showEditDelete={true}
           />
         ) : (
-          <LoyaltyCards
-            loyaltyData={loyaltyAccsForThisUser}
-            windowWidth={windowWidth}
-          />
+          <LoyaltyCards loyaltyData={loyaltyAccsForThisUser} />
         );
       const thisUserName = USERS.find((u) => u.id === parseInt(user)).name;
       return (
@@ -88,7 +87,6 @@ function LoyaltyTabs({ loyaltyData, windowWidth }) {
 
 LoyaltyTabs.propTypes = {
   loyaltyData: PropTypes.array.isRequired,
-  windowWidth: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {

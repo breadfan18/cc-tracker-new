@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { connect } from "react-redux";
 import { loadCards } from "../../redux/actions/cardsActions";
 import { Spinner } from "../common/Spinner";
@@ -7,8 +7,11 @@ import CardTabs from "./CardTabs";
 import { addUserNameToCard, sortCardsByDate } from "../../helpers";
 import CardsByUserDropDown from "./CardsByUserDropDown";
 import CardAddEditModal from "./CardAddEditModal";
+import { WindowWidthContext } from "../App";
 
-const CardsPage = ({ cards, loadCards, loading, windowWidth }) => {
+const CardsPage = ({ cards, loadCards, loading }) => {
+  const windowWidth = useContext(WindowWidthContext);
+
   useEffect(() => {
     if (cards.length === 0) {
       loadCards();
@@ -24,9 +27,9 @@ const CardsPage = ({ cards, loadCards, loading, windowWidth }) => {
       {loading ? (
         <Spinner />
       ) : windowWidth < 600 ? (
-        <CardsByUserDropDown cards={cards} windowWidth={windowWidth} />
+        <CardsByUserDropDown cards={cards} />
       ) : (
-        <CardTabs cards={cards} windowWidth={windowWidth} />
+        <CardTabs cards={cards} />
       )}
     </div>
   );
@@ -36,7 +39,6 @@ CardsPage.propTypes = {
   cards: PropTypes.array.isRequired,
   loadCards: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
-  windowWidth: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {

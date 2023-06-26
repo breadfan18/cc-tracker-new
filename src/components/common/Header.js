@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Burger from "./Burger";
-import PropTypes from "prop-types";
+import { WindowWidthContext } from "../App";
 
-const Header = ({ windowWidth }) => {
+const Header = () => {
+  const windowWidth = useContext(WindowWidthContext);
   const [open, setOpen] = useState(false);
   const activeStyle = { backgroundColor: "white", color: "#0080FF" };
   let navRef = useRef();
@@ -84,10 +85,6 @@ const Header = ({ windowWidth }) => {
       </NavLink>
     </nav>
   );
-};
-
-Header.propTypes = {
-  windowWidth: PropTypes.number.isRequired,
 };
 
 export default Header;

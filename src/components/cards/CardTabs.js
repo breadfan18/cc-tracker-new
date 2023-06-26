@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import PropTypes from "prop-types";
@@ -6,8 +6,10 @@ import CardListTable from "./CardListTable";
 import { connect } from "react-redux";
 import { USERS } from "../../constants";
 import CardListCards from "./CardListCards";
+import { WindowWidthContext } from "../App";
 
-function CardTabs({ cards, windowWidth }) {
+function CardTabs({ cards }) {
+  const windowWidth = useContext(WindowWidthContext);
   const userTabs = USERS.map((user) => {
     const cardsForThisUser = cards.filter((card) => card.userId === user.id);
     return (
@@ -19,11 +21,7 @@ function CardTabs({ cards, windowWidth }) {
             showUser={false}
           />
         ) : (
-          <CardListCards
-            cards={cardsForThisUser}
-            windowWidth={windowWidth}
-            showUserName={false}
-          />
+          <CardListCards cards={cardsForThisUser} showUserName={false} />
         )}
       </Tab>
     );
@@ -58,7 +56,6 @@ function CardTabs({ cards, windowWidth }) {
 
 CardTabs.propTypes = {
   cards: PropTypes.array.isRequired,
-  windowWidth: PropTypes.number.isRequired,
 };
 
 function mapStateToProps(state) {
