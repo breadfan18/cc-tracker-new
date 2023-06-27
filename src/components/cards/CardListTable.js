@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
@@ -7,8 +7,10 @@ import { useSortableData } from "../../hooks/sortData";
 import { formatDate, titleCase, formatCurrency } from "../../helpers";
 import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
+import { WindowWidthContext } from "../App";
 
 export default function CardListTable({ cards, showEditDelete, showUser }) {
+  const windowWidth = useContext(WindowWidthContext);
   const { data, requestSort } = useSortableData(cards);
 
   function handleInquiriesList(inq) {
@@ -42,20 +44,24 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
           <th className="tableHeader">
             Type <TiArrowUnsorted onClick={() => requestSort("cardType")} />
           </th>
-          <th className="tableHeader">
-            Credit Line{" "}
-            <TiArrowUnsorted onClick={() => requestSort("creditLine")} />
-          </th>
-          <th className="tableHeader">Credit Pull</th>
+          {windowWidth > 1482 && (
+            <th className="tableHeader">
+              Credit Line{" "}
+              <TiArrowUnsorted onClick={() => requestSort("creditLine")} />
+            </th>
+          )}
+          {windowWidth > 1482 && <th className="tableHeader">Credit Pull</th>}
           <th className="tableHeader">
             Annual Fee{" "}
             <TiArrowUnsorted onClick={() => requestSort("annualFee")} />
           </th>
           <th className="tableHeader">Next Fee Date</th>
-          <th className="tableHeader">Spend Req</th>
-          <th className="tableHeader">Spend By</th>
-          <th className="tableHeader">Bonus</th>
-          <th className="tableHeader">Bonus Earn Date</th>
+          {windowWidth > 1380 && <th className="tableHeader">Spend Req</th>}
+          {windowWidth > 1380 && <th className="tableHeader">Spend By</th>}
+          {windowWidth > 1280 && <th className="tableHeader">Bonus</th>}
+          {windowWidth > 1044 && (
+            <th className="tableHeader">Bonus Earn Date</th>
+          )}
           <th className="tableHeader">
             Status <TiArrowUnsorted onClick={() => requestSort("status")} />
           </th>
@@ -83,22 +89,26 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
               {showUser && <td>{card.userName}</td>}
               <td>{`${card.issuer} ${card.card}`}</td>
               <td>{card.cardType}</td>
-              <td>{formatCurrency(card.creditLine)}</td>
-              <td className="creditPullColumn">
-                {handleInquiriesList(card.inquiries)}
-              </td>
+              {windowWidth > 1482 && <td>{formatCurrency(card.creditLine)}</td>}
+              {windowWidth > 1482 && (
+                <td className="creditPullColumn">
+                  {handleInquiriesList(card.inquiries)}
+                </td>
+              )}
               <td>{formatCurrency(card.annualFee)}</td>
               <td>
                 {card.nextFeeDate === "N/A"
                   ? "N/A"
                   : formatDate(card.nextFeeDate)}
               </td>
-              <td>{formatCurrency(card.spendReq)}</td>
-              <td>{formatDate(card.spendBy)}</td>
-              <td>{card.signupBonus}</td>
-              <td>
-                {card.bonusEarnDate ? formatDate(card.bonusEarnDate) : "WIP"}
-              </td>
+              {windowWidth > 1380 && <td>{formatCurrency(card.spendReq)}</td>}
+              {windowWidth > 1380 && <td>{formatDate(card.spendBy)}</td>}
+              {windowWidth > 1280 && <td>{card.signupBonus}</td>}
+              {windowWidth > 1044 && (
+                <td>
+                  {card.bonusEarnDate ? formatDate(card.bonusEarnDate) : "WIP"}
+                </td>
+              )}
               <td>{titleCase(card.status)}</td>
 
               {showEditDelete && (
