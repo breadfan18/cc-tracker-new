@@ -13,7 +13,12 @@ import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 
-export default function CardListTable({ cards, showEditDelete, showUser }) {
+export default function CardListTable({
+  cards,
+  showEditDelete,
+  showUser,
+  showCompactTable,
+}) {
   const windowWidth = useContext(WindowWidthContext);
   const { data, requestSort } = useSortableData(cards);
 
@@ -60,10 +65,16 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
             <TiArrowUnsorted onClick={() => requestSort("annualFee")} />
           </th>
           <th className="tableHeader">Next Fee Date</th>
-          {windowWidth > 1380 && <th className="tableHeader">Spend Req</th>}
-          {windowWidth > 1380 && <th className="tableHeader">Spend By</th>}
-          {windowWidth > 1280 && <th className="tableHeader">Bonus</th>}
-          {windowWidth > 1044 && (
+          {windowWidth > 1380 && !showCompactTable && (
+            <th className="tableHeader">Spend Req</th>
+          )}
+          {windowWidth > 1380 && !showCompactTable && (
+            <th className="tableHeader">Spend By</th>
+          )}
+          {windowWidth > 1044 && !showCompactTable && (
+            <th className="tableHeader">Bonus</th>
+          )}
+          {windowWidth > 1280 && !showCompactTable && (
             <th className="tableHeader">Bonus Earn Date</th>
           )}
           <th className="tableHeader">
@@ -105,12 +116,16 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
                   ? "N/A"
                   : formatDate(card.nextFeeDate)}
               </td>
-              {windowWidth > 1380 && <td>{formatCurrency(card.spendReq)}</td>}
-              {windowWidth > 1380 && <td>{formatDate(card.spendBy)}</td>}
-              {windowWidth > 1280 && (
+              {windowWidth > 1380 && !showCompactTable && (
+                <td>{formatCurrency(card.spendReq)}</td>
+              )}
+              {windowWidth > 1380 && !showCompactTable && (
+                <td>{formatDate(card.spendBy)}</td>
+              )}
+              {windowWidth > 1044 && !showCompactTable && (
                 <td>
                   {card.bonusEarned ? (
-                    <TbSquareRoundedCheckFilled style={{ color: "green" }} />
+                    <TbSquareRoundedCheckFilled style={{ color: "#198754" }} />
                   ) : (
                     <TbSquareRoundedChevronsRightFilled
                       style={{ color: "#0080FF" }}
@@ -119,7 +134,7 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
                   {card.signupBonus}
                 </td>
               )}
-              {windowWidth > 1044 && (
+              {windowWidth > 1280 && !showCompactTable && (
                 <td>
                   {card.bonusEarnDate ? formatDate(card.bonusEarnDate) : "WIP"}
                 </td>
@@ -147,4 +162,5 @@ CardListTable.propTypes = {
   history: PropTypes.object,
   showEditDelete: PropTypes.bool.isRequired,
   showUser: PropTypes.bool.isRequired,
+  showCompactTable: PropTypes.bool.isRequired,
 };

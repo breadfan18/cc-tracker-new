@@ -46,7 +46,12 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
 
     const cardsListComponent =
       windowWidth > 1000 ? (
-        <CardList cards={cards524} showEditDelete={false} />
+        <CardList
+          cards={cards524}
+          showEditDelete={false}
+          showUser={false}
+          showCompactTable={true}
+        />
       ) : (
         <FiveTwentyFourCards cards={cards524} showEditDelete={false} />
       );
