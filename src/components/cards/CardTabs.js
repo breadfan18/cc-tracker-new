@@ -19,6 +19,7 @@ function CardTabs({ cards }) {
             cards={cardsForThisUser}
             showEditDelete={true}
             showUser={false}
+            showCompactTable={false}
           />
         ) : (
           <CardListCards cards={cardsForThisUser} showUserName={false} />
@@ -39,6 +40,7 @@ function CardTabs({ cards }) {
               cards={cards}
               showEditDelete={true}
               showUser={true}
+              showCompactTable={false}
             />
           ) : (
             <CardListCards
