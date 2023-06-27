@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { TiArrowUnsorted } from "react-icons/ti";
+import {
+  TbSquareRoundedCheckFilled,
+  TbSquareRoundedChevronsRightFilled,
+} from "react-icons/tb";
 import { useSortableData } from "../../hooks/sortData";
 import { formatDate, titleCase, formatCurrency } from "../../helpers";
 import CardAddEditModal from "./CardAddEditModal";
@@ -103,7 +107,18 @@ export default function CardListTable({ cards, showEditDelete, showUser }) {
               </td>
               {windowWidth > 1380 && <td>{formatCurrency(card.spendReq)}</td>}
               {windowWidth > 1380 && <td>{formatDate(card.spendBy)}</td>}
-              {windowWidth > 1280 && <td>{card.signupBonus}</td>}
+              {windowWidth > 1280 && (
+                <td>
+                  {card.bonusEarned ? (
+                    <TbSquareRoundedCheckFilled style={{ color: "green" }} />
+                  ) : (
+                    <TbSquareRoundedChevronsRightFilled
+                      style={{ color: "#0080FF" }}
+                    />
+                  )}{" "}
+                  {card.signupBonus}
+                </td>
+              )}
               {windowWidth > 1044 && (
                 <td>
                   {card.bonusEarnDate ? formatDate(card.bonusEarnDate) : "WIP"}

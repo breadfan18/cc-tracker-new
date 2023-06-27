@@ -51,7 +51,12 @@ function CardAddEditModal({ card, saveCard }) {
     } else {
       setCardForModal((prevCard) => ({
         ...prevCard,
-        [name]: name === "userId" ? parseInt(value, 10) : value,
+        [name]:
+          name === "userId"
+            ? parseInt(value, 10)
+            : name === "bonusEarned"
+            ? checked
+            : value,
       }));
     }
   }

@@ -9,7 +9,9 @@ export default function Checkbox() {
 
   const handleCheckbox = (e) => {
     const { value, checked } = e.target;
-    console.log(e.target);
+
+    console.log("Handle checkbox called");
+    // console.log(e.target);
     console.log(value, checked);
     setState((prev) => ({
       ...prev,

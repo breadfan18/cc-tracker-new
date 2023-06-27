@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
@@ -19,6 +19,15 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
             {errors.onSave}
           </div>
         )}
+        <Form.Check
+          name="bonusEarned"
+          type="switch"
+          label="Bonus Earned"
+          value="bonusEarned"
+          checked={card.bonusEarned}
+          onChange={onChange}
+          style={{ float: "right" }}
+        />
         <SelectInput
           name="status"
           label="Account Status"
