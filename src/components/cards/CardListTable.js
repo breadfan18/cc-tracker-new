@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
@@ -30,6 +30,24 @@ export default function CardListTable({
       }, [])
       .map((i) => <p key={i}>{titleCase(i)}</p>);
   }
+
+  function handleTrSetPrimary(e) {
+    if (e.target.parentNode.tagName === "TR") {
+      e.target.parentNode.className = "table-primary";
+    }
+  }
+  function handleTrReset(e, card) {
+    if (e.target.parentNode.tagName === "TR") {
+      e.target.parentNode.className =
+        card.status === "closed"
+          ? "table-danger"
+          : card.status === "downgraded"
+          ? "table-warning"
+          : null;
+    }
+  }
+
+  useEffect(() => {});
 
   return cards.length === 0 ? (
     <EmptyList dataType={"card"} />
@@ -99,6 +117,9 @@ export default function CardListTable({
                   ? "table-warning"
                   : null
               }
+              onMouseEnter={handleTrSetPrimary}
+              onMouseLeave={(e) => handleTrReset(e, card)}
+              style={{ cursor: "pointer" }}
             >
               <td>{formatDate(card.appDate)}</td>
               {showUser && <td>{card.userName}</td>}
@@ -140,7 +161,6 @@ export default function CardListTable({
                 </td>
               )}
               <td>{titleCase(card.status)}</td>
-
               {showEditDelete && (
                 <>
                   <td className="editDeleteCard">
