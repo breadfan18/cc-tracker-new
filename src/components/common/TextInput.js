@@ -1,18 +1,42 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const TextInput = ({ name, label, onChange, placeholder, value, error }) => {
+const TextInput = ({
+  name,
+  label,
+  onChange,
+  placeholder,
+  value,
+  error,
+  isCurrency,
+}) => {
   let wrapperClass = "form-group";
   if (error && error.length > 0) {
     wrapperClass += " " + "has-error";
   }
+
+  const fieldBorderRadius = isCurrency ? "0 0 10px 0" : "0 0 10px 10px";
 
   return (
     <div className={wrapperClass}>
       <label htmlFor={name} className="labels">
         {label}
       </label>
-      <div className="field">
+      <div className="field" style={{ display: "flex" }}>
+        {isCurrency && (
+          <p
+            style={{
+              padding: "0 10px",
+              backgroundColor: "rgba(0,0,0,0.09)",
+              marginBottom: 0,
+              borderRadius: "0 0 0 10px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            $
+          </p>
+        )}
         <input
           type="text"
           name={name}
@@ -20,6 +44,10 @@ const TextInput = ({ name, label, onChange, placeholder, value, error }) => {
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          style={{
+            borderRadius: fieldBorderRadius,
+            paddingLeft: isCurrency ? "5px" : "12px",
+          }}
         />
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
@@ -33,6 +61,7 @@ TextInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string || PropTypes.number,
+  isCurrency: PropTypes.bool,
   error: PropTypes.string,
 };
 

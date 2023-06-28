@@ -111,6 +111,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
               value={card.creditLine || ""}
               onChange={onChange}
               error={errors.title}
+              isCurrency={true}
             />
           </Col>
         </Row>
@@ -122,6 +123,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
               value={card.annualFee}
               onChange={onChange}
               error={errors.title}
+              isCurrency={true}
             />
           </Col>
           <Col>
@@ -141,6 +143,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
               value={card.spendReq || ""}
               onChange={onChange}
               error={errors.title}
+              isCurrency={true}
             />
           </Col>
           <Col>
