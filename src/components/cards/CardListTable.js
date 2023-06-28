@@ -12,6 +12,7 @@ import { formatDate, titleCase, formatCurrency } from "../../helpers";
 import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function CardListTable({
   cards,
@@ -21,6 +22,12 @@ export default function CardListTable({
 }) {
   const windowWidth = useContext(WindowWidthContext);
   const { data, requestSort } = useSortableData(cards);
+  const history = useHistory();
+
+  const routeChange = (card) => {
+    let path = `/card/${card.id}`;
+    history.push(path);
+  };
 
   function handleInquiriesList(inq) {
     return Object.keys(inq)
@@ -120,6 +127,7 @@ export default function CardListTable({
               onMouseEnter={handleTrSetPrimary}
               onMouseLeave={(e) => handleTrReset(e, card)}
               style={{ cursor: "pointer" }}
+              onClick={() => routeChange(card)}
             >
               <td>{formatDate(card.appDate)}</td>
               {showUser && <td>{card.userName}</td>}

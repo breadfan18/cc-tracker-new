@@ -15,7 +15,6 @@ export default function CardListCards({ cards, showEditDelete, showUserName }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
   const allCards = cards.map((card) => {
-    console.log(card);
     return (
       <Card style={{ width: cardWidth }} key={card.id} className="cardCard">
         <Card.Body style={{ padding: "0" }}>
