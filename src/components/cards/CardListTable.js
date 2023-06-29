@@ -30,20 +30,18 @@ export default function CardListTable({
   };
 
   function handleInquiriesList(inq) {
-    return Object.keys(inq)
-      .reduce((output, i) => {
-        if (inq[i]) output.push(i);
-        return output;
-      }, [])
-      .map((i) => <p key={i}>{titleCase(i)}</p>);
+    return Object.keys(inq).reduce((output, i) => {
+      if (inq[i]) output += titleCase(i) + "\n";
+      return output;
+    }, "");
   }
 
-  function handleTrSetPrimary(e) {
+  function handleTrColorOnHover(e) {
     if (e.target.parentNode.tagName === "TR") {
-      e.target.parentNode.className = "table-primary";
+      e.target.parentNode.className = "table-active";
     }
   }
-  function handleTrReset(e, card) {
+  function handleTrColorReset(e, card) {
     if (e.target.parentNode.tagName === "TR") {
       e.target.parentNode.className =
         card.status === "closed"
@@ -53,8 +51,6 @@ export default function CardListTable({
           : null;
     }
   }
-
-  useEffect(() => {});
 
   return cards.length === 0 ? (
     <EmptyList dataType={"card"} />
@@ -124,8 +120,8 @@ export default function CardListTable({
                   ? "table-warning"
                   : null
               }
-              onMouseEnter={handleTrSetPrimary}
-              onMouseLeave={(e) => handleTrReset(e, card)}
+              onMouseEnter={handleTrColorOnHover}
+              onMouseLeave={(e) => handleTrColorReset(e, card)}
               style={{ cursor: "pointer" }}
               onClick={() => routeChange(card)}
             >
@@ -135,7 +131,10 @@ export default function CardListTable({
               <td>{card.cardType}</td>
               {windowWidth > 1482 && <td>{formatCurrency(card.creditLine)}</td>}
               {windowWidth > 1482 && (
-                <td className="creditPullColumn">
+                <td
+                  className="creditPullColumn"
+                  style={{ whiteSpace: "pre-wrap" }}
+                >
                   {handleInquiriesList(card.inquiries)}
                 </td>
               )}
