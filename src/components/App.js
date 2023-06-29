@@ -7,7 +7,7 @@ import PageNotFound from "./PageNotFound";
 import CardsPage from "./cards/CardsPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ManageCardPage from "./cards/ManageCardPage";
+import CardDetailsPage from "./cards/CardDetailsPage";
 import FiveTwentyFourPage from "./524/FiveTwentyFourPage";
 import LoyaltyPage from "./loyalty/LoyaltyPage";
 import ManageLoyaltyPage from "./loyalty/ManageLoyaltyPage";
@@ -38,8 +38,8 @@ function App() {
             <Route exact path="/" component={HomePage} />
             <Route path="/about" component={AboutPage} />
             <Route path="/cards" component={CardsPage} />
-            <Route path="/card/:id" component={ManageCardPage} />
-            <Route path="/card" component={ManageCardPage} />
+            <Route path="/card/:id" component={CardDetailsPage} />
+            <Route path="/card" component={CardDetailsPage} />
             <Route path="/524" component={FiveTwentyFourPage} />
             <Route path="/loyalty-accounts" component={LoyaltyPage} />
             <Route path="/loyalty/:id" component={ManageLoyaltyPage} />

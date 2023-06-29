@@ -21,7 +21,7 @@ const newCard = {
   nextFeeDate: null,
 };
 
-function ManageCardPage({
+function CardDetailsPage({
   cards,
   loadCards,
   saveCard,
@@ -111,7 +111,7 @@ function ManageCardPage({
   );
 }
 
-ManageCardPage.propTypes = {
+CardDetailsPage.propTypes = {
   card: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
   loadCards: PropTypes.func.isRequired,
@@ -140,4 +140,4 @@ const mapDispatchToProps = {
   saveCard,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageCardPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CardDetailsPage);
