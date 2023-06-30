@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
-import { TiArrowUnsorted } from "react-icons/ti";
+import { FaSort } from "react-icons/fa";
 import {
   TbSquareRoundedCheckFilled,
   TbSquareRoundedChevronsRightFilled,
@@ -60,30 +60,31 @@ export default function CardListTable({
         <tr>
           <th className="tableHeader">
             App Date
-            <TiArrowUnsorted onClick={() => requestSort("appDate")} />
+            <FaSort
+              onClick={() => requestSort("appDate")}
+              style={{ marginLeft: "5px" }}
+            />
           </th>
           {showUser && (
             <th className="tableHeader">
               User
-              <TiArrowUnsorted onClick={() => requestSort("userName")} />
+              <FaSort onClick={() => requestSort("userName")} />
             </th>
           )}
           <th className="tableHeader">
-            Card <TiArrowUnsorted onClick={() => requestSort("issuer")} />
+            Card <FaSort onClick={() => requestSort("issuer")} />
           </th>
           <th className="tableHeader">
-            Type <TiArrowUnsorted onClick={() => requestSort("cardType")} />
+            Type <FaSort onClick={() => requestSort("cardType")} />
           </th>
-          {windowWidth > 1482 && (
+          {windowWidth > 1505 && (
             <th className="tableHeader">
-              Credit Line{" "}
-              <TiArrowUnsorted onClick={() => requestSort("creditLine")} />
+              Credit Line <FaSort onClick={() => requestSort("creditLine")} />
             </th>
           )}
-          {windowWidth > 1482 && <th className="tableHeader">Credit Pull</th>}
+          {windowWidth > 1505 && <th className="tableHeader">Credit Pull</th>}
           <th className="tableHeader">
-            Annual Fee{" "}
-            <TiArrowUnsorted onClick={() => requestSort("annualFee")} />
+            Annual Fee <FaSort onClick={() => requestSort("annualFee")} />
           </th>
           <th className="tableHeader">Next Fee Date</th>
           {windowWidth > 1380 && !showCompactTable && (
@@ -99,7 +100,7 @@ export default function CardListTable({
             <th className="tableHeader">Bonus Earn Date</th>
           )}
           <th className="tableHeader">
-            Status <TiArrowUnsorted onClick={() => requestSort("status")} />
+            Status <FaSort onClick={() => requestSort("status")} />
           </th>
           {showEditDelete && (
             <>
@@ -123,14 +124,14 @@ export default function CardListTable({
               onMouseEnter={handleTrColorOnHover}
               onMouseLeave={(e) => handleTrColorReset(e, card)}
               style={{ cursor: "pointer" }}
-              onClick={() => routeChange(card)}
+              // onClick={() => routeChange(card)}
             >
               <td>{formatDate(card.appDate)}</td>
               {showUser && <td>{card.userName}</td>}
               <td>{`${card.issuer} ${card.card}`}</td>
               <td>{card.cardType}</td>
-              {windowWidth > 1482 && <td>{formatCurrency(card.creditLine)}</td>}
-              {windowWidth > 1482 && (
+              {windowWidth > 1505 && <td>{formatCurrency(card.creditLine)}</td>}
+              {windowWidth > 1505 && (
                 <td
                   className="creditPullColumn"
                   style={{ whiteSpace: "pre-wrap" }}
