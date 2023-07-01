@@ -12,13 +12,17 @@ export default function CustomAccordion({
     defaultKey === "1" ? true : false
   );
 
+  const accordionBodyPadding = windowWidth < 650 ? "7px 0" : "7px";
+
   return (
     <Accordion defaultActiveKey={defaultKey} flush={windowWidth < 650}>
       <Accordion.Item eventKey="1">
         <Accordion.Header onClick={() => setHeaderShowing(!headerShowing)}>
           {headerShowing ? `Hide ${dataType}` : `Show ${dataType}`}
         </Accordion.Header>
-        <Accordion.Body>{accordionBody}</Accordion.Body>
+        <Accordion.Body style={{ padding: accordionBodyPadding }}>
+          {accordionBody}
+        </Accordion.Body>
       </Accordion.Item>
     </Accordion>
   );
