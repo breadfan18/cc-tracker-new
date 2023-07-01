@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { ACCOUNT_TYPE, PROGRAMS, USERS } from "../../constants";
+import {
+  ACCOUNT_TYPE,
+  LOYALTY_DATA_KEYS,
+  PROGRAMS,
+  USERS,
+} from "../../constants";
 import { titleCase } from "../../helpers";
 
 const LoyaltyForm = ({
@@ -33,7 +38,7 @@ const LoyaltyForm = ({
         </div>
       )}
       <SelectInput
-        name="userId"
+        name={LOYALTY_DATA_KEYS.userId}
         label="User"
         value={loyaltyAcc.userId || ""}
         defaultOption="Select User"
@@ -45,7 +50,7 @@ const LoyaltyForm = ({
         // error={errors.author}
       />
       <SelectInput
-        name="loyaltyType"
+        name={LOYALTY_DATA_KEYS.loyaltyType}
         label="Account Type"
         value={loyaltyAcc.loyaltyType || ""}
         defaultOption="Select Account Type"
@@ -57,7 +62,7 @@ const LoyaltyForm = ({
         // error={errors.author}
       />
       <SelectInput
-        name="program"
+        name={LOYALTY_DATA_KEYS.program}
         label="Loyalty Program"
         value={loyaltyAcc.program?.id || ""}
         defaultOption="Select Program"
@@ -66,21 +71,21 @@ const LoyaltyForm = ({
         // error={errors.author}
       />
       <TextInput
-        name="memberId"
+        name={LOYALTY_DATA_KEYS.memberId}
         label="Member ID"
         value={loyaltyAcc.memberId}
         onChange={onChange}
         // error={errors.title}
       />
       <TextInput
-        name="loginId"
+        name={LOYALTY_DATA_KEYS.loginId}
         label="User Name"
         value={loyaltyAcc.loginId}
         onChange={onChange}
         // error={errors.title}
       />
       <TextInput
-        name="password"
+        name={LOYALTY_DATA_KEYS.password}
         label="Password"
         value={loyaltyAcc.password}
         onChange={onChange}

@@ -17,6 +17,15 @@ export const CARD_DATA_KEYS = {
   cardholder: "cardholder",
 };
 
+export const LOYALTY_DATA_KEYS = {
+  loyaltyType: "loyaltyType",
+  program: "program",
+  memberId: "memberId",
+  loginId: "loginId",
+  password: "password",
+  userId: "userId",
+};
+
 export const ISSUERS = [
   { name: "Chase", img: "https://i.imgur.com/AsfYKFY.png" },
   { name: "Amex", img: "https://i.imgur.com/1XOuPt8.png" },

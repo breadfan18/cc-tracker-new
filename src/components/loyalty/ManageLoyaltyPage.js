@@ -9,7 +9,7 @@ import { Spinner } from "../common/Spinner";
 import LoyaltyForm from "./LoyaltyForm";
 import { toast } from "react-toastify";
 import { maskPwd } from "../../helpers";
-import { PROGRAMS } from "../../constants";
+import { LOYALTY_DATA_KEYS, PROGRAMS } from "../../constants";
 
 const newLoyaltyAcc = {
   id: null,
@@ -46,7 +46,7 @@ const ManageLoyaltyPage = ({
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === "loyaltyType") {
+    if (name === LOYALTY_DATA_KEYS.loyaltyType) {
       const filteredPrograms = PROGRAMS.filter(
         (program) => program.type === value
       );
@@ -58,7 +58,7 @@ const ManageLoyaltyPage = ({
       [name]:
         name === "id" || name === "userId"
           ? parseInt(value, 10)
-          : name === "program"
+          : name === LOYALTY_DATA_KEYS.program
           ? PROGRAMS.find((program) => program.id === parseInt(value))
           : value,
     }));

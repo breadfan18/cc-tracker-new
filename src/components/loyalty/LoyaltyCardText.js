@@ -1,20 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { LOYALTY_DATA_KEYS } from "../../constants";
 
 function LoyaltyCardText({ account, dataType }) {
   const setLoyaltyAccountType = (account, dataType) => {
     switch (dataType) {
-      case "memberId":
+      case LOYALTY_DATA_KEYS.memberId:
         return {
           fieldName: "Member ID",
           value: account.memberId,
         };
-      case "loginId":
+      case LOYALTY_DATA_KEYS.loginId:
         return {
           fieldName: "User Name",
           value: account.loginId,
         };
-      case "password":
+      case LOYALTY_DATA_KEYS.password:
         return {
           fieldName: "Password",
           value: account.password,

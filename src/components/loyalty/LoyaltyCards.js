@@ -6,6 +6,7 @@ import LoyaltyAddEditModal from "./LoyaltyAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import LoyaltyCardText from "./LoyaltyCardText";
+import { LOYALTY_DATA_KEYS } from "../../constants";
 
 export default function LoyaltyCards({ loyaltyData }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -32,9 +33,18 @@ export default function LoyaltyCards({ loyaltyData }) {
           </div>
           <section id="loyaltyCardBody">
             <div>
-              <LoyaltyCardText account={acc} dataType="memberId" />
-              <LoyaltyCardText account={acc} dataType="loginId" />
-              <LoyaltyCardText account={acc} dataType="password" />
+              <LoyaltyCardText
+                account={acc}
+                dataType={LOYALTY_DATA_KEYS.memberId}
+              />
+              <LoyaltyCardText
+                account={acc}
+                dataType={LOYALTY_DATA_KEYS.loginId}
+              />
+              <LoyaltyCardText
+                account={acc}
+                dataType={LOYALTY_DATA_KEYS.password}
+              />
             </div>
             <div>
               <img

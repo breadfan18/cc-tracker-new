@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
-import { TiArrowUnsorted } from "react-icons/ti";
+import { FaSort } from "react-icons/fa";
 import { useSortableData } from "../../hooks/sortData";
 import LoyaltyAddEditModal from "./LoyaltyAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
+import { LOYALTY_DATA_KEYS } from "../../constants";
 
 const LoyaltyList = ({ loyaltyData, showEditDelete }) => {
   const { data, requestSort } = useSortableData(loyaltyData);
@@ -20,17 +21,19 @@ const LoyaltyList = ({ loyaltyData, showEditDelete }) => {
           <th></th>
           <th className="tableHeader">
             Program
-            <TiArrowUnsorted onClick={() => requestSort("program")} />
+            <FaSort onClick={() => requestSort(LOYALTY_DATA_KEYS.program)} />
           </th>
           <th className="tableHeader">
             Member ID{" "}
-            <TiArrowUnsorted onClick={() => requestSort("memberId")} />
+            <FaSort onClick={() => requestSort(LOYALTY_DATA_KEYS.memberId)} />
           </th>
           <th className="tableHeader">
-            User Name <TiArrowUnsorted onClick={() => requestSort("loginId")} />
+            User Name{" "}
+            <FaSort onClick={() => requestSort(LOYALTY_DATA_KEYS.loginId)} />
           </th>
           <th className="tableHeader">
-            Password <TiArrowUnsorted onClick={() => requestSort("password")} />
+            Password{" "}
+            <FaSort onClick={() => requestSort(LOYALTY_DATA_KEYS.password)} />
           </th>
           {showEditDelete && (
             <>
