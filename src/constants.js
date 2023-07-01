@@ -1,8 +1,8 @@
 export const ISSUERS = [
   { name: "Chase", img: "https://i.imgur.com/AsfYKFY.png" },
-  { name: "Amex", img: "https://i.imgur.com/LTh0ED5.png" },
+  { name: "Amex", img: "https://i.imgur.com/1XOuPt8.png" },
   { name: "CapOne", img: "https://i.imgur.com/u3Rr8rT.png" },
-  { name: "Barclays", img: "https://i.imgur.com/hms20yC.png" },
+  { name: "Barclays", img: "https://i.imgur.com/bsjoGQv.png" },
 ];
 export const CARD_TYPE = ["Personal", "Business"];
 export const ACCOUNT_TYPE = ["airlines", "hotels", "misc"];

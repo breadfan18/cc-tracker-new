@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import CardForm from "./CardForm";
 import { Spinner } from "../common/Spinner";
 import { toast } from "react-toastify";
-import { USERS } from "../../constants";
+import { ISSUERS, USERS } from "../../constants";
 
 const newCard = {
   id: null,
@@ -100,14 +100,29 @@ function CardDetailsPage({
   return loading ? (
     <Spinner />
   ) : (
-    <CardForm
-      card={card}
-      users={USERS}
-      saving={saving}
-      onSave={handleSave}
-      onChange={handleChange}
-      // errors={errors}
-    />
+    // <CardForm
+    //   card={card}
+    //   users={USERS}
+    //   saving={saving}
+    //   onSave={handleSave}
+    //   onChange={handleChange}
+    //   // errors={errors}
+    // />
+    <>
+      {ISSUERS.map((issuer) => (
+        <img
+          key={1}
+          src={issuer.img}
+          alt=""
+          style={{
+            height: "5rem",
+            width: "19rem",
+            objectFit: "contain",
+            border: "2px solid black",
+          }}
+        />
+      ))}
+    </>
   );
 }
 

@@ -24,9 +24,9 @@ const cards = [
   {
     id: 2,
     appDate: "2021-01-01",
-    issuer: { name: "Chase", img: "https://i.imgur.com/AsfYKFY.png" },
-    card: "Sapphire Reserve",
-    cardType: "Business",
+    issuer: { name: "Barclays", img: "https://i.imgur.com/hms20yC.png" },
+    card: "Aviator Red",
+    cardType: "Personal",
     inquiries: {
       experian: true,
       equifax: true,
@@ -46,7 +46,7 @@ const cards = [
   {
     id: 3,
     appDate: "2019-05-01",
-    issuer: { name: "Amex", img: "https://i.imgur.com/LTh0ED5.png" },
+    issuer: { name: "Amex", img: "https://i.imgur.com/1XOuPt8.png" },
     card: "Hilton Honors",
     cardType: "Personal",
     inquiries: {

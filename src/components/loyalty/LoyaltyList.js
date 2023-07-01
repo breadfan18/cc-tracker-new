@@ -44,11 +44,7 @@ const LoyaltyList = ({ loyaltyData, showEditDelete }) => {
           return (
             <tr key={acc.id}>
               <td>
-                <img
-                  src={acc.program.img}
-                  alt="AA"
-                  style={{ height: "2.5rem", width: "3.5rem" }}
-                />
+                <img className="loyaltyLogos" src={acc.program.img} alt="AA" />
               </td>
               <td>{acc.program.name}</td>
               <td>{acc.memberId}</td>

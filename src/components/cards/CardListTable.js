@@ -93,7 +93,7 @@ export default function CardListTable({
           {windowWidth > 1380 && !showCompactTable && (
             <th className="tableHeader">Spend By</th>
           )}
-          {windowWidth > 1044 && !showCompactTable && (
+          {windowWidth > 1050 && !showCompactTable && (
             <th className="tableHeader">Bonus</th>
           )}
           {windowWidth > 1280 && !showCompactTable && (
@@ -128,7 +128,10 @@ export default function CardListTable({
             >
               <td>{formatDate(card.appDate)}</td>
               {showUser && <td>{card.userName}</td>}
-              <td>{`${card.issuer.name} ${card.card}`}</td>
+              <td>
+                <img className="issuerLogos" src={card.issuer.img} alt="" />
+                {`  ${card.card}`}
+              </td>
               <td>{card.cardType}</td>
               {windowWidth > 1505 && <td>{formatCurrency(card.creditLine)}</td>}
               {windowWidth > 1505 && (
@@ -151,7 +154,7 @@ export default function CardListTable({
               {windowWidth > 1380 && !showCompactTable && (
                 <td>{formatDate(card.spendBy)}</td>
               )}
-              {windowWidth > 1044 && !showCompactTable && (
+              {windowWidth > 1050 && !showCompactTable && (
                 <td>
                   {card.bonusEarned ? (
                     <TbSquareRoundedCheckFilled style={{ color: "#198754" }} />

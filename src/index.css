@@ -184,6 +184,25 @@ div.alert-danger {
   padding: 0 5px 10px 0;
 }
 
+.issuerLogos {
+  height: 2.5rem;
+  width: 4rem;
+  object-fit: contain;
+  border: 1px solid var(--light-gray);
+  padding: 2px;
+  border-radius: 10px;
+  background-color: rgba(0,0,0,0.09);
+}
+
+.loyaltyLogos {
+  height: 3.5rem;
+  width: 5rem;
+  object-fit: contain;
+  border: 1px solid var(--light-gray);
+  padding: 5px;
+  border-radius: 10px;
+}
+
 form {
   max-width: 55rem;
   margin: 0 auto;
