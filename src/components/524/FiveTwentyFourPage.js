@@ -10,8 +10,8 @@ import { wasCardOpenedWithinLast24Months } from "../../helpers";
 import CustomAccordion from "../common/CustomAccordion";
 import SelectInput from "../common/SelectInput";
 import CardList from "../cards/CardListTable";
-import FiveTwentyFourCards from "./FiveTwentyFourCards";
 import { WindowWidthContext } from "../App";
+import CardListCards from "../cards/CardListCards";
 
 const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
   const windowWidth = useContext(WindowWidthContext);
@@ -53,7 +53,11 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
           showCompactTable={true}
         />
       ) : (
-        <FiveTwentyFourCards cards={cards524} showEditDelete={false} />
+        <CardListCards
+          cards={cards524}
+          showEditDelete={false}
+          showUserName={false}
+        />
       );
 
     return (
