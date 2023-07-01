@@ -5,6 +5,7 @@ import EmptyList from "../common/EmptyList";
 import LoyaltyAddEditModal from "./LoyaltyAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
+import LoyaltyCardText from "./LoyaltyCardText";
 
 export default function LoyaltyCards({ loyaltyData }) {
   const windowWidth = useContext(WindowWidthContext);
@@ -29,26 +30,21 @@ export default function LoyaltyCards({ loyaltyData }) {
               {acc.program.name}
             </Card.Subtitle>
           </div>
-          <Card.Text style={{ padding: "0 0 0 10px" }}>
-            <p className="mb-0 text-muted">
-              <small>
-                {" "}
-                <label>Member ID:</label> {acc.memberId}
-              </small>
-            </p>
-            <p className="mb-0 text-muted">
-              <small>
-                {" "}
-                <label>User Name:</label> {acc.loginId}
-              </small>
-            </p>
-            <p className="mb-0 text-muted">
-              <small>
-                {" "}
-                <label>Password:</label> {acc.password}
-              </small>
-            </p>
-          </Card.Text>
+          <section id="loyaltyCardBody">
+            <div>
+              <LoyaltyCardText account={acc} dataType="memberId" />
+              <LoyaltyCardText account={acc} dataType="loginId" />
+              <LoyaltyCardText account={acc} dataType="password" />
+            </div>
+            <div>
+              <img
+                src={acc.program.img}
+                alt="Issuer"
+                className="loyaltyLogos"
+              />
+            </div>
+          </section>
+
           <div className="editDeleteCard editDeleteOnCards">
             <LoyaltyAddEditModal loyaltyAcc={acc} />
             <ConfirmDeleteModal data={acc} dataType="loyaltyAcc" />
