@@ -7,10 +7,14 @@ import CardForm from "./CardForm";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
+import { ISSUERS } from "../../constants";
 
 const newCard = {
   id: null,
-  issuer: "",
+  issuer: {
+    name: null,
+    img: null,
+  },
   card: "",
   userId: null,
   inquiries: {
@@ -56,6 +60,8 @@ function CardAddEditModal({ card, saveCard }) {
             ? parseInt(value, 10)
             : name === "bonusEarned"
             ? checked
+            : name === "issuer"
+            ? ISSUERS.find((issuer) => issuer.name === value)
             : value,
       }));
     }

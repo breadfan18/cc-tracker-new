@@ -128,7 +128,7 @@ export default function CardListTable({
             >
               <td>{formatDate(card.appDate)}</td>
               {showUser && <td>{card.userName}</td>}
-              <td>{`${card.issuer} ${card.card}`}</td>
+              <td>{`${card.issuer.name} ${card.card}`}</td>
               <td>{card.cardType}</td>
               {windowWidth > 1505 && <td>{formatCurrency(card.creditLine)}</td>}
               {windowWidth > 1505 && (

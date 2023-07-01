@@ -69,11 +69,11 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
             <SelectInput
               name="issuer"
               label="Issuer"
-              value={card.issuer || ""}
+              value={card.issuer.name || ""}
               defaultOption="Select Issuer"
               options={ISSUERS.map((issuer) => ({
-                value: issuer,
-                text: issuer,
+                value: issuer.name,
+                text: issuer.name,
               }))}
               onChange={onChange}
               error={errors.author}

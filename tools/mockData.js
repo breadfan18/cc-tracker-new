@@ -2,7 +2,7 @@ const cards = [
   {
     id: 1,
     appDate: "2023-05-01",
-    issuer: "Chase",
+    issuer: { name: "Chase", img: "https://i.imgur.com/AsfYKFY.png" },
     card: "Sapphire Preferred",
     cardType: "Personal",
     inquiries: {
@@ -24,7 +24,7 @@ const cards = [
   {
     id: 2,
     appDate: "2021-01-01",
-    issuer: "Chase",
+    issuer: { name: "Chase", img: "https://i.imgur.com/AsfYKFY.png" },
     card: "Sapphire Reserve",
     cardType: "Business",
     inquiries: {
@@ -46,7 +46,7 @@ const cards = [
   {
     id: 3,
     appDate: "2019-05-01",
-    issuer: "Amex",
+    issuer: { name: "Amex", img: "https://i.imgur.com/LTh0ED5.png" },
     card: "Hilton Honors",
     cardType: "Personal",
     inquiries: {
@@ -68,7 +68,7 @@ const cards = [
   {
     id: 4,
     appDate: "2021-06-28",
-    issuer: "CapOne",
+    issuer: { name: "CapOne", img: "https://i.imgur.com/u3Rr8rT.png" },
     card: "Venture X",
     cardType: "Personal",
     inquiries: {

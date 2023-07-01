@@ -58,7 +58,9 @@ export default function CardListCards({ cards, showEditDelete, showUserName }) {
                   alignContent: "center",
                 }}
               >
-                <p style={{ margin: 0 }}>{`${card.issuer} ${card.card}`}</p>
+                <p
+                  style={{ margin: 0 }}
+                >{`${card.issuer.name} ${card.card}`}</p>
                 <p style={{ margin: 0 }}>
                   {card.signupBonus}{" "}
                   {card.bonusEarned ? (
