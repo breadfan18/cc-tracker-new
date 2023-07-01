@@ -166,6 +166,13 @@ div.alert-danger {
   margin-bottom: 0;
 }
 
+#cardBody, #loyaltyCardBody {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px
+}
+
 .cardBodyLabels {
   font-weight: bold;
 }

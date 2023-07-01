@@ -13,6 +13,7 @@ import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { CARD_DATA_KEYS } from "../../constants";
 
 export default function CardListTable({
   cards,
@@ -61,25 +62,26 @@ export default function CardListTable({
           <th className="tableHeader">
             App Date
             <FaSort
-              onClick={() => requestSort("appDate")}
+              onClick={() => requestSort(CARD_DATA_KEYS.appDate)}
               style={{ marginLeft: "5px" }}
             />
           </th>
           {showUser && (
             <th className="tableHeader">
               User
-              <FaSort onClick={() => requestSort("userName")} />
+              <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardholder)} />
             </th>
           )}
           <th className="tableHeader">
-            Card <FaSort onClick={() => requestSort("issuer")} />
+            Card <FaSort onClick={() => requestSort(CARD_DATA_KEYS.card)} />
           </th>
           <th className="tableHeader">
-            Type <FaSort onClick={() => requestSort("cardType")} />
+            Type <FaSort onClick={() => requestSort(CARD_DATA_KEYS.cardType)} />
           </th>
           {windowWidth > 1505 && (
             <th className="tableHeader">
-              Credit Line <FaSort onClick={() => requestSort("creditLine")} />
+              Credit Line{" "}
+              <FaSort onClick={() => requestSort(CARD_DATA_KEYS.creditLine)} />
             </th>
           )}
           {windowWidth > 1505 && <th className="tableHeader">Credit Pull</th>}
@@ -100,7 +102,7 @@ export default function CardListTable({
             <th className="tableHeader">Bonus Earn Date</th>
           )}
           <th className="tableHeader">
-            Status <FaSort onClick={() => requestSort("status")} />
+            Status <FaSort onClick={() => requestSort(CARD_DATA_KEYS.status)} />
           </th>
           {showEditDelete && (
             <>
@@ -127,7 +129,7 @@ export default function CardListTable({
               // onClick={() => routeChange(card)}
             >
               <td>{formatDate(card.appDate)}</td>
-              {showUser && <td>{card.userName}</td>}
+              {showUser && <td>{card.cardholder}</td>}
               <td>
                 <img className="issuerLogos" src={card.issuer.img} alt="" />
                 {`  ${card.card}`}

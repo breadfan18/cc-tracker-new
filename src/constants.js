@@ -1,3 +1,22 @@
+export const CARD_DATA_KEYS = {
+  appDate: "appDate",
+  creditLine: "creditLine",
+  annualFee: "annualFee",
+  nextFeeDate: "nextFeeDate",
+  bonusEarnDate: "bonusEarnDate",
+  cardType: "cardType",
+  userId: "userId",
+  bonusEarned: "bonusEarned",
+  status: "status",
+  issuer: "issuer",
+  card: "card",
+  spendReq: "spendReq",
+  spendBy: "spendBy",
+  signupBonus: "signupBonus",
+  inquiries: "inquiries",
+  cardholder: "cardholder",
+};
+
 export const ISSUERS = [
   { name: "Chase", img: "https://i.imgur.com/AsfYKFY.png" },
   { name: "Amex", img: "https://i.imgur.com/1XOuPt8.png" },

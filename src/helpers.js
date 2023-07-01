@@ -10,10 +10,12 @@ export function wasCardOpenedWithinLast24Months(appDate) {
 }
 
 export function addUserNameToCard(card) {
-  const userName = USERS.find((user) => user.id === parseInt(card.userId)).name;
+  const cardholder = USERS.find(
+    (user) => user.id === parseInt(card.userId)
+  ).name;
   return {
     ...card,
-    userName,
+    cardholder,
   };
 }
 

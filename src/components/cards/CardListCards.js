@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Card } from "react-bootstrap";
-import { USERS } from "../../constants";
+import { CARD_DATA_KEYS, USERS } from "../../constants";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import CardAddEditModal from "./CardAddEditModal";
@@ -74,20 +74,25 @@ export default function CardListCards({ cards, showEditDelete, showUserName }) {
               </div>
             </Card.Subtitle>
           </div>
-          <div style={{ padding: "0 0 0 10px" }}>
-            <CardText card={card} dataType={"appDate"} />
-            <CardText card={card} dataType={"creditLine"} />
-            <CardText card={card} dataType={"annualFee"} />
-            <CardText card={card} dataType={"nextFeeDate"} />
-            <CardText card={card} dataType={"bonusEarnedDate"} />
-            <CardText card={card} dataType={"cardType"} />
-            {showEditDelete ?? (
-              <div className="editDeleteCard editDeleteOnCards">
-                <CardAddEditModal card={card} />
-                <ConfirmDeleteModal data={card} dataType="card" />
-              </div>
-            )}
-          </div>
+          <section id="cardBody">
+            <div>
+              <CardText card={card} dataType={CARD_DATA_KEYS.appDate} />
+              <CardText card={card} dataType={CARD_DATA_KEYS.creditLine} />
+              <CardText card={card} dataType={CARD_DATA_KEYS.annualFee} />
+              <CardText card={card} dataType={CARD_DATA_KEYS.nextFeeDate} />
+              <CardText card={card} dataType={CARD_DATA_KEYS.bonusEarnDate} />
+              <CardText card={card} dataType={CARD_DATA_KEYS.cardType} />
+            </div>
+            <div>
+              <img src={card.issuer.img} alt="Issuer" className="issuerLogos" />
+            </div>
+          </section>
+          {showEditDelete ?? (
+            <div className="editDeleteCard editDeleteOnCards">
+              <CardAddEditModal card={card} />
+              <ConfirmDeleteModal data={card} dataType="card" />
+            </div>
+          )}
         </Card.Body>
       </Card>
     );

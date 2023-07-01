@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
-import { ACC_STATUS, CARD_TYPE, ISSUERS, USERS } from "../../constants";
+import {
+  ACC_STATUS,
+  CARD_DATA_KEYS,
+  CARD_TYPE,
+  ISSUERS,
+  USERS,
+} from "../../constants";
 import DateInput from "../common/DateInput";
 import RadioInput from "../common/RadioInput";
 import Col from "react-bootstrap/Col";
@@ -20,16 +26,16 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
           </div>
         )}
         <Form.Check
-          name="bonusEarned"
+          name={CARD_DATA_KEYS.bonusEarned}
           type="switch"
           label="Bonus Earned"
-          value="bonusEarned"
+          value={CARD_DATA_KEYS.bonusEarned}
           checked={card.bonusEarned}
           onChange={onChange}
           style={{ float: "right" }}
         />
         <SelectInput
-          name="status"
+          name={CARD_DATA_KEYS.status}
           label="Account Status"
           value={card.status || ""}
           defaultOption="Select Status"
@@ -43,7 +49,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         <Row>
           <Col>
             <DateInput
-              name="appDate"
+              name={CARD_DATA_KEYS.appDate}
               label="Application Date"
               onChange={onChange}
               value={card.appDate}
@@ -51,7 +57,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
           </Col>
           <Col>
             <SelectInput
-              name="userId"
+              name={CARD_DATA_KEYS.userId}
               label="Card Holder"
               value={card.userId || ""}
               defaultOption="Select Card Holder"
@@ -67,7 +73,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         <Row>
           <Col>
             <SelectInput
-              name="issuer"
+              name={CARD_DATA_KEYS.issuer}
               label="Issuer"
               value={card.issuer.name || ""}
               defaultOption="Select Issuer"
@@ -81,7 +87,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
           </Col>
           <Col>
             <TextInput
-              name="card"
+              name={CARD_DATA_KEYS.card}
               label="Card"
               value={card.card || ""}
               onChange={onChange}
@@ -92,7 +98,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         <Row>
           <Col>
             <SelectInput
-              name="cardType"
+              name={CARD_DATA_KEYS.cardType}
               label="Card Type"
               value={card.cardType}
               defaultOption="Select Card Type"
@@ -106,7 +112,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
           </Col>
           <Col>
             <TextInput
-              name="creditLine"
+              name={CARD_DATA_KEYS.creditLine}
               label="Credit Line"
               value={card.creditLine || ""}
               onChange={onChange}
@@ -118,7 +124,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         <Row>
           <Col>
             <TextInput
-              name="annualFee"
+              name={CARD_DATA_KEYS.annualFee}
               label="Annual Fee"
               value={card.annualFee}
               onChange={onChange}
@@ -128,7 +134,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
           </Col>
           <Col>
             <DateInput
-              name="nextFeeDate"
+              name={CARD_DATA_KEYS.nextFeeDate}
               label="Next Annual Fee Due"
               onChange={onChange}
               value={card.nextFeeDate}
@@ -138,7 +144,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         <Row>
           <Col>
             <TextInput
-              name="spendReq"
+              name={CARD_DATA_KEYS.spendReq}
               label="Spending Requirement"
               value={card.spendReq || ""}
               onChange={onChange}
@@ -148,7 +154,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
           </Col>
           <Col>
             <DateInput
-              name="spendBy"
+              name={CARD_DATA_KEYS.spendBy}
               label="Spend By"
               onChange={onChange}
               value={card.spendBy}
@@ -158,7 +164,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         <Row>
           <Col>
             <TextInput
-              name="signupBonus"
+              name={CARD_DATA_KEYS.signupBonus}
               label="Signup Bonus"
               value={card.signupBonus}
               onChange={onChange}
@@ -167,7 +173,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
           </Col>
           <Col>
             <DateInput
-              name="bonusEarnDate"
+              name={CARD_DATA_KEYS.bonusEarnDate}
               label="Bonus Earn Date"
               onChange={onChange}
               value={card.bonusEarnDate}
@@ -177,7 +183,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
         <Row>
           <Col>
             <RadioInput
-              name="inquiries"
+              name={CARD_DATA_KEYS.inquiries}
               label="Inquiries"
               inquiriesStatus={card.inquiries}
               onChange={onChange}
