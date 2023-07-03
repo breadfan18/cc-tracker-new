@@ -56,19 +56,14 @@ function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyData }) {
     setSaving(true);
     loyaltyAccForModal.password = maskPwd(loyaltyAccForModal.password);
 
-    saveLoyaltyData(loyaltyAccForModal)
-      .then(() => {
-        toast.success(
-          loyaltyAcc.id === null
-            ? "Loyalty Account Created"
-            : "Loyalty Account Updated"
-        );
-        history.push("/loyalty-accounts");
-      })
-      .catch((error) => {
-        setSaving(false);
-        throw "Error saving account." + error;
-      });
+    saveLoyaltyData(loyaltyAccForModal);
+
+    toast.success(
+      loyaltyAcc.id === null
+        ? "Loyalty Account Created"
+        : "Loyalty Account Updated"
+    );
+    // history.push("/loyalty-accounts");
 
     toggleShow();
     setLoyaltyAccForModal(newLoyaltyAcc);

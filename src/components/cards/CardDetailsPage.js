@@ -119,6 +119,9 @@ function CardDetailsPage({
             width: "19rem",
             objectFit: "contain",
             border: "2px solid black",
+            margin: "5px",
+            borderRadius: "10px",
+            padding: "5px",
           }}
         />
       ))}

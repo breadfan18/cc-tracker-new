@@ -36,19 +36,26 @@ export function loadloyaltyData() {
 }
 
 export function saveLoyaltyData(loyalty) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(beginApiCall());
-    return loyaltyApi
-      .createLoyaltyData(loyalty)
-      .then((savedAcc) => {
-        loyalty.id
-          ? dispatch(updateLoyaltyAccountSuccess(savedAcc))
-          : dispatch(createLoyaltyAccSuccess(savedAcc));
-      })
-      .catch((error) => {
-        dispatch(apiCallError(error));
-        throw error;
-      });
+
+    loyaltyApi.createLoyaltyData(loyalty);
+
+    loyalty.id
+      ? dispatch(updateLoyaltyAccountSuccess(loyalty))
+      : dispatch(createLoyaltyAccSuccess(loyalty));
+
+    // return loyaltyApi
+    //   .createLoyaltyData(loyalty)
+    //   .then((savedAcc) => {
+    //     loyalty.id
+    //       ? dispatch(updateLoyaltyAccountSuccess(savedAcc))
+    //       : dispatch(createLoyaltyAccSuccess(savedAcc));
+    //   })
+    //   .catch((error) => {
+    //     dispatch(apiCallError(error));
+    //     throw error;
+    //   });
   };
 }
 
