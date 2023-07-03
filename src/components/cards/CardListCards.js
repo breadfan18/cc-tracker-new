@@ -88,7 +88,10 @@ export default function CardListCards({ cards, showEditDelete, showUserName }) {
             </div>
           </section>
           {showEditDelete ?? (
-            <div className="editDeleteCard editDeleteOnCards">
+            <div
+              className="editDeleteCard editDeleteOnCards"
+              style={{ backgroundColor: cardTitleColor }}
+            >
               <CardAddEditModal card={card} />
               <ConfirmDeleteModal data={card} dataType="card" />
             </div>

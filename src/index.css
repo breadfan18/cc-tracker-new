@@ -187,8 +187,11 @@ div.alert-danger {
 }
 
 .editDeleteOnCards {
-  float: right;
-  padding: 0 5px 10px 0;
+  padding: 10px 5px 10px 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.09);
+  text-align: right;
+  border-radius: 0 0 5px 5px;
 }
 
 .issuerLogos {
