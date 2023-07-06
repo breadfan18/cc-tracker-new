@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref } from "firebase/database";
+import { getDatabase, onValue, ref, set } from "firebase/database";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -23,5 +23,12 @@ export function getFireBaseData(endpoint, dispatch, dispatchFunc) {
       allData.push(childData);
     });
     dispatch(dispatchFunc(allData));
+  });
+}
+
+export function writeToFirebase(endpoint, data, id) {
+  set(ref(db, `${endpoint}/${id}`), {
+    ...data,
+    id,
   });
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loadloyaltyData } from "../../redux/actions/loyaltyActions";
+import { loadloyaltyDataFromFirebase } from "../../redux/actions/loyaltyActions";
 import { Spinner } from "../common/Spinner";
 import LoyaltyTabs from "./LoyaltyTabs";
 import { addUserNameToCard } from "../../helpers";
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  loadloyaltyData,
+  loadloyaltyData: loadloyaltyDataFromFirebase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoyaltyPage);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { saveLoyaltyData } from "../../redux/actions/loyaltyActions";
+import { saveLoyaltyDataToFirebase } from "../../redux/actions/loyaltyActions";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
@@ -20,13 +20,11 @@ const newLoyaltyAcc = {
   userId: null,
 };
 
-function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyData }) {
+function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyDataToFirebase }) {
   const [loyaltyAccForModal, setLoyaltyAccForModal] = useState(
     loyaltyAcc ? { ...loyaltyAcc } : newLoyaltyAcc
   );
   const [programsFilteredByType, setFilteredPrograms] = useState([]);
-
-  const [saving, setSaving] = useState(false);
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
 
@@ -53,21 +51,23 @@ function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyData }) {
 
   const handleSave = (event) => {
     event.preventDefault();
-    setSaving(true);
     loyaltyAccForModal.password = maskPwd(loyaltyAccForModal.password);
 
-    saveLoyaltyData(loyaltyAccForModal);
+    saveLoyaltyDataToFirebase(loyaltyAccForModal);
 
     toast.success(
-      loyaltyAcc.id === null
+      loyaltyAccForModal?.id === null
         ? "Loyalty Account Created"
         : "Loyalty Account Updated"
     );
-    // history.push("/loyalty-accounts");
-
     toggleShow();
-    setLoyaltyAccForModal(newLoyaltyAcc);
   };
+
+  function clearLoyaltyAccState() {
+    setLoyaltyAccForModal(newLoyaltyAcc);
+    toggleShow();
+  }
+
   return (
     <>
       {loyaltyAccForModal.id !== null ? (
@@ -79,7 +79,11 @@ function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyData }) {
           <MdModeEditOutline />
         </Button>
       ) : (
-        <Button variant="primary" onClick={toggleShow} className="addButton">
+        <Button
+          variant="primary"
+          onClick={clearLoyaltyAccState}
+          className="addButton"
+        >
           Add Account
         </Button>
       )}
@@ -93,7 +97,6 @@ function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyData }) {
         <Modal.Body>
           <LoyaltyForm
             loyaltyAcc={loyaltyAccForModal}
-            saving={saving}
             onSave={handleSave}
             onChange={handleChange}
             filteredPrograms={programsFilteredByType}
@@ -107,7 +110,7 @@ function LoyaltyAddEditModal({ loyaltyAcc, saveLoyaltyData }) {
 
 LoyaltyAddEditModal.propTypes = {
   loyaltyAcc: PropTypes.object,
-  saveLoyaltyData: PropTypes.func.isRequired,
+  saveLoyaltyDataToFirebase: PropTypes.func.isRequired,
 };
 
 function mapStateToProps() {
@@ -115,7 +118,7 @@ function mapStateToProps() {
 }
 
 const mapDispatchToProps = {
-  saveLoyaltyData,
+  saveLoyaltyDataToFirebase,
 };
 
 export default connect(
