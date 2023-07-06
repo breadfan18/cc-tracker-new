@@ -6,6 +6,7 @@ import {
 } from "./actionTypes";
 import * as cardsApi from "../../api/cardsApi";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
+import { getFireBaseData } from "../../../tools/firebase";
 
 function loadCardsSuccess(cards) {
   return { type: LOAD_CARDS_SUCCESS, cards };
@@ -26,15 +27,7 @@ function deleteCardSuccess(card) {
 export function loadCards() {
   return (dispatch) => {
     dispatch(beginApiCall());
-    return cardsApi
-      .getCards()
-      .then((cards) => {
-        dispatch(loadCardsSuccess(cards));
-      })
-      .catch((error) => {
-        dispatch(apiCallError(error));
-        throw error;
-      });
+    getFireBaseData("cards", dispatch, loadCardsSuccess);
   };
 }
 

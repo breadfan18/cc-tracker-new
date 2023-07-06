@@ -1,34 +1,38 @@
 import { handleResponse, handleError } from "./apiUtils";
 const baseUrl = process.env.API_URL + "/loyaltyData/";
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
-
-const firebaseConfig = {
-  databaseURL: "https://cc-tracker-new-default-rtdb.firebaseio.com",
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getDatabase();
-
-function writeUserData(userId, name, email, imageUrl) {
-  const db = getDatabase();
-  set(ref(db, "loyalty/" + userId), {
-    username: name,
-    email: email,
-    profile_picture: imageUrl,
-  });
-}
+import { db } from "../../tools/firebase";
+import { onValue, ref, set } from "firebase/database";
+import { uid } from "uid";
+import { slugify } from "../helpers";
 
 export function getLoyaltyData() {
-  return fetch(baseUrl).then(handleResponse).catch(handleError);
-}
+  let loyaltyData = {};
+  onValue(ref(db), (snapshot) => {
+    const data = snapshot.val();
 
-export function createLoyaltyData(loyaltyAcc) {
-  const foo = set(ref(db, "loyaltyData/" + loyaltyAcc.id), {
-    ...loyaltyAcc,
+    console.log(data);
+    if (data !== null) {
+      loyaltyData = data.loyaltyData;
+    }
   });
 
-  console.log(foo);
+  // console.log("loyaltyData", loyaltyData);
+  return loyaltyData;
+}
+// export function getLoyaltyData() {
+//   return fetch(baseUrl).then(handleResponse).catch(handleError);
+// }
+
+export function createLoyaltyData(loyaltyAcc) {
+  // set(ref(db, "loyaltyData/" + loyaltyAcc.id), {
+  //   ...loyaltyAcc,
+  // });
+  const uuid = slugify(loyaltyAcc.program.name + loyaltyAcc.userId);
+  console.log();
+  set(ref(db, `loyaltyData/${uuid}`), {
+    ...loyaltyAcc,
+    uuid,
+  });
 }
 // export function createLoyaltyData(loyalty) {
 //   return fetch(baseUrl + (loyalty.id || ""), {

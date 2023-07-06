@@ -6,6 +6,7 @@ import {
   LOAD_LOYALTY_DATA_SUCCESS,
   UPDATE_LOYALTY_DATA_SUCCESS,
 } from "./actionTypes";
+import { getFireBaseData } from "../../../tools/firebase";
 
 function loadLoyaltyDataSuccess(loyaltyData) {
   return { type: LOAD_LOYALTY_DATA_SUCCESS, loyaltyData };
@@ -20,13 +21,36 @@ function deleteLoyaltyAccSuccess(loyalty) {
   return { type: DELETE_LOYALTY_ACC_SUCCESS, loyalty };
 }
 
+// export function loadloyaltyData() {
+//   return (dispatch) => {
+//     dispatch(beginApiCall());
+//     loyaltyApi
+//       .getLoyaltyData()
+//       .then((loyaltyData) => {
+//         dispatch(loadLoyaltyDataSuccess(loyaltyData));
+//       })
+//       .catch((error) => {
+//         dispatch(apiCallError(error));
+//         throw error;
+//       });
+//   };
+// }
+
 export function loadloyaltyData() {
   return (dispatch) => {
     dispatch(beginApiCall());
-    loyaltyApi
-      .getLoyaltyData()
-      .then((loyaltyData) => {
-        dispatch(loadLoyaltyDataSuccess(loyaltyData));
+    getFireBaseData("loyaltyData", dispatch, loadLoyaltyDataSuccess);
+  };
+}
+
+export function saveLoyaltyData(loyalty) {
+  return async (dispatch) => {
+    return loyaltyApi
+      .createLoyaltyData(loyalty)
+      .then((savedAcc) => {
+        loyalty.id
+          ? dispatch(updateLoyaltyAccountSuccess(savedAcc))
+          : dispatch(createLoyaltyAccSuccess(savedAcc));
       })
       .catch((error) => {
         dispatch(apiCallError(error));
@@ -35,29 +59,19 @@ export function loadloyaltyData() {
   };
 }
 
-export function saveLoyaltyData(loyalty) {
-  return async (dispatch) => {
-    dispatch(beginApiCall());
-
-    loyaltyApi.createLoyaltyData(loyalty);
-
-    loyalty.id
-      ? dispatch(updateLoyaltyAccountSuccess(loyalty))
-      : dispatch(createLoyaltyAccSuccess(loyalty));
-
-    // return loyaltyApi
-    //   .createLoyaltyData(loyalty)
-    //   .then((savedAcc) => {
-    //     loyalty.id
-    //       ? dispatch(updateLoyaltyAccountSuccess(savedAcc))
-    //       : dispatch(createLoyaltyAccSuccess(savedAcc));
-    //   })
-    //   .catch((error) => {
-    //     dispatch(apiCallError(error));
-    //     throw error;
-    //   });
-  };
-}
+// export function saveLoyaltyData(loyaltyAcc) {
+//   return async (dispatch) => {
+//     dispatch(beginApiCall());
+//     const uuid = slugify(loyaltyAcc.program.name + loyaltyAcc.userId);
+//     set(ref(db, `loyaltyData/${loyaltyAcc.id}`), {
+//       ...loyaltyAcc,
+//       id: uuid,
+//     });
+//     loyaltyAcc.id
+//       ? dispatch(updateLoyaltyAccountSuccess(loyaltyAcc))
+//       : dispatch(createLoyaltyAccSuccess(loyaltyAcc));
+//   };
+// }
 
 export function deleteLoyaltyData(loyaltyAcc) {
   return (dispatch) => {
