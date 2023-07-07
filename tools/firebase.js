@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref, set } from "firebase/database";
+import { getDatabase, onValue, ref, remove, set } from "firebase/database";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -31,4 +31,8 @@ export function writeToFirebase(endpoint, data, id) {
     ...data,
     id,
   });
+}
+
+export function deleteFromFirebase(endpoint, id) {
+  remove(ref(db, `${endpoint}/${id}`));
 }

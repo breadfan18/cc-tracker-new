@@ -6,7 +6,11 @@ import {
   LOAD_LOYALTY_DATA_SUCCESS,
   UPDATE_LOYALTY_DATA_SUCCESS,
 } from "./actionTypes";
-import { getFireBaseData, writeToFirebase } from "../../../tools/firebase";
+import {
+  deleteFromFirebase,
+  getFireBaseData,
+  writeToFirebase,
+} from "../../../tools/firebase";
 import { slugify } from "../../helpers";
 import { uid } from "uid";
 
@@ -46,17 +50,10 @@ export function saveLoyaltyDataToFirebase(loyaltyAcc) {
   };
 }
 
-export function deleteLoyaltyData(loyaltyAcc) {
+export function deleteLoyaltyDataFromFirebase(loyaltyAcc) {
   return (dispatch) => {
-    return loyaltyApi
-      .deleteLoyaltyAcc(loyaltyAcc)
-      .then(() => {
-        dispatch(deleteLoyaltyAccSuccess(loyaltyAcc));
-      })
-      .catch((error) => {
-        dispatch(apiCallError(error));
-        throw error;
-      });
+    deleteFromFirebase("loyaltyData", loyaltyAcc.id);
+    dispatch(deleteLoyaltyAccSuccess(loyaltyAcc));
   };
 }
 
@@ -84,6 +81,20 @@ export function saveLoyaltyDataToJsonServer(loyalty) {
         loyalty.id
           ? dispatch(updateLoyaltyAccountSuccess(savedAcc))
           : dispatch(createLoyaltyAccSuccess(savedAcc));
+      })
+      .catch((error) => {
+        dispatch(apiCallError(error));
+        throw error;
+      });
+  };
+}
+
+export function deleteLoyaltyDataFromJsonServer(loyaltyAcc) {
+  return (dispatch) => {
+    return loyaltyApi
+      .deleteLoyaltyAcc(loyaltyAcc)
+      .then(() => {
+        dispatch(deleteLoyaltyAccSuccess(loyaltyAcc));
       })
       .catch((error) => {
         dispatch(apiCallError(error));

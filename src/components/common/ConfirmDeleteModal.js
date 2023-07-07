@@ -2,27 +2,28 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { deleteCard } from "../../redux/actions/cardsActions";
-import { deleteLoyaltyData } from "../../redux/actions/loyaltyActions";
+import { deleteCardFromFirebase } from "../../redux/actions/cardsActions";
+import { deleteLoyaltyDataFromFirebase } from "../../redux/actions/loyaltyActions";
 import { toast } from "react-toastify";
 import { DeleteButton } from "./DeleteButton";
 import PropTypes from "prop-types";
 
-function ConfirmDeleteModal({ data, dataType, deleteCard, deleteLoyaltyData }) {
+function ConfirmDeleteModal({
+  data,
+  dataType,
+  deleteCardFromFirebase,
+  deleteLoyaltyDataFromFirebase,
+}) {
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
 
   function handleDelete(data) {
     if (dataType === "card") {
-      deleteCard(data)
-        .then(() => {
-          toast.success("Card deleted");
-        })
-        .catch((error) => alert("Error deleteing card " + error));
+      deleteCardFromFirebase(data);
+      toast.success("Card deleted");
     } else if (dataType === "loyaltyAcc") {
-      deleteLoyaltyData(data).then(() => {
-        toast.success("Loyalty Account Deleted");
-      });
+      deleteLoyaltyDataFromFirebase(data);
+      toast.success("Loyalty Account Deleted");
     }
   }
 
@@ -53,8 +54,8 @@ function ConfirmDeleteModal({ data, dataType, deleteCard, deleteLoyaltyData }) {
 ConfirmDeleteModal.propTypes = {
   data: PropTypes.object.isRequired,
   dataType: PropTypes.string.isRequired,
-  deleteCard: PropTypes.func.isRequired,
-  deleteLoyaltyData: PropTypes.func.isRequired,
+  deleteCardFromFirebase: PropTypes.func.isRequired,
+  deleteLoyaltyDataFromFirebase: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -64,8 +65,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  deleteCard,
-  deleteLoyaltyData,
+  deleteCardFromFirebase,
+  deleteLoyaltyDataFromFirebase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConfirmDeleteModal);

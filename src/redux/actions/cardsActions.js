@@ -6,7 +6,11 @@ import {
 } from "./actionTypes";
 import * as cardsApi from "../../api/cardsApi";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
-import { getFireBaseData, writeToFirebase } from "../../../tools/firebase";
+import {
+  deleteFromFirebase,
+  getFireBaseData,
+  writeToFirebase,
+} from "../../../tools/firebase";
 import { slugify } from "../../helpers";
 import { uid } from "uid";
 
@@ -48,17 +52,10 @@ export function saveCardToFirebase(card) {
   };
 }
 
-export function deleteCard(card) {
+export function deleteCardFromFirebase(card) {
   return (dispatch) => {
-    return cardsApi
-      .deleteCard(card)
-      .then(() => {
-        dispatch(deleteCardSuccess(card));
-      })
-      .catch((error) => {
-        dispatch(apiCallError(error));
-        throw error;
-      });
+    deleteFromFirebase("cards", card.id);
+    dispatch(deleteCardSuccess(card));
   };
 }
 
@@ -87,6 +84,20 @@ export function saveCardToJsonServer(card) {
         card.id
           ? dispatch(updateCardSuccess(savedCard))
           : dispatch(createCardSuccess(savedCard));
+      })
+      .catch((error) => {
+        dispatch(apiCallError(error));
+        throw error;
+      });
+  };
+}
+
+export function deleteCardFromJsonServer(card) {
+  return (dispatch) => {
+    return cardsApi
+      .deleteCard(card)
+      .then(() => {
+        dispatch(deleteCardSuccess(card));
       })
       .catch((error) => {
         dispatch(apiCallError(error));
