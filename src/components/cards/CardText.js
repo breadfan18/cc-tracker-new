@@ -31,7 +31,7 @@ function CardText({ card, dataType }) {
         return {
           fieldName: "Bonus Earned Date",
           value:
-            card.bonusEarnDate === null
+            card.bonusEarnDate === undefined
               ? "N/A"
               : formatDate(card.bonusEarnDate),
         };

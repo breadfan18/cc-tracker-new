@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { loadCards, saveCard } from "../../redux/actions/cardsActions";
+import {
+  loadCardsFromFirebase,
+  saveCardToFirebase,
+} from "../../redux/actions/cardsActions";
 import PropTypes from "prop-types";
 import CardForm from "./CardForm";
 import { Spinner } from "../common/Spinner";
@@ -23,8 +26,8 @@ const newCard = {
 
 function CardDetailsPage({
   cards,
-  loadCards,
-  saveCard,
+  loadCardsFromFirebase,
+  saveCardToFirebase,
   history,
   loading,
   ...props
@@ -36,7 +39,9 @@ function CardDetailsPage({
 
   useEffect(() => {
     if (cards.length === 0) {
-      loadCards().catch((error) => alert("Loading Cards Failed" + error));
+      loadCardsFromFirebase().catch((error) =>
+        alert("Loading Cards Failed" + error)
+      );
     } else {
       // Need to understand this logic..
       setCard({ ...props.card });
@@ -84,7 +89,7 @@ function CardDetailsPage({
     const finalCard = { ...card, inquiries: inquiries };
     // if (!formIsValid()) return;
     setSaving(true);
-    saveCard(finalCard)
+    saveCardToFirebase(finalCard)
       .then(() => {
         toast.success(card.id === null ? "Card Created" : "Card Updated");
         history.push("/cards");
@@ -119,6 +124,9 @@ function CardDetailsPage({
             width: "19rem",
             objectFit: "contain",
             border: "2px solid black",
+            margin: "5px",
+            borderRadius: "10px",
+            padding: "5px",
           }}
         />
       ))}
@@ -151,8 +159,8 @@ function mapStateToProps(state, ownProps) {
 }
 
 const mapDispatchToProps = {
-  loadCards,
-  saveCard,
+  loadCardsFromFirebase,
+  saveCardToFirebase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardDetailsPage);

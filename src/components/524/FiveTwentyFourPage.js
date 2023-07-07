@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { USERS } from "../../constants";
-import { loadCards } from "../../redux/actions/cardsActions";
+import { loadCardsFromFirebase } from "../../redux/actions/cardsActions";
 import { Spinner } from "../common/Spinner";
 import PropTypes from "prop-types";
 import { FiveTwentyFourStatus } from "./FiveTwentyFourStatus";
@@ -148,7 +148,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  loadCards,
+  loadCards: loadCardsFromFirebase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FiveTwentyFourPage);

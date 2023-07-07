@@ -11,7 +11,10 @@ export default function cardsReducer(state = initialState.cards, action) {
     case LOAD_CARDS_SUCCESS:
       return action.cards;
     case CREATE_CARDS_SUCCESS:
-      return [...state, { ...action.card }];
+      /* This is just returning state instead of [...state, { ...action.card }]
+      because Firebase real time database adds new data immediately..
+      so it's already available in state */
+      return state;
     case UPDATE_CARDS_SUCCESS:
       return state.map((card) =>
         card.id === action.card.id ? action.card : card

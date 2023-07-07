@@ -6,6 +6,13 @@ import {
 } from "./actionTypes";
 import * as cardsApi from "../../api/cardsApi";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
+import {
+  deleteFromFirebase,
+  getFireBaseData,
+  writeToFirebase,
+} from "../../../tools/firebase";
+import { slugify } from "../../helpers";
+import { uid } from "uid";
 
 function loadCardsSuccess(cards) {
   return { type: LOAD_CARDS_SUCCESS, cards };
@@ -23,7 +30,37 @@ function deleteCardSuccess(card) {
   return { type: DELETE_CARD_SUCCESS, card };
 }
 
-export function loadCards() {
+export function loadCardsFromFirebase() {
+  return (dispatch) => {
+    dispatch(beginApiCall());
+    getFireBaseData("cards", dispatch, loadCardsSuccess);
+  };
+}
+
+export function saveCardToFirebase(card) {
+  return (dispatch) => {
+    dispatch(beginApiCall());
+    const uuid =
+      card.id === null
+        ? slugify(
+            card.issuer.name + " " + card.card + " " + card.userId + " " + uid()
+          )
+        : card.id;
+
+    writeToFirebase("cards", card, uuid);
+    dispatch(createCardSuccess(card));
+  };
+}
+
+export function deleteCardFromFirebase(card) {
+  return (dispatch) => {
+    deleteFromFirebase("cards", card.id);
+    dispatch(deleteCardSuccess(card));
+  };
+}
+
+// JSON Server Functions for testing
+export function loadCardsFromJsonServer() {
   return (dispatch) => {
     dispatch(beginApiCall());
     return cardsApi
@@ -38,7 +75,7 @@ export function loadCards() {
   };
 }
 
-export function saveCard(card) {
+export function saveCardToJsonServer(card) {
   return (dispatch) => {
     dispatch(beginApiCall());
     return cardsApi
@@ -55,7 +92,7 @@ export function saveCard(card) {
   };
 }
 
-export function deleteCard(card) {
+export function deleteCardFromJsonServer(card) {
   return (dispatch) => {
     return cardsApi
       .deleteCard(card)

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
-  loadloyaltyData,
-  saveLoyaltyData,
+  loadloyaltyDataFromFirebase,
+  saveLoyaltyDataToFirebase,
 } from "../../redux/actions/loyaltyActions";
 import { Spinner } from "../common/Spinner";
 import LoyaltyForm from "./LoyaltyForm";
@@ -69,7 +69,7 @@ const ManageLoyaltyPage = ({
     setSaving(true);
     loyaltyAcc.password = maskPwd(loyaltyAcc.password);
 
-    saveLoyaltyData(loyaltyAcc)
+    saveLoyaltyDataToFirebase(loyaltyAcc)
       .then(() => {
         toast.success(
           loyaltyAcc.id === null
@@ -125,8 +125,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = {
-  loadloyaltyData,
-  saveLoyaltyData,
+  loadloyaltyData: loadloyaltyDataFromFirebase,
+  saveLoyaltyData: saveLoyaltyDataToFirebase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageLoyaltyPage);

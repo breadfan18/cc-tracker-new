@@ -14,7 +14,6 @@ const LoyaltyForm = ({
   loyaltyAcc,
   onSave,
   onChange,
-  saving = false,
   filteredPrograms,
   errors = {},
 }) => {

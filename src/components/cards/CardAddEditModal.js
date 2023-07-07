@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { saveCard } from "../../redux/actions/cardsActions";
+import {
+  saveCardToJsonServer,
+  saveCardToFirebase,
+} from "../../redux/actions/cardsActions";
 import CardForm from "./CardForm";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
@@ -32,12 +35,11 @@ const newCard = {
   status: null,
 };
 
-function CardAddEditModal({ card, saveCard }) {
+function CardAddEditModal({ card, saveCardToFirebase }) {
   const [cardForModal, setCardForModal] = useState(
     card ? { ...card } : newCard
   );
   const [inquiries, setInquiries] = useState({ ...cardForModal.inquiries });
-  const [saving, setSaving] = useState(false);
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
 
@@ -67,7 +69,23 @@ function CardAddEditModal({ card, saveCard }) {
     }
   }
 
-  function handleSave(event) {
+  function handleSaveForFirebase(event) {
+    event.preventDefault();
+    for (let i in inquiries) {
+      if (inquiries[i] === null) inquiries[i] = false;
+    }
+    const finalCard = { ...cardForModal, inquiries: inquiries };
+    saveCardToFirebase(finalCard);
+    toast.success(cardForModal.id === null ? "Card Created" : "Card Updated");
+    toggleShow();
+  }
+
+  function clearCardState() {
+    setCardForModal(newCard);
+    toggleShow();
+  }
+
+  function handleSaveForJsonServer(event) {
     event.preventDefault();
 
     for (let i in inquiries) {
@@ -75,8 +93,7 @@ function CardAddEditModal({ card, saveCard }) {
     }
     const finalCard = { ...cardForModal, inquiries: inquiries };
     // if (!formIsValid()) return;
-    setSaving(true);
-    saveCard(finalCard)
+    saveCardToJsonServer(finalCard)
       .then(() => {
         toast.success(
           cardForModal.id === null ? "Card Created" : "Card Updated"
@@ -84,7 +101,6 @@ function CardAddEditModal({ card, saveCard }) {
         history.push("/cards");
       })
       .catch(() => {
-        setSaving(false);
         // setErrors({
         //   onSave: error.message,
         // });
@@ -93,6 +109,7 @@ function CardAddEditModal({ card, saveCard }) {
     toggleShow();
     setCardForModal(newCard);
   }
+
   return (
     <>
       {cardForModal.id !== null ? (
@@ -104,7 +121,11 @@ function CardAddEditModal({ card, saveCard }) {
           <MdModeEditOutline />
         </Button>
       ) : (
-        <Button variant="primary" onClick={toggleShow} className="addButton">
+        <Button
+          variant="primary"
+          onClick={clearCardState}
+          className="addButton"
+        >
           Add Card
         </Button>
       )}
@@ -122,8 +143,7 @@ function CardAddEditModal({ card, saveCard }) {
         <Modal.Body>
           <CardForm
             card={cardForModal}
-            saving={saving}
-            onSave={handleSave}
+            onSave={handleSaveForFirebase}
             onChange={handleChange}
             // toggle={toggle}
             // errors={errors}
@@ -136,7 +156,7 @@ function CardAddEditModal({ card, saveCard }) {
 
 CardAddEditModal.propTypes = {
   card: PropTypes.object,
-  saveCard: PropTypes.func.isRequired,
+  saveCardToFirebase: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -146,7 +166,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  saveCard,
+  saveCardToFirebase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardAddEditModal);

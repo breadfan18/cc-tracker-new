@@ -84,7 +84,7 @@ export default function CardListTable({
               <FaSort onClick={() => requestSort(CARD_DATA_KEYS.creditLine)} />
             </th>
           )}
-          {windowWidth > 1505 && <th className="tableHeader">Credit Pull</th>}
+          {windowWidth > 1550 && <th className="tableHeader">Credit Pull</th>}
           <th className="tableHeader">
             Annual Fee <FaSort onClick={() => requestSort("annualFee")} />
           </th>
@@ -95,7 +95,7 @@ export default function CardListTable({
           {windowWidth > 1380 && !showCompactTable && (
             <th className="tableHeader">Spend By</th>
           )}
-          {windowWidth > 1050 && !showCompactTable && (
+          {windowWidth > 1070 && !showCompactTable && (
             <th className="tableHeader">Bonus</th>
           )}
           {windowWidth > 1280 && !showCompactTable && (
@@ -136,7 +136,7 @@ export default function CardListTable({
               </td>
               <td>{card.cardType}</td>
               {windowWidth > 1505 && <td>{formatCurrency(card.creditLine)}</td>}
-              {windowWidth > 1505 && (
+              {windowWidth > 1550 && (
                 <td
                   className="creditPullColumn"
                   style={{ whiteSpace: "pre-wrap" }}
@@ -156,7 +156,7 @@ export default function CardListTable({
               {windowWidth > 1380 && !showCompactTable && (
                 <td>{formatDate(card.spendBy)}</td>
               )}
-              {windowWidth > 1050 && !showCompactTable && (
+              {windowWidth > 1070 && !showCompactTable && (
                 <td>
                   {card.bonusEarned ? (
                     <TbSquareRoundedCheckFilled style={{ color: "#198754" }} />

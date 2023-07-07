@@ -52,3 +52,17 @@ export function formatCurrency(currencyStr) {
     minimumFractionDigits: 0,
   }).format(currencyStr);
 }
+
+export const slugify = (str) => {
+  const whitespacePattern = /[\s-]+/g;
+  const nonLatinPattern = /[^\w-]/g;
+  return str
+    .trim()
+    .toLocaleLowerCase("en-US")
+    .normalize("NFKD")
+    .replace(nonLatinPattern, " ")
+    .replace(whitespacePattern, "-")
+    .replace(/--+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
+};
