@@ -35,7 +35,12 @@ const newCard = {
   status: null,
 };
 
-function CardAddEditModal({ card, saveCardToFirebase, setModalOpen }) {
+function CardAddEditModal({
+  card,
+  saveCardToFirebase,
+  setModalOpen,
+  modalOpen,
+}) {
   const [cardForModal, setCardForModal] = useState(
     card ? { ...card } : newCard
   );
@@ -77,8 +82,7 @@ function CardAddEditModal({ card, saveCardToFirebase, setModalOpen }) {
     const finalCard = { ...cardForModal, inquiries: inquiries };
     saveCardToFirebase(finalCard);
     toast.success(cardForModal.id === null ? "Card Created" : "Card Updated");
-    toggleShow();
-    setModalOpen(false);
+    toggleModal();
   }
 
   function clearCardState() {
@@ -117,6 +121,11 @@ function CardAddEditModal({ card, saveCardToFirebase, setModalOpen }) {
     setModalOpen(true);
   }
 
+  function toggleModal() {
+    toggleShow();
+    setModalOpen(!modalOpen);
+  }
+
   return (
     <>
       {cardForModal.id !== null ? (
@@ -139,7 +148,7 @@ function CardAddEditModal({ card, saveCardToFirebase, setModalOpen }) {
 
       <Modal
         show={show}
-        onHide={toggleShow}
+        onHide={toggleModal}
         centered
         size="lg"
         backdrop="static"
@@ -164,7 +173,8 @@ function CardAddEditModal({ card, saveCardToFirebase, setModalOpen }) {
 CardAddEditModal.propTypes = {
   card: PropTypes.object,
   saveCardToFirebase: PropTypes.func.isRequired,
-  setModalOpen: PropTypes.bool.isRequired,
+  setModalOpen: PropTypes.func.isRequired,
+  modalOpen: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {

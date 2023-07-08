@@ -183,7 +183,12 @@ export default function CardListTable({
                       modalOpen={modalOpen}
                       setModalOpen={setModalOpen}
                     />
-                    <ConfirmDeleteModal data={card} dataType="card" />
+                    <ConfirmDeleteModal
+                      data={card}
+                      dataType="card"
+                      modalOpen={modalOpen}
+                      setModalOpen={setModalOpen}
+                    />
                   </td>
                 </>
               )}

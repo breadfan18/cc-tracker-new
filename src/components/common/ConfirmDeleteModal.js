@@ -13,6 +13,8 @@ function ConfirmDeleteModal({
   dataType,
   deleteCardFromFirebase,
   deleteLoyaltyDataFromFirebase,
+  modalOpen,
+  setModalOpen,
 }) {
   const [show, setShow] = useState(false);
   const toggleShow = () => setShow(!show);
@@ -25,12 +27,25 @@ function ConfirmDeleteModal({
       deleteLoyaltyDataFromFirebase(data);
       toast.success("Loyalty Account Deleted");
     }
+
+    toggleModal();
+  }
+
+  function handleDeleteButtonClick(e) {
+    e.stopPropagation();
+    toggleShow();
+    setModalOpen(true);
+  }
+
+  function toggleModal() {
+    toggleShow();
+    setModalOpen(!modalOpen);
   }
 
   return (
     <>
-      <DeleteButton onClick={toggleShow} />
-      <Modal show={show} onHide={toggleShow} centered>
+      <DeleteButton onClick={handleDeleteButtonClick} />
+      <Modal show={show} onHide={toggleModal} centered>
         <Modal.Header className="modalHeader" closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
@@ -56,6 +71,8 @@ ConfirmDeleteModal.propTypes = {
   dataType: PropTypes.string.isRequired,
   deleteCardFromFirebase: PropTypes.func.isRequired,
   deleteLoyaltyDataFromFirebase: PropTypes.func.isRequired,
+  setModalOpen: PropTypes.func.isRequired,
+  modalOpen: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
