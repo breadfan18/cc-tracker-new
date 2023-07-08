@@ -137,7 +137,12 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
               name={CARD_DATA_KEYS.nextFeeDate}
               label="Next Annual Fee Due"
               onChange={onChange}
-              value={card.nextFeeDate}
+              value={
+                card.annualFee === "0" || card.annualFee === ""
+                  ? ""
+                  : card.nextFeeDate
+              }
+              disabled={card.annualFee === "0" || card.annualFee === ""}
             />
           </Col>
         </Row>
@@ -157,7 +162,12 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
               name={CARD_DATA_KEYS.spendBy}
               label="Spend By"
               onChange={onChange}
-              value={card.spendBy}
+              value={
+                card.spendReq === "0" || card.spendReq === ""
+                  ? ""
+                  : card.spendBy
+              }
+              disabled={card.spendReq === "0" || card.spendReq === ""}
             />
           </Col>
         </Row>
@@ -177,6 +187,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
               label="Bonus Earn Date"
               onChange={onChange}
               value={card.bonusEarnDate}
+              disabled={!card.bonusEarned}
             />
           </Col>
         </Row>

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 
-const DateInput = ({ name, label, onChange, value, error }) => {
+const DateInput = ({ name, label, onChange, value, error, disabled }) => {
   let wrapperClass = "form-group";
   if (error && error.length > 0) {
     wrapperClass += " " + "has-error";
@@ -19,6 +19,7 @@ const DateInput = ({ name, label, onChange, value, error }) => {
           name={name}
           value={value}
           onChange={onChange}
+          disabled={disabled}
         />
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
