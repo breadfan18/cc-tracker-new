@@ -35,7 +35,7 @@ const newCard = {
   status: null,
 };
 
-function CardAddEditModal({ card, saveCardToFirebase }) {
+function CardAddEditModal({ card, saveCardToFirebase, setModalOpen }) {
   const [cardForModal, setCardForModal] = useState(
     card ? { ...card } : newCard
   );
@@ -78,6 +78,7 @@ function CardAddEditModal({ card, saveCardToFirebase }) {
     saveCardToFirebase(finalCard);
     toast.success(cardForModal.id === null ? "Card Created" : "Card Updated");
     toggleShow();
+    setModalOpen(false);
   }
 
   function clearCardState() {
@@ -110,12 +111,18 @@ function CardAddEditModal({ card, saveCardToFirebase }) {
     setCardForModal(newCard);
   }
 
+  function handleEditButtonClick(e) {
+    e.stopPropagation();
+    toggleShow();
+    setModalOpen(true);
+  }
+
   return (
     <>
       {cardForModal.id !== null ? (
         <Button
           variant="success"
-          onClick={toggleShow}
+          onClick={handleEditButtonClick}
           className="rounded-circle"
         >
           <MdModeEditOutline />
@@ -157,6 +164,7 @@ function CardAddEditModal({ card, saveCardToFirebase }) {
 CardAddEditModal.propTypes = {
   card: PropTypes.object,
   saveCardToFirebase: PropTypes.func.isRequired,
+  setModalOpen: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {

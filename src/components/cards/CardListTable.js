@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
@@ -23,11 +23,12 @@ export default function CardListTable({
 }) {
   const windowWidth = useContext(WindowWidthContext);
   const { data, requestSort } = useSortableData(cards);
+  const [modalOpen, setModalOpen] = useState(false);
   const history = useHistory();
 
   const routeChange = (card) => {
     let path = `/card/${card.id}`;
-    history.push(path);
+    if (!modalOpen) history.push(path);
   };
 
   function handleInquiriesList(inq) {
@@ -126,7 +127,7 @@ export default function CardListTable({
               onMouseEnter={handleTrColorOnHover}
               onMouseLeave={(e) => handleTrColorReset(e, card)}
               style={{ cursor: "pointer" }}
-              // onClick={() => routeChange(card)}
+              onClick={() => routeChange(card)}
             >
               <td>{formatDate(card.appDate)}</td>
               {showUser && <td>{card.cardholder}</td>}
@@ -177,7 +178,11 @@ export default function CardListTable({
               {showEditDelete && (
                 <>
                   <td className="editDeleteCard">
-                    <CardAddEditModal card={card} />
+                    <CardAddEditModal
+                      card={card}
+                      modalOpen={modalOpen}
+                      setModalOpen={setModalOpen}
+                    />
                     <ConfirmDeleteModal data={card} dataType="card" />
                   </td>
                 </>
