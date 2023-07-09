@@ -22,7 +22,16 @@ body {
 }
 
 .cardDetailsBody {
-  display: flex
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cardDetailsBody > .card {
+  margin-right: 1rem;
+}
+
+#cardDetailsSectionRight .card {
+  margin-bottom: 1rem;
 }
 
 .navContainer {
@@ -232,4 +241,8 @@ form {
 .modalHeader{
   color: var(--color-blue);
   background-color: var(--light-gray);
+}
+
+.list-group-item {
+  /* padding-left: 0; */
 }
