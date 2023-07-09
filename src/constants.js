@@ -1,3 +1,26 @@
+export const NEW_CARD = {
+  id: null,
+  issuer: {
+    name: null,
+    img: null,
+  },
+  card: "",
+  userId: null,
+  inquiries: {
+    experian: null,
+    equifax: null,
+    transunion: null,
+  },
+  annualFee: 0,
+  nextFeeDate: null,
+  creditLine: null,
+  spendReq: 0,
+  spendBy: null,
+  signupBonus: null,
+  bonusEarnDate: null,
+  status: null,
+};
+
 export const CARD_DATA_KEYS = {
   appDate: "appDate",
   creditLine: "creditLine",

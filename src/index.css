@@ -15,9 +15,14 @@ body {
 }
 
 .fiveTwentyFourContainer,
-.loyaltyContainer {
+.loyaltyContainer,
+.cardDetailsContainer {
   max-width: 1000px;
   margin: 0 auto;
+}
+
+.cardDetailsBody {
+  display: flex
 }
 
 .navContainer {

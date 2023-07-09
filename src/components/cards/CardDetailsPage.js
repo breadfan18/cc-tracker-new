@@ -5,141 +5,165 @@ import {
   saveCardToFirebase,
 } from "../../redux/actions/cardsActions";
 import PropTypes from "prop-types";
-import CardForm from "./CardForm";
 import { Spinner } from "../common/Spinner";
-import { toast } from "react-toastify";
-import { ISSUERS, USERS } from "../../constants";
+import { USERS, NEW_CARD } from "../../constants";
+import { Card, ListGroup } from "react-bootstrap";
+import CardAddEditModal from "./CardAddEditModal";
+import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
+import { formatCurrency, formatDate, handleInquiriesList } from "../../helpers";
 
-const newCard = {
-  id: null,
-  issuer: "",
-  card: "",
-  userId: null,
-  inquiries: {
-    experian: null,
-    equifax: null,
-    transunion: null,
-  },
-  annualFee: 0,
-  nextFeeDate: null,
-};
-
-function CardDetailsPage({
-  cards,
-  loadCardsFromFirebase,
-  saveCardToFirebase,
-  history,
-  loading,
-  ...props
-}) {
+function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
   const [card, setCard] = useState({ ...props.card });
-  const [saving, setSaving] = useState(false);
-  const [inquiries, setInquiries] = useState({ ...props.card.inquiries });
-  // const [errors, setErrors] = useState({});
+  const [cardholder, setCardholder] = useState("");
 
   useEffect(() => {
     if (cards.length === 0) {
-      loadCardsFromFirebase().catch((error) =>
-        alert("Loading Cards Failed" + error)
-      );
+      loadCardsFromFirebase();
     } else {
       // Need to understand this logic..
       setCard({ ...props.card });
+      setCardholder(USERS.find((user) => user.id === props.card.userId));
     }
   }, [props.card]);
-
-  function handleChange(event) {
-    const { name, value, checked } = event.target;
-
-    if (name === "inquiries") {
-      value === "experian"
-        ? setInquiries((prev) => ({ ...prev, [value]: checked }))
-        : value === "equifax"
-        ? setInquiries((prev) => ({ ...prev, [value]: checked }))
-        : value === "transunion"
-        ? setInquiries((prev) => ({ ...prev, [value]: checked }))
-        : null;
-    } else {
-      setCard((prevCard) => ({
-        ...prevCard,
-        [name]: name === "userId" ? parseInt(value, 10) : value,
-      }));
-    }
-  }
-
-  // function formIsValid() {
-  //   const { issuer, card, user } = card;
-  //   const errors = {};
-
-  //   if (!issuer) errors.issuer = "Issuer is required";
-  //   if (!card) errors.card = "Card is required";
-  //   if (!user) errors.User = "User is required";
-
-  //   setErrors(errors);
-  //   // Form is valid if the errors objects has no properties
-  //   return Object.keys(errors).length === 0;
-  // }
-
-  function handleSave(event) {
-    event.preventDefault();
-
-    for (let i in inquiries) {
-      if (inquiries[i] === null) inquiries[i] = false;
-    }
-    const finalCard = { ...card, inquiries: inquiries };
-    // if (!formIsValid()) return;
-    setSaving(true);
-    saveCardToFirebase(finalCard)
-      .then(() => {
-        toast.success(card.id === null ? "Card Created" : "Card Updated");
-        history.push("/cards");
-      })
-      .catch(() => {
-        setSaving(false);
-        // setErrors({
-        //   onSave: error.message,
-        // });
-      });
-  }
 
   return loading ? (
     <Spinner />
   ) : (
-    // <CardForm
-    //   card={card}
-    //   users={USERS}
-    //   saving={saving}
-    //   onSave={handleSave}
-    //   onChange={handleChange}
-    //   // errors={errors}
-    // />
-    <>
-      {ISSUERS.map((issuer) => (
-        <img
-          key={1}
-          src={issuer.img}
-          alt=""
-          style={{
-            height: "5rem",
-            width: "19rem",
-            objectFit: "contain",
-            border: "2px solid black",
-            margin: "5px",
-            borderRadius: "10px",
-            padding: "5px",
-          }}
-        />
-      ))}
-    </>
+    <div className="cardDetailsContainer">
+      <section className="sectionHeaders">
+        <h2 style={{ marginBottom: 0 }}>Card Details</h2>
+      </section>
+      <div className="cardDetailsBody">
+        <Card style={{ width: "40rem" }}>
+          <Card.Img
+            variant="top"
+            src={card.issuer.img}
+            style={{
+              padding: "2rem",
+              backgroundColor: "#D9D7D7",
+              maxHeight: "10rem",
+              objectFit: "contain",
+            }}
+          />
+          <Card.Body>
+            <Card.Title style={{ fontSize: "2.2rem" }}>
+              {card.issuer.name} {card.card}
+            </Card.Title>
+            <Card.Title style={{ fontSize: "1.5rem" }}>
+              {cardholder.name}
+            </Card.Title>
+            <hr />
+            <ListGroup className="list-group-flush">
+              <ListGroup.Item>
+                {" "}
+                <Card.Title>
+                  {" "}
+                  <strong style={{ color: "#0080FF" }}>App Date:</strong>{" "}
+                  {card.appDate}
+                </Card.Title>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                {" "}
+                <Card.Title>
+                  {" "}
+                  <strong style={{ color: "#0080FF" }}>Card Type:</strong>{" "}
+                  {card.cardType}
+                </Card.Title>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                {" "}
+                <Card.Title>
+                  {" "}
+                  <strong style={{ color: "#0080FF" }}>Annual Fee:</strong>{" "}
+                  {formatCurrency(card.annualFee)}
+                </Card.Title>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Card.Title>
+                  {" "}
+                  <strong style={{ color: "#0080FF" }}>
+                    Next Fee Date:
+                  </strong>{" "}
+                  {card.nextFeeDate === "" ? "N/A" : card.nextFeeDate}
+                </Card.Title>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Card.Title>
+                  {" "}
+                  <strong style={{ color: "#0080FF" }}>
+                    Credit Line:
+                  </strong>{" "}
+                  {formatCurrency(card.creditLine)}
+                </Card.Title>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Card.Title>
+                  {" "}
+                  <strong style={{ color: "#0080FF" }}>Inquiries:</strong>{" "}
+                  {handleInquiriesList(card.inquiries)}
+                </Card.Title>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Card.Title>
+                  {" "}
+                  <strong style={{ color: "#0080FF" }}>
+                    Signup Bonus:
+                  </strong>{" "}
+                  {card.signupBonus}
+                </Card.Title>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Card.Title>
+                  {" "}
+                  <strong style={{ color: "#0080FF" }}>
+                    Spend Requirement:
+                  </strong>{" "}
+                  {formatCurrency(card.spendReq)}
+                </Card.Title>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Card.Title>
+                  {" "}
+                  <strong style={{ color: "#0080FF" }}>
+                    Spend By Date:
+                  </strong>{" "}
+                  {card.spendBy}
+                </Card.Title>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Card.Title>
+                  {" "}
+                  <strong style={{ color: "#0080FF" }}>
+                    Card Status:
+                  </strong>{" "}
+                  {card.status}
+                </Card.Title>
+              </ListGroup.Item>
+            </ListGroup>
+            <hr />
+          </Card.Body>
+          <Card.Body>
+            <div
+              className="editDeleteCard editDeleteOnCards"
+              style={{ backgroundColor: "white" }}
+            >
+              <CardAddEditModal card={props.card} />
+              <ConfirmDeleteModal data={card} dataType="card" />
+            </div>
+          </Card.Body>
+        </Card>
+        <div style={{ height: "100%", border: "2px solid black" }}>
+          Comments
+        </div>
+      </div>
+    </div>
   );
 }
 
 CardDetailsPage.propTypes = {
   card: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
-  loadCards: PropTypes.func.isRequired,
-  saveCard: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
+  loadCardsFromFirebase: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
@@ -148,13 +172,13 @@ export function getCardById(cards, id) {
 }
 
 function mapStateToProps(state, ownProps) {
-  const id = parseInt(ownProps.match.params.id);
+  const id = ownProps.match.params.id;
   const card =
-    id && state.cards.length > 0 ? getCardById(state.cards, id) : newCard;
+    id && state.cards.length > 0 ? getCardById(state.cards, id) : NEW_CARD;
   return {
     card,
     cards: state.cards,
-    loading: state.apiCallsInProgress > 0,
+    loading: state.apiCallsInProgress > 0 || state.cards.length === 0,
   };
 }
 

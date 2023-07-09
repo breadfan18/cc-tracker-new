@@ -10,30 +10,7 @@ import CardForm from "./CardForm";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { MdModeEditOutline } from "react-icons/md";
-import { ISSUERS } from "../../constants";
-
-const newCard = {
-  id: null,
-  issuer: {
-    name: null,
-    img: null,
-  },
-  card: "",
-  userId: null,
-  inquiries: {
-    experian: null,
-    equifax: null,
-    transunion: null,
-  },
-  annualFee: 0,
-  nextFeeDate: null,
-  creditLine: null,
-  spendReq: 0,
-  spendBy: null,
-  signupBonus: null,
-  bonusEarnDate: null,
-  status: null,
-};
+import { ISSUERS, NEW_CARD } from "../../constants";
 
 function CardAddEditModal({
   card,
@@ -42,7 +19,7 @@ function CardAddEditModal({
   modalOpen,
 }) {
   const [cardForModal, setCardForModal] = useState(
-    card ? { ...card } : newCard
+    card ? { ...card } : NEW_CARD
   );
   const [inquiries, setInquiries] = useState({ ...cardForModal.inquiries });
   const [show, setShow] = useState(false);
@@ -86,7 +63,7 @@ function CardAddEditModal({
   }
 
   function clearCardState() {
-    setCardForModal(newCard);
+    setCardForModal(NEW_CARD);
     toggleShow();
   }
 
@@ -112,7 +89,7 @@ function CardAddEditModal({
       });
 
     toggleShow();
-    setCardForModal(newCard);
+    setCardForModal(NEW_CARD);
   }
 
   function handleEditButtonClick(e) {

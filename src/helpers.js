@@ -100,3 +100,10 @@ export function formDisabledCheck(dataType) {
     dataType === 0 || dataType === "0" || dataType === "" || dataType === null
   );
 }
+
+export function handleInquiriesList(inq) {
+  return Object.keys(inq).reduce((output, i) => {
+    if (inq[i]) output += titleCase(i) + "\n";
+    return output;
+  }, "");
+}

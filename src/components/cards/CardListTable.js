@@ -8,7 +8,12 @@ import {
   TbSquareRoundedChevronsRightFilled,
 } from "react-icons/tb";
 import { useSortableData } from "../../hooks/sortData";
-import { formatDate, titleCase, formatCurrency } from "../../helpers";
+import {
+  formatDate,
+  titleCase,
+  formatCurrency,
+  handleInquiriesList,
+} from "../../helpers";
 import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
@@ -30,13 +35,6 @@ export default function CardListTable({
     let path = `/card/${card.id}`;
     if (!modalOpen) history.push(path);
   };
-
-  function handleInquiriesList(inq) {
-    return Object.keys(inq).reduce((output, i) => {
-      if (inq[i]) output += titleCase(i) + "\n";
-      return output;
-    }, "");
-  }
 
   function handleTrColorOnHover(e) {
     if (e.target.parentNode.tagName === "TR") {
