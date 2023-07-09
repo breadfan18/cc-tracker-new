@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
@@ -14,7 +14,7 @@ import RadioInput from "../common/RadioInput";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { titleCase } from "../../helpers";
+import { formDisabledCheck, titleCase } from "../../helpers";
 
 const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
   return (
@@ -137,12 +137,8 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
               name={CARD_DATA_KEYS.nextFeeDate}
               label="Next Annual Fee Due"
               onChange={onChange}
-              value={
-                card.annualFee === "0" || card.annualFee === ""
-                  ? ""
-                  : card.nextFeeDate
-              }
-              disabled={card.annualFee === "0" || card.annualFee === ""}
+              value={formDisabledCheck(card.annualFee) ? "" : card.nextFeeDate}
+              disabled={formDisabledCheck(card.annualFee)}
             />
           </Col>
         </Row>
@@ -151,7 +147,7 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
             <TextInput
               name={CARD_DATA_KEYS.spendReq}
               label="Spending Requirement"
-              value={card.spendReq || ""}
+              value={card.spendReq}
               onChange={onChange}
               error={errors.title}
               isCurrency={true}
@@ -162,12 +158,8 @@ const CardForm = ({ card, onSave, onChange, saving, errors = {} }) => {
               name={CARD_DATA_KEYS.spendBy}
               label="Spend By"
               onChange={onChange}
-              value={
-                card.spendReq === "0" || card.spendReq === ""
-                  ? ""
-                  : card.spendBy
-              }
-              disabled={card.spendReq === "0" || card.spendReq === ""}
+              value={formDisabledCheck(card.spendReq) ? "" : card.spendBy}
+              disabled={formDisabledCheck(card.spendReq)}
             />
           </Col>
         </Row>

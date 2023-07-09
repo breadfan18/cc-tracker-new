@@ -24,8 +24,7 @@ function CardText({ card, dataType }) {
       case CARD_DATA_KEYS.nextFeeDate:
         return {
           fieldName: "Next Fee Date",
-          value:
-            card.nextFeeDate === "N/A" ? "N/A" : formatDate(card.nextFeeDate),
+          value: card.nextFeeDate === "" ? "N/A" : formatDate(card.nextFeeDate),
         };
       case CARD_DATA_KEYS.bonusEarnDate:
         return {

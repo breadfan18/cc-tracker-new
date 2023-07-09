@@ -147,15 +147,15 @@ export default function CardListTable({
               )}
               <td>{formatCurrency(card.annualFee)}</td>
               <td>
-                {card.nextFeeDate === "N/A"
-                  ? "N/A"
-                  : formatDate(card.nextFeeDate)}
+                {card.nextFeeDate === "" ? "N/A" : formatDate(card.nextFeeDate)}
               </td>
               {windowWidth > 1380 && !showCompactTable && (
                 <td>{formatCurrency(card.spendReq)}</td>
               )}
               {windowWidth > 1380 && !showCompactTable && (
-                <td>{formatDate(card.spendBy)}</td>
+                <td>
+                  {card.spendBy === "" ? "N/A" : formatDate(card.spendBy)}
+                </td>
               )}
               {windowWidth > 1070 && !showCompactTable && (
                 <td>

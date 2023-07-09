@@ -66,3 +66,37 @@ export const slugify = (str) => {
     .replace(/^-+/, "")
     .replace(/-+$/, "");
 };
+
+// Not using this function right now. But need to try again in the future
+export const normalizeData = (cards) => {
+  const handleInquiriesList = (inq) => {
+    return Object.keys(inq).reduce((output, i) => {
+      if (inq[i]) output += titleCase(i) + "\n";
+      return output;
+    }, "");
+  };
+
+  const formattedCards = [...cards].map((card) => {
+    card.appDate = formatDate(card.appDate);
+    card.nextFeeDate === ""
+      ? (card.nextFeeDate = "N/A")
+      : (card.nextFeeDate = formatDate(card.nextFeeDate));
+    card.spendBy === ""
+      ? (card.spendBy = "N/A")
+      : (card.spendBy = formatDate(card.spendBy));
+    card.bonusEarnDate === "" || card.bonusEarnDate === undefined
+      ? (card.bonusEarnDate = "WIP")
+      : formatDate(card.bonusEarnDate);
+    card.status = titleCase(card.status);
+    // card.inquiries = handleInquiriesList(card.inquiries);
+    return card;
+  });
+
+  return formattedCards;
+};
+
+export function formDisabledCheck(dataType) {
+  return (
+    dataType === 0 || dataType === "0" || dataType === "" || dataType === null
+  );
+}
