@@ -13,6 +13,7 @@ import {
   titleCase,
   formatCurrency,
   handleInquiriesList,
+  setColorForCardStatus,
 } from "../../helpers";
 import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
@@ -115,13 +116,7 @@ export default function CardListTable({
           return (
             <tr
               key={card.id}
-              className={
-                card.status === "closed"
-                  ? "table-danger"
-                  : card.status === "downgraded"
-                  ? "table-warning"
-                  : null
-              }
+              className={setColorForCardStatus("cardTable", card.status)}
               onMouseEnter={handleTrColorOnHover}
               onMouseLeave={(e) => handleTrColorReset(e, card)}
               style={{ cursor: "pointer" }}

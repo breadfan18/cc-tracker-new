@@ -11,17 +11,13 @@ import {
   TbSquareRoundedChevronsRightFilled,
 } from "react-icons/tb";
 import CardText from "./CardText";
+import { setColorForCardStatus } from "../../helpers";
 export default function CardListCards({ cards, showEditDelete, showUserName }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
 
   const allCards = cards.map((card) => {
-    const cardTitleColor =
-      card.status === "closed"
-        ? "rgb(248,215,218)"
-        : card.status === "downgraded"
-        ? "rgb(255,243,205)"
-        : null;
+    const cardTitleColor = setColorForCardStatus("cardCard", card.status);
     return (
       <Card style={{ width: cardWidth }} key={card.id} className="cardCard">
         <Card.Body style={{ padding: "0" }}>

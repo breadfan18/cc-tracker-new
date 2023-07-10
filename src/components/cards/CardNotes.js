@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Form, Table } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 
 function CardNotes() {
@@ -24,8 +24,11 @@ function CardNotes() {
       </Card.Body>
 
       <Card.Footer className="text-muted">
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Control as="textarea" rows={2} />
+        </Form.Group>
         <Button variant="primary" className="addButton">
-          Add Comment
+          Add Note
         </Button>
       </Card.Footer>
     </Card>

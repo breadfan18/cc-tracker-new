@@ -7,10 +7,14 @@ import {
 import PropTypes from "prop-types";
 import { Spinner } from "../common/Spinner";
 import { USERS, NEW_CARD } from "../../constants";
-import { Card, ListGroup, Table } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
 import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
-import { formatCurrency, formatDate, handleInquiriesList } from "../../helpers";
+import {
+  formatCurrency,
+  handleInquiriesList,
+  setColorForCardStatus,
+} from "../../helpers";
 import CardNotes from "./CardNotes";
 
 function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
@@ -43,7 +47,11 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
           style={{
             width: "30rem",
             backgroundColor:
-              card.status === "closed" ? "rgb(248,215,218)" : null,
+              card.status === "closed"
+                ? "rgb(248,215,218)"
+                : card.status === "downgraded"
+                ? "rgb(255,243,205)"
+                : null,
           }}
         >
           <Card.Img
@@ -64,7 +72,10 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
               {cardholder.name}
             </Card.Title>
             <hr />
-            <Table borderless>
+            <Table
+              borderless
+              className={setColorForCardStatus("cardTable", card.status)}
+            >
               <tbody>
                 <tr>
                   <td style={{ color: "#0080FF", fontWeight: "bold" }}>
@@ -131,7 +142,6 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
           </Card.Body>
         </Card>
         <div id="cardDetailsSectionRight">
-          <CardNotes />
           <CardNotes />
           <CardNotes />
         </div>

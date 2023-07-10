@@ -107,3 +107,19 @@ export function handleInquiriesList(inq) {
     return output;
   }, "");
 }
+
+export function setColorForCardStatus(componentType, cardStatus) {
+  if (componentType === "cardTable") {
+    return cardStatus === "closed"
+      ? "table-danger"
+      : cardStatus === "downgraded"
+      ? "table-warning"
+      : null;
+  } else if (componentType === "cardCard") {
+    return cardStatus === "closed"
+      ? "rgb(248,215,218)"
+      : cardStatus === "downgraded"
+      ? "rgb(255,243,205)"
+      : null;
+  }
+}
