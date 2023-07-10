@@ -16,8 +16,7 @@ function CardNotes() {
             <tr>
               <td>03-01-2023</td>
               <td style={{ display: "inline-block" }}>
-                Brought Samay home from the hospital and it just took forever to
-                get him to sleep
+                Brought Samay home from the hospital
               </td>
             </tr>
           </tbody>

@@ -7,7 +7,7 @@ import {
 import PropTypes from "prop-types";
 import { Spinner } from "../common/Spinner";
 import { USERS, NEW_CARD } from "../../constants";
-import { Card, ListGroup } from "react-bootstrap";
+import { Card, ListGroup, Table } from "react-bootstrap";
 import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { formatCurrency, formatDate, handleInquiriesList } from "../../helpers";
@@ -39,7 +39,13 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
         </div>
       </section>
       <div className="cardDetailsBody">
-        <Card style={{ width: "30rem" }}>
+        <Card
+          style={{
+            width: "30rem",
+            backgroundColor:
+              card.status === "closed" ? "rgb(248,215,218)" : null,
+          }}
+        >
           <Card.Img
             variant="top"
             src={card.issuer.img}
@@ -58,106 +64,74 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
               {cardholder.name}
             </Card.Title>
             <hr />
-            <ListGroup className="list-group-flush">
-              <ListGroup.Item>
-                {" "}
-                <Card.Text>
-                  {" "}
-                  <strong style={{ color: "#0080FF", minWidth: "5rem" }}>
-                    App Date:
-                  </strong>{" "}
-                  {card.appDate}
-                </Card.Text>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                {" "}
-                <Card.Text>
-                  {" "}
-                  <strong style={{ color: "#0080FF", minWidth: "5rem" }}>
-                    Card Type:
-                  </strong>{" "}
-                  {card.cardType}
-                </Card.Text>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                {" "}
-                <Card.Text>
-                  {" "}
-                  <strong style={{ color: "#0080FF", minWidth: "5rem" }}>
-                    Annual Fee:
-                  </strong>{" "}
-                  {formatCurrency(card.annualFee)}
-                </Card.Text>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Card.Text>
-                  {" "}
-                  <strong style={{ color: "#0080FF", minWidth: "5rem" }}>
-                    Next Fee Date:
-                  </strong>{" "}
-                  {card.nextFeeDate === "" ? "N/A" : card.nextFeeDate}
-                </Card.Text>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Card.Text>
-                  {" "}
-                  <strong style={{ color: "#0080FF", minWidth: "5rem" }}>
-                    Credit Line:
-                  </strong>{" "}
-                  {formatCurrency(card.creditLine)}
-                </Card.Text>
-              </ListGroup.Item>
-
-              <ListGroup.Item>
-                <Card.Text>
-                  {" "}
-                  <strong style={{ color: "#0080FF", minWidth: "5rem" }}>
-                    Inquiries:
-                  </strong>{" "}
-                  {handleInquiriesList(card.inquiries)}
-                </Card.Text>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Card.Text>
-                  {" "}
-                  <strong style={{ color: "#0080FF", minWidth: "5rem" }}>
-                    Signup Bonus:
-                  </strong>{" "}
-                  {card.signupBonus}
-                </Card.Text>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Card.Text>
-                  {" "}
-                  <strong style={{ color: "#0080FF", minWidth: "5rem" }}>
-                    Spend Requirement:
-                  </strong>{" "}
-                  {formatCurrency(card.spendReq)}
-                </Card.Text>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Card.Text>
-                  {" "}
-                  <strong style={{ color: "#0080FF", minWidth: "5rem" }}>
-                    Spend By Date:
-                  </strong>{" "}
-                  {card.spendBy}
-                </Card.Text>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Card.Text>
-                  {" "}
-                  <strong style={{ color: "#0080FF", minWidth: "5rem" }}>
-                    Card Status:
-                  </strong>{" "}
-                  {card.status}
-                </Card.Text>
-              </ListGroup.Item>
-            </ListGroup>
+            <Table borderless>
+              <tbody>
+                <tr>
+                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                    App Date:{" "}
+                  </td>
+                  <td>{card.appDate}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                    Card Type:{" "}
+                  </td>
+                  <td>{card.cardType}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                    Annual Fee:{" "}
+                  </td>
+                  <td>{formatCurrency(card.annualFee)}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                    Next Fee Date:{" "}
+                  </td>
+                  <td>{card.nextFeeDate}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                    Credit Line:{" "}
+                  </td>
+                  <td>{formatCurrency(card.creditLine)}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                    Inquiries:{" "}
+                  </td>
+                  <td>{handleInquiriesList(card.inquiries)}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                    Signup Bonus:{" "}
+                  </td>
+                  <td>{card.signupBonus}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                    Spend Requirement:{" "}
+                  </td>
+                  <td>{formatCurrency(card.spendReq)}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                    Spend By:{" "}
+                  </td>
+                  <td>{card.spendBy}</td>
+                </tr>
+                <tr>
+                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                    Card Status:{" "}
+                  </td>
+                  <td>{card.status}</td>
+                </tr>
+              </tbody>
+            </Table>
           </Card.Body>
-          <Card.Body></Card.Body>
         </Card>
         <div id="cardDetailsSectionRight">
+          <CardNotes />
           <CardNotes />
           <CardNotes />
         </div>
