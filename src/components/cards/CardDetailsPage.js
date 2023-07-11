@@ -4,6 +4,7 @@ import {
   loadCardsFromFirebase,
   saveCardToFirebase,
 } from "../../redux/actions/cardsActions";
+import { loadCardNotesFromFirebase } from "../../redux/actions/cardNotesActions";
 import PropTypes from "prop-types";
 import { Spinner } from "../common/Spinner";
 import { USERS, NEW_CARD } from "../../constants";
@@ -17,13 +18,21 @@ import {
 } from "../../helpers";
 import CardNotes from "./CardNotes";
 
-function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
+function CardDetailsPage({
+  cards,
+  loadCardsFromFirebase,
+  loading,
+  loadCardNotesFromFirebase,
+  cardNotes,
+  ...props
+}) {
   const [card, setCard] = useState({ ...props.card });
   const [cardholder, setCardholder] = useState("");
 
   useEffect(() => {
     if (cards.length === 0) {
       loadCardsFromFirebase();
+      loadCardNotesFromFirebase();
     } else {
       // Need to understand this logic..
       setCard({ ...props.card });
@@ -79,61 +88,61 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
               <tbody>
                 <tr>
                   <td style={{ color: "#0080FF", fontWeight: "bold" }}>
-                    App Date:{" "}
+                    App Date:
                   </td>
                   <td>{card.appDate}</td>
                 </tr>
                 <tr>
                   <td style={{ color: "#0080FF", fontWeight: "bold" }}>
-                    Card Type:{" "}
+                    Card Type:
                   </td>
                   <td>{card.cardType}</td>
                 </tr>
                 <tr>
                   <td style={{ color: "#0080FF", fontWeight: "bold" }}>
-                    Annual Fee:{" "}
+                    Annual Fee:
                   </td>
                   <td>{formatCurrency(card.annualFee)}</td>
                 </tr>
                 <tr>
                   <td style={{ color: "#0080FF", fontWeight: "bold" }}>
-                    Next Fee Date:{" "}
+                    Next Fee Date:
                   </td>
                   <td>{card.nextFeeDate}</td>
                 </tr>
                 <tr>
                   <td style={{ color: "#0080FF", fontWeight: "bold" }}>
-                    Credit Line:{" "}
+                    Credit Line:
                   </td>
                   <td>{formatCurrency(card.creditLine)}</td>
                 </tr>
                 <tr>
                   <td style={{ color: "#0080FF", fontWeight: "bold" }}>
-                    Inquiries:{" "}
+                    Inquiries:
                   </td>
                   <td>{handleInquiriesList(card.inquiries)}</td>
                 </tr>
                 <tr>
                   <td style={{ color: "#0080FF", fontWeight: "bold" }}>
-                    Signup Bonus:{" "}
+                    Signup Bonus:
                   </td>
                   <td>{card.signupBonus}</td>
                 </tr>
                 <tr>
                   <td style={{ color: "#0080FF", fontWeight: "bold" }}>
-                    Spend Requirement:{" "}
+                    Spend Requirement:
                   </td>
                   <td>{formatCurrency(card.spendReq)}</td>
                 </tr>
                 <tr>
                   <td style={{ color: "#0080FF", fontWeight: "bold" }}>
-                    Spend By:{" "}
+                    Spend By:
                   </td>
                   <td>{card.spendBy}</td>
                 </tr>
                 <tr>
                   <td style={{ color: "#0080FF", fontWeight: "bold" }}>
-                    Card Status:{" "}
+                    Card Status:
                   </td>
                   <td>{card.status}</td>
                 </tr>
@@ -142,7 +151,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
           </Card.Body>
         </Card>
         <div id="cardDetailsSectionRight">
-          <CardNotes />
+          <CardNotes card={card} cardNotes={cardNotes} />
           <CardNotes />
         </div>
       </div>
@@ -153,7 +162,9 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
 CardDetailsPage.propTypes = {
   card: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
+  cardNotes: PropTypes.array.isRequired,
   loadCardsFromFirebase: PropTypes.func.isRequired,
+  loadCardNotesFromFirebase: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
@@ -168,6 +179,10 @@ function mapStateToProps(state, ownProps) {
   return {
     card,
     cards: state.cards,
+    cardNotes:
+      state.cards && state.cardNotes
+        ? state.cardNotes.filter((notes) => notes.cardId === card.id)
+        : null,
     loading: state.apiCallsInProgress > 0 || state.cards.length === 0,
   };
 }
@@ -175,6 +190,7 @@ function mapStateToProps(state, ownProps) {
 const mapDispatchToProps = {
   loadCardsFromFirebase,
   saveCardToFirebase,
+  loadCardNotesFromFirebase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardDetailsPage);
