@@ -39,7 +39,6 @@ function App() {
             <Route path="/about" component={AboutPage} />
             <Route path="/cards" component={CardsPage} />
             <Route path="/card/:id" component={CardDetailsPage} />
-            <Route path="/card" component={CardDetailsPage} />
             <Route path="/524" component={FiveTwentyFourPage} />
             <Route path="/loyalty-accounts" component={LoyaltyPage} />
             <Route path="/loyalty/:id" component={ManageLoyaltyPage} />

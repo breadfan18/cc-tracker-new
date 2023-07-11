@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
   loadCardsFromFirebase,
@@ -17,6 +17,7 @@ import {
   setColorForCardStatus,
 } from "../../helpers";
 import CardNotes from "./CardNotes";
+import { WindowWidthContext } from "../App";
 
 function CardDetailsPage({
   cards,
@@ -27,18 +28,29 @@ function CardDetailsPage({
   ...props
 }) {
   const [card, setCard] = useState({ ...props.card });
+  const [notesForThisCard, setNotesForThisCard] = useState(
+    cardNotes.filter((note) => note.cardId === card.id)
+  );
   const [cardholder, setCardholder] = useState("");
+  const windowWidth = useContext(WindowWidthContext);
 
   useEffect(() => {
     if (cards.length === 0) {
       loadCardsFromFirebase();
-      loadCardNotesFromFirebase();
     } else {
       // Need to understand this logic..
       setCard({ ...props.card });
       setCardholder(USERS.find((user) => user.id === props.card.userId));
     }
   }, [props.card]);
+
+  useEffect(() => {
+    if (cardNotes.length === 0) {
+      loadCardNotesFromFirebase();
+    } else {
+      setNotesForThisCard(cardNotes.filter((note) => note.cardId === card.id));
+    }
+  }, [cardNotes]);
 
   return loading ? (
     <Spinner />
@@ -47,15 +59,17 @@ function CardDetailsPage({
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Card Details</h2>
         <div className="editDeleteCard">
-          <CardAddEditModal card={props.card} />
+          <CardAddEditModal card={card} />
           <ConfirmDeleteModal data={card} dataType="card" />
         </div>
       </section>
       <div className="cardDetailsBody">
         <Card
           style={{
-            width: "30rem",
+            width: windowWidth > 800 ? "30rem" : windowWidth,
             backgroundColor: setColorForCardStatus("cardCard", card.status),
+            marginRight: windowWidth > 800 ? "15px" : null,
+            marginBottom: windowWidth > 800 ? null : "15px",
           }}
         >
           <Card.Img
@@ -75,68 +89,94 @@ function CardDetailsPage({
             <Card.Title style={{ fontSize: "1rem" }}>
               {cardholder.name}
             </Card.Title>
-            <hr />
-            <Table
-              borderless
-              className={setColorForCardStatus("cardTable", card.status)}
-            >
-              <tbody>
+            <Table className={setColorForCardStatus("cardTable", card.status)}>
+              <tbody className="align-middle">
                 <tr>
-                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                  <td
+                    style={{ color: "#0080FF" }}
+                    className="cardDetailsFieldHeaders"
+                  >
                     App Date:
                   </td>
                   <td>{card.appDate}</td>
                 </tr>
                 <tr>
-                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                  <td
+                    style={{ color: "#0080FF" }}
+                    className="cardDetailsFieldHeaders"
+                  >
                     Card Type:
                   </td>
                   <td>{card.cardType}</td>
                 </tr>
                 <tr>
-                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                  <td
+                    style={{ color: "#0080FF" }}
+                    className="cardDetailsFieldHeaders"
+                  >
                     Annual Fee:
                   </td>
                   <td>{formatCurrency(card.annualFee)}</td>
                 </tr>
                 <tr>
-                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                  <td
+                    style={{ color: "#0080FF" }}
+                    className="cardDetailsFieldHeaders"
+                  >
                     Next Fee Date:
                   </td>
                   <td>{card.nextFeeDate}</td>
                 </tr>
                 <tr>
-                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                  <td
+                    style={{ color: "#0080FF" }}
+                    className="cardDetailsFieldHeaders"
+                  >
                     Credit Line:
                   </td>
                   <td>{formatCurrency(card.creditLine)}</td>
                 </tr>
                 <tr>
-                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                  <td
+                    style={{ color: "#0080FF" }}
+                    className="cardDetailsFieldHeaders"
+                  >
                     Inquiries:
                   </td>
                   <td>{handleInquiriesList(card.inquiries)}</td>
                 </tr>
                 <tr>
-                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                  <td
+                    style={{ color: "#0080FF" }}
+                    className="cardDetailsFieldHeaders"
+                  >
                     Signup Bonus:
                   </td>
                   <td>{card.signupBonus}</td>
                 </tr>
                 <tr>
-                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                  <td
+                    style={{ color: "#0080FF" }}
+                    className="cardDetailsFieldHeaders"
+                  >
                     Spend Requirement:
                   </td>
                   <td>{formatCurrency(card.spendReq)}</td>
                 </tr>
                 <tr>
-                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                  <td
+                    style={{ color: "#0080FF" }}
+                    className="cardDetailsFieldHeaders"
+                  >
                     Spend By:
                   </td>
                   <td>{card.spendBy}</td>
                 </tr>
                 <tr>
-                  <td style={{ color: "#0080FF", fontWeight: "bold" }}>
+                  <td
+                    style={{ color: "#0080FF" }}
+                    className="cardDetailsFieldHeaders"
+                  >
                     Card Status:
                   </td>
                   <td>{card.status}</td>
@@ -146,7 +186,7 @@ function CardDetailsPage({
           </Card.Body>
         </Card>
         <div id="cardDetailsSectionRight" style={{ flex: 1 }}>
-          <CardNotes card={card} cardNotes={cardNotes} />
+          <CardNotes card={card} cardNotes={notesForThisCard} />
         </div>
       </div>
     </div>
@@ -173,11 +213,8 @@ function mapStateToProps(state, ownProps) {
   return {
     card,
     cards: state.cards,
-    cardNotes:
-      state.cards && state.cardNotes
-        ? state.cardNotes.filter((notes) => notes.cardId === card.id)
-        : null,
-    loading: state.apiCallsInProgress > 0 || state.cards.length === 0,
+    cardNotes: state.cardNotes,
+    loading: state.apiCallsInProgress > 0,
   };
 }
 

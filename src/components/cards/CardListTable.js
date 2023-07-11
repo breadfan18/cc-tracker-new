@@ -44,12 +44,10 @@ export default function CardListTable({
   }
   function handleTrColorReset(e, card) {
     if (e.target.parentNode.tagName === "TR") {
-      e.target.parentNode.className =
-        card.status === "closed"
-          ? "table-danger"
-          : card.status === "downgraded"
-          ? "table-warning"
-          : null;
+      e.target.parentNode.className = setColorForCardStatus(
+        "cardTable",
+        card.status
+      );
     }
   }
 

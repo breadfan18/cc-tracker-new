@@ -26,10 +26,6 @@ body {
   flex-wrap: wrap;
 }
 
-.cardDetailsBody > .card {
-  margin-right: 1rem;
-}
-
 #cardDetailsSectionRight .card {
   margin-bottom: 1rem;
 }
@@ -250,15 +246,23 @@ form {
 
 .notesFooter {
   display: flex;
-  flex-direction: column; 
-  margin-bottom: 0;
+  justify-content: center;
+  /* padding: 10px 15px; */
+  background-color: var(--light-gray);
 }
 
-.notesFooter > textarea {
-  margin-bottom: 5px;
+.notesFooter button {
+  margin-left: 10px;
 }
 
-/* #notesCardHeader {
-  background-color: var(--color-blue);
-  color: white;
-} */
+#notesCardHeader {
+  color: var(--color-blue);
+  background-color: var(--light-gray);
+  text-align: left;
+  font-size: 1.5rem;
+}
+
+.cardDetailsFieldHeaders {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
