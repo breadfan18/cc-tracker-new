@@ -247,3 +247,18 @@ form {
   padding-left: 0;
   border: none;
 }
+
+.notesFooter {
+  display: flex;
+  flex-direction: column; 
+  margin-bottom: 0;
+}
+
+.notesFooter > textarea {
+  margin-bottom: 5px;
+}
+
+/* #notesCardHeader {
+  background-color: var(--color-blue);
+  color: white;
+} */

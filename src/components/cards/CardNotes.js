@@ -3,50 +3,45 @@ import { Button, Form, Table } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  loadCardNotesFromFirebase,
-  saveCardNoteToFirebase,
-} from "../../redux/actions/cardNotesActions";
+import { saveCardNoteToFirebase } from "../../redux/actions/cardNotesActions";
 import { Spinner } from "../common/Spinner";
+import { formatDate } from "../../helpers";
+import { NEW_NOTE } from "../../constants";
 
-function CardNotes({
-  card,
-  cardNotes,
-  loadCardNotesFromFirebase,
-  saveCardNoteToFirebase,
-  loading,
-}) {
-  const [note, setNote] = useState({
-    note: "",
-    cardId: null,
-  });
+function CardNotes({ card, cardNotes, saveCardNoteToFirebase, loading }) {
+  const [note, setNote] = useState(NEW_NOTE);
 
   function handleChange(e) {
-    const { name, value } = e.target;
-
-    console.log(value);
     setNote({
-      note: value,
+      note: e.target.value,
       cardId: card.id,
+      date: new Date().toISOString().split("T")[0],
     });
   }
 
   function handleSave(e) {
     e.preventDefault();
-    console.log("foo");
     saveCardNoteToFirebase(note);
+    setNote(NEW_NOTE);
   }
+
   return loading ? (
     <Spinner />
   ) : (
     <Card className="text-center">
-      <Card.Header>Notes</Card.Header>
+      <Card.Header id="notesCardHeader">Notes</Card.Header>
       <Card.Body style={{ textAlign: "left" }}>
         <Table size="sm">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Note</th>
+            </tr>
+          </thead>
           <tbody>
             {cardNotes?.map((note) => (
               <tr key={note.id}>
-                <td>01-01-2023</td>
+                <td>{formatDate(note.date)}</td>
                 <td>{note.note}</td>
               </tr>
             ))}
@@ -56,18 +51,22 @@ function CardNotes({
 
       <Card.Footer className="text-muted">
         <Form.Group
-          className="mb-3"
+          className="mb-3 notesFooter"
           controlId="exampleForm.ControlTextarea1"
-          // onSubmit={handleSave}
         >
-          <Form.Control as="textarea" rows={2} onChange={handleChange} />
+          <Form.Control
+            as="textarea"
+            rows={2}
+            onChange={handleChange}
+            value={note.note}
+          />
           <Button
             type="submit"
             variant="primary"
             className="addButton"
             onClick={(e) => handleSave(e)}
           >
-            Add Note
+            Add
           </Button>
         </Form.Group>
       </Card.Footer>
@@ -77,7 +76,6 @@ function CardNotes({
 
 CardNotes.propTypes = {
   loading: PropTypes.bool.isRequired,
-  loadCardNotesFromFirebase: PropTypes.func.isRequired,
   saveCardNoteToFirebase: PropTypes.func.isRequired,
   card: PropTypes.object.isRequired,
   cardNotes: PropTypes.object.isRequired,
@@ -90,7 +88,6 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  loadCardNotesFromFirebase,
   saveCardNoteToFirebase,
 };
 

@@ -55,12 +55,7 @@ function CardDetailsPage({
         <Card
           style={{
             width: "30rem",
-            backgroundColor:
-              card.status === "closed"
-                ? "rgb(248,215,218)"
-                : card.status === "downgraded"
-                ? "rgb(255,243,205)"
-                : null,
+            backgroundColor: setColorForCardStatus("cardCard", card.status),
           }}
         >
           <Card.Img
@@ -150,9 +145,8 @@ function CardDetailsPage({
             </Table>
           </Card.Body>
         </Card>
-        <div id="cardDetailsSectionRight">
+        <div id="cardDetailsSectionRight" style={{ flex: 1 }}>
           <CardNotes card={card} cardNotes={cardNotes} />
-          <CardNotes />
         </div>
       </div>
     </div>

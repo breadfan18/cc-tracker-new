@@ -21,6 +21,12 @@ export const NEW_CARD = {
   status: null,
 };
 
+export const NEW_NOTE = {
+  note: "",
+  cardId: null,
+  date: null,
+};
+
 export const CARD_DATA_KEYS = {
   appDate: "appDate",
   creditLine: "creditLine",
