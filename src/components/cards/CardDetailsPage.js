@@ -15,6 +15,8 @@ import {
   formatCurrency,
   handleInquiriesList,
   setColorForCardStatus,
+  sortNotesByDate,
+  sortCardsByDate,
 } from "../../helpers";
 import CardNotes from "./CardNotes";
 import { WindowWidthContext } from "../App";
@@ -186,7 +188,10 @@ function CardDetailsPage({
           </Card.Body>
         </Card>
         <div id="cardDetailsSectionRight" style={{ flex: 1 }}>
-          <CardNotes card={card} cardNotes={notesForThisCard} />
+          <CardNotes
+            card={card}
+            cardNotes={sortNotesByDate(notesForThisCard)}
+          />
         </div>
       </div>
     </div>

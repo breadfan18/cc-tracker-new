@@ -23,6 +23,10 @@ export function sortCardsByDate(cards) {
   return cards.sort((a, b) => Date.parse(a.appDate) - Date.parse(b.appDate));
 }
 
+export function sortNotesByDate(notes) {
+  return notes.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+}
+
 export function titleCase(str) {
   return str
     .toLowerCase()
