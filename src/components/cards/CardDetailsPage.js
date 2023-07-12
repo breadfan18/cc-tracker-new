@@ -16,7 +16,6 @@ import {
   handleInquiriesList,
   setColorForCardStatus,
   sortNotesByDate,
-  sortCardsByDate,
 } from "../../helpers";
 import CardNotes from "./CardNotes";
 import { WindowWidthContext } from "../App";
@@ -62,7 +61,7 @@ function CardDetailsPage({
         <h2 style={{ marginBottom: 0 }}>Card Details</h2>
         <div className="editDeleteCard">
           <CardAddEditModal card={card} />
-          <ConfirmDeleteModal data={card} dataType="card" />
+          <ConfirmDeleteModal data={card} dataType="card" redirect={true} />
         </div>
       </section>
       <div className="cardDetailsBody">
