@@ -1,5 +1,7 @@
 import {
   CREATE_CARDS_SUCCESS,
+  CREATE_CARD_NOTES_SUCCESS,
+  DELETE_CARD_NOTES_SUCCESS,
   DELETE_CARD_SUCCESS,
   LOAD_CARDS_SUCCESS,
   UPDATE_CARDS_SUCCESS,
@@ -30,6 +32,14 @@ function deleteCardSuccess(card) {
   return { type: DELETE_CARD_SUCCESS, card };
 }
 
+function createCardNotesSuccess(cardNote) {
+  return { type: CREATE_CARD_NOTES_SUCCESS, cardNote };
+}
+
+function deleteCardNotesSuccess(cardNote) {
+  return { type: DELETE_CARD_NOTES_SUCCESS, cardNote };
+}
+
 export function loadCardsFromFirebase() {
   return (dispatch) => {
     dispatch(beginApiCall());
@@ -56,6 +66,22 @@ export function deleteCardFromFirebase(card) {
   return (dispatch) => {
     deleteFromFirebase("cards", card.id);
     dispatch(deleteCardSuccess(card));
+  };
+}
+
+export function saveCardNoteToFirebase(note, cardId) {
+  return (dispatch) => {
+    dispatch(beginApiCall());
+    const uuid = note.id === null || note.id === undefined ? uid() : note.id;
+    writeToFirebase(`cards/${cardId}/cardNotes`, note, uuid);
+    dispatch(createCardNotesSuccess(note));
+  };
+}
+
+export function deleteCardNoteFromFirebase(note, cardId) {
+  return (dispatch) => {
+    deleteFromFirebase(`cards/${cardId}/cardNotes`, note.id);
+    dispatch(deleteCardNotesSuccess(note));
   };
 }
 

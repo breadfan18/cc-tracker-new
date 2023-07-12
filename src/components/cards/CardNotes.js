@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import {
   saveCardNoteToFirebase,
   deleteCardNoteFromFirebase,
-} from "../../redux/actions/cardNotesActions";
+} from "../../redux/actions/cardsActions";
 import { Spinner } from "../common/Spinner";
 import { formatDate } from "../../helpers";
 import { NEW_NOTE } from "../../constants";

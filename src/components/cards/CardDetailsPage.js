@@ -4,7 +4,6 @@ import {
   loadCardsFromFirebase,
   saveCardToFirebase,
 } from "../../redux/actions/cardsActions";
-import { loadCardNotesFromFirebase } from "../../redux/actions/cardNotesActions";
 import PropTypes from "prop-types";
 import { Spinner } from "../common/Spinner";
 import { USERS, NEW_CARD } from "../../constants";
@@ -205,7 +204,6 @@ function mapStateToProps(state, ownProps) {
 const mapDispatchToProps = {
   loadCardsFromFirebase,
   saveCardToFirebase,
-  loadCardNotesFromFirebase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardDetailsPage);
