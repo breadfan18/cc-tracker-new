@@ -183,6 +183,11 @@ div.alert-danger {
   padding: 10px
 }
 
+#cardBody:hover {
+  background-color: var(--black-opacity);
+  cursor: pointer;
+}
+
 .cardBodyLabels {
   font-weight: bold;
 }

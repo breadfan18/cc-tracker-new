@@ -12,9 +12,16 @@ import {
 } from "react-icons/tb";
 import CardText from "./CardText";
 import { setColorForCardStatus } from "../../helpers";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 export default function CardListCards({ cards, showEditDelete, showUserName }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
+  const history = useHistory();
+
+  const routeChange = (card) => {
+    let path = `/card/${card.id}`;
+    history.push(path);
+  };
 
   const allCards = cards.map((card) => {
     const cardTitleColor = setColorForCardStatus("cardCard", card.status);
@@ -39,7 +46,7 @@ export default function CardListCards({ cards, showEditDelete, showUserName }) {
               </Card.Title>
             )}
             <Card.Subtitle
-              className="mb-1 text-muted"
+              className="text-muted"
               style={{
                 padding: "10px",
                 margin: "0",
@@ -70,7 +77,7 @@ export default function CardListCards({ cards, showEditDelete, showUserName }) {
               </div>
             </Card.Subtitle>
           </div>
-          <section id="cardBody">
+          <section id="cardBody" onClick={() => routeChange(card)}>
             <div>
               <CardText card={card} dataType={CARD_DATA_KEYS.appDate} />
               <CardText card={card} dataType={CARD_DATA_KEYS.creditLine} />

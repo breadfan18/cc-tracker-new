@@ -12,9 +12,11 @@ import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import {
   formatCurrency,
+  formatDate,
   handleInquiriesList,
   setColorForCardStatus,
   sortNotesByDate,
+  titleCase,
 } from "../../helpers";
 import CardNotes from "./CardNotes";
 import { WindowWidthContext } from "../App";
@@ -81,7 +83,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                   >
                     App Date:
                   </td>
-                  <td>{card.appDate}</td>
+                  <td>{formatDate(props.card.appDate)}</td>
                 </tr>
                 <tr>
                   <td
@@ -108,7 +110,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                   >
                     Next Fee Date:
                   </td>
-                  <td>{card.nextFeeDate}</td>
+                  <td>{formatDate(props.card.nextFeeDate)}</td>
                 </tr>
                 <tr>
                   <td
@@ -153,7 +155,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                   >
                     Spend By:
                   </td>
-                  <td>{card.spendBy}</td>
+                  <td>{formatDate(props.card.spendBy)}</td>
                 </tr>
                 <tr>
                   <td
@@ -162,7 +164,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                   >
                     Card Status:
                   </td>
-                  <td>{card.status}</td>
+                  <td>{titleCase(props.card.status)}</td>
                 </tr>
               </tbody>
             </Table>
