@@ -1,4 +1,4 @@
-import { USERS } from "./constants";
+import { CARD_COLOR_CLOSED, CARD_COLOR_DOWNGRADED, USERS } from "./constants";
 
 export function wasCardOpenedWithinLast24Months(appDate) {
   const twoYearsAgoFromToday = Date.parse(
@@ -121,9 +121,9 @@ export function setColorForCardStatus(componentType, cardStatus) {
       : null;
   } else if (componentType === "cardCard") {
     return cardStatus === "closed"
-      ? "rgb(248,215,218)"
+      ? CARD_COLOR_CLOSED
       : cardStatus === "downgraded"
-      ? "rgb(255,243,205)"
+      ? CARD_COLOR_DOWNGRADED
       : null;
   }
 }

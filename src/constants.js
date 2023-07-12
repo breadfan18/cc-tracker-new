@@ -118,3 +118,9 @@ export const USERS = [
     name: "Danyale Marshall",
   },
 ];
+
+export const APP_COLOR_BLUE = "#0080FF";
+export const APP_COLOR_LIGHT_GRAY = "#D9D7D7";
+export const APP_COLOR_BLACK_OPACITY = "rgba(0,0,0,0.09)";
+export const CARD_COLOR_CLOSED = "rgb(248,215,218)";
+export const CARD_COLOR_DOWNGRADED = "rgb(255,243,205)";

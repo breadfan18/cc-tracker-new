@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { APP_COLOR_BLACK_OPACITY } from "../../constants";
 
 const TextInput = ({
   name,
@@ -27,7 +28,7 @@ const TextInput = ({
           <p
             style={{
               padding: "0 10px",
-              backgroundColor: "rgba(0,0,0,0.09)",
+              backgroundColor: APP_COLOR_BLACK_OPACITY,
               marginBottom: 0,
               borderRadius: "0 0 0 10px",
               display: "flex",

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Card } from "react-bootstrap";
-import { CARD_DATA_KEYS, USERS } from "../../constants";
+import { CARD_DATA_KEYS, USERS, APP_COLOR_BLUE } from "../../constants";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import CardAddEditModal from "./CardAddEditModal";
@@ -70,7 +70,7 @@ export default function CardListCards({ cards, showEditDelete, showUserName }) {
                     <TbSquareRoundedCheckFilled style={{ color: "#198754" }} />
                   ) : (
                     <TbSquareRoundedChevronsRightFilled
-                      style={{ color: "#0080FF" }}
+                      style={{ color: APP_COLOR_BLUE }}
                     />
                   )}
                 </p>

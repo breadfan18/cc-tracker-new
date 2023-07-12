@@ -204,7 +204,7 @@ div.alert-danger {
 .editDeleteOnCards {
   padding: 10px 5px 10px 0;
   width: 100%;
-  background-color: rgba(0,0,0,0.09);
+  background-color: var(--black-opacity);
   text-align: right;
   border-radius: 0 0 5px 5px;
 }
@@ -216,7 +216,7 @@ div.alert-danger {
   border: 1px solid var(--light-gray);
   padding: 2px;
   border-radius: 10px;
-  background-color: rgba(0,0,0,0.09);
+  background-color: var(--black-opacity);
 }
 
 .loyaltyLogos {

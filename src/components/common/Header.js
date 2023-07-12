@@ -2,11 +2,12 @@ import React, { useEffect, useState, useRef, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Burger from "./Burger";
 import { WindowWidthContext } from "../App";
+import { APP_COLOR_BLUE } from "../../constants";
 
 const Header = () => {
   const windowWidth = useContext(WindowWidthContext);
   const [open, setOpen] = useState(false);
-  const activeStyle = { backgroundColor: "white", color: "#0080FF" };
+  const activeStyle = { backgroundColor: "white", color: APP_COLOR_BLUE };
   let navRef = useRef();
 
   useEffect(() => {

@@ -6,7 +6,12 @@ import {
 } from "../../redux/actions/cardsActions";
 import PropTypes from "prop-types";
 import { Spinner } from "../common/Spinner";
-import { USERS, NEW_CARD } from "../../constants";
+import {
+  USERS,
+  NEW_CARD,
+  APP_COLOR_BLUE,
+  APP_COLOR_LIGHT_GRAY,
+} from "../../constants";
 import { Card, Table } from "react-bootstrap";
 import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
@@ -55,6 +60,10 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
             backgroundColor: setColorForCardStatus("cardCard", card.status),
             marginRight: windowWidth > 800 ? "15px" : null,
             marginBottom: windowWidth > 800 ? null : "15px",
+            boxShadow: `0 0 10px ${setColorForCardStatus(
+              "cardCard",
+              card.status
+            )}`,
           }}
         >
           <Card.Img
@@ -62,7 +71,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
             src={card.issuer.img}
             style={{
               padding: "2rem",
-              backgroundColor: "#D9D7D7",
+              backgroundColor: APP_COLOR_LIGHT_GRAY,
               maxHeight: "10rem",
               objectFit: "contain",
             }}
@@ -78,7 +87,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
               <tbody className="align-middle">
                 <tr>
                   <td
-                    style={{ color: "#0080FF" }}
+                    style={{ color: APP_COLOR_BLUE }}
                     className="cardDetailsFieldHeaders"
                   >
                     App Date:
@@ -87,7 +96,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                 </tr>
                 <tr>
                   <td
-                    style={{ color: "#0080FF" }}
+                    style={{ color: APP_COLOR_BLUE }}
                     className="cardDetailsFieldHeaders"
                   >
                     Card Type:
@@ -96,7 +105,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                 </tr>
                 <tr>
                   <td
-                    style={{ color: "#0080FF" }}
+                    style={{ color: APP_COLOR_BLUE }}
                     className="cardDetailsFieldHeaders"
                   >
                     Annual Fee:
@@ -105,7 +114,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                 </tr>
                 <tr>
                   <td
-                    style={{ color: "#0080FF" }}
+                    style={{ color: APP_COLOR_BLUE }}
                     className="cardDetailsFieldHeaders"
                   >
                     Next Fee Date:
@@ -114,7 +123,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                 </tr>
                 <tr>
                   <td
-                    style={{ color: "#0080FF" }}
+                    style={{ color: APP_COLOR_BLUE }}
                     className="cardDetailsFieldHeaders"
                   >
                     Credit Line:
@@ -123,7 +132,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                 </tr>
                 <tr>
                   <td
-                    style={{ color: "#0080FF" }}
+                    style={{ color: APP_COLOR_BLUE }}
                     className="cardDetailsFieldHeaders"
                   >
                     Inquiries:
@@ -132,7 +141,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                 </tr>
                 <tr>
                   <td
-                    style={{ color: "#0080FF" }}
+                    style={{ color: APP_COLOR_BLUE }}
                     className="cardDetailsFieldHeaders"
                   >
                     Signup Bonus:
@@ -141,7 +150,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                 </tr>
                 <tr>
                   <td
-                    style={{ color: "#0080FF" }}
+                    style={{ color: APP_COLOR_BLUE }}
                     className="cardDetailsFieldHeaders"
                   >
                     Spend Requirement:
@@ -150,7 +159,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                 </tr>
                 <tr>
                   <td
-                    style={{ color: "#0080FF" }}
+                    style={{ color: APP_COLOR_BLUE }}
                     className="cardDetailsFieldHeaders"
                   >
                     Spend By:
@@ -159,7 +168,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                 </tr>
                 <tr>
                   <td
-                    style={{ color: "#0080FF" }}
+                    style={{ color: APP_COLOR_BLUE }}
                     className="cardDetailsFieldHeaders"
                   >
                     Card Status:

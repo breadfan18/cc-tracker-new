@@ -19,7 +19,7 @@ import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { CARD_DATA_KEYS } from "../../constants";
+import { CARD_DATA_KEYS, APP_COLOR_BLUE } from "../../constants";
 
 export default function CardListTable({
   cards,
@@ -154,7 +154,7 @@ export default function CardListTable({
                     <TbSquareRoundedCheckFilled style={{ color: "#198754" }} />
                   ) : (
                     <TbSquareRoundedChevronsRightFilled
-                      style={{ color: "#0080FF" }}
+                      style={{ color: APP_COLOR_BLUE }}
                     />
                   )}{" "}
                   {card.signupBonus}
