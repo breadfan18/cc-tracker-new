@@ -37,7 +37,7 @@ function CardNotes({
     setNote(NEW_NOTE);
   }
 
-  function handleDelete(note, card) {
+  function handleDelete(note) {
     deleteCardNoteFromFirebase(note, card.id);
     toast.success("Note Deleted");
   }
