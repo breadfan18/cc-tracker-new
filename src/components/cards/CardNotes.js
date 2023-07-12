@@ -12,6 +12,7 @@ import { formatDate } from "../../helpers";
 import { NEW_NOTE } from "../../constants";
 import { AiFillDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
+import EmptyList from "../common/EmptyList";
 
 function CardNotes({
   card,
@@ -48,33 +49,37 @@ function CardNotes({
     <Card className="text-center">
       <Card.Header id="notesCardHeader">Card Notes</Card.Header>
       <Card.Body style={{ textAlign: "left" }}>
-        <Table size="sm">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Note</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {cardNotes?.map((note) => (
-              <tr key={note.id}>
-                <td>{formatDate(note.date)}</td>
-                <td>{note.note}</td>
-                <td style={{ textAlign: "right" }}>
-                  <AiFillDelete
-                    style={{
-                      color: "#DC3545",
-                      fontSize: "1.5rem",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => handleDelete(note)}
-                  />
-                </td>
+        {cardNotes.length === 0 ? (
+          <EmptyList dataType={"note"} />
+        ) : (
+          <Table size="sm">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Note</th>
+                <th></th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {cardNotes?.map((note) => (
+                <tr key={note.id}>
+                  <td>{formatDate(note.date)}</td>
+                  <td>{note.note}</td>
+                  <td style={{ textAlign: "right" }}>
+                    <AiFillDelete
+                      style={{
+                        color: "#DC3545",
+                        fontSize: "1.5rem",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => handleDelete(note)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        )}
       </Card.Body>
       <Card.Footer
         className="text-muted notesFooter"
