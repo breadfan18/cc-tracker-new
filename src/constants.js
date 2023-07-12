@@ -23,7 +23,6 @@ export const NEW_CARD = {
 
 export const NEW_NOTE = {
   note: "",
-  cardId: null,
   date: null,
 };
 

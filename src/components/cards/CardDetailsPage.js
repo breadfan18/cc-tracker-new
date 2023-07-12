@@ -19,19 +19,10 @@ import {
 } from "../../helpers";
 import CardNotes from "./CardNotes";
 import { WindowWidthContext } from "../App";
+import _ from "lodash";
 
-function CardDetailsPage({
-  cards,
-  loadCardsFromFirebase,
-  loading,
-  loadCardNotesFromFirebase,
-  cardNotes,
-  ...props
-}) {
+function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
   const [card, setCard] = useState({ ...props.card });
-  const [notesForThisCard, setNotesForThisCard] = useState(
-    cardNotes.filter((note) => note.cardId === card.id)
-  );
   const [cardholder, setCardholder] = useState("");
   const windowWidth = useContext(WindowWidthContext);
 
@@ -45,14 +36,6 @@ function CardDetailsPage({
     }
   }, [props.card]);
 
-  useEffect(() => {
-    if (cardNotes.length === 0) {
-      loadCardNotesFromFirebase();
-    } else {
-      setNotesForThisCard(cardNotes.filter((note) => note.cardId === card.id));
-    }
-  }, [cardNotes]);
-
   return loading ? (
     <Spinner />
   ) : (
@@ -60,7 +43,7 @@ function CardDetailsPage({
       <section className="sectionHeaders">
         <h2 style={{ marginBottom: 0 }}>Card Details</h2>
         <div className="editDeleteCard">
-          <CardAddEditModal card={card} />
+          <CardAddEditModal card={props.card} />
           <ConfirmDeleteModal data={card} dataType="card" redirect={true} />
         </div>
       </section>
@@ -189,7 +172,7 @@ function CardDetailsPage({
         <div id="cardDetailsSectionRight" style={{ flex: 1 }}>
           <CardNotes
             card={card}
-            cardNotes={sortNotesByDate(notesForThisCard)}
+            cardNotes={sortNotesByDate(_.values(card.cardNotes))}
           />
         </div>
       </div>
@@ -200,9 +183,7 @@ function CardDetailsPage({
 CardDetailsPage.propTypes = {
   card: PropTypes.object.isRequired,
   cards: PropTypes.array.isRequired,
-  cardNotes: PropTypes.array.isRequired,
   loadCardsFromFirebase: PropTypes.func.isRequired,
-  loadCardNotesFromFirebase: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
@@ -217,8 +198,7 @@ function mapStateToProps(state, ownProps) {
   return {
     card,
     cards: state.cards,
-    cardNotes: state.cardNotes,
-    loading: state.apiCallsInProgress > 0,
+    loading: state.apiCallsInProgress > 0 || state.cards.length === 0,
   };
 }
 

@@ -35,18 +35,18 @@ export function loadCardNotesFromFirebase() {
   };
 }
 
-export function saveCardNoteToFirebase(note) {
+export function saveCardNoteToFirebase(note, cardId) {
   return (dispatch) => {
     dispatch(beginApiCall());
     const uuid = note.id === null || note.id === undefined ? uid() : note.id;
-    writeToFirebase("cardNotes", note, uuid);
+    writeToFirebase(`cards/${cardId}/cardNotes`, note, uuid);
     dispatch(createCardNotesSuccess(note));
   };
 }
 
-export function deleteCardNoteFromFirebase(note) {
+export function deleteCardNoteFromFirebase(note, cardId) {
   return (dispatch) => {
-    deleteFromFirebase("cardNotes", note.id);
+    deleteFromFirebase(`cards/${cardId}/cardNotes`, note.id);
     dispatch(deleteCardNotesSuccess(note));
   };
 }

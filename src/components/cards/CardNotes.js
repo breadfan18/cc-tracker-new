@@ -26,20 +26,19 @@ function CardNotes({
   function handleChange(e) {
     setNote({
       note: e.target.value,
-      cardId: card.id,
       date: new Date().toISOString().split("T")[0],
     });
   }
 
   function handleSave(e) {
     e.preventDefault();
-    saveCardNoteToFirebase(note);
+    saveCardNoteToFirebase(note, card.id);
     toast.success("Note Added");
     setNote(NEW_NOTE);
   }
 
-  function handleDelete(note) {
-    deleteCardNoteFromFirebase(note);
+  function handleDelete(note, card) {
+    deleteCardNoteFromFirebase(note, card.id);
     toast.success("Note Deleted");
   }
 
