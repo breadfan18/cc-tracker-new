@@ -26,7 +26,7 @@ const CardsPage = ({ cards, loadCards, loading }) => {
       </section>
       {loading ? (
         <Spinner />
-      ) : windowWidth < 600 ? (
+      ) : windowWidth < 650 ? (
         <CardsByUserDropDown cards={cards} />
       ) : (
         <CardTabs cards={cards} />
