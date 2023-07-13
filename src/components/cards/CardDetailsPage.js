@@ -60,10 +60,13 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
             backgroundColor: setColorForCardStatus("cardCard", card.status),
             marginRight: windowWidth > 800 ? "15px" : null,
             marginBottom: windowWidth > 800 ? null : "15px",
-            boxShadow: `0 0 10px ${setColorForCardStatus(
-              "cardCard",
-              card.status
-            )}`,
+            boxShadow:
+              card.status === "open"
+                ? "2px 0 10px gray"
+                : `2px 0 15px ${setColorForCardStatus(
+                    "cardCard",
+                    card.status
+                  )}`,
           }}
         >
           <Card.Img
@@ -181,7 +184,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
         </Card>
         <div id="cardDetailsSectionRight" style={{ flex: 1 }}>
           <CardNotes
-            card={card}
+            cardId={card.id}
             cardNotes={sortNotesByDate(_.values(card.cardNotes))}
           />
         </div>

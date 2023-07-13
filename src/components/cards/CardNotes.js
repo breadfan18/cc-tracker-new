@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import EmptyList from "../common/EmptyList";
 
 function CardNotes({
-  card,
+  cardId,
   cardNotes,
   saveCardNoteToFirebase,
   deleteCardNoteFromFirebase,
@@ -32,20 +32,20 @@ function CardNotes({
 
   function handleSave(e) {
     e.preventDefault();
-    saveCardNoteToFirebase(note, card.id);
+    saveCardNoteToFirebase(note, cardId);
     toast.success("Note Added");
     setNote(NEW_NOTE);
   }
 
   function handleDelete(note) {
-    deleteCardNoteFromFirebase(note, card.id);
+    deleteCardNoteFromFirebase(note, cardId);
     toast.success("Note Deleted");
   }
 
   return loading ? (
     <Spinner />
   ) : (
-    <Card className="text-center">
+    <Card className="text-center" style={{ boxShadow: `2px 0 10px gray` }}>
       <Card.Header id="notesCardHeader">Card Notes</Card.Header>
       <Card.Body style={{ textAlign: "left" }}>
         {cardNotes.length === 0 ? (
@@ -62,7 +62,7 @@ function CardNotes({
             <tbody>
               {cardNotes?.map((note) => (
                 <tr key={note.id}>
-                  <td>{formatDate(note.date)}</td>
+                  <td style={{ minWidth: "100px" }}>{formatDate(note.date)}</td>
                   <td>{note.note}</td>
                   <td style={{ textAlign: "right" }}>
                     <AiFillDelete
@@ -102,7 +102,7 @@ CardNotes.propTypes = {
   loading: PropTypes.bool.isRequired,
   saveCardNoteToFirebase: PropTypes.func.isRequired,
   deleteCardNoteFromFirebase: PropTypes.func.isRequired,
-  card: PropTypes.object.isRequired,
+  cardId: PropTypes.object.isRequired,
   cardNotes: PropTypes.object.isRequired,
 };
 
