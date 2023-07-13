@@ -21,7 +21,7 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", navMenuHandler);
   });
 
-  return windowWidth < 600 ? (
+  return windowWidth < 650 ? (
     <>
       <div id="burgerContainer">
         <Burger open={open} setOpen={setOpen} />
