@@ -69,7 +69,7 @@ function CardNotes({
               </tr>
             </thead>
             <tbody>
-              {cardNotes?.map((note) => (
+              {cardNotes.map((note) => (
                 <tr key={note.id}>
                   <td style={{ minWidth: "100px" }}>{formatDate(note.date)}</td>
                   <td>{note.note}</td>
