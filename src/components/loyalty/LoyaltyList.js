@@ -15,7 +15,7 @@ const LoyaltyList = ({ loyaltyData, showEditDelete }) => {
   return loyaltyData.length === 0 ? (
     <EmptyList dataType={"loyalty account"} />
   ) : (
-    <Table>
+    <Table size="sm">
       <thead>
         <tr>
           <th></th>

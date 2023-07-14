@@ -35,7 +35,10 @@ function LoyaltyTabs({ loyaltyData }) {
         <>
           <Card
             className="text-center"
-            style={{ border: "2px solid rgba(0,0,0,0.2)" }}
+            style={{
+              border: "2px solid rgba(0,0,0,0.2)",
+              boxShadow: "0 0 10px gray",
+            }}
           >
             <Card.Header
               style={{
