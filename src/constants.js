@@ -103,19 +103,19 @@ export const USERS = [
   },
   {
     id: 2,
-    name: "Kory Smith",
+    name: "Marcus Rashford",
   },
   {
     id: 3,
-    name: "Nathan Jonas",
+    name: "Mason Mount",
   },
   {
     id: 4,
-    name: "Jess Elle",
+    name: "David DeGea",
   },
   {
     id: 5,
-    name: "Danyale Marshall",
+    name: "Lisandro Martinez",
   },
 ];
 

@@ -75,8 +75,8 @@ ConfirmDeleteModal.propTypes = {
   dataType: PropTypes.string.isRequired,
   deleteCardFromFirebase: PropTypes.func.isRequired,
   deleteLoyaltyDataFromFirebase: PropTypes.func.isRequired,
-  setModalOpen: PropTypes.func.isRequired,
-  modalOpen: PropTypes.bool.isRequired,
+  setModalOpen: PropTypes.func,
+  modalOpen: PropTypes.bool,
   redirect: PropTypes.bool,
 };
 

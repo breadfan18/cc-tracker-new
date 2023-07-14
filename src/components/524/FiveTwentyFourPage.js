@@ -62,10 +62,7 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
 
     return (
       <>
-        <Card
-          className="text-center"
-          style={{ border: "2px solid rgba(0,0,0,1)" }}
-        >
+        <Card className="text-center" style={{ boxShadow: "0 0 10px gray" }}>
           <Card.Header
             style={{
               fontWeight: "bold",

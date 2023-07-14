@@ -150,8 +150,8 @@ function CardAddEditModal({
 CardAddEditModal.propTypes = {
   card: PropTypes.object,
   saveCardToFirebase: PropTypes.func.isRequired,
-  setModalOpen: PropTypes.func.isRequired,
-  modalOpen: PropTypes.bool.isRequired,
+  setModalOpen: PropTypes.func,
+  modalOpen: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
