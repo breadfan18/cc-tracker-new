@@ -42,6 +42,15 @@ function CardNotes({
     toast.success("Note Deleted");
   }
 
+  function handleSaveOnEnter(e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      saveCardNoteToFirebase(note, cardId);
+      toast.success("Note Added");
+      setNote(NEW_NOTE);
+    }
+  }
+
   return loading ? (
     <Spinner />
   ) : (
@@ -89,6 +98,7 @@ function CardNotes({
           rows={2}
           onChange={handleChange}
           value={note.note}
+          onKeyDown={handleSaveOnEnter}
         />
         <Button className="addButton" onClick={(e) => handleSave(e)}>
           Add
