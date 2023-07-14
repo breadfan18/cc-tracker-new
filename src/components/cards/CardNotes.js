@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions/cardsActions";
 import { Spinner } from "../common/Spinner";
 import { formatDate } from "../../helpers";
-import { NEW_NOTE } from "../../constants";
+import { DELETE_COLOR_RED, NEW_NOTE } from "../../constants";
 import { AiFillDelete } from "react-icons/ai";
 import { toast } from "react-toastify";
 import EmptyList from "../common/EmptyList";
@@ -76,7 +76,7 @@ function CardNotes({
                   <td style={{ textAlign: "right" }}>
                     <AiFillDelete
                       style={{
-                        color: "#DC3545",
+                        color: DELETE_COLOR_RED,
                         fontSize: "1.5rem",
                         cursor: "pointer",
                       }}

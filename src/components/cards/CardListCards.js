@@ -13,6 +13,7 @@ import {
 import CardText from "./CardText";
 import { setColorForCardStatus } from "../../helpers";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
 export default function CardListCards({ cards, showEditDelete, showUserName }) {
   const windowWidth = useContext(WindowWidthContext);
   const cardWidth = windowWidth < 650 ? windowWidth : "18rem";
@@ -66,13 +67,10 @@ export default function CardListCards({ cards, showEditDelete, showUserName }) {
                 >{`${card.issuer.name} ${card.card}`}</p>
                 <p style={{ margin: 0 }}>
                   {card.signupBonus}{" "}
-                  {card.bonusEarned ? (
-                    <TbSquareRoundedCheckFilled style={{ color: "#198754" }} />
-                  ) : (
-                    <TbSquareRoundedChevronsRightFilled
-                      style={{ color: APP_COLOR_BLUE }}
-                    />
-                  )}
+                  <BonusEarnStatusIcon
+                    bonusEarned={card.bonusEarned}
+                    iconSize="1.3rem"
+                  />
                 </p>
               </div>
             </Card.Subtitle>

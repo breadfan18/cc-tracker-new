@@ -26,6 +26,11 @@ import {
 import CardNotes from "./CardNotes";
 import { WindowWidthContext } from "../App";
 import _ from "lodash";
+import {
+  TbSquareRoundedCheckFilled,
+  TbSquareRoundedChevronsRightFilled,
+} from "react-icons/tb";
+import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
 
 function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
   const [card, setCard] = useState({ ...props.card });
@@ -80,12 +85,24 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
             }}
           />
           <Card.Body>
-            <Card.Title style={{ fontSize: "1.5rem" }}>
-              {card.issuer.name} {card.card}
-            </Card.Title>
-            <Card.Title style={{ fontSize: "1rem" }}>
-              {cardholder.name}
-            </Card.Title>
+            <article
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <div>
+                <Card.Title style={{ fontSize: "1.5rem" }}>
+                  {card.issuer.name} {card.card}
+                </Card.Title>
+                <Card.Title style={{ fontSize: "1rem" }}>
+                  {cardholder.name}
+                </Card.Title>
+              </div>
+              <div>
+                <BonusEarnStatusIcon
+                  bonusEarned={card.bonusEarned}
+                  iconSize="3rem"
+                />
+              </div>
+            </article>
             <Table className={setColorForCardStatus("cardTable", card.status)}>
               <tbody className="align-middle">
                 <tr>

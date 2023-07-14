@@ -20,6 +20,7 @@ import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { CARD_DATA_KEYS, APP_COLOR_BLUE } from "../../constants";
+import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
 
 export default function CardListTable({
   cards,
@@ -150,13 +151,10 @@ export default function CardListTable({
               )}
               {windowWidth > 1070 && !showCompactTable && (
                 <td>
-                  {card.bonusEarned ? (
-                    <TbSquareRoundedCheckFilled style={{ color: "#198754" }} />
-                  ) : (
-                    <TbSquareRoundedChevronsRightFilled
-                      style={{ color: APP_COLOR_BLUE }}
-                    />
-                  )}{" "}
+                  <BonusEarnStatusIcon
+                    bonusEarned={card.bonusEarned}
+                    iconSize="1.3rem"
+                  />
                   {card.signupBonus}
                 </td>
               )}
