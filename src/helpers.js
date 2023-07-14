@@ -6,7 +6,17 @@ export function wasCardOpenedWithinLast24Months(appDate) {
   );
   const today = Date.now();
   const parsedAppDate = Date.parse(appDate);
-  return parsedAppDate >= twoYearsAgoFromToday && parsedAppDate <= today; // true
+  return parsedAppDate >= twoYearsAgoFromToday && parsedAppDate <= today;
+}
+
+export function isAnnualFeeDateApproaching(nextFeeDate) {
+  const formattedNextFeeDate = new Date(nextFeeDate);
+  const parsedNextFeeDate = Date.parse(nextFeeDate);
+  const today = Date.now();
+  const ninetyDaysBeforeNextFeeDate = Date.parse(
+    new Date(formattedNextFeeDate.setDate(formattedNextFeeDate.getDate() - 90))
+  );
+  return today >= ninetyDaysBeforeNextFeeDate && today <= parsedNextFeeDate;
 }
 
 export function addUserNameToCard(card) {

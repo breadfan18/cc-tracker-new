@@ -26,11 +26,8 @@ import {
 import CardNotes from "./CardNotes";
 import { WindowWidthContext } from "../App";
 import _ from "lodash";
-import {
-  TbSquareRoundedCheckFilled,
-  TbSquareRoundedChevronsRightFilled,
-} from "react-icons/tb";
 import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
+import { CardReminderContainer } from "./CardReminderContainer";
 
 function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
   const [card, setCard] = useState({ ...props.card });
@@ -199,11 +196,12 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
             </Table>
           </Card.Body>
         </Card>
-        <div id="cardDetailsSectionRight" style={{ flex: 1 }}>
+        <div id="cardDetailsSectionRight">
           <CardNotes
             cardId={card.id}
             cardNotes={sortNotesByDate(_.values(card.cardNotes))}
           />
+          <CardReminderContainer card={card} />
         </div>
       </div>
     </div>

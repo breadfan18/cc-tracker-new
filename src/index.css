@@ -26,8 +26,13 @@ body {
   flex-wrap: wrap;
 }
 
+#cardDetailsSectionRight{
+  flex: 1;
+}
+
 #cardDetailsSectionRight .card {
   margin-bottom: 1rem;
+  flex: 1;
 }
 
 .navContainer {
