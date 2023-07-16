@@ -23,7 +23,8 @@ export function CardReminderContainer({ card }) {
     30
   );
 
-  const bonusNotEarned = card.bonusEarned === undefined || !card.bonusEarned;
+  const bonusNotEarned =
+    isSpendByDateClose && (card.bonusEarned === undefined || !card.bonusEarned);
   const isLastReminder =
     isAnnualFeeClose && isSpendByDateClose && bonusNotEarned ? false : true;
 
@@ -39,7 +40,7 @@ export function CardReminderContainer({ card }) {
             lastReminder={isLastReminder}
           />
         )}
-        {isSpendByDateClose && bonusNotEarned && (
+        {bonusNotEarned && (
           <CardReminder
             text={REMINDERS_TEXT_BONUS}
             Icon={BsFillBellFill}
