@@ -154,7 +154,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                   >
                     Inquiries:
                   </td>
-                  <td>{handleInquiriesList(card.inquiries)}</td>
+                  <td>{handleInquiriesList(card.inquiries, " | ")}</td>
                 </tr>
                 <tr>
                   <td

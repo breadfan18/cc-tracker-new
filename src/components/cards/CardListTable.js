@@ -134,7 +134,7 @@ export default function CardListTable({
                   className="creditPullColumn"
                   style={{ whiteSpace: "pre-wrap" }}
                 >
-                  {handleInquiriesList(card.inquiries)}
+                  {handleInquiriesList(card.inquiries, "\n")}
                 </td>
               )}
               <td>{formatCurrency(card.annualFee)}</td>
