@@ -9,12 +9,16 @@ export function wasCardOpenedWithinLast24Months(appDate) {
   return parsedAppDate >= twoYearsAgoFromToday && parsedAppDate <= today;
 }
 
-export function isAnnualFeeDateApproaching(nextFeeDate) {
-  const formattedNextFeeDate = new Date(nextFeeDate);
-  const parsedNextFeeDate = Date.parse(nextFeeDate);
+export function isDateApproaching(card, dataType, numberOfDays) {
+  const formattedNextFeeDate = new Date(card[dataType]);
+  const parsedNextFeeDate = Date.parse(card[dataType]);
   const today = Date.now();
   const ninetyDaysBeforeNextFeeDate = Date.parse(
-    new Date(formattedNextFeeDate.setDate(formattedNextFeeDate.getDate() - 90))
+    new Date(
+      formattedNextFeeDate.setDate(
+        formattedNextFeeDate.getDate() - numberOfDays
+      )
+    )
   );
   return today >= ninetyDaysBeforeNextFeeDate && today <= parsedNextFeeDate;
 }

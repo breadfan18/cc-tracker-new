@@ -1,20 +1,55 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import PropTypes from "prop-types";
-import { Spinner } from "../common/Spinner";
 import { CardReminder } from "./CardReminder";
-import { isAnnualFeeDateApproaching } from "../../helpers";
+import { isDateApproaching } from "../../helpers";
+import {
+  CARD_DATA_KEYS,
+  DELETE_COLOR_RED,
+  REMINDERS_TEXT_AF,
+  REMINDERS_TEXT_BONUS,
+} from "../../constants";
+import { TbAlertOctagonFilled } from "react-icons/tb";
+import { BsFillBellFill } from "react-icons/bs";
+export function CardReminderContainer({ card }) {
+  const isAnnualFeeClose = isDateApproaching(
+    card,
+    CARD_DATA_KEYS.nextFeeDate,
+    90
+  );
+  const isSpendByDateClose = isDateApproaching(
+    card,
+    CARD_DATA_KEYS.spendBy,
+    30
+  );
 
-export function CardReminderContainer({ card, loading }) {
-  const isAnnyualFeeClose = isAnnualFeeDateApproaching(card.nextFeeDate);
-  return loading ? (
-    <Spinner />
-  ) : (
+  const bonusNotEarned = card.bonusEarned === undefined || !card.bonusEarned;
+  const isLastReminder =
+    isAnnualFeeClose && isSpendByDateClose && bonusNotEarned ? false : true;
+
+  return (
     <Card className="text-center" style={{ boxShadow: `2px 0 10px gray` }}>
       <Card.Header id="notesCardHeader">Card Reminders</Card.Header>
       <Card.Body style={{ textAlign: "left" }}>
-        {isAnnyualFeeClose && <CardReminder card={card} />}
-        <CardReminder card={card} />
+        {isAnnualFeeClose && (
+          <CardReminder
+            text={REMINDERS_TEXT_AF}
+            Icon={TbAlertOctagonFilled}
+            iconColor={DELETE_COLOR_RED}
+            lastReminder={isLastReminder}
+          />
+        )}
+        {isSpendByDateClose && bonusNotEarned && (
+          <CardReminder
+            text={REMINDERS_TEXT_BONUS}
+            Icon={BsFillBellFill}
+            iconColor="orange"
+            lastReminder={true}
+          />
+        )}
+        {!isAnnualFeeClose && !isSpendByDateClose && !bonusNotEarned && (
+          <div>No Reminders</div>
+        )}
       </Card.Body>
       <Card.Footer
         className="text-muted notesFooter"
@@ -25,6 +60,5 @@ export function CardReminderContainer({ card, loading }) {
 }
 
 CardReminderContainer.propTypes = {
-  loading: PropTypes.bool.isRequired,
   card: PropTypes.object.isRequired,
 };

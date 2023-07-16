@@ -1,21 +1,27 @@
 import React from "react";
-import { TbAlertOctagonFilled } from "react-icons/tb";
 import PropTypes from "prop-types";
 
-export const CardReminder = ({ card }) => {
+export const CardReminder = ({ text, Icon, iconColor, lastReminder }) => {
   return (
     <>
       <article style={{ display: "flex", alignItems: "center" }}>
-        <TbAlertOctagonFilled
-          style={{ color: "red", fontSize: "2rem", marginRight: "1rem" }}
+        <Icon
+          style={{
+            color: iconColor,
+            fontSize: "1.5rem",
+            marginRight: "1rem",
+          }}
         />
-        <p style={{ marginBottom: 0 }}>Annual Fee Due within 90 days</p>
+        <p style={{ marginBottom: 0 }}>{text}</p>
       </article>
-      <hr style={{ color: "gray" }} />
+      {!lastReminder && <hr style={{ color: "gray" }} />}
     </>
   );
 };
 
 CardReminder.propTypes = {
-  card: PropTypes.object.isRequired,
+  text: PropTypes.string.isRequired,
+  Icon: PropTypes.func.isRequired,
+  iconColor: PropTypes.string.isRequired,
+  lastReminder: PropTypes.bool.isRequired,
 };

@@ -126,3 +126,6 @@ export const EDIT_COLOR_GREEN = "#198754";
 export const DELETE_COLOR_RED = "#DC3545";
 export const CARD_COLOR_CLOSED = "rgb(248,215,218)";
 export const CARD_COLOR_DOWNGRADED = "rgb(255,243,205)";
+
+export const REMINDERS_TEXT_AF = "Annual Fee is due within 90 days";
+export const REMINDERS_TEXT_BONUS = "Bonus earn deadline is within 30 days";
