@@ -277,3 +277,7 @@ form {
   text-align: left;
   font-size: 1.5rem;
 }
+
+.accordion-button[aria-expanded='true'] {
+  background-color: var(--black-opacity);
+}
