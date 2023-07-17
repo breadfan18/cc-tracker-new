@@ -2,7 +2,7 @@
 
 :root {
   --color-blue: #0080FF;
-  --light-gray: #D9D7D7;
+  --light-gray: rgb(210, 237, 246);
   --black-opacity: rgba(0,0,0,0.09);
   --url-white-bkgrd: url("https://i.imgur.com/zF8fZ5k.jpg");
   --url-black-bkgrd: url("https://i.imgur.com/nK3V6T8.jpg");
@@ -11,7 +11,6 @@
 body {
   background-image: var(--url-white-bkgrd);
   font-family: 'Roboto Condensed', sans-serif;
-
 }
 
 .fiveTwentyFourContainer,
@@ -148,10 +147,6 @@ div.alert-danger {
   font-weight: bold;
 }
 
-.tab-content {
-  padding: 15px;
-}
-
 .tableHeader>svg {
   cursor: pointer;
 }
@@ -267,7 +262,7 @@ form {
 
 .cardDetailsFieldHeaders {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: clamp(0.9rem, 5vw, 1.2rem);
 }
 
 .cardHeaders {
@@ -275,7 +270,7 @@ form {
   color: var(--color-blue);
   background-color: var(--light-gray);
   text-align: left;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 5vw, 1.5rem)
 }
 
 .accordion-button[aria-expanded='true'] {

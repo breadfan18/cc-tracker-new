@@ -121,6 +121,7 @@ export const USERS = [
 
 export const APP_COLOR_BLUE = "#0080FF";
 export const APP_COLOR_LIGHT_GRAY = "#D9D7D7";
+export const APP_COLOR_LIGHT_BLUE = "rgb(210, 237, 246)";
 export const APP_COLOR_BLACK_OPACITY = "rgba(0,0,0,0.09)";
 export const EDIT_COLOR_GREEN = "#198754";
 export const DELETE_COLOR_RED = "#DC3545";

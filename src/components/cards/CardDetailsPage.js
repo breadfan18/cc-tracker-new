@@ -10,7 +10,7 @@ import {
   USERS,
   NEW_CARD,
   APP_COLOR_BLUE,
-  APP_COLOR_LIGHT_GRAY,
+  APP_COLOR_LIGHT_BLUE,
 } from "../../constants";
 import { Card, Table } from "react-bootstrap";
 import CardAddEditModal from "./CardAddEditModal";
@@ -76,7 +76,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
             src={card.issuer.img}
             style={{
               padding: "2rem",
-              backgroundColor: APP_COLOR_LIGHT_GRAY,
+              backgroundColor: APP_COLOR_LIGHT_BLUE,
               maxHeight: "10rem",
               objectFit: "contain",
             }}
@@ -86,17 +86,17 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
               style={{ display: "flex", justifyContent: "space-between" }}
             >
               <div>
-                <Card.Title style={{ fontSize: "1.5rem" }}>
+                <Card.Title style={{ fontSize: "clamp(0.9rem, 5vw, 1.5rem)" }}>
                   {card.issuer.name} {card.card}
                 </Card.Title>
-                <Card.Title style={{ fontSize: "1rem" }}>
+                <Card.Title style={{ fontSize: "clamp(0.7rem, 4vw, 1rem)" }}>
                   {cardholder.name}
                 </Card.Title>
               </div>
               <div>
                 <BonusEarnStatusIcon
                   bonusEarned={card.bonusEarned}
-                  iconSize="3rem"
+                  iconSize="clamp(1.5rem, 10vw, 3rem)"
                 />
               </div>
             </article>
