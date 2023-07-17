@@ -55,7 +55,7 @@ function CardNotes({
     <Spinner />
   ) : (
     <Card className="text-center" style={{ boxShadow: `2px 0 10px gray` }}>
-      <Card.Header id="notesCardHeader">Card Notes</Card.Header>
+      <Card.Header className="cardHeaders">Card Notes</Card.Header>
       <Card.Body style={{ textAlign: "left" }}>
         {cardNotes.length === 0 ? (
           <EmptyList dataType={"note"} />

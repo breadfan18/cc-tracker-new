@@ -40,14 +40,7 @@ function LoyaltyTabs({ loyaltyData }) {
               boxShadow: "0 0 10px gray",
             }}
           >
-            <Card.Header
-              style={{
-                fontWeight: "bold",
-                backgroundColor: "rgba(217,215,215)",
-              }}
-            >
-              {thisUserName}
-            </Card.Header>
+            <Card.Header className="cardHeaders">{thisUserName}</Card.Header>
             <Card.Body>
               <CustomAccordion
                 accordionBody={loyaltyList}

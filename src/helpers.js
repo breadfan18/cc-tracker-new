@@ -87,13 +87,6 @@ export const slugify = (str) => {
 
 // Not using this function right now. But need to try again in the future
 export const normalizeData = (cards) => {
-  const handleInquiriesList = (inq) => {
-    return Object.keys(inq).reduce((output, i) => {
-      if (inq[i]) output += titleCase(i) + "\n";
-      return output;
-    }, "");
-  };
-
   const formattedCards = [...cards].map((card) => {
     card.appDate = formatDate(card.appDate);
     card.nextFeeDate === ""
@@ -106,7 +99,7 @@ export const normalizeData = (cards) => {
       ? (card.bonusEarnDate = "WIP")
       : formatDate(card.bonusEarnDate);
     card.status = titleCase(card.status);
-    // card.inquiries = handleInquiriesList(card.inquiries);
+    card.inquiries = handleInquiriesList(card.inquiries, "\n");
     return card;
   });
 

@@ -30,7 +30,7 @@ export function CardReminderContainer({ card }) {
 
   return (
     <Card className="text-center" style={{ boxShadow: `2px 0 10px gray` }}>
-      <Card.Header id="notesCardHeader">Card Reminders</Card.Header>
+      <Card.Header className="cardHeaders">Card Reminders</Card.Header>
       <Card.Body style={{ textAlign: "left" }}>
         {isAnnualFeeClose && (
           <CardReminder

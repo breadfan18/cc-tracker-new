@@ -265,14 +265,15 @@ form {
   margin-left: 10px;
 }
 
-#notesCardHeader {
+.cardDetailsFieldHeaders {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.cardHeaders {
+  font-weight: bold;
   color: var(--color-blue);
   background-color: var(--light-gray);
   text-align: left;
   font-size: 1.5rem;
-}
-
-.cardDetailsFieldHeaders {
-  font-weight: bold;
-  font-size: 1.2rem;
 }
