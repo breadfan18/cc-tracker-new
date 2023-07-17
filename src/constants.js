@@ -1,3 +1,18 @@
+// Colors
+export const APP_COLOR_BLUE = "#0080FF";
+export const APP_COLOR_LIGHT_GRAY = "#D9D7D7";
+export const APP_COLOR_LIGHT_BLUE = "rgb(210, 237, 246)";
+export const APP_COLOR_BLACK_OPACITY = "rgba(0,0,0,0.09)";
+export const EDIT_COLOR_GREEN = "#198754";
+export const DELETE_COLOR_RED = "#DC3545";
+export const CARD_COLOR_CLOSED = "rgb(248,215,218)";
+export const CARD_COLOR_DOWNGRADED = "rgb(255,243,205)";
+
+// Texts
+export const REMINDERS_TEXT_AF = "Annual Fee is due within 90 days";
+export const REMINDERS_TEXT_BONUS = "Bonus earn deadline is within 30 days";
+
+// Data
 export const NEW_CARD = {
   id: null,
   issuer: {
@@ -119,14 +134,17 @@ export const USERS = [
   },
 ];
 
-export const APP_COLOR_BLUE = "#0080FF";
-export const APP_COLOR_LIGHT_GRAY = "#D9D7D7";
-export const APP_COLOR_LIGHT_BLUE = "rgb(210, 237, 246)";
-export const APP_COLOR_BLACK_OPACITY = "rgba(0,0,0,0.09)";
-export const EDIT_COLOR_GREEN = "#198754";
-export const DELETE_COLOR_RED = "#DC3545";
-export const CARD_COLOR_CLOSED = "rgb(248,215,218)";
-export const CARD_COLOR_DOWNGRADED = "rgb(255,243,205)";
-
-export const REMINDERS_TEXT_AF = "Annual Fee is due within 90 days";
-export const REMINDERS_TEXT_BONUS = "Bonus earn deadline is within 30 days";
+export const CREDIT_BUREAUS = [
+  {
+    name: "experian",
+    img: "https://i.imgur.com/c3o42yy.png",
+  },
+  {
+    name: "equifax",
+    img: "https://i.imgur.com/94ANFF2.png",
+  },
+  {
+    name: "transunion",
+    img: "https://i.imgur.com/4NwVzht.png",
+  },
+];

@@ -18,7 +18,6 @@ import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import {
   formatCurrency,
   formatDate,
-  handleInquiriesList,
   setColorForCardStatus,
   sortNotesByDate,
   titleCase,
@@ -28,6 +27,7 @@ import { WindowWidthContext } from "../App";
 import _ from "lodash";
 import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
 import { CardReminderContainer } from "./CardReminderContainer";
+import CreditBureauIcons from "../common/CreditBureauIcons";
 
 function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
   const [card, setCard] = useState({ ...props.card });
@@ -154,7 +154,7 @@ function CardDetailsPage({ cards, loadCardsFromFirebase, loading, ...props }) {
                   >
                     Inquiries:
                   </td>
-                  <td>{handleInquiriesList(card.inquiries, " | ")}</td>
+                  <td>{<CreditBureauIcons inquiries={card.inquiries} />}</td>
                 </tr>
                 <tr>
                   <td

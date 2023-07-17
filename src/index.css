@@ -2,7 +2,8 @@
 
 :root {
   --color-blue: #0080FF;
-  --light-gray: rgb(210, 237, 246);
+  --light-gray: #D9D7D7;
+  --light-blue: rgb(210, 237, 246);
   --black-opacity: rgba(0,0,0,0.09);
   --url-white-bkgrd: url("https://i.imgur.com/zF8fZ5k.jpg");
   --url-black-bkgrd: url("https://i.imgur.com/nK3V6T8.jpg");
@@ -44,7 +45,7 @@ body {
 .navFull {
   padding: 10px 0;
   text-decoration: none;
-  color: var(--light-gray);
+  color: var(--light-blue);
   display: flex;
   justify-content: center;
   width: 100%;
@@ -82,7 +83,7 @@ nav a {
 }
 
 a:hover {
-  background-color: var(--light-gray);
+  background-color: var(--light-blue);
   color: var(--color-blue);
 }
 
@@ -137,7 +138,7 @@ div.alert-danger {
 
 .nav-tabs .nav-item .nav-link {
   color: var(--color-blue);
-  background-color: var(--light-gray);
+  background-color: var(--light-blue);
   border-bottom: 2px solid var(--color-blue);
 }
 
@@ -170,10 +171,6 @@ div.alert-danger {
 .rounded-circle:hover {
   transform: scale(1.1);
   box-shadow: 1px 1px 2px black;
-}
-
-.creditPullColumn * {
-  margin-bottom: 0;
 }
 
 #cardBody, #loyaltyCardBody {
@@ -223,7 +220,7 @@ div.alert-danger {
   height: 3.5rem;
   width: 5rem;
   object-fit: contain;
-  border: 1px solid var(--light-gray);
+  border: 1px solid var(--light-blue);
   padding: 5px;
   border-radius: 10px;
 }
@@ -241,7 +238,7 @@ form {
 
 .modalHeader{
   color: var(--color-blue);
-  background-color: var(--light-gray);
+  background-color: var(--light-blue);
 }
 
 .list-group-item {
@@ -253,7 +250,7 @@ form {
   display: flex;
   justify-content: center;
   /* padding: 10px 15px; */
-  background-color: var(--light-gray);
+  background-color: var(--light-blue);
 }
 
 .notesFooter button {
@@ -268,11 +265,26 @@ form {
 .cardHeaders {
   font-weight: bold;
   color: var(--color-blue);
-  background-color: var(--light-gray);
+  background-color: var(--light-blue);
   text-align: left;
   font-size: clamp(1.2rem, 5vw, 1.5rem)
 }
 
 .accordion-button[aria-expanded='true'] {
   background-color: var(--black-opacity);
+}
+
+.bureauImgs {
+  height: 1.7rem;
+  width: 1.7rem;
+  margin: 0 4px 0 0;
+  object-fit: cover;
+}
+
+.bureauImgs[alt='experian'] {
+  border: 1px solid #D92B80;
+  border-radius: 50%;
+  padding: 2px;
+  padding: 2px;
+  background-color: var(--light-gray);
 }

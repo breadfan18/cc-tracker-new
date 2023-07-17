@@ -1,4 +1,9 @@
-import { CARD_COLOR_CLOSED, CARD_COLOR_DOWNGRADED, USERS } from "./constants";
+import {
+  CARD_COLOR_CLOSED,
+  CARD_COLOR_DOWNGRADED,
+  CREDIT_BUREAUS,
+  USERS,
+} from "./constants";
 
 export function wasCardOpenedWithinLast24Months(appDate) {
   const twoYearsAgoFromToday = Date.parse(
@@ -112,13 +117,19 @@ export function formDisabledCheck(dataType) {
   );
 }
 
-export function handleInquiriesList(inq, delimiter) {
-  const inqArr = Object.keys(inq).filter((i) => inq[i]);
-  const lastInq = inqArr[inqArr.length - 1];
-  return inqArr.reduce(
-    (output, i) => (output += titleCase(i) + (i === lastInq ? "" : delimiter)),
-    ""
-  );
+// export function handleInquiriesList(inq, delimiter) {
+//   const inqArr = Object.keys(inq).filter((i) => inq[i]);
+//   const lastInq = inqArr[inqArr.length - 1];
+//   return inqArr.reduce(
+//     (output, i) => (output += titleCase(i) + (i === lastInq ? "" : delimiter)),
+//     ""
+//   );
+// }
+
+export function handleInquiriesList(inq) {
+  return Object.keys(inq)
+    .filter((i) => inq[i])
+    .map((inq) => CREDIT_BUREAUS.find((i) => inq === i.name));
 }
 
 export function setColorForCardStatus(componentType, cardStatus) {

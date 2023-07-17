@@ -3,24 +3,20 @@ import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import Table from "react-bootstrap/Table";
 import { FaSort } from "react-icons/fa";
-import {
-  TbSquareRoundedCheckFilled,
-  TbSquareRoundedChevronsRightFilled,
-} from "react-icons/tb";
 import { useSortableData } from "../../hooks/sortData";
 import {
   formatDate,
   titleCase,
   formatCurrency,
-  handleInquiriesList,
   setColorForCardStatus,
 } from "../../helpers";
 import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { CARD_DATA_KEYS, APP_COLOR_BLUE } from "../../constants";
+import { CARD_DATA_KEYS } from "../../constants";
 import BonusEarnStatusIcon from "../common/BonusEarnStatusIcon";
+import CreditBureauIcons from "../common/CreditBureauIcons";
 
 export default function CardListTable({
   cards,
@@ -130,11 +126,8 @@ export default function CardListTable({
               <td>{card.cardType}</td>
               {windowWidth > 1505 && <td>{formatCurrency(card.creditLine)}</td>}
               {windowWidth > 1550 && (
-                <td
-                  className="creditPullColumn"
-                  style={{ whiteSpace: "pre-wrap" }}
-                >
-                  {handleInquiriesList(card.inquiries, "\n")}
+                <td>
+                  <CreditBureauIcons inquiries={card.inquiries} />
                 </td>
               )}
               <td>{formatCurrency(card.annualFee)}</td>
