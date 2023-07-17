@@ -6,11 +6,11 @@
     "start:dev": "webpack serve --config webpack.config.dev.js --port 3000",
     "prestart:api": "node tools/createMockDb.js",
     "start:api": "node tools/apiServer.js",
-    "clean:build": "rimraf ./build && mkdir build",
+    "clean:build": "rimraf ./docs && mkdir docs",
     "prebuild": "run-p clean:build",
     "build": "webpack --config webpack.config.prod.js",
     "postbuild": "run-p start:api serve:build",
-    "serve:build": "http-server ./build"
+    "serve:build": "http-server ./docs"
   },
   "dependencies": {
     "bootstrap": "^5.3.0",
