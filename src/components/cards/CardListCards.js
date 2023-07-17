@@ -1,15 +1,15 @@
 import React, { useContext } from "react";
 import { Card } from "react-bootstrap";
-import { CARD_DATA_KEYS, USERS, APP_COLOR_BLUE } from "../../constants";
+import {
+  CARD_DATA_KEYS,
+  USERS,
+  APP_COLOR_BLACK_OPACITY,
+} from "../../constants";
 import PropTypes from "prop-types";
 import EmptyList from "../common/EmptyList";
 import CardAddEditModal from "./CardAddEditModal";
 import ConfirmDeleteModal from "../common/ConfirmDeleteModal";
 import { WindowWidthContext } from "../App";
-import {
-  TbSquareRoundedCheckFilled,
-  TbSquareRoundedChevronsRightFilled,
-} from "react-icons/tb";
 import CardText from "./CardText";
 import { setColorForCardStatus } from "../../helpers";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -31,7 +31,7 @@ export default function CardListCards({ cards, showEditDelete, showUserName }) {
         <Card.Body style={{ padding: "0" }}>
           <div
             style={{
-              backgroundColor: "rgba(0,0,0,0.06)",
+              backgroundColor: APP_COLOR_BLACK_OPACITY,
             }}
           >
             {showUserName && (
