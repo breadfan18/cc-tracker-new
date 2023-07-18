@@ -33,23 +33,13 @@ function LoyaltyTabs({ loyaltyData }) {
       const thisUserName = USERS.find((u) => u.id === parseInt(user)).name;
       return (
         <>
-          <Card
-            className="text-center"
-            style={{
-              border: "2px solid rgba(0,0,0,0.2)",
-              boxShadow: "0 0 10px gray",
-            }}
-          >
-            <Card.Header className="cardHeaders">{thisUserName}</Card.Header>
-            <Card.Body>
-              <CustomAccordion
-                accordionBody={loyaltyList}
-                dataType={"Accounts"}
-                defaultKey="1"
-                windowWidth={windowWidth}
-              />
-            </Card.Body>
-          </Card>
+          <CustomAccordion
+            accordionBody={loyaltyList}
+            dataType={"Accounts"}
+            defaultKey="1"
+            windowWidth={windowWidth}
+            user={thisUserName}
+          />
           <br />
         </>
       );
