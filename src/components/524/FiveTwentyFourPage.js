@@ -45,48 +45,45 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
       });
 
     const cardsListComponent =
-      windowWidth > 1000 ? (
-        <CardList
-          cards={cards524}
-          showEditDelete={false}
-          showUser={false}
-          showCompactTable={true}
-        />
+      cards524.length > 0 ? (
+        windowWidth > 1000 ? (
+          <CardList
+            cards={cards524}
+            showEditDelete={false}
+            showUser={false}
+            showCompactTable={true}
+          />
+        ) : (
+          <CardListCards
+            cards={cards524}
+            showEditDelete={false}
+            showUserName={false}
+          />
+        )
+      ) : null;
+
+    const five24TrackerElem =
+      cards524.length > 0 ? (
+        <>
+          <FiveTwentyFourStatus
+            percent={(cards524.length / 5) * 100}
+            label={`${cards524.length}/5`}
+            key={user.id}
+          />
+        </>
       ) : (
-        <CardListCards
-          cards={cards524}
-          showEditDelete={false}
-          showUserName={false}
-        />
+        "This user has opened 0 personal cards in the last 24 months"
       );
 
     return (
       <>
-        <Card className="text-center" style={{ boxShadow: "0 0 10px gray" }}>
-          <Card.Header className="cardHeaders">{userName}</Card.Header>
-          <Card.Body>
-            {cards524.length === 0 ? (
-              <Card.Text>
-                This user has opened 0 personal cards in the last 24 months
-              </Card.Text>
-            ) : (
-              <>
-                <FiveTwentyFourStatus
-                  percent={(cards524.length / 5) * 100}
-                  label={`${cards524.length}/5`}
-                  key={user.id}
-                />
-                <br />
-                <CustomAccordion
-                  accordionBody={cardsListComponent}
-                  dataType="Cards"
-                  defaultKey="0"
-                  windowWidth={windowWidth}
-                />
-              </>
-            )}
-          </Card.Body>
-        </Card>
+        <CustomAccordion
+          accordionBody={cardsListComponent}
+          defaultKey="1"
+          user={userName}
+          show524Status={true}
+          fiveTwentyFourStatusElement={five24TrackerElem}
+        />
         <br />
       </>
     );

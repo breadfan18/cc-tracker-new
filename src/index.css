@@ -262,16 +262,12 @@ form {
   font-size: clamp(0.9rem, 5vw, 1.2rem);
 }
 
-.cardHeaders, .loyaltyContainer .accordion-button, .loyaltyContainer .accordion-button[aria-expanded='true'] {
+.cardHeaders, .accordion-button, .accordion-button[aria-expanded='true'] {
   font-weight: bold;
   color: var(--color-blue);
   background-color: var(--light-blue);
   text-align: left;
   font-size: clamp(1.2rem, 5vw, 1.5rem)
-}
-
-.fiveTwentyFourContainer .accordion-button {
-  background-color: var(--black-opacity);
 }
 
 .bureauImgs {
