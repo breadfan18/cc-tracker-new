@@ -24,6 +24,7 @@ body {
 .cardDetailsBody {
   display: flex;
   flex-wrap: wrap;
+  font-size: clamp(0.6rem, 5vw, 1rem);
 }
 
 #cardDetailsSectionRight{
