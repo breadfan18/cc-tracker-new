@@ -5,9 +5,8 @@ import { loadCardsFromFirebase } from "../../redux/actions/cardsActions";
 import { Spinner } from "../common/Spinner";
 import PropTypes from "prop-types";
 import { FiveTwentyFourStatus } from "./FiveTwentyFourStatus";
-import Card from "react-bootstrap/Card";
 import { wasCardOpenedWithinLast24Months } from "../../helpers";
-import CustomAccordion from "../common/CustomAccordion";
+import FiveTwentyFourAccordion from "./FiveTwentyFourAccordion";
 import SelectInput from "../common/SelectInput";
 import CardList from "../cards/CardListTable";
 import { WindowWidthContext } from "../App";
@@ -77,11 +76,9 @@ const FiveTwentyFourPage = ({ cards, loadCards, loading, cardsByUser }) => {
 
     return (
       <>
-        <CustomAccordion
-          accordionBody={cardsListComponent}
-          defaultKey="1"
+        <FiveTwentyFourAccordion
+          five24Cards={cardsListComponent}
           user={userName}
-          show524Status={true}
           fiveTwentyFourStatusElement={five24TrackerElem}
         />
         <br />

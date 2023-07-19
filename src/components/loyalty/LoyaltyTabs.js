@@ -6,8 +6,7 @@ import LoyaltyList from "./LoyaltyList";
 import { connect } from "react-redux";
 import { ACCOUNT_TYPE, USERS } from "../../constants";
 import { titleCase } from "../../helpers";
-import CustomAccordion from "../common/CustomAccordion";
-import { Card } from "react-bootstrap";
+import LoyaltyAccordion from "./LoyaltyAccordion";
 import _ from "lodash";
 import LoyaltyCards from "./LoyaltyCards";
 import EmptyList from "../common/EmptyList";
@@ -33,10 +32,9 @@ function LoyaltyTabs({ loyaltyData }) {
       const thisUserName = USERS.find((u) => u.id === parseInt(user)).name;
       return (
         <>
-          <CustomAccordion
+          <LoyaltyAccordion
             accordionBody={loyaltyList}
             dataType={"Accounts"}
-            defaultKey="1"
             windowWidth={windowWidth}
             user={thisUserName}
           />

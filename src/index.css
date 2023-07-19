@@ -284,3 +284,8 @@ form {
   padding: 2px;
   background-color: var(--light-gray);
 }
+
+#five24AccordionHeader .accordion-button {
+  font-size: 0.9rem;
+  background-color: var(--black-opacity);
+}
