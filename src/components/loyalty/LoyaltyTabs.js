@@ -50,7 +50,7 @@ function LoyaltyTabs({ loyaltyData }) {
         key={loyaltyType}
       >
         {userCards.length === 0 ? (
-          <EmptyList dataType="loyalty accounts" />
+          <EmptyList dataType="loyalty account" />
         ) : (
           userCards
         )}
